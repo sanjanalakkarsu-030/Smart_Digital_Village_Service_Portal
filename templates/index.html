@@ -1,0 +1,487 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section Start -->
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <h5>RAORUKULA VILLAGE</h5>
+
+        <h1>
+            Smart Digital Village <br>
+            Service Portal
+        </h1>
+
+        <p>
+            One Platform, Many Services.<br>
+            Bringing Government Services Closer to Every Citizen.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#" class="btn-primary">
+                <i class="fa-solid fa-user"></i>
+                Citizen Login
+            </a>
+
+            <a href="#" class="btn-secondary">
+                <i class="fa-solid fa-user-plus"></i>
+                New Registration
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- Hero Section End -->
+ <!-- Village Information -->
+
+<section class="village-info">
+
+    <div class="info-item">
+        <i class="fa-solid fa-users"></i>
+        <h3>2,667</h3>
+        <span>Population</span>
+    </div>
+
+    <div class="info-item">
+        <i class="fa-solid fa-house"></i>
+        <h3>656</h3>
+        <span>Households</span>
+    </div>
+
+    <div class="info-item">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <h3>8</h3>
+        <span>Village Wards</span>
+    </div>
+
+    <div class="info-item">
+        <i class="fa-solid fa-book-open"></i>
+        <h3>54.03%</h3>
+        <span>Literacy Rate</span>
+    </div>
+
+    <div class="info-item">
+        <i class="fa-solid fa-seedling"></i>
+        <h3>Agriculture</h3>
+        <span>Main Occupation</span>
+    </div>
+
+    <div class="info-item">
+        <i class="fa-solid fa-hospital"></i>
+        <h3>Available</h3>
+        <span>Health Centre</span>
+    </div>
+
+    <div class="info-item">
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Available</h3>
+        <span>Post Office</span>
+    </div>
+
+    <div class="info-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <h3>13 km</h3>
+        <span>Nearest Town</span>
+    </div>
+
+</section>
+<!-- ===========================
+     About Village Section
+=========================== -->
+
+<section class="about-section">
+
+    <div class="about-image">
+
+        <img src="{{ url_for('static', filename='images/about-village.jpg') }}" alt="Raorukula Village">
+
+    </div>
+
+    <div class="about-content">
+
+        <span class="section-title">ABOUT OUR VILLAGE</span>
+
+        <h2>Welcome to Raorukula Village</h2>
+
+        <p>
+            Raorukula is a peaceful village located in Siddipet Rural Mandal,
+            Siddipet District, Telangana. Agriculture is the primary occupation
+            of the villagers, and the village is well connected to Siddipet town.
+        </p>
+
+        <p>
+            The village provides essential facilities including a Gram Panchayat,
+            Health Sub-Centre, Post Office, Bus Facility, Government School,
+            and access to various digital government services.
+        </p>
+
+        <div class="about-details">
+
+            <div>
+                <strong>District</strong>
+                <p>Siddipet</p>
+            </div>
+
+            <div>
+                <strong>Mandal</strong>
+                <p>Siddipet Rural</p>
+            </div>
+
+            <div>
+                <strong>Gram Panchayat</strong>
+                <p>Rampur</p>
+            </div>
+
+            <div>
+                <strong>Main Language</strong>
+                <p>Telugu</p>
+            </div>
+
+        </div>
+
+        <a href="#" class="about-btn">
+            Learn More
+        </a>
+
+    </div>
+
+</section>
+<!-- ===========================
+     Digital Village Services
+=========================== -->
+
+<section class="services">
+
+    <div class="section-header">
+        <span>OUR SERVICES</span>
+        <h2>Digital Village Services</h2>
+        <p>Access government services quickly and conveniently through our digital portal.</p>
+    </div>
+
+    <div class="service-container">
+
+        <div class="service-card">
+            <i class="fa-solid fa-user-plus"></i>
+            <h3>Citizen Services</h3>
+            <p>Citizen registration, login and profile management.</p>
+            <a href="/citizen">Explore →</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fa-solid fa-comments"></i>
+            <h3>Complaint Management</h3>
+            <p>Submit complaints and track their status online.</p>
+            <a href="/complaints">Explore →</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fa-solid fa-landmark"></i>
+            <h3>Government Schemes</h3>
+            <p>View welfare schemes and apply for eligible benefits.</p>
+            <a href="/government">Explore →</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fa-solid fa-seedling"></i>
+            <h3>Agriculture Support</h3>
+            <p>Crop guidance, farming tips and agricultural assistance.</p>
+            <a href="/agriculture">Explore →</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fa-solid fa-notes-medical"></i>
+            <h3>Health Services</h3>
+            <p>Health camps, hospitals and emergency medical services.</p>
+            <a href="/health">Explore →</a>
+        </div>
+
+        <div class="service-card">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h3>Village Announcements</h3>
+            <p>Latest notices, meetings and important village updates.</p>
+            <a href="/announcements">Explore →</a>
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================
+     Government Schemes
+=========================== -->
+
+<section class="schemes">
+
+    <div class="section-header">
+        <span>GOVERNMENT SCHEMES</span>
+        <h2>Popular Welfare Schemes</h2>
+        <p>Explore government schemes available for the citizens of Raorukula Village.</p>
+    </div>
+
+    <div class="scheme-container">
+
+        <div class="scheme-card">
+            <img src="{{ url_for('static', filename='images/schemes/rythu-bharosa.jpg') }}" alt="Rythu Bharosa">
+
+            <div class="scheme-content">
+                <h3>Rythu Bharosa</h3>
+
+                <p>
+                    Financial assistance for eligible farmers to support agricultural activities.
+                </p>
+
+                <a href="#">Apply Now</a>
+            </div>
+
+        </div>
+
+        <div class="scheme-card">
+
+            <img src="{{ url_for('static', filename='images/schemes/kalyana-lakshmi.jpg') }}" alt="Kalyana Lakshmi">
+
+            <div class="scheme-content">
+
+                <h3>Kalyana Lakshmi</h3>
+
+                <p>
+                    Financial assistance for marriage of eligible women from economically weaker families.
+                </p>
+
+                <a href="#">Apply Now</a>
+
+            </div>
+
+        </div>
+
+        <div class="scheme-card">
+
+            <img src="{{ url_for('static', filename='images/schemes/aasara.jpg') }}" alt="Aasara Pension">
+
+            <div class="scheme-content">
+
+                <h3>Aasara Pension</h3>
+
+                <p>
+                    Monthly financial support for senior citizens, widows and differently-abled persons.
+                </p>
+
+                <a href="#">Apply Now</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================
+     Latest Village Announcements
+=========================== -->
+
+<section class="announcements">
+
+    <div class="section-header">
+        <span>LATEST UPDATES</span>
+        <h2>Village Announcements</h2>
+        <p>Stay informed about the latest events and important notices in Raorukula Village.</p>
+    </div>
+
+    <div class="announcement-container">
+
+        <div class="announcement-card">
+            <div class="announcement-date">
+                <h3>15</h3>
+                <span>AUG</span>
+            </div>
+
+            <div class="announcement-content">
+                <h3>Gram Sabha Meeting</h3>
+                <p>
+                    Gram Sabha meeting will be held at the Gram Panchayat Office on
+                    15 August 2026 at 10:00 AM.
+                </p>
+
+                <a href="#">Read More →</a>
+            </div>
+        </div>
+
+        <div class="announcement-card">
+            <div class="announcement-date">
+                <h3>18</h3>
+                <span>AUG</span>
+            </div>
+
+            <div class="announcement-content">
+                <h3>Free Health Camp</h3>
+                <p>
+                    A free health check-up camp will be organized for all villagers
+                    at the Health Sub-Centre.
+                </p>
+
+                <a href="#">Read More →</a>
+            </div>
+        </div>
+
+        <div class="announcement-card">
+            <div class="announcement-date">
+                <h3>20</h3>
+                <span>AUG</span>
+            </div>
+
+            <div class="announcement-content">
+                <h3>Water Supply Maintenance</h3>
+                <p>
+                    Water supply will be temporarily interrupted due to maintenance
+                    work from 9:00 AM to 2:00 PM.
+                </p>
+
+                <a href="#">Read More →</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="view-all">
+        <a href="/announcements" class="view-btn">
+            View All Announcements
+        </a>
+    </div>
+
+</section>
+<!-- ===========================
+     Emergency Contacts
+=========================== -->
+
+<section class="emergency">
+
+    <div class="section-header">
+        <span>EMERGENCY CONTACTS</span>
+        <h2>Emergency Services</h2>
+        <p>Quick access to important emergency contact numbers for villagers.</p>
+    </div>
+
+    <div class="emergency-grid">
+
+        <div class="emergency-card">
+            <i class="fa-solid fa-building"></i>
+            <h3>Gram Panchayat</h3>
+            <p>Raorukula Gram Panchayat</p>
+            <span>☎ +91 9876543210</span>
+        </div>
+
+        <div class="emergency-card">
+            <i class="fa-solid fa-hospital"></i>
+            <h3>Health Centre</h3>
+            <p>Health Sub-Centre</p>
+            <span>☎ 108</span>
+        </div>
+
+        <div class="emergency-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>Police Station</h3>
+            <p>Siddipet Police Station</p>
+            <span>☎ 100</span>
+        </div>
+
+        <div class="emergency-card">
+            <i class="fa-solid fa-fire"></i>
+            <h3>Fire Station</h3>
+            <p>Siddipet Fire Service</p>
+            <span>☎ 101</span>
+        </div>
+
+        <div class="emergency-card">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Electricity</h3>
+            <p>TGSPDCL Helpline</p>
+            <span>☎ 1912</span>
+        </div>
+
+        <div class="emergency-card">
+            <i class="fa-solid fa-droplet"></i>
+            <h3>Water Supply</h3>
+            <p>Village Water Department</p>
+            <span>☎ Village Office</span>
+        </div>
+
+    </div>
+
+</section>
+<!-- ===========================
+     Contact Us
+=========================== -->
+
+<section class="contact">
+
+    <div class="section-header">
+        <span>CONTACT US</span>
+        <h2>Get In Touch</h2>
+        <p>For any assistance, feel free to contact the Gram Panchayat Office.</p>
+    </div>
+
+    <div class="contact-container">
+
+        <div class="contact-info">
+
+            <div class="contact-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <h3>Address</h3>
+                    <p>Raorukula Village, Rampur Gram Panchayat,<br>
+                    Siddipet Rural, Siddipet District,<br>
+                    Telangana - 502107</p>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h3>Phone</h3>
+                    <p>+91 9876543210</p>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h3>Email</h3>
+                    <p>info@raorukulavillage.in</p>
+                </div>
+            </div>
+
+            <div class="contact-box">
+                <i class="fa-solid fa-clock"></i>
+                <div>
+                    <h3>Office Hours</h3>
+                    <p>Monday - Saturday<br>09:00 AM - 05:00 PM</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="contact-map">
+
+            <iframe
+                src="https://www.google.com/maps?q=Siddipet,+Telangana&output=embed"
+                width="100%"
+                height="400"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

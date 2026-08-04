@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Complaint Registration</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef5ff;
+        }
+
+
+        .container {
+
+            width: 450px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+
+        }
+
+
+        h2 {
+
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 25px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        label {
+
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #333;
+
+        }
+
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+
+            font-size: 15px;
+
+        }
+
+
+        textarea {
+
+            resize: none;
+
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #0066cc;
+            outline: none;
+
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            background-color: #0066cc;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 6px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+
+        }
+
+
+        button:hover {
+
+            background-color: #004c99;
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <h2>Complaint Registration Form</h2>
+
+
+        <form action="/submit-complaint" method="POST">
+
+
+            <div class="form-group">
+
+                <label>Full Name</label>
+
+                <input 
+                    type="text"
+                    name="citizen_name"
+                    placeholder="Enter your full name"
+                    required>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>Mobile Number</label>
+
+                <input 
+                    type="text"
+                    name="mobile"
+                    placeholder="Enter mobile number"
+                    required>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>Complaint Category</label>
+
+                <select name="category">
+
+                    <option>Select Category</option>
+
+                    <option>Water Supply</option>
+
+                    <option>Electricity</option>
+
+                    <option>Road Problem</option>
+
+                    <option>Street Light</option>
+
+                    <option>Sanitation</option>
+
+                </select>
+
+            </div>
+
+
+
+
+            <div class="form-group">
+
+                <label>Complaint Title</label>
+
+                <input
+                    type="text"
+                    name="title"
+                    placeholder="Enter complaint title"
+                    required>
+
+            </div>
+
+
+
+
+            <div class="form-group">
+
+                <label>Complaint Description</label>
+
+                <textarea
+                    name="description"
+                    rows="5"
+                    placeholder="Describe your complaint"
+                    required></textarea>
+
+            </div>
+
+
+
+
+            <div class="form-group">
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    name="location"
+                    placeholder="Enter problem location">
+
+            </div>
+
+
+
+
+            <button type="submit">
+                Submit Complaint
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</body>
+
+</html>
