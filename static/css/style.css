@@ -37,6 +37,8 @@ body{
     list-style:none;
 
     gap:30px;
+
+    align-items:center;
 }
 
 .navbar a{
@@ -80,9 +82,8 @@ body{
     background: url("../images/hero.jpg") center center/cover no-repeat;
     display: flex;
     align-items: center;
-    padding-left: 120px;
+    padding: 120px 20px 40px;
 }
-
 .hero-overlay{
     position:absolute;
     top:0;
@@ -930,4 +931,232 @@ footer{
     text-align:center;
 
     color:#ddd;
+}
+/* ===============================
+   Responsive Design
+================================ */
+
+/* Tablets */
+
+@media (max-width:992px){
+
+    .service-container,
+    .scheme-container,
+    .emergency-grid{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-section{
+
+        flex-direction:column;
+    }
+
+    .contact-container{
+
+        grid-template-columns:1fr;
+    }
+
+    .footer-container{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width:768px){
+
+    .service-container,
+    .scheme-container,
+    .emergency-grid{
+        grid-template-columns:1fr;
+    }
+
+    .village-info{
+        flex-direction:column;
+    }
+
+    /* ---------- Mobile Navbar ---------- */
+
+    .top-bar{
+        display:none;
+    }
+
+    .menu-toggle{
+        display:block;
+        font-size:28px;
+        cursor:pointer;
+    }
+
+    .navbar{
+        flex-wrap:wrap;
+        padding:15px 20px;
+    }
+
+    .navbar ul{
+        display:none;
+        flex-direction:column;
+        width:100%;
+        background:white;
+        margin-top:15px;
+        padding:15px 0;
+    }
+
+    .navbar ul.active{
+        display:flex;
+    }
+
+    .navbar ul li{
+        width:100%;
+        text-align:center;
+        padding:10px 0;
+    }
+
+    .login-btn,
+.register-btn{
+
+    width:100px;
+
+    padding:8px 10px;
+
+    font-size:13px;
+
+}
+
+
+}
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+/* ==========================================
+   Mobile Responsive Hero Section
+========================================== */
+
+@media screen and (max-width:768px){
+
+    .hero{
+    position: relative;
+    height: 700px;
+    background: url("../images/hero.jpg") center center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding: 120px 20px 40px;
+}
+.hero-content h1{
+
+    font-size: 42px;
+
+    line-height: 1.2;
+
+}
+
+.hero-content h4{
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+
+}
+
+.hero-content p{
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+}
+    .hero-content{
+
+        width:100%;
+        max-width:100%;
+        padding:0 15px;
+    }
+
+    .hero-buttons{
+
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+    }
+
+    .hero-buttons a{
+
+        width:220px;
+        text-align:center;
+    }
+
+}
+/* ================= NAVBAR MOBILE ================= */
+
+.menu-toggle{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* Mobile */
+
+@media screen and (max-width:768px){
+
+    .top-bar{
+        display:none;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .navbar{
+        padding:15px 20px;
+        position:relative;
+    }
+
+    .navbar ul{
+        display:none;
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:#fff;
+        flex-direction:column;
+        gap:0;
+        box-shadow:0 10px 20px rgba(0,0,0,.15);
+        z-index:1000;
+    }
+
+    .navbar ul.active{
+        display:flex;
+    }
+
+    .navbar ul li{
+        width:100%;
+        text-align:center;
+        border-bottom:1px solid #eee;
+        padding:15px 0;
+    }
+
+    .navbar ul li:last-child{
+        border-bottom:none;
+    }
+
+    .navbar ul li a{
+        display:block;
+    }
+
+    .login-btn,
+.register-btn{
+
+    width:200px;
+
+    margin:10px auto;
+
+    display:block;
+
+}
+
 }
