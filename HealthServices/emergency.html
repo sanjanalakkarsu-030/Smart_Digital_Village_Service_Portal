@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>🚑 Emergency Health Services</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(
+        135deg,
+        #e3f2fd,
+        #90caf9
+    );
+
+    min-height: 100vh;
+}
+
+
+/* HEADER */
+
+header {
+    background: #1976d2;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+
+/* CONTAINER */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+
+/* TITLE */
+
+.title {
+    text-align: center;
+    color: #0d47a1;
+    margin-bottom: 25px;
+}
+
+
+/* GRID */
+
+.emergency-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(280px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+
+/* CARD */
+
+.emergency-card {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    border-top: 5px solid #1976d2;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,0.15);
+
+    transition: 0.3s;
+}
+
+.emergency-card:hover {
+    transform: translateY(-5px);
+}
+
+
+/* ICON */
+
+.emergency-icon {
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+
+/* HEADING */
+
+.emergency-card h2 {
+    color: #0d47a1;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+/* TEXT */
+
+.emergency-card p {
+    color: #444;
+    line-height: 1.5;
+    margin: 10px 0;
+    text-align: center;
+}
+
+
+/* NUMBER */
+
+.number {
+    display: block;
+
+    width: fit-content;
+
+    margin: 15px auto;
+
+    background: #e3f2fd;
+
+    color: #0d47a1;
+
+    padding: 7px 15px;
+
+    border-radius: 15px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* CALL BUTTON */
+
+.call-btn {
+    display: block;
+
+    background: #1976d2;
+
+    color: white;
+
+    text-decoration: none;
+
+    text-align: center;
+
+    padding: 11px;
+
+    border-radius: 7px;
+
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+.call-btn:hover {
+    background: #0d47a1;
+}
+
+
+/* BACK BUTTON */
+
+.back-btn {
+    display: block;
+
+    width: 200px;
+
+    margin: 35px auto;
+
+    padding: 12px;
+
+    text-align: center;
+
+    background: #0d47a1;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #1565c0;
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .container {
+        width: 95%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>
+        🚑 Emergency Health Services
+    </h1>
+
+    <p>
+        Get quick access to emergency medical assistance
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- TITLE -->
+
+    <h2 class="title">
+        🏥 Emergency Medical Services
+    </h2>
+
+
+    <div class="emergency-grid">
+
+
+        <!-- AMBULANCE -->
+
+        <div class="emergency-card">
+
+            <div class="emergency-icon">
+                🚑
+            </div>
+
+            <h2>
+                Ambulance Service
+            </h2>
+
+            <p>
+                Request ambulance assistance
+                during a medical emergency.
+            </p>
+
+            <span class="number">
+                📞 108
+            </span>
+
+            <a
+                href="tel:108"
+                class="call-btn"
+            >
+                📞 Call Ambulance
+            </a>
+
+        </div>
+
+
+        <!-- EMERGENCY MEDICAL CARE -->
+
+        <div class="emergency-card">
+
+            <div class="emergency-icon">
+                🏥
+            </div>
+
+            <h2>
+                Emergency Medical Care
+            </h2>
+
+            <p>
+                Get immediate medical attention
+                at the nearest emergency facility.
+            </p>
+
+            <span class="number">
+                📞 112
+            </span>
+
+            <a
+                href="tel:112"
+                class="call-btn"
+            >
+                📞 Emergency Help
+            </a>
+
+        </div>
+
+
+        <!-- MEDICAL HELPLINE -->
+
+        <div class="emergency-card">
+
+            <div class="emergency-icon">
+                ☎️
+            </div>
+
+            <h2>
+                Medical Helpline
+            </h2>
+
+            <p>
+                Contact emergency assistance
+                when urgent medical guidance is needed.
+            </p>
+
+            <span class="number">
+                📞 112
+            </span>
+
+            <a
+                href="tel:112"
+                class="call-btn"
+            >
+                📞 Call Helpline
+            </a>
+
+        </div>
+
+
+        <!-- BLOOD EMERGENCY -->
+
+        <div class="emergency-card">
+
+            <div class="emergency-icon">
+                🩸
+            </div>
+
+            <h2>
+                Blood Emergency
+            </h2>
+
+            <p>
+                Contact emergency medical services
+                when urgent blood-related assistance
+                is required.
+            </p>
+
+            <span class="number">
+                📞 112
+            </span>
+
+            <a
+                href="tel:112"
+                class="call-btn"
+            >
+                📞 Get Emergency Help
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <a
+        href="{{ url_for('dashboard') }}"
+        class="back-btn"
+    >
+        ← Back to Health Services
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>
+
