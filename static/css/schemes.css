@@ -1,0 +1,98 @@
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    margin:0;
+}
+
+header{
+    background:#2e8b57;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    text-align:center;
+    margin-top:50px;
+}
+
+button{
+    padding:12px 20px;
+    margin:10px;
+    background:#2e8b57;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#256d46;
+}
+.search{
+    width:80%;
+    padding:10px;
+    margin:20px auto;
+    display:block;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.card{
+    width:80%;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+}
+/* Navigation Bar */
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#0b6623;
+    padding:15px 30px;
+}
+
+.navbar h2{
+    color:white;
+}
+
+.navbar ul{
+    list-style:none;
+    display:flex;
+}
+
+.navbar ul li{
+    margin-left:20px;
+}
+
+.navbar ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.navbar ul li a:hover{
+    color:yellow;
+}
