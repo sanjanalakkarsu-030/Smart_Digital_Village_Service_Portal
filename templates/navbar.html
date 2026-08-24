@@ -41,9 +41,21 @@
 
     <div>
 
-        <button class="login-btn">Login</button>
+        {% if session.get('username') %}
 
-        <button class="register-btn">Register</button>
+            <span class="welcome-text">
+                Welcome, {{ session.get('full_name', session.get('username')) }}
+            </span>
+
+            <a href="/logout" class="register-btn">Logout</a>
+
+        {% else %}
+
+            <a href="/login" class="login-btn">Login</a>
+
+            <a href="/register" class="register-btn">Register</a>
+
+        {% endif %}
 
     </div>
 

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | Smart Digital Village Service Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#d1fae5,#bbf7d0);
+    padding:30px 15px;
+}
+
+.container{
+    width:520px;
+    background:#fff;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(22,163,74,.15);
+    animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.logo{
+    width:85px;
+    height:85px;
+    margin:auto;
+    border-radius:50%;
+    background:#dcfce7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+}
+
+h2{
+    text-align:center;
+    color:#166534;
+    margin-top:18px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin:10px 0 30px;
+    font-size:14px;
+    line-height:22px;
+}
+
+.form-row{
+    display:flex;
+    gap:15px;
+}
+
+.input-group{
+    margin-bottom:20px;
+    flex:1;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    color:#166534;
+    font-weight:600;
+    font-size:14px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea{
+    width:100%;
+    padding:12px;
+    border:2px solid #bbf7d0;
+    border-radius:10px;
+    font-size:14px;
+    outline:none;
+    transition:.3s;
+    font-family:'Poppins',sans-serif;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus{
+    border-color:#16a34a;
+}
+
+.input-group textarea{
+    resize:vertical;
+    min-height:70px;
+}
+
+.password-box{
+    position:relative;
+}
+
+.password-box input{
+    width:100%;
+    padding:12px;
+    padding-right:40px;
+    border:2px solid #bbf7d0;
+    border-radius:10px;
+    font-size:14px;
+    outline:none;
+    transition:.3s;
+}
+
+.password-box input:focus{
+    border-color:#16a34a;
+}
+
+.toggle{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    user-select:none;
+    font-size:16px;
+}
+
+#strength{
+    margin-top:6px;
+    font-size:12px;
+    font-weight:600;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#16a34a;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#15803d;
+}
+
+button:disabled{
+    background:#86efac;
+    cursor:not-allowed;
+}
+
+.loader{
+    display:none;
+    width:22px;
+    height:22px;
+    margin:18px auto;
+    border:3px solid #dcfce7;
+    border-top:3px solid #16a34a;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    color:#15803d;
+    font-weight:500;
+    display:none;
+}
+
+.error-message{
+    text-align:center;
+    margin-top:15px;
+    color:#dc2626;
+    font-weight:500;
+    display:none;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin-top:25px;
+    color:#16a34a;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.back:hover{
+    text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+📝
+</div>
+
+<h2>Citizen Registration</h2>
+
+<p class="subtitle">
+Register to access Smart Digital Village Services.
+</p>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="input-group">
+        <label>Mobile Number</label>
+        <input type="tel" id="mobile" placeholder="10-digit mobile number" maxlength="10" required>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>House Number</label>
+        <input type="text" id="houseNumber" placeholder="e.g. 4-123" required>
+    </div>
+
+    <div class="input-group">
+        <label>Ward Number</label>
+        <select id="wardNumber" required>
+            <option value="">Select Ward</option>
+            <option value="1">Ward 1</option>
+            <option value="2">Ward 2</option>
+            <option value="3">Ward 3</option>
+            <option value="4">Ward 4</option>
+            <option value="5">Ward 5</option>
+            <option value="6">Ward 6</option>
+            <option value="7">Ward 7</option>
+            <option value="8">Ward 8</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Gender</label>
+        <select id="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+    </div>
+</div>
+
+<div class="input-group">
+    <label>Address</label>
+    <textarea id="address" placeholder="Enter your complete address" required></textarea>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Choose a username" required>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Password</label>
+        <div class="password-box">
+            <input type="password" id="password" placeholder="Create a password" onkeyup="checkStrength()" required>
+            <span class="toggle" onclick="togglePassword('password',this)">👁</span>
+        </div>
+        <div id="strength"></div>
+    </div>
+
+    <div class="input-group">
+        <label>Confirm Password</label>
+        <div class="password-box">
+            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+            <span class="toggle" onclick="togglePassword('confirmPassword',this)">👁</span>
+        </div>
+    </div>
+</div>
+
+<button id="registerBtn" onclick="register()">
+Create Account
+</button>
+
+<div class="loader" id="loader"></div>
+
+<div class="message" id="message"></div>
+<div class="error-message" id="errorMessage"></div>
+
+<a href="/login" class="back">
+Already have an account? Login
+</a>
+
+</div>
+
+<script>
+
+function togglePassword(id,icon){
+
+const input=document.getElementById(id);
+
+if(input.type==="password"){
+
+input.type="text";
+icon.innerHTML="🙈";
+
+}else{
+
+input.type="password";
+icon.innerHTML="👁";
+
+}
+
+}
+
+function checkStrength(){
+
+const password=document.getElementById("password").value;
+
+const strength=document.getElementById("strength");
+
+if(password.length<6){
+
+strength.innerHTML="🔴 Weak Password";
+strength.style.color="red";
+
+}
+else if(password.length<10){
+
+strength.innerHTML="🟡 Medium Password";
+strength.style.color="orange";
+
+}
+else{
+
+strength.innerHTML="🟢 Strong Password";
+strength.style.color="green";
+
+}
+
+}
+
+async function register(){
+
+const fullName=document.getElementById("fullName").value.trim();
+const mobile=document.getElementById("mobile").value.trim();
+const houseNumber=document.getElementById("houseNumber").value.trim();
+const wardNumber=document.getElementById("wardNumber").value;
+const gender=document.getElementById("gender").value;
+const email=document.getElementById("email").value.trim();
+const address=document.getElementById("address").value.trim();
+const username=document.getElementById("username").value.trim();
+const password=document.getElementById("password").value;
+const confirmPassword=document.getElementById("confirmPassword").value;
+
+const message=document.getElementById("message");
+const errorMessage=document.getElementById("errorMessage");
+
+message.style.display="none";
+errorMessage.style.display="none";
+
+if(!fullName || !mobile || !houseNumber || !wardNumber || !gender || !email || !address || !username || !password || !confirmPassword){
+
+errorMessage.innerHTML="Please fill all fields.";
+errorMessage.style.display="block";
+return;
+
+}
+
+if(mobile.length!==10 || !/^\d{10}$/.test(mobile)){
+
+errorMessage.innerHTML="Please enter a valid 10-digit mobile number.";
+errorMessage.style.display="block";
+return;
+
+}
+
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+
+errorMessage.innerHTML="Please enter a valid email address.";
+errorMessage.style.display="block";
+return;
+
+}
+
+if(password!==confirmPassword){
+
+errorMessage.innerHTML="Passwords do not match.";
+errorMessage.style.display="block";
+return;
+
+}
+
+if(password.length<6){
+
+errorMessage.innerHTML="Password must be at least 6 characters.";
+errorMessage.style.display="block";
+return;
+
+}
+
+document.getElementById("loader").style.display="block";
+document.getElementById("registerBtn").disabled=true;
+
+try{
+
+const response=await fetch("/register",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+full_name:fullName,
+mobile_number:mobile,
+house_number:houseNumber,
+ward_number:wardNumber,
+gender:gender,
+email:email,
+address:address,
+username:username,
+password:password
+})
+
+});
+
+const data=await response.json();
+
+document.getElementById("loader").style.display="none";
+document.getElementById("registerBtn").disabled=false;
+
+if(data.success){
+
+message.innerHTML="Registration successful! Redirecting to login...";
+message.style.display="block";
+
+setTimeout(function(){
+
+window.location.href="/login";
+
+},1500);
+
+}
+else{
+
+errorMessage.innerHTML=data.message;
+errorMessage.style.display="block";
+
+}
+
+}
+catch(error){
+
+document.getElementById("loader").style.display="none";
+document.getElementById("registerBtn").disabled=false;
+
+errorMessage.innerHTML="Unable to connect to the server.";
+errorMessage.style.display="block";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -102,6 +102,7 @@ CREATE TABLE `citizens` (
   `house_number` varchar(20) NOT NULL,
   `ward_number` int(11) NOT NULL,
   `gender` enum('Male','Female','Other') NOT NULL,
+  `email` varchar(100) NOT NULL,
   `address` text NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
@@ -206,7 +207,8 @@ ALTER TABLE `announcements`
 --
 ALTER TABLE `citizens`
   ADD PRIMARY KEY (`citizen_id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `complaints`

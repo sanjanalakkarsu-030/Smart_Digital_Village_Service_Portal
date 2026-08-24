@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify OTP | Smart Digital Village</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#d1fae5,#bbf7d0);
+}
+
+.container{
+    width:430px;
+    background:#fff;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(22,163,74,.15);
+    text-align:center;
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    margin:auto;
+    border-radius:50%;
+    background:#dcfce7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+}
+
+h2{
+    color:#166534;
+    margin-top:18px;
+}
+
+p{
+    color:#666;
+    margin:10px 0 25px;
+    font-size:14px;
+}
+
+.otp-container{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:25px;
+}
+
+.otp{
+    width:55px;
+    height:60px;
+    border:2px solid #bbf7d0;
+    border-radius:10px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    outline:none;
+    transition:.3s;
+}
+
+.otp:focus{
+    border-color:#16a34a;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#16a34a;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#15803d;
+}
+
+.timer{
+    margin-top:18px;
+    color:#666;
+}
+
+#resendBtn{
+    margin-top:15px;
+    background:none;
+    border:none;
+    color:#16a34a;
+    font-weight:600;
+    cursor:pointer;
+}
+
+#resendBtn:disabled{
+    color:#9ca3af;
+    cursor:not-allowed;
+}
+
+.back{
+    display:block;
+    margin-top:25px;
+    text-decoration:none;
+    color:#16a34a;
+    font-weight:600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+📧
+</div>
+
+<h2>Verify OTP</h2>
+
+<p>Please enter the 6-digit OTP sent to your email.</p>
+
+<div class="otp-container">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+</div>
+
+<button onclick="verifyOTP()">
+Verify OTP
+</button>
+
+<div class="timer">
+Resend OTP in <span id="time">60</span> seconds
+</div>
+
+<button id="resendBtn" disabled onclick="resendOTP()">
+Resend OTP
+</button>
+
+<a href="/forgot-password" class="back">
+← Back
+</a>
+
+</div>
+
+<script>
+
+const otpInputs=document.querySelectorAll(".otp");
+
+// Auto move to next box
+otpInputs.forEach((input,index)=>{
+
+input.addEventListener("input",()=>{
+
+if(input.value.length===1 && index<otpInputs.length-1){
+
+otpInputs[index+1].focus();
+
+}
+
+});
+
+input.addEventListener("keydown",(e)=>{
+
+if(e.key==="Backspace" && input.value==="" && index>0){
+
+otpInputs[index-1].focus();
+
+}
+
+});
+
+});
+
+// Verify OTP
+async function verifyOTP(){
+
+let otp="";
+
+otpInputs.forEach(input=>{
+
+otp+=input.value;
+
+});
+
+if(otp.length!==6){
+
+alert("Please enter the complete OTP.");
+
+return;
+
+}
+
+try{
+
+const response=await fetch("/verify-otp",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+otp:otp
+})
+
+});
+
+const data=await response.json();
+
+if(data.success){
+
+window.location.href="/reset-password";
+
+}
+else{
+
+alert(data.message);
+
+}
+
+}
+catch{
+
+alert("Server error.");
+
+}
+
+}
+
+// Countdown Timer
+let seconds=60;
+
+const timer=setInterval(()=>{
+
+seconds--;
+
+document.getElementById("time").innerText=seconds;
+
+if(seconds<=0){
+
+clearInterval(timer);
+
+document.getElementById("resendBtn").disabled=false;
+
+}
+
+},1000);
+
+// Resend OTP
+async function resendOTP(){
+
+try{
+
+const response=await fetch("/send-otp",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+email:sessionStorage.getItem("resetEmail") || ""
+})
+
+});
+
+const data=await response.json();
+
+if(data.success){
+
+alert("OTP Sent Again.");
+
+location.reload();
+
+}
+
+}
+catch{
+
+alert("Unable to resend OTP.");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

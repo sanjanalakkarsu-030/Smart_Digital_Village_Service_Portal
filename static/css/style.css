@@ -58,6 +58,19 @@ body{
     border-radius:6px;
 
     cursor:pointer;
+
+    text-decoration:none;
+
+    display:inline-block;
+}
+
+.welcome-text{
+
+    color:#0b5d2a;
+
+    font-weight:600;
+
+    margin-right:15px;
 }
 
 .login-btn{
