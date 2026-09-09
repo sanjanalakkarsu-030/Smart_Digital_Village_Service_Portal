@@ -463,7 +463,7 @@ password:password
 
 });
 
-const data=await response.json();
+const data=await response.json().catch(()=>({success:false,message:"The server returned an invalid response."}));
 
 document.getElementById("loader").style.display="none";
 document.getElementById("registerBtn").disabled=false;
@@ -482,7 +482,7 @@ window.location.href="/login";
 }
 else{
 
-errorMessage.innerHTML=data.message;
+errorMessage.innerHTML=data.message || "Registration failed. Please try again.";
 errorMessage.style.display="block";
 
 }

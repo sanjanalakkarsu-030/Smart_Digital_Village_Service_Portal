@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🏥 Nearby Hospitals</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e3f2fd, #90caf9);
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+    background: #1976d2;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 16px;
+}
+
+/* CONTAINER */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+/* STATUS */
+
+.status {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+#status {
+    color: #1565c0;
+    font-weight: bold;
+}
+
+/* TITLE */
+
+.title {
+    text-align: center;
+    color: #0d47a1;
+    margin-bottom: 25px;
+}
+
+/* HOSPITAL GRID */
+
+.hospital-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 20px;
+}
+
+/* CARD */
+
+.hospital-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    border-top: 5px solid #1976d2;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.hospital-card:hover {
+    transform: translateY(-5px);
+}
+
+.hospital-icon {
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.hospital-card h2 {
+    color: #0d47a1;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.hospital-card p {
+    color: #444;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* TYPE */
+
+.type {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    background: #e3f2fd;
+    color: #0d47a1;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* BUTTON */
+
+.direction-btn {
+    display: block;
+    background: #1976d2;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 11px;
+    border-radius: 7px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.direction-btn:hover {
+    background: #0d47a1;
+}
+
+/* BACK BUTTON */
+
+.back-btn {
+    display: block;
+    width: 200px;
+    margin: 35px auto;
+    padding: 12px;
+    text-align: center;
+    background: #0d47a1;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.back-btn:hover {
+    background: #1565c0;
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .container {
+        width: 95%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>🏥 Hospital Information</h1>
+
+    <p>
+        Find 3 nearby hospitals using your live location
+    </p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- LOCATION STATUS -->
+
+    <div class="status">
+
+        <p id="status">
+            📍 Getting your location...
+        </p>
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <h2 class="title">
+        🏥 Nearby Hospitals
+    </h2>
+
+
+    <!-- HOSPITALS -->
+
+    <div
+        id="hospital-list"
+        class="hospital-grid"
+    >
+
+    </div>
+
+
+    <!-- BACK -->
+
+    <a href="{{ url_for('dashboard') }}" class="back-btn">
+    ← Back to Health Services
+</a>
+       
+</div>
+
+
+
+<script>
+
+
+/* =====================================
+   GET USER LOCATION
+===================================== */
+
+function getLocation() {
+
+    const status =
+        document.getElementById("status");
+
+
+    if (!navigator.geolocation) {
+
+        status.innerHTML =
+            "❌ Location is not supported by your browser.";
+
+        return;
+
+    }
+
+
+    status.innerHTML =
+        "📍 Getting your live location...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+
+            status.innerHTML =
+                "📍 Location found. Searching nearby hospitals...";
+
+
+            findHospitals(
+                latitude,
+                longitude
+            );
+
+        },
+
+
+        function(error) {
+
+            status.innerHTML =
+                "❌ Please allow location access and refresh the page.";
+
+        },
+
+
+        {
+
+            enableHighAccuracy: true,
+
+            timeout: 15000,
+
+            maximumAge: 0
+
+        }
+
+    );
+
+}
+
+
+
+/* =====================================
+   FIND HOSPITALS
+===================================== */
+
+function findHospitals(latitude, longitude) {
+
+
+    const query = `
+
+        [out:json];
+
+        (
+            node["amenity"="hospital"]
+                (around:10000,${latitude},${longitude});
+
+            way["amenity"="hospital"]
+                (around:10000,${latitude},${longitude});
+
+            relation["amenity"="hospital"]
+                (around:10000,${latitude},${longitude});
+        );
+
+        out center tags;
+
+    `;
+
+
+    fetch(
+        "https://overpass-api.de/api/interpreter",
+        {
+            method: "POST",
+            body: query
+        }
+    )
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        displayHospitals(
+            data.elements,
+            latitude,
+            longitude
+        );
+
+    })
+
+    .catch(error => {
+
+        console.error(error);
+
+        document.getElementById("status").innerHTML =
+            "❌ Unable to find nearby hospitals. Check your internet connection.";
+
+    });
+
+}
+
+
+
+/* =====================================
+   DISPLAY ONLY 3 HOSPITALS
+===================================== */
+
+function displayHospitals(
+
+    hospitals,
+    userLat,
+    userLng
+
+) {
+
+
+    const list =
+        document.getElementById("hospital-list");
+
+
+    list.innerHTML = "";
+
+
+    if (!hospitals || hospitals.length === 0) {
+
+        list.innerHTML = `
+
+            <div class="hospital-card">
+
+                <div class="hospital-icon">
+                    😕
+                </div>
+
+                <h2>
+                    No Hospitals Found
+                </h2>
+
+                <p>
+                    No hospitals were found within 10 km of your location.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* ===============================
+       SORT BY DISTANCE
+    =============================== */
+
+    hospitals.forEach(function(hospital) {
+
+        let lat;
+        let lng;
+
+
+        if (hospital.lat) {
+
+            lat = hospital.lat;
+            lng = hospital.lon;
+
+        }
+
+        else if (hospital.center) {
+
+            lat = hospital.center.lat;
+            lng = hospital.center.lon;
+
+        }
+
+
+        hospital.distance =
+            calculateDistance(
+                userLat,
+                userLng,
+                lat,
+                lng
+            );
+
+    });
+
+
+    hospitals.sort(function(a, b) {
+
+        return a.distance - b.distance;
+
+    });
+
+
+    /* ===============================
+       TAKE ONLY FIRST 3
+    =============================== */
+
+    const nearestThree =
+        hospitals.slice(0, 3);
+
+
+    status.innerHTML =
+        "✅ Showing 3 nearest hospitals.";
+
+
+    /* ===============================
+       DISPLAY
+    =============================== */
+
+    nearestThree.forEach(function(hospital, index) {
+
+
+        const tags =
+            hospital.tags || {};
+
+
+        const name =
+            tags.name ||
+            "Hospital";
+
+
+        const phone =
+            tags.phone ||
+            tags["contact:phone"] ||
+            "Not available";
+
+
+        const address =
+            tags["addr:full"] ||
+            tags["addr:street"] ||
+            tags["addr:city"] ||
+            "Address not available";
+
+
+        let lat;
+        let lng;
+
+
+        if (hospital.lat) {
+
+            lat = hospital.lat;
+            lng = hospital.lon;
+
+        }
+
+        else if (hospital.center) {
+
+            lat = hospital.center.lat;
+            lng = hospital.center.lon;
+
+        }
+
+
+        /* GOVERNMENT */
+
+        const operator =
+            (
+                tags.operator ||
+                ""
+            ).toLowerCase();
+
+
+        const isGovernment =
+
+            operator.includes("government") ||
+
+            operator.includes("govt") ||
+
+            operator.includes("public");
+
+
+        const type =
+
+            isGovernment
+
+            ? "🏛️ Government Hospital"
+
+            : "🏥 Hospital";
+
+
+        /* DIRECTIONS */
+
+        const directions =
+
+            "https://www.google.com/maps/dir/?api=1&destination="
+            + lat
+            + ","
+            + lng;
+
+
+        /* CARD */
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "hospital-card";
+
+
+        card.innerHTML = `
+
+            <div class="hospital-icon">
+                🏥
+            </div>
+
+            <span class="type">
+                ${type}
+            </span>
+
+            <h2>
+                ${index + 1}. ${escapeHTML(name)}
+            </h2>
+
+            <p>
+                <strong>📍 Address:</strong><br>
+                ${escapeHTML(address)}
+            </p>
+
+            <p>
+                <strong>📞 Phone:</strong><br>
+                ${escapeHTML(phone)}
+            </p>
+
+            <p>
+                <strong>📏 Distance:</strong>
+                ${hospital.distance.toFixed(2)} km
+            </p>
+
+            <a
+                href="${directions}"
+                target="_blank"
+                class="direction-btn"
+            >
+                🗺️ Get Directions
+            </a>
+
+        `;
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+
+/* =====================================
+   DISTANCE CALCULATION
+===================================== */
+
+function calculateDistance(
+
+    lat1,
+    lon1,
+    lat2,
+    lon2
+
+) {
+
+    const R = 6371;
+
+
+    const dLat =
+        (lat2 - lat1)
+        * Math.PI / 180;
+
+
+    const dLon =
+        (lon2 - lon1)
+        * Math.PI / 180;
+
+
+    const a =
+
+        Math.sin(dLat / 2) *
+        Math.sin(dLat / 2)
+
+        +
+
+        Math.cos(lat1 * Math.PI / 180) *
+        Math.cos(lat2 * Math.PI / 180) *
+
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+
+
+    const c =
+        2 *
+        Math.atan2(
+            Math.sqrt(a),
+            Math.sqrt(1 - a)
+        );
+
+
+    return R * c;
+
+}
+
+
+
+/* =====================================
+   SECURITY
+===================================== */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        text;
+
+    return div.innerHTML;
+
+}
+
+
+
+/* =====================================
+   START
+===================================== */
+
+getLocation();
+
+</script>
+
+
+</body>
+
+</html>
+

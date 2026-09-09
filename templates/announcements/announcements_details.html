@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Announcement Details</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<h2>
+Smart Digital Village Service Portal
+</h2>
+
+</div>
+
+</header>
+
+
+
+<section class="hero">
+
+<h1>
+📢 Announcement Details
+</h1>
+
+<p>
+Complete information about village announcement
+</p>
+
+</section>
+
+
+
+
+<div class="details-container">
+
+
+<span class="badge new">
+NOTICE
+</span>
+
+
+<h2 id="detailTitle">
+
+</h2>
+
+
+<div class="info">
+
+
+<p>
+<strong>📅 Date:</strong>
+<span id="detailDate"></span>
+</p>
+
+
+<p>
+<strong>🕒 Time:</strong>
+<span id="detailTime"></span>
+</p>
+
+
+<p>
+<strong>👤 Posted By:</strong>
+<span id="detailBy"></span>
+</p>
+
+
+<p>
+<strong>📍 Venue:</strong>
+<span id="detailVenue"></span>
+</p>
+
+
+</div>
+
+
+
+<hr>
+
+
+<h3>
+Description
+</h3>
+
+
+<p id="detailDescription">
+
+</p>
+
+
+<br>
+
+
+<button onclick="window.print()">
+
+🖨 Print Announcement
+
+</button>
+
+
+<button onclick="history.back()">
+
+⬅ Back
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<footer>
+
+<p>
+© 2026 Smart Digital Village Service Portal
+</p>
+
+</footer>
+
+
+
+
+
+<script>
+
+let announcement =
+JSON.parse(
+localStorage.getItem("selectedAnnouncement")
+);
+
+
+
+if(announcement){
+
+
+document.getElementById("detailTitle")
+.innerText =
+announcement.title;
+
+
+
+document.getElementById("detailDescription")
+.innerText =
+announcement.description;
+
+
+
+document.getElementById("detailDate")
+.innerText =
+announcement.date;
+
+
+
+document.getElementById("detailTime")
+.innerText =
+announcement.time;
+
+
+
+document.getElementById("detailBy")
+.innerText =
+announcement.postedBy;
+
+
+
+document.getElementById("detailVenue")
+.innerText =
+announcement.venue;
+
+
+}
+
+else{
+
+
+document.querySelector(".details-container")
+.innerHTML=
+"<h2>No Announcement Selected</h2>";
+
+}
+
+
+</script>
+
+
+
+</body>
+
+</html>

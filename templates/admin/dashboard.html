@@ -1,0 +1,1032 @@
+{% extends "admin/admin_base.html" %}
+
+
+{% block title %}
+Admin Dashboard | Smart Digital Village
+{% endblock %}
+
+
+{% block page_title %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =========================================
+     WELCOME
+========================================= -->
+
+<section class="welcome-section">
+
+    <div>
+
+        <span class="welcome-label">
+            ADMIN DASHBOARD
+        </span>
+
+        <h2>
+            Welcome back, Administrator 👋
+        </h2>
+
+        <p>
+            Here's what's happening in your village today.
+        </p>
+
+    </div>
+
+
+    <div class="date-card">
+
+        <i class="fa-regular fa-calendar"></i>
+
+        <span id="currentDate">
+            Loading...
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     STATISTICS
+========================================= -->
+
+<section class="stats-grid">
+
+
+    <!-- Citizens -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon citizen-icon">
+
+            <i class="fa-solid fa-users"></i>
+
+        </div>
+
+        <div>
+
+            <span>Total Citizens</span>
+
+            <h3>250</h3>
+
+            <small class="green-text">
+
+                <i class="fa-solid fa-arrow-up"></i>
+
+                8% this month
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Complaints -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon complaint-icon">
+
+            <i class="fa-solid fa-file-circle-exclamation"></i>
+
+        </div>
+
+        <div>
+
+            <span>Total Complaints</span>
+
+            <h3>42</h3>
+
+            <small class="orange-text">
+
+                <i class="fa-solid fa-clock"></i>
+
+                15 pending
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Resolved -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon resolved-icon">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div>
+
+            <span>Resolved Complaints</span>
+
+            <h3>27</h3>
+
+            <small class="green-text">
+
+                <i class="fa-solid fa-check"></i>
+
+                64% resolved
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Schemes -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon scheme-icon">
+
+            <i class="fa-solid fa-landmark"></i>
+
+        </div>
+
+        <div>
+
+            <span>Government Schemes</span>
+
+            <h3>18</h3>
+
+            <small>
+                Active schemes
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Announcements -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon announcement-icon">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+        </div>
+
+        <div>
+
+            <span>Announcements</span>
+
+            <h3>12</h3>
+
+            <small>
+                Published
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Agriculture -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon agriculture-icon">
+
+            <i class="fa-solid fa-seedling"></i>
+
+        </div>
+
+        <div>
+
+            <span>Agriculture Posts</span>
+
+            <h3>35</h3>
+
+            <small class="green-text">
+                Information available
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Health -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon health-icon">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+        </div>
+
+        <div>
+
+            <span>Health Updates</span>
+
+            <h3>20</h3>
+
+            <small class="green-text">
+                Latest information
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Pending -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon pending-icon">
+
+            <i class="fa-solid fa-hourglass-half"></i>
+
+        </div>
+
+        <div>
+
+            <span>Pending Complaints</span>
+
+            <h3>15</h3>
+
+            <small class="orange-text">
+                Requires attention
+            </small>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     MIDDLE SECTION
+========================================= -->
+
+<section class="dashboard-columns">
+
+
+    <!-- Complaint Overview -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <h3>
+                    Complaint Overview
+                </h3>
+
+                <p>
+                    Current complaint status
+                </p>
+
+            </div>
+
+            <button class="dots-btn">
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="complaint-overview">
+
+
+            <div class="complaint-circle">
+
+                <div>
+
+                    <strong>42</strong>
+
+                    <span>Total</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="complaint-legend">
+
+
+                <div>
+
+                    <span class="dot pending-dot"></span>
+
+                    <label>Pending</label>
+
+                    <strong>15</strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="dot progress-dot"></span>
+
+                    <label>In Progress</label>
+
+                    <strong>8</strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="dot resolved-dot"></span>
+
+                    <label>Resolved</label>
+
+                    <strong>19</strong>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Quick Actions -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <h3>
+                    Quick Actions
+                </h3>
+
+                <p>
+                    Frequently used actions
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+
+            <button>
+
+                <span class="quick-icon purple">
+
+                    <i class="fa-solid fa-landmark"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>Add Government Scheme</strong>
+
+                    <small>
+                        Create new scheme
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button>
+
+                <span class="quick-icon orange">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>New Announcement</strong>
+
+                    <small>
+                        Publish announcement
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button>
+
+                <span class="quick-icon green">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>Agriculture Information</strong>
+
+                    <small>
+                        Add agriculture information
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button>
+
+                <span class="quick-icon red">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>Health Information</strong>
+
+                    <small>
+                        Add health update
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     RECENT COMPLAINTS
+========================================= -->
+
+<section class="dashboard-card complaints-card">
+
+
+    <div class="card-heading">
+
+        <div>
+
+            <h3>
+                Recent Complaints
+            </h3>
+
+            <p>
+                Latest complaints submitted by citizens
+            </p>
+
+        </div>
+
+
+        <a href="#">
+            View All
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Citizen</th>
+
+                    <th>Category</th>
+
+                    <th>Subject</th>
+
+                    <th>Date</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                <tr>
+
+                    <td>#1025</td>
+
+                    <td>
+
+                        <div class="citizen">
+
+                            <div>RK</div>
+
+                            Ravi Kumar
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        Street Light
+                    </td>
+
+                    <td>
+                        Street light not working
+                    </td>
+
+                    <td>
+                        17 Aug 2026
+                    </td>
+
+                    <td>
+
+                        <span class="status pending">
+                            Pending
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button class="view-btn">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>#1024</td>
+
+                    <td>
+
+                        <div class="citizen">
+
+                            <div>SK</div>
+
+                            Suresh Kumar
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        Water Supply
+                    </td>
+
+                    <td>
+                        Water supply issue
+                    </td>
+
+                    <td>
+                        16 Aug 2026
+                    </td>
+
+                    <td>
+
+                        <span class="status progress">
+                            In Progress
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button class="view-btn">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>#1023</td>
+
+                    <td>
+
+                        <div class="citizen">
+
+                            <div>LM</div>
+
+                            Lakshmi
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        Road
+                    </td>
+
+                    <td>
+                        Road repair required
+                    </td>
+
+                    <td>
+                        15 Aug 2026
+                    </td>
+
+                    <td>
+
+                        <span class="status resolved">
+                            Resolved
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button class="view-btn">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>#1022</td>
+
+                    <td>
+
+                        <div class="citizen">
+
+                            <div>VM</div>
+
+                            Venkatesh
+
+                        </div>
+
+                    </td>
+
+                    <td>
+                        Sanitation
+                    </td>
+
+                    <td>
+                        Garbage collection issue
+                    </td>
+
+                    <td>
+                        14 Aug 2026
+                    </td>
+
+                    <td>
+
+                        <span class="status resolved">
+                            Resolved
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button class="view-btn">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     BOTTOM SECTION
+========================================= -->
+
+<section class="dashboard-columns">
+
+
+    <!-- Announcements -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <h3>
+                    Recent Announcements
+                </h3>
+
+                <p>
+                    Latest village announcements
+                </p>
+
+            </div>
+
+            <a href="#">
+                View All
+            </a>
+
+        </div>
+
+
+        <div class="announcement-list">
+
+
+            <div class="announcement-item">
+
+                <div class="announcement-date">
+
+                    <strong>20</strong>
+
+                    <span>AUG</span>
+
+                </div>
+
+                <div>
+
+                    <h4>
+                        Village Development Meeting
+                    </h4>
+
+                    <p>
+                        Meeting regarding village development activities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="announcement-item">
+
+                <div class="announcement-date">
+
+                    <strong>18</strong>
+
+                    <span>AUG</span>
+
+                </div>
+
+                <div>
+
+                    <h4>
+                        Health Awareness Camp
+                    </h4>
+
+                    <p>
+                        Free health awareness camp for villagers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="announcement-item">
+
+                <div class="announcement-date">
+
+                    <strong>15</strong>
+
+                    <span>AUG</span>
+
+                </div>
+
+                <div>
+
+                    <h4>
+                        Agriculture Training Program
+                    </h4>
+
+                    <p>
+                        Training program for local farmers.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Village Services -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <h3>
+                    Village Services
+                </h3>
+
+                <p>
+                    Service overview
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="service-list">
+
+
+            <div class="service-item">
+
+                <div class="service-icon agriculture">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Agriculture
+                    </strong>
+
+                    <span>
+                        35 information posts
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+
+            <div class="service-item">
+
+                <div class="service-icon health">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Health Services
+                    </strong>
+
+                    <span>
+                        20 health updates
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+
+            <div class="service-item">
+
+                <div class="service-icon scheme">
+
+                    <i class="fa-solid fa-landmark"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Government Schemes
+                    </strong>
+
+                    <span>
+                        18 active schemes
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+
+            <div class="service-item">
+
+                <div class="service-icon announcement">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Announcements
+                    </strong>
+
+                    <span>
+                        12 published
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>💡 Health Awareness</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: linear-gradient(
+                135deg,
+                #e3f2fd,
+                #90caf9
+            );
+
+            min-height: 100vh;
+        }
+
+
+        /* HEADER */
+
+        header {
+            background: #1976d2;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+
+        header p {
+            font-size: 16px;
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 30px auto;
+        }
+
+
+        /* TITLE */
+
+        .page-title {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 25px;
+        }
+
+
+        /* CARDS */
+
+        .card-container {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap: 20px;
+        }
+
+
+        .card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border-top: 5px solid #1976d2;
+
+            box-shadow:
+                0 4px 12px
+                rgba(0, 0, 0, 0.15);
+
+            transition: 0.3s;
+        }
+
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+
+        .icon {
+            text-align: center;
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+
+        .card h2 {
+            text-align: center;
+            color: #0d47a1;
+            margin-bottom: 15px;
+        }
+
+
+        .card p {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+
+        .card h3 {
+            color: #1565c0;
+            margin: 15px 0 10px;
+        }
+
+
+        .card ul {
+            padding-left: 25px;
+            color: #444;
+            line-height: 1.8;
+        }
+
+
+        /* BACK BUTTON */
+
+        .back-btn {
+            display: block;
+
+            width: 220px;
+
+            margin: 35px auto;
+
+            padding: 12px;
+
+            text-align: center;
+
+            background: #0d47a1;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        .back-btn:hover {
+            background: #1565c0;
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 95%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <h1>
+            💡 Health Awareness
+        </h1>
+
+        <p>
+            Learn health tips and disease prevention guidance
+        </p>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <h2 class="page-title">
+            🌿 Healthy Living
+        </h2>
+
+
+        <div class="card-container">
+
+
+            <!-- HEALTHY FOOD -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🍎
+                </div>
+
+                <h2>
+                    Healthy Food
+                </h2>
+
+                <p>
+                    Choose a balanced diet with vegetables,
+                    fruits, whole grains and other nutritious
+                    foods.
+                </p>
+
+                <h3>
+                    💡 Tips
+                </h3>
+
+                <ul>
+                    <li>🥗 Eat a variety of nutritious foods.</li>
+                    <li>💧 Drink enough water.</li>
+                    <li>🍬 Limit excess sugar and salt.</li>
+                    <li>🥦 Include vegetables and fruits.</li>
+                </ul>
+
+            </div>
+
+
+            <!-- EXERCISE -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🏃
+                </div>
+
+                <h2>
+                    Physical Activity
+                </h2>
+
+                <p>
+                    Regular physical activity can support
+                    overall health and well-being.
+                </p>
+
+                <h3>
+                    💡 Tips
+                </h3>
+
+                <ul>
+                    <li>🚶 Stay physically active.</li>
+                    <li>🏃 Take regular walks.</li>
+                    <li>🧘 Include relaxation activities.</li>
+                    <li>⏰ Avoid sitting for very long periods.</li>
+                </ul>
+
+            </div>
+
+
+            <!-- SLEEP -->
+
+            <div class="card">
+
+                <div class="icon">
+                    😴
+                </div>
+
+                <h2>
+                    Good Sleep
+                </h2>
+
+                <p>
+                    Good sleep is important for physical and
+                    mental well-being.
+                </p>
+
+                <h3>
+                    💡 Tips
+                </h3>
+
+                <ul>
+                    <li>🛏️ Maintain a regular sleep schedule.</li>
+                    <li>📵 Reduce screen use before sleeping.</li>
+                    <li>🌙 Keep your sleeping area comfortable.</li>
+                    <li>⏰ Get enough sleep regularly.</li>
+                </ul>
+
+            </div>
+
+
+            <!-- HYGIENE -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🧼
+                </div>
+
+                <h2>
+                    Personal Hygiene
+                </h2>
+
+                <p>
+                    Good hygiene practices can help reduce
+                    the spread of infections.
+                </p>
+
+                <h3>
+                    💡 Tips
+                </h3>
+
+                <ul>
+                    <li>🧼 Wash your hands regularly.</li>
+                    <li>🪥 Brush your teeth twice a day.</li>
+                    <li>🚿 Maintain personal cleanliness.</li>
+                    <li>🧴 Keep commonly used items clean.</li>
+                </ul>
+
+            </div>
+
+
+            <!-- WATER -->
+
+            <div class="card">
+
+                <div class="icon">
+                    💧
+                </div>
+
+                <h2>
+                    Healthy Hydration
+                </h2>
+
+                <p>
+                    Drinking enough fluids helps your body
+                    function properly.
+                </p>
+
+                <h3>
+                    💡 Tips
+                </h3>
+
+                <ul>
+                    <li>💧 Drink water regularly.</li>
+                    <li>🥤 Carry water when going outside.</li>
+                    <li>🍉 Include water-rich foods.</li>
+                    <li>☀️ Drink more fluids during hot weather.</li>
+                </ul>
+
+            </div>
+
+
+            <!-- PREVENTION -->
+
+            <div class="card">
+
+                <div class="icon">
+                    🛡️
+                </div>
+
+                <h2>
+                    Disease Prevention
+                </h2>
+
+                <p>
+                    Simple preventive habits can help maintain
+                    good health.
+                </p>
+
+                <h3>
+                    💡 Tips
+                </h3>
+
+                <ul>
+                    <li>🧼 Maintain good hygiene.</li>
+                    <li>🥗 Follow a balanced diet.</li>
+                    <li>🏃 Stay physically active.</li>
+                    <li>👨‍⚕️ Seek professional medical advice when needed.</li>
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- BACK BUTTON -->
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-btn"
+        >
+            ← Back to Health Services
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>
+

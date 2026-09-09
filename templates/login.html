@@ -302,7 +302,7 @@ password:password
 
 });
 
-const data=await response.json();
+const data=await response.json().catch(()=>({success:false,message:"The server returned an invalid response."}));
 
 document.getElementById("loader").style.display="none";
 document.getElementById("loginBtn").disabled=false;
@@ -321,7 +321,7 @@ window.location.href="/";
 }
 else{
 
-errorMessage.innerHTML=data.message;
+errorMessage.innerHTML=data.message || "Login failed. Please try again.";
 errorMessage.style.display="block";
 
 }
@@ -332,7 +332,7 @@ catch(error){
 document.getElementById("loader").style.display="none";
 document.getElementById("loginBtn").disabled=false;
 
-errorMessage.innerHTML="Unable to connect to the server.";
+errorMessage.innerHTML="Unable to connect to the server. Check that Flask is running on port 5000.";
 errorMessage.style.display="block";
 
 }

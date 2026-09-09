@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Announcements | Smart Digital Village Service Portal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- Header -->
+
+<header>
+
+    <div class="logo">
+
+        <i class="fa-solid fa-bullhorn"></i>
+
+        <h2>Smart Digital Village Service Portal</h2>
+
+    </div>
+
+</header>
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+    <h1>📢 Village Announcements</h1>
+
+    <p>
+
+        Stay updated with the latest government notices,
+        health campaigns, village meetings and public services.
+
+    </p>
+
+</section>
+
+<!-- Search -->
+
+<section class="search-section">
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+        type="text"
+        id="searchInput"
+        placeholder="Search announcements..."
+        onkeyup="searchAnnouncements()">
+
+    </div>
+
+</section>
+
+<!-- Top Menu -->
+
+<section class="menu-bar">
+
+<div>
+
+<label>
+
+🌐 Language
+
+</label>
+
+<select id="language" onchange="changeLanguage()">
+
+<option value="en">English</option>
+
+<option value="te">తెలుగు</option>
+
+<option value="hi">हिन्दी</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
+🏷 Category
+
+</label>
+
+<select id="categoryFilter"
+onchange="filterCategory()">
+
+<option value="all">All</option>
+
+<option value="Health">Health</option>
+
+<option value="Panchayat">Panchayat</option>
+
+<option value="Women">Women</option>
+
+<option value="Utility">Utility</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
+📅 Sort
+
+</label>
+
+<select>
+
+<option>
+
+Latest First
+
+</option>
+
+</select>
+
+</div>
+
+</section>
+
+<!-- Latest Announcement Heading -->
+
+<section class="latest">
+
+<h2>
+
+Latest Announcements
+
+</h2>
+
+<p>
+
+Stay informed about important village updates.
+
+</p>
+
+</section>
+
+<!-- Announcement Cards -->
+
+<div id="announcementContainer">
+ <!-- 1. Polio Vaccination -->
+
+<div class="announcement-card" data-category="Health">
+
+    <span class="badge urgent">URGENT</span>
+
+    <h3 class="title"
+        data-en="Polio Vaccination Drive"
+        data-te="పోలియో టీకా కార్యక్రమం"
+        data-hi="पोलियो टीकाकरण अभियान">
+
+        👶 Polio Vaccination Drive
+
+    </h3>
+
+    <p class="description"
+       data-en="Free polio drops for all children below 5 years. Parents are requested to bring their children to the Primary Health Centre."
+       data-te="5 సంవత్సరాల లోపు పిల్లలకు ఉచిత పోలియో చుక్కలు వేయబడతాయి."
+       data-hi="5 वर्ष से कम आयु के बच्चों के लिए निःशुल्क पोलियो ड्रॉप्स उपलब्ध हैं।">
+
+       Free polio drops for all children below 5 years.
+
+    </p>
+
+    <small>
+        📅 12 Aug 2026 |
+        🕒 9:00 AM |
+        👤 Health Department
+    </small>
+
+    <br><br>
+
+    <button class="read-btn"
+    onclick="openDetails(
+    'Polio Vaccination Drive',
+    'Free polio drops for all children below five years at the Primary Health Centre. Parents should bring the child health card if available.',
+    '12 Aug 2026',
+    '9:00 AM',
+    'Health Department',
+    'Primary Health Centre')">
+
+    Read More →
+
+    </button>
+
+</div>
+
+<!-- 2. Women Health -->
+
+<div class="announcement-card" data-category="Women">
+
+    <span class="badge new">NEW</span>
+
+    <h3 class="title"
+        data-en="Women Health Awareness"
+        data-te="మహిళల ఆరోగ్య అవగాహన"
+        data-hi="महिला स्वास्थ्य जागरूकता">
+
+        👩 Women Health Awareness
+
+    </h3>
+
+    <p class="description"
+       data-en="Free awareness programme on nutrition, hygiene and maternal health."
+       data-te="పోషకాహారం, పరిశుభ్రత మరియు తల్లి ఆరోగ్యంపై ఉచిత అవగాహన కార్యక్రమం."
+       data-hi="पोषण, स्वच्छता और मातृ स्वास्थ्य पर निःशुल्क जागरूकता कार्यक्रम।">
+
+       Free awareness programme on nutrition and maternal health.
+
+    </p>
+
+    <small>
+        📅 15 Aug 2026 |
+        🕒 11:00 AM |
+        👤 Women Welfare Department
+    </small>
+
+    <br><br>
+
+    <button class="read-btn"
+    onclick="openDetails(
+    'Women Health Awareness',
+    'Doctors will conduct awareness sessions on nutrition, hygiene, maternal care and government welfare schemes. Free health check-up will also be available.',
+    '15 Aug 2026',
+    '11:00 AM',
+    'Women Welfare Department',
+    'Community Hall')">
+
+    Read More →
+
+    </button>
+
+</div>
+
+<!-- 3. Gram Sabha -->
+
+<div class="announcement-card" data-category="Panchayat">
+
+    <h3 class="title"
+        data-en="Gram Sabha Meeting"
+        data-te="గ్రామ సభ సమావేశం"
+        data-hi="ग्राम सभा बैठक">
+
+        📢 Gram Sabha Meeting
+
+    </h3>
+
+    <p class="description"
+       data-en="All villagers are requested to attend the Gram Sabha meeting."
+       data-te="గ్రామ ప్రజలందరూ గ్రామ సభ సమావేశానికి హాజరుకావాలి."
+       data-hi="सभी ग्रामीण ग्राम सभा बैठक में उपस्थित हों।">
+
+       All villagers are requested to attend the Gram Sabha meeting.
+
+    </p>
+
+    <small>
+        📅 18 Aug 2026 |
+        🕒 10:00 AM |
+        👤 Panchayat Office
+    </small>
+
+    <br><br>
+
+    <button class="read-btn"
+    onclick="openDetails(
+    'Gram Sabha Meeting',
+    'Discussion on village development, sanitation, roads, drinking water and government welfare schemes.',
+    '18 Aug 2026',
+    '10:00 AM',
+    'Panchayat Office',
+    'Village Panchayat Office')">
+
+    Read More →
+
+    </button>
+
+</div>
+
+<!-- 4. Water Supply -->
+
+<div class="announcement-card" data-category="Utility">
+
+    <h3 class="title"
+        data-en="Water Supply Maintenance"
+        data-te="నీటి సరఫరా నిర్వహణ"
+        data-hi="जल आपूर्ति रखरखाव">
+
+        💧 Water Supply Maintenance
+
+    </h3>
+
+    <p class="description"
+       data-en="Water supply will be interrupted due to pipeline maintenance."
+       data-te="పైప్‌లైన్ మరమ్మతుల కారణంగా నీటి సరఫరా నిలిపివేయబడుతుంది."
+       data-hi="पाइपलाइन मरम्मत के कारण जल आपूर्ति बाधित रहेगी।">
+
+       Water supply will be interrupted due to maintenance work.
+
+    </p>
+
+    <small>
+        📅 20 Aug 2026 |
+        🕒 8:00 AM |
+        👤 Panchayat Office
+    </small>
+
+    <br><br>
+
+    <button class="read-btn"
+    onclick="openDetails(
+    'Water Supply Maintenance',
+    'Water supply will be unavailable from 8:00 AM to 2:00 PM due to maintenance work. Kindly store sufficient drinking water.',
+    '20 Aug 2026',
+    '8:00 AM',
+    'Panchayat Office',
+    'Entire Village')">
+
+    Read More →
+
+    </button>
+
+</div>
+<section class="add-section">
+
+<button onclick="showForm()" class="add-btn">
+➕ Add Announcement
+</button>
+
+
+<div id="addForm" class="add-form">
+
+<h2>Add New Announcement</h2>
+
+<input id="newTitle" placeholder="Announcement Title">
+
+<textarea id="newDescription" placeholder="Description"></textarea>
+
+
+<select id="newCategory">
+
+<option value="Health">Health</option>
+<option value="Panchayat">Panchayat</option>
+<option value="Women">Women</option>
+<option value="Utility">Utility</option>
+
+</select>
+
+
+<input id="newPostedBy" placeholder="Posted By">
+
+
+<button onclick="addAnnouncement()" class="publish-btn">
+Publish
+</button>
+
+</div>
+
+</section>
+</div>
+
+<footer>
+
+<p> 2026 Smart Digital Village Service Portal | Village Announcements</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

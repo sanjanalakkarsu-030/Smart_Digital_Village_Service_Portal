@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Admin Dashboard | Smart Digital Village
+        {% endblock %}
+    </title>
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- ADMIN CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="admin-layout">
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="admin-sidebar" id="adminSidebar">
+
+
+        <!-- Logo -->
+
+        <div class="admin-logo">
+
+            <div class="admin-logo-icon">
+
+                <i class="fa-solid fa-house-chimney"></i>
+
+            </div>
+
+            <div>
+
+                <h2>Smart Village</h2>
+
+                <span>Admin Portal</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <nav class="admin-nav">
+
+
+            <p class="nav-heading">
+                MAIN MENU
+            </p>
+
+
+            <a href="{{ url_for('admin') }}"
+               class="admin-nav-link active">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Manage Citizens</span>
+
+            </a>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-file-circle-exclamation"></i>
+
+                <span>Complaints</span>
+
+                <b>15</b>
+
+            </a>
+
+
+            <p class="nav-heading">
+                VILLAGE SERVICES
+            </p>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-landmark"></i>
+
+                <span>Government Schemes</span>
+
+            </a>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <span>Announcements</span>
+
+            </a>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-seedling"></i>
+
+                <span>Agriculture Support</span>
+
+            </a>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-heart-pulse"></i>
+
+                <span>Health Services</span>
+
+            </a>
+
+
+            <p class="nav-heading">
+                SYSTEM
+            </p>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <span>Reports</span>
+
+            </a>
+
+
+            <a href="#" class="admin-nav-link">
+
+                <i class="fa-solid fa-user"></i>
+
+                <span>Profile</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- Logout -->
+
+        <div class="admin-logout">
+
+            <a href="#" class="admin-nav-link logout-link">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <div class="admin-main">
+
+
+        <!-- =====================================
+             TOP BAR
+        ====================================== -->
+
+        <header class="admin-topbar">
+
+
+            <div class="topbar-left">
+
+                <button id="sidebarToggle"
+                        class="sidebar-toggle">
+
+                    <i class="fa-solid fa-bars"></i>
+
+                </button>
+
+
+                <div>
+
+                    <h1>
+                        {% block page_title %}
+                        Dashboard
+                        {% endblock %}
+                    </h1>
+
+                    <p>
+                        Admin / Dashboard
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="topbar-right">
+
+
+                <!-- Search -->
+
+                <div class="admin-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input type="text"
+                           placeholder="Search...">
+
+                </div>
+
+
+                <!-- Notification -->
+
+                <button class="notification-btn">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span></span>
+
+                </button>
+
+
+                <!-- Profile -->
+
+                <div class="admin-profile">
+
+                    <div class="profile-image">
+                        AD
+                    </div>
+
+                    <div class="profile-text">
+
+                        <strong>
+                            Administrator
+                        </strong>
+
+                        <small>
+                            Admin
+                        </small>
+
+                    </div>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =====================================
+             CONTENT
+        ====================================== -->
+
+        <main class="admin-content">
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+
+    </div>
+
+</div>
+
+
+<!-- Mobile overlay -->
+
+<div id="sidebarOverlay"
+     class="sidebar-overlay">
+</div>
+
+
+<!-- ADMIN JS -->
+
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+</body>
+
+</html>

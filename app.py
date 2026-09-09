@@ -2,12 +2,13 @@ from flask import Flask, render_template, request, jsonify, session, redirect, u
 from flask_mail import Mail, Message
 from flask_mysqldb import MySQL
 from flask_bcrypt import Bcrypt
-import random
+import secrets
 import os
-from datetime import date
+import re
+from datetime import date, datetime, timedelta, timezone
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env"))
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "digital_village_secret_key")
@@ -26,11 +27,11 @@ bcrypt = Bcrypt(app)
 # ---------------------------------
 # Gmail SMTP Configuration
 # ---------------------------------
-app.config["MAIL_SERVER"] = "smtp.gmail.com"
-app.config["MAIL_PORT"] = 587
-app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME", "your_email@gmail.com")
-app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD", "your_app_password")
+app.config["MAIL_SERVER"] = os.getenv("MAIL_SERVER", "smtp.gmail.com")
+app.config["MAIL_PORT"] = int(os.getenv("MAIL_PORT", "587"))
+app.config["MAIL_USE_TLS"] = os.getenv("MAIL_USE_TLS", "True").lower() == "true"
+app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME", "")
+app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD", "")
 app.config["MAIL_DEFAULT_SENDER"] = app.config["MAIL_USERNAME"]
 
 mail = Mail(app)
@@ -88,6 +89,18 @@ def logout():
     session.clear()
     return redirect(url_for("home"))
 
+
+def json_body():
+    return request.get_json(silent=True) or {}
+
+
+def valid_email(email):
+    return bool(re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email or ""))
+
+
+def error_response(message, status=400):
+    return jsonify({"success": False, "message": message}), status
+
 # ---------------------------------
 # Registration
 # ---------------------------------
@@ -95,7 +108,7 @@ def logout():
 @app.route("/register", methods=["POST"])
 def register():
 
-    data = request.get_json()
+    data = json_body()
 
     full_name = data.get("full_name")
     mobile_number = data.get("mobile_number")
@@ -108,38 +121,31 @@ def register():
     password = data.get("password")
 
     if not all([full_name, mobile_number, house_number, ward_number, gender, email, address, username, password]):
-        return jsonify({
-            "success": False,
-            "message": "All fields are required."
-        })
+        return error_response("All fields are required.")
+
+    if not valid_email(email):
+        return error_response("Please enter a valid email address.")
 
     # Check if username already exists
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT citizen_id FROM citizens WHERE username = %s", (username,))
-    existing_user = cur.fetchone()
-
-    if existing_user:
-        cur.close()
-        return jsonify({
-            "success": False,
-            "message": "Username already exists. Please choose a different username."
-        })
-
-    # Check if email already exists
-    cur.execute("SELECT citizen_id FROM citizens WHERE email = %s", (email,))
-    existing_email = cur.fetchone()
-
-    if existing_email:
-        cur.close()
-        return jsonify({
-            "success": False,
-            "message": "Email already registered. Please login or use a different email."
-        })
-
-    # Hash the password
-    hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
-
     try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT citizen_id FROM citizens WHERE username = %s", (username,))
+        existing_user = cur.fetchone()
+
+        if existing_user:
+            cur.close()
+            return error_response("Username already exists. Please choose a different username.", 409)
+
+        # Check if email already exists
+        cur.execute("SELECT citizen_id FROM citizens WHERE email = %s", (email,))
+        existing_email = cur.fetchone()
+
+        if existing_email:
+            cur.close()
+            return error_response("Email already registered. Please login or use a different email.", 409)
+
+        hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
+
         cur.execute(
             """INSERT INTO citizens 
                (full_name, mobile_number, house_number, ward_number, gender, email, address, username, password, registration_date, account_status) 
@@ -152,14 +158,11 @@ def register():
         return jsonify({
             "success": True,
             "message": "Registration successful!"
-        })
+        }), 201
 
     except Exception as e:
-        cur.close()
-        return jsonify({
-            "success": False,
-            "message": f"Registration failed: {str(e)}"
-        })
+        app.logger.exception("Registration failed")
+        return error_response("Database service is unavailable. Check MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DB in .env.", 503)
 
 # ---------------------------------
 # Login
@@ -168,35 +171,30 @@ def register():
 @app.route("/login", methods=["POST"])
 def login():
 
-    data = request.get_json()
+    data = json_body()
 
     username = data.get("username")
     password = data.get("password")
 
     if not username or not password:
-        return jsonify({
-            "success": False,
-            "message": "Username and password are required."
-        })
+        return error_response("Username and password are required.")
 
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT citizen_id, full_name, username, password, account_status FROM citizens WHERE username = %s", (username,))
-    user = cur.fetchone()
-    cur.close()
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT citizen_id, full_name, username, password, account_status FROM citizens WHERE username = %s", (username,))
+        user = cur.fetchone()
+        cur.close()
+    except Exception:
+        app.logger.exception("Login database query failed")
+        return error_response("Database service is unavailable. Check MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DB in .env.", 503)
 
     if not user:
-        return jsonify({
-            "success": False,
-            "message": "Invalid username or password."
-        })
+        return error_response("Invalid username or password.", 401)
 
     citizen_id, full_name, db_username, hashed_password, account_status = user
 
     if account_status != "Active":
-        return jsonify({
-            "success": False,
-            "message": "Your account is inactive. Please contact the Gram Panchayat office."
-        })
+        return error_response("Your account is inactive. Please contact the Gram Panchayat office.", 403)
 
     if bcrypt.check_password_hash(hashed_password, password):
         session["citizen_id"] = citizen_id
@@ -208,10 +206,7 @@ def login():
             "message": "Login successful!"
         })
 
-    return jsonify({
-        "success": False,
-        "message": "Invalid username or password."
-    })
+    return error_response("Invalid username or password.", 401)
 
 # ---------------------------------
 # Forgot Password Pages
@@ -239,34 +234,41 @@ def reset_password():
 @app.route("/send-otp", methods=["POST"])
 def send_otp():
 
-    data = request.get_json()
+    data = json_body()
 
     email = data.get("email")
 
     if not email:
-        return jsonify({
-            "success": False,
-            "message": "Email is required."
-        })
+        return error_response("Email is required.")
+
+    if not valid_email(email):
+        return error_response("Please enter a valid email address.")
 
     # Check if email exists in the database
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT citizen_id, full_name FROM citizens WHERE email = %s", (email,))
-    user = cur.fetchone()
-    cur.close()
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("SELECT citizen_id, full_name FROM citizens WHERE email = %s", (email,))
+        user = cur.fetchone()
+        cur.close()
+    except Exception:
+        app.logger.exception("Forgot-password database query failed")
+        return error_response("Database service is unavailable. Check MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DB in .env.", 503)
 
     if not user:
-        return jsonify({
-            "success": False,
-            "message": "This email is not registered. Please check your email or register first."
-        })
+        return error_response("This email is not registered. Please check your email or register first.", 404)
 
     citizen_id, full_name = user
 
-    otp = str(random.randint(100000, 999999))
+    if not app.config["MAIL_USERNAME"] or not app.config["MAIL_PASSWORD"]:
+        app.logger.error("SMTP is not configured: MAIL_USERNAME and MAIL_PASSWORD are required")
+        return error_response("Email service is not configured. Set MAIL_USERNAME and MAIL_PASSWORD in .env.", 503)
+
+    otp = str(secrets.randbelow(900000) + 100000)
 
     session["otp"] = otp
     session["email"] = email
+    session["otp_created_at"] = datetime.now(timezone.utc).isoformat()
+    session["otp_verified"] = False
 
     try:
         msg = Message(
@@ -300,11 +302,12 @@ Smart Digital Village Service Portal Team
             "message": "OTP sent successfully to your email."
         })
 
-    except Exception as e:
-        return jsonify({
-            "success": False,
-            "message": f"Failed to send OTP: {str(e)}"
-        })
+    except Exception:
+        app.logger.exception("SMTP OTP delivery failed")
+        session.pop("otp", None)
+        session.pop("otp_created_at", None)
+        session.pop("otp_verified", None)
+        return error_response("Unable to send the OTP. Check the SMTP settings and try again.", 502)
 
 
 # ---------------------------------
@@ -314,20 +317,26 @@ Smart Digital Village Service Portal Team
 @app.route("/verify-otp", methods=["POST"])
 def verify_otp():
 
-    data = request.get_json()
+    data = json_body()
 
     otp = data.get("otp")
+    created_at = session.get("otp_created_at")
+    try:
+        is_expired = not created_at or datetime.now(timezone.utc) - datetime.fromisoformat(created_at) > timedelta(minutes=10)
+    except ValueError:
+        is_expired = True
 
-    if otp == session.get("otp"):
+    if is_expired:
+        return error_response("This OTP has expired. Please request a new one.", 410)
+
+    if otp and secrets.compare_digest(str(otp), str(session.get("otp", ""))):
+        session["otp_verified"] = True
 
         return jsonify({
             "success": True
         })
 
-    return jsonify({
-        "success": False,
-        "message": "Invalid OTP."
-    })
+    return error_response("Invalid OTP.", 401)
 
 
 # ---------------------------------
@@ -337,22 +346,19 @@ def verify_otp():
 @app.route("/update-password", methods=["POST"])
 def update_password():
 
-    data = request.get_json()
+    data = json_body()
 
     password = data.get("password")
     email = session.get("email")
 
     if not password:
-        return jsonify({
-            "success": False,
-            "message": "Password is required."
-        })
+        return error_response("Password is required.")
 
-    if not email:
-        return jsonify({
-            "success": False,
-            "message": "Session expired. Please try again."
-        })
+    if len(password) < 6:
+        return error_response("Password must be at least 6 characters.")
+
+    if not email or not session.get("otp_verified"):
+        return error_response("Verify the OTP before resetting your password.", 403)
 
     # Hash the new password
     hashed_password = bcrypt.generate_password_hash(password).decode("utf-8")
@@ -372,11 +378,9 @@ def update_password():
             "message": "Password updated successfully. Please login with your new password."
         })
 
-    except Exception as e:
-        return jsonify({
-            "success": False,
-            "message": f"Failed to update password: {str(e)}"
-        })
+    except Exception:
+        app.logger.exception("Password update failed")
+        return error_response("Database service is unavailable. Check MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, and MYSQL_DB in .env.", 503)
 
 
 # ---------------------------------
@@ -384,4 +388,4 @@ def update_password():
 # ---------------------------------
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)

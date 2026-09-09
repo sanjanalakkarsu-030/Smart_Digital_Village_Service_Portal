@@ -230,7 +230,7 @@ otp:otp
 
 });
 
-const data=await response.json();
+const data=await response.json().catch(()=>({success:false,message:"The server returned an invalid response."}));
 
 if(data.success){
 
@@ -239,7 +239,7 @@ window.location.href="/reset-password";
 }
 else{
 
-alert(data.message);
+alert(data.message || "OTP verification failed.");
 
 }
 
