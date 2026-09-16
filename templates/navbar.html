@@ -1,12 +1,22 @@
 <header class="top-bar">
 
-    <div><i class="fa-solid fa-phone"></i> +91 9876543210</div>
+    <div>
+        <i class="fa-solid fa-phone"></i>
+        +91 9876543210
+    </div>
 
-    <div><i class="fa-solid fa-envelope"></i> support@sdvsp.gov.in</div>
+    <div>
+        <i class="fa-solid fa-envelope"></i>
+        support@sdvsp.gov.in
+    </div>
 
-    <div><i class="fa-solid fa-location-dot"></i> Raorukula, Siddipet Rural</div>
+    <div>
+        <i class="fa-solid fa-location-dot"></i>
+        Raorukula, Siddipet Rural
+    </div>
 
 </header>
+
 
 <nav class="navbar">
 
@@ -14,30 +24,55 @@
         <h2>Smart Digital Village</h2>
     </div>
 
+
     <!-- Hamburger -->
     <div class="menu-toggle" id="menu-toggle">
-    <i class="fa-solid fa-bars"></i>
-</div>
+        <i class="fa-solid fa-bars"></i>
+    </div>
 
-<ul id="nav-menu">
 
-        <li><a href="/">Home</a></li>
+    <!-- Navigation Menu -->
+    <ul id="nav-menu">
 
-        <li><a href="#about">About Village</a></li>
+        <li>
+            <a href="{{ url_for('home') }}">Home</a>
+        </li>
 
-        <li><a href="#services">Services</a></li>
+        <li>
+            <a href="{{ url_for('home') }}#about">About Village</a>
+        </li>
 
-        <li><a href="#schemes">Government Schemes</a></li>
+        <li>
+            <li><a href="{{ url_for('home') }}#services">Services</a></li>
+        </li>
 
-        <li><a href="#announcements">Announcements</a></li>
+        <li>
+            <a href="{{ url_for('government') }}">
+                Government Schemes
+            </a>
+        </li>
 
-        <li><a href="#contact">Contact</a></li>
+        <li>
+            <a href="{{ url_for('announcements') }}">
+                Announcements
+            </a>
+        </li>
 
-        <li><button class="login-btn">Login</button></li>
+        <<li>
+    <a href="{{ url_for('home') }}#contact">Contact</a>
+</li>
 
-        <li><button class="register-btn">Register</button></li>
+        <li>
+            <button class="login-btn">Login</button>
+        </li>
+
+        <li>
+            <button class="register-btn">Register</button>
+        </li>
 
     </ul>
+
+</nav>
 
 </nav>
 

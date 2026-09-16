@@ -1,98 +1,1341 @@
-body{
-    font-family: Arial, sans-serif;
-    background:#f2f2f2;
-    margin:0;
-}
+/* =========================================================
+   SMART DIGITAL VILLAGE
+   GOVERNMENT SCHEMES - PROFESSIONAL CSS
+========================================================= */
 
-header{
-    background:#2e8b57;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
 
-.container{
-    text-align:center;
-    margin-top:50px;
-}
+/* ---------- RESET ---------- */
 
-button{
-    padding:12px 20px;
-    margin:10px;
-    background:#2e8b57;
-    color:white;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#256d46;
-}
-.search{
-    width:80%;
-    padding:10px;
-    margin:20px auto;
-    display:block;
-    border:1px solid #ccc;
-    border-radius:5px;
-}
-
-.card{
-    width:80%;
-    margin:20px auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.2);
-}
-input,
-select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: #f4f8f5;
+    color: #263238;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    background: linear-gradient(135deg, #14532d, #2e7d32);
+    color: white;
+    text-align: center;
+    padding: 28px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 5%;
+    padding: 10px 18px;
+    background: #2e8b57;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.home-btn:hover {
+    background: #256d46;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   INTRODUCTION
+========================================================= */
+
+.schemes-intro {
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto 20px;
+    text-align: center;
+}
+
+.schemes-intro h2 {
+    color: #14532d;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.schemes-intro p {
+    color: #666;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   SEARCH SECTION
+========================================================= */
+
+.search-section {
+    width: 90%;
+    max-width: 800px;
+    margin: 25px auto;
+}
+
+.search-box {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #dce8df;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.search-box i {
+    color: #2e7d32;
+    font-size: 18px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: transparent;
+}
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+.category-filter {
+    width: 90%;
+    max-width: 1100px;
+    margin: 25px auto 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.category-filter button {
+    border: 1px solid #c8dfcd;
+    background: white;
+    color: #245c34;
+
+    padding: 9px 18px;
+    border-radius: 25px;
+
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.category-filter button:hover,
+.category-filter button.active {
+    background: #2e7d32;
+    color: white;
+    border-color: #2e7d32;
+}
+
+
+/* =========================================================
+   SCHEME GRID
+========================================================= */
+
+.scheme-grid {
+    width: 90%;
+    max-width: 1250px;
+    margin: 0 auto 60px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+
+/* =========================================================
+   SCHEME CARD
+========================================================= */
+
+.scheme-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+
+    border: 1px solid #e2ebe4;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.scheme-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+
+/* =========================================================
+   SCHEME IMAGE
+========================================================= */
+
+.scheme-image {
+    width: 100%;
+    height: 190px;
+
+    position: relative;
+    overflow: hidden;
+
+    background: #e8f5e9;
+}
+
+.scheme-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.4s ease;
+}
+
+.scheme-card:hover .scheme-image img {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   CATEGORY BADGE
+========================================================= */
+
+.category-badge {
+    position: absolute;
+
+    top: 14px;
+    left: 14px;
+
+    background: rgba(20, 83, 45, 0.92);
+
+    color: white;
+
+    padding: 5px 11px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    backdrop-filter: blur(4px);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.scheme-content {
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.scheme-content h3 {
+    color: #14532d;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+
+    line-height: 1.3;
+}
+
+.scheme-content > p {
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   SCHEME INFORMATION
+========================================================= */
+
+.scheme-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: auto;
+    margin-bottom: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid #edf2ee;
+}
+
+.scheme-info span {
+    color: #5c6b61;
+
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.scheme-info i {
+    color: #2e7d32;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.scheme-actions {
+    display: flex;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+.details-btn,
+.apply-btn {
+    flex: 1;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    padding: 10px 8px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+
+/* View Details */
+
+.details-btn {
+    background: #e8f5e9;
+
+    color: #166534;
+
+    border: 1px solid #c8e6c9;
+}
+
+.details-btn:hover {
+    background: #c8e6c9;
+}
+
+
+/* Apply */
+
+.apply-btn {
+    background: #166534;
+
+    color: white;
+
+    border: 1px solid #166534;
+}
+
+.apply-btn:hover {
+    background: #0f4425;
+}
+
+
+/* =========================================================
+   NO RESULTS
+========================================================= */
+
+.no-results {
+    display: none;
+
+    width: 90%;
+
+    margin: 40px auto;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   DETAILS PAGE
+========================================================= */
+
+.details-page {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 40px auto 60px;
+}
+
+.details-card {
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+
+    border: 1px solid #e1ebe3;
+}
+
+.details-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    border-radius: 50%;
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+.details-card > h1 {
+    text-align: center;
+
+    color: #14532d;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+.details-category {
+    display: table;
+
+    margin: 0 auto 30px;
+
+    padding: 6px 15px;
+
+    border-radius: 20px;
+
+    background: #e8f5e9;
+
+    color: #166534;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DETAILS SECTIONS
+========================================================= */
+
+.details-section {
+    padding: 25px 0;
+
+    border-top: 1px solid #edf2ee;
+}
+
+.details-section h2,
+.how-to-apply h2 {
+    color: #14532d;
+
+    font-size: 21px;
+
+    margin-bottom: 12px;
+}
+
+.details-section h2 i,
+.how-to-apply h2 i {
+    color: #2e7d32;
+
+    margin-right: 7px;
+}
+
+.details-section p {
+    color: #666;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   DETAILS GRID
+========================================================= */
+
+.details-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+    margin: 25px 0;
+}
+
+.detail-box {
+    background: #f7faf8;
+
+    border: 1px solid #e2ebe4;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: flex-start;
+}
+
+.detail-box > i {
+    color: #2e7d32;
+
+    font-size: 22px;
+
+    margin-top: 3px;
+}
+
+.detail-box h3 {
+    color: #245c34;
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+}
+
+.detail-box p {
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   HOW TO APPLY
+========================================================= */
+
+.how-to-apply {
+    border-top: 1px solid #edf2ee;
+
+    padding-top: 25px;
+
+    margin-top: 10px;
+}
+
+.how-to-apply ol {
+    padding-left: 25px;
+
+    color: #555;
+}
+
+.how-to-apply li {
+    margin-bottom: 9px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   DETAILS BUTTONS
+========================================================= */
+
+.details-actions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
+}
+
+.apply-main-btn,
+.back-btn {
+    padding: 12px 20px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    transition: 0.25s ease;
+}
+
+.apply-main-btn {
+    background: #166534;
+
+    color: white;
+}
+
+.apply-main-btn:hover {
+    background: #0f4425;
+}
+
+.back-btn {
+    background: #e8f5e9;
+
+    color: #166534;
+
+    border: 1px solid #c8e6c9;
+}
+
+.back-btn:hover {
+    background: #c8e6c9;
+}
+
+
+/* =========================================================
+   IMPORTANT NOTE
+========================================================= */
+
+.important-note {
+    margin-top: 30px;
+
+    padding: 15px 18px;
+
+    background: #fff8e1;
+
+    border-left: 4px solid #f9a825;
+
+    border-radius: 7px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: flex-start;
+}
+
+.important-note i {
+    color: #f9a825;
+
+    margin-top: 3px;
+}
+
+.important-note p {
+    color: #6d5a20;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #14532d;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 22px;
+
+    margin-top: 50px;
+}
+
+footer p {
+    font-size: 13px;
+
+    opacity: 0.9;
+
+    margin: 3px;
+}
+
+
+/* =========================================================
+   FORM STYLES
+========================================================= */
+
+.container {
+    width: 90%;
+    max-width: 800px;
+
+    margin: 35px auto;
+}
+
+.card {
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #e1ebe3;
 }
 
 form {
     text-align: left;
 }
 
-label {
-    font-weight: bold;
-}
-/* Navigation Bar */
+form label {
+    display: block;
 
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#0b6623;
-    padding:15px 30px;
+    color: #245c34;
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
 }
 
-.navbar h2{
-    color:white;
+form input,
+form select,
+form textarea {
+    width: 100%;
+
+    padding: 11px 13px;
+
+    margin-bottom: 16px;
+
+    border: 1px solid #ccd9cf;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 14px;
 }
 
-.navbar ul{
-    list-style:none;
-    display:flex;
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #2e7d32;
+
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.10);
 }
 
-.navbar ul li{
-    margin-left:20px;
+form button {
+    background: #166534;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+    transition: 0.25s ease;
 }
 
-.navbar ul li a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
+form button:hover {
+    background: #0f4425;
 }
 
-.navbar ul li a:hover{
-    color:yellow;
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .scheme-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 22px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 22px 15px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    .schemes-intro h2 {
+        font-size: 23px;
+    }
+
+    .scheme-grid {
+        width: 92%;
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .scheme-image {
+        height: 200px;
+    }
+
+    .scheme-actions {
+        flex-direction: column;
+    }
+
+    .category-filter {
+        width: 94%;
+    }
+
+    .category-filter button {
+        font-size: 12px;
+
+        padding: 8px 13px;
+    }
+
+    .details-page {
+        width: 94%;
+    }
+
+    .details-card {
+        padding: 22px 17px;
+    }
+
+    .details-card > h1 {
+        font-size: 24px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .details-actions {
+        flex-direction: column;
+    }
+
+    .apply-main-btn,
+    .back-btn {
+        text-align: center;
+
+        width: 100%;
+    }
+
+}
+/* =========================================
+   EXISTING SCHEME CARDS - CLEAN DESIGN
+========================================= */
+
+.container {
+    width: 92%;
+    max-width: 1250px;
+    margin: 35px auto 60px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+
+/* Scheme Card */
+
+.card {
+    width: 100%;
+    margin: 0;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    border: 1px solid #e2ebe4;
+
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Hover */
+
+.card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 12px 28px rgba(0,0,0,0.14);
+}
+
+
+/* Scheme Image */
+
+.scheme-img {
+    width: 100%;
+
+    height: 190px;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #e8f5e9;
+}
+
+
+/* Scheme Name */
+
+.card h2 {
+    color: #14532d;
+
+    font-size: 20px;
+
+    padding: 18px 20px 5px;
+
+    margin: 0;
+}
+
+
+/* Section headings inside card */
+
+.card h3 {
+    color: #2e7d32;
+
+    font-size: 14px;
+
+    margin: 12px 20px 5px;
+}
+
+
+/* Description */
+
+.card p {
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin: 0 20px 8px;
+}
+
+
+/* Lists */
+
+.card ul {
+    margin: 5px 20px 8px;
+
+    padding-left: 18px;
+
+    color: #555;
+
+    font-size: 13px;
+}
+
+.card li {
+    margin-bottom: 4px;
+}
+
+
+/* Apply button area */
+
+.card > a {
+    margin: 15px 20px 20px;
+
+    text-decoration: none;
+}
+
+
+/* Apply button */
+
+.card button {
+    width: 100%;
+
+    padding: 11px 15px;
+
+    background: #166534;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition: 0.25s ease;
+}
+
+.card button:hover {
+    background: #0f4425;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        width: 94%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+        grid-template-columns: 1fr;
+        width: 92%;
+    }
+
+    .scheme-img {
+        height: 200px;
+    }
+
+}
+/* =========================================
+   CLEAN GOVERNMENT SCHEMES DESIGN
+========================================= */
+
+/* Main page container */
+.container {
+    width: 92%;
+    max-width: 1250px;
+    margin: 0 auto 60px;
+    text-align: left;
+}
+
+
+/* Search box */
+#search {
+    width: 100%;
+    padding: 14px 18px;
+    margin: 20px 0;
+    border: 1px solid #d5e3d8;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    background: #fff;
+}
+
+#search:focus {
+    border-color: #2e8b57;
+    box-shadow: 0 0 0 3px rgba(46,139,87,0.12);
+}
+
+
+/* Category select */
+#categoryFilter {
+    padding: 11px 15px;
+    border: 1px solid #d5e3d8;
+    border-radius: 8px;
+    background: white;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   SCHEME GRID
+========================================= */
+
+.scheme-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 25px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================
+   SCHEME CARD
+========================================= */
+
+.scheme-grid .card {
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #ffffff;
+
+    border: 1px solid #e2ebe4;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+    transition: all 0.25s ease;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+.scheme-grid .card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.13);
+}
+
+
+/* =========================================
+   SCHEME IMAGE
+========================================= */
+
+.scheme-grid .scheme-img {
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: #e8f5e9;
+}
+
+
+/* =========================================
+   CARD CONTENT
+========================================= */
+
+.scheme-grid .card h2 {
+
+    font-size: 19px;
+
+    color: #14532d;
+
+    margin: 18px 18px 8px;
+}
+
+
+.scheme-grid .card h3 {
+
+    font-size: 14px;
+
+    color: #2e7d32;
+
+    margin: 10px 18px 5px;
+}
+
+
+.scheme-grid .card p {
+
+    font-size: 14px;
+
+    color: #666;
+
+    line-height: 1.6;
+
+    margin: 5px 18px;
+}
+
+
+/* Lists */
+
+.scheme-grid .card ul {
+
+    margin: 8px 18px;
+
+    padding-left: 18px;
+
+    color: #555;
+
+    font-size: 13px;
+}
+
+
+.scheme-grid .card li {
+
+    margin-bottom: 5px;
+}
+
+
+/* =========================================
+   CARD BUTTON
+========================================= */
+
+.scheme-grid .card > a {
+
+    display: block;
+
+    margin: auto 18px 18px;
+
+    text-decoration: none;
+}
+
+
+.scheme-grid .card button {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #166534;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.scheme-grid .card button:hover {
+
+    background: #0f4425;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   AVAILABLE SCHEMES HEADING
+========================================= */
+
+.container h2 {
+
+    color: #14532d;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 950px) {
+
+    .scheme-grid {
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .container {
+
+        width: 94%;
+
+    }
+
+    .scheme-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+    }
+
+    .scheme-grid .scheme-img {
+
+        height: 200px;
+
+    }
+
 }

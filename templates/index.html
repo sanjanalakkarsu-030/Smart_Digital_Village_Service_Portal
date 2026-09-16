@@ -98,8 +98,8 @@
      About Village Section
 =========================== -->
 
-<section class="about-section">
-
+<section class="about" id="about">
+   
     <div class="about-image">
 
         <img src="{{ url_for('static', filename='images/about-village.jpg') }}" alt="Raorukula Village">
@@ -153,13 +153,13 @@
         </a>
 
     </div>
-
 </section>
+
 <!-- ===========================
      Digital Village Services
 =========================== -->
 
-<section class="services">
+<section class="service" id="services">
 
     <div class="section-header">
         <span>OUR SERVICES</span>
@@ -169,50 +169,49 @@
 
     <div class="service-container">
 
-        <div class="service-card">
-            <i class="fa-solid fa-user-plus"></i>
-            <h3>Citizen Services</h3>
-            <p>Citizen registration, login and profile management.</p>
-            <a href="/citizen">Explore →</a>
-        </div>
-
-        <div class="service-card">
-            <i class="fa-solid fa-comments"></i>
-            <h3>Complaint Management</h3>
-            <p>Submit complaints and track their status online.</p>
-            <a href="/complaints">Explore →</a>
-        </div>
-
-        <div class="service-card">
-            <i class="fa-solid fa-landmark"></i>
-            <h3>Government Schemes</h3>
-            <p>View welfare schemes and apply for eligible benefits.</p>
-            <a href="/government">Explore →</a>
-        </div>
-
-        <div class="service-card">
-            <i class="fa-solid fa-seedling"></i>
-            <h3>Agriculture Support</h3>
-            <p>Crop guidance, farming tips and agricultural assistance.</p>
-            <a href="/agriculture">Explore →</a>
-        </div>
-
-        <div class="service-card">
-            <i class="fa-solid fa-notes-medical"></i>
-            <h3>Health Services</h3>
-            <p>Health camps, hospitals and emergency medical services.</p>
-            <a href="/health">Explore →</a>
-        </div>
-
-        <div class="service-card">
-            <i class="fa-solid fa-bullhorn"></i>
-            <h3>Village Announcements</h3>
-            <p>Latest notices, meetings and important village updates.</p>
-            <a href="/announcements">Explore →</a>
-        </div>
-
+    <div class="service-card">
+        <i class="fa-solid fa-user-plus"></i>
+        <h3>Citizen Services</h3>
+        <p>Citizen registration, login and profile management.</p>
+        <a href="{{ url_for('citizen') }}">Explore →</a>
     </div>
 
+    <div class="service-card">
+        <i class="fa-solid fa-comments"></i>
+        <h3>Complaint Management</h3>
+        <p>Submit complaints and track their status online.</p>
+        <a href="{{ url_for('complaints') }}">Explore →</a>
+    </div>
+
+    <div class="service-card">
+        <i class="fa-solid fa-landmark"></i>
+        <h3>Government Schemes</h3>
+        <p>View welfare schemes and apply for eligible benefits.</p>
+        <a href="{{ url_for('government') }}">Explore →</a>
+    </div>
+
+    <div class="service-card">
+        <i class="fa-solid fa-seedling"></i>
+        <h3>Agriculture Support</h3>
+        <p>Crop guidance, farming tips and agricultural assistance.</p>
+        <a href="{{ url_for('agriculture') }}">Explore →</a>
+    </div>
+
+    <div class="service-card">
+        <i class="fa-solid fa-notes-medical"></i>
+        <h3>Health Services</h3>
+        <p>Health camps, hospitals and emergency medical services.</p>
+        <a href="{{ url_for('health') }}">Explore →</a>
+    </div>
+
+    <div class="service-card">
+        <i class="fa-solid fa-bullhorn"></i>
+        <h3>Village Announcements</h3>
+        <p>Latest notices, meetings and important village updates.</p>
+        <a href="{{ url_for('announcements') }}">Explore →</a>
+    </div>
+
+</div>
 </section>
 <!-- ===========================
      Government Schemes
@@ -419,8 +418,7 @@
      Contact Us
 =========================== -->
 
-<section class="contact">
-
+<section class="contact" id="contact">
     <div class="section-header">
         <span>CONTACT US</span>
         <h2>Get In Touch</h2>

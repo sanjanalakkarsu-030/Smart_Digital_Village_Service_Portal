@@ -1,206 +1,1077 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Schemes</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Government Schemes | Smart Digital Village</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Schemes CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/schemes.css') }}">
+
 </head>
+
+
 <body>
 
-<header>
-    <h1>Government Schemes</h1>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="scheme-header">
+
+    <div class="header-content">
+
+        <div class="header-icon">
+            <i class="fa-solid fa-landmark"></i>
+        </div>
+
+        <div>
+
+            <h1>Government Schemes</h1>
+
+            <p>
+                Discover government welfare schemes, benefits,
+                eligibility and application information.
+            </p>
+
+        </div>
+
+    </div>
+
 </header>
-
-<div class="container">
-
-    <input
-    type="text"
-    id="search"
-    placeholder="Search Scheme..."
-    onkeyup="searchScheme()">
-
-    <div class="card">
-        <h2>PM Kisan Samman Nidhi</h2>
-        <p>Provides financial assistance to farmers.</p>
-        <p><b>Eligibility:</b> Small & Marginal Farmers</p>
-        <p><b>Last Date:</b> Open</p>
-<a href="scheme_details.html?scheme=pmkisan">
-    <button>View Details</button>
+<a href="{{ url_for('home') }}" class="home-btn">
+    <i class="fa-solid fa-house"></i>
+    Back to Home
 </a>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- SEARCH -->
+
+    <div class="search-wrapper">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search government schemes..."
+            onkeyup="searchScheme()">
+
     </div>
 
-    <div class="card">
-        <h2>PM Awas Yojana</h2>
-        <p>Affordable housing scheme for poor families.</p>
-        <p><b>Eligibility:</b> Eligible Families</p>
-        <p><b>Last Date:</b> Open</p>
-        <a href="scheme_details.html?scheme=pmawas">
-    <button>View Details</button>
-</a>
+
+
+    <!-- CATEGORY FILTER -->
+
+    <div class="category-filter">
+
+        <button class="active"
+                onclick="filterCategory('all', this)">
+            All
+        </button>
+
+        <button onclick="filterCategory('Agriculture', this)">
+            <i class="fa-solid fa-seedling"></i>
+            Agriculture
+        </button>
+
+        <button onclick="filterCategory('Health', this)">
+            <i class="fa-solid fa-heart-pulse"></i>
+            Health
+        </button>
+
+        <button onclick="filterCategory('Housing', this)">
+            <i class="fa-solid fa-house"></i>
+            Housing
+        </button>
+
+        <button onclick="filterCategory('Education', this)">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Education
+        </button>
+
+        <button onclick="filterCategory('Women', this)">
+            <i class="fa-solid fa-person-dress"></i>
+            Women
+        </button>
+
+        <button onclick="filterCategory('Business', this)">
+            <i class="fa-solid fa-briefcase"></i>
+            Business
+        </button>
+
+        <button onclick="filterCategory('Pension', this)">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            Pension
+        </button>
+
+        <button onclick="filterCategory('Water', this)">
+            <i class="fa-solid fa-droplet"></i>
+            Water
+        </button>
+
+        <button onclick="filterCategory('Transport', this)">
+            <i class="fa-solid fa-bus"></i>
+            Transport
+        </button>
+
+        <button onclick="filterCategory('Employment', this)">
+            <i class="fa-solid fa-user-tie"></i>
+            Employment
+        </button>
+
     </div>
 
-    <div class="card">
-        <h2>Ayushman Bharat</h2>
-        <p>Health insurance scheme for eligible families.</p>
-        <p><b>Eligibility:</b> Eligible Families</p>
-        <p><b>Last Date:</b> Open</p>
-        <a href="scheme_details.html?scheme=ayushman">
-    <button>View Details</button>
-</a>
+
+
+    <!-- RESULT COUNT -->
+
+    <div class="results-info">
+
+        <span>
+            <i class="fa-solid fa-list-check"></i>
+
+            <span id="schemeCount">16</span>
+
+            schemes available
+        </span>
+
     </div>
 
-    <div class="card">
-        <h2>PM Ujjwala Yojana</h2>
-        <p>Free LPG gas connection for eligible women.</p>
-        <p><b>Eligibility:</b> BPL Families</p>
-        <p><b>Last Date:</b> Open</p>
-        <a href="scheme_details.html?scheme=ujjwala">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         1. PM KISAN
+    ================================================== -->
+
+    <div class="card" data-category="Agriculture">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/pm-kisan.jpg') }}"
+            class="scheme-img"
+            alt="PM Kisan Samman Nidhi">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Agriculture
+            </span>
+
+            <h2>PM Kisan Samman Nidhi</h2>
+
+            <p>
+                Financial assistance scheme providing income
+                support to eligible farmers.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible farmers
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='pmkisan') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+                    
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>PM Mudra Yojana</h2>
-        <p>Business loans for entrepreneurs.</p>
-        <p><b>Eligibility:</b> Small Business Owners</p>
-        <p><b>Last Date:</b> Open</p>
-        <a href="scheme_details.html?scheme=mudra">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         2. PM AWAS
+    ================================================== -->
+
+    <div class="card" data-category="Housing">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/pm-awas.jpg') }}"
+            class="scheme-img"
+            alt="PM Awas Yojana">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Housing
+            </span>
+
+            <h2>PM Awas Yojana</h2>
+
+            <p>
+                Housing assistance for eligible families
+                requiring affordable housing support.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible families
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='pmawas') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+                    
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>National Scholarship Portal</h2>
-        <p>Scholarships for students.</p>
-        <p><b>Eligibility:</b> Eligible Students</p>
-        <p><b>Last Date:</b> Check Notification</p>
-        <a href="scheme_details.html?scheme=scholarship">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         3. AYUSHMAN BHARAT
+    ================================================== -->
+
+    <div class="card" data-category="Health">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/ayushman-bharat.jpg') }}"
+            class="scheme-img"
+            alt="Ayushman Bharat">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Health
+            </span>
+
+            <h2>Ayushman Bharat</h2>
+
+            <p>
+                Healthcare support and financial protection
+                for eligible beneficiaries.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible families
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='ayushman') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Rythu Bandhu</h2>
-        <p>Investment support for Telangana farmers.</p>
-        <p><b>Eligibility:</b> Telangana Farmers</p>
-        <p><b>Last Date:</b> Open</p>
-       <a href="scheme_details.html?scheme=rythubandhu">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         4. UJJWALA
+    ================================================== -->
+
+    <div class="card" data-category="Women">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/ujjwala.jpg') }}"
+            class="scheme-img"
+            alt="PM Ujjwala Yojana">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Women
+            </span>
+
+            <h2>PM Ujjwala Yojana</h2>
+
+            <p>
+                LPG connection support for eligible
+                women from low-income households.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible women
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='ujjwala') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Rythu Bima</h2>
-        <p>Life insurance scheme for farmers.</p>
-        <p><b>Eligibility:</b> Registered Farmers</p>
-        <p><b>Last Date:</b> Open</p>
-      <a href="scheme_details.html?scheme=rythubima">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         5. MUDRA
+    ================================================== -->
+
+    <div class="card" data-category="Business">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/mudra.jpg') }}"
+            class="scheme-img"
+            alt="PM Mudra Yojana">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Business
+            </span>
+
+            <h2>PM Mudra Yojana</h2>
+
+            <p>
+                Financial support for eligible small
+                businesses and entrepreneurs.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Small business owners
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='mudra') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Aasara Pension</h2>
-        <p>Monthly pension for eligible citizens.</p>
-        <p><b>Eligibility:</b> Senior Citizens, Widows & Disabled</p>
-        <p><b>Last Date:</b> Open</p>
-      <a href="scheme_details.html?scheme=aasara">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         6. SCHOLARSHIP
+    ================================================== -->
+
+    <div class="card" data-category="Education">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/scholarship.jpg') }}"
+            class="scheme-img"
+            alt="National Scholarship Portal">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Education
+            </span>
+
+            <h2>National Scholarship Portal</h2>
+
+            <p>
+                Scholarship information and financial
+                assistance for eligible students.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible students
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='scholarship') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Kalyana Lakshmi</h2>
-        <p>Marriage financial assistance scheme.</p>
-        <p><b>Eligibility:</b> Eligible Women</p>
-        <p><b>Last Date:</b> Open</p>
-       <a href="scheme_details.html?scheme=kalyanalakshmi">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         7. RYTHU BANDHU
+    ================================================== -->
+
+    <div class="card" data-category="Agriculture">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/rythu-bandhu.jpg') }}"
+            class="scheme-img"
+            alt="Rythu Bandhu">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Agriculture
+            </span>
+
+            <h2>Rythu Bandhu</h2>
+
+            <p>
+                Agricultural investment support for
+                eligible Telangana farmers.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Telangana farmers
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='rythubandhu') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Shaadi Mubarak</h2>
-        <p>Marriage assistance for Muslim women.</p>
-        <p><b>Eligibility:</b> Eligible Muslim Families</p>
-        <p><b>Last Date:</b> Open</p>
-        <a href="scheme_details.html?scheme=shaadimubarak">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         8. RYTHU BIMA
+    ================================================== -->
+
+    <div class="card" data-category="Agriculture">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/rythu-bima.jpg') }}"
+            class="scheme-img"
+            alt="Rythu Bima">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Agriculture
+            </span>
+
+            <h2>Rythu Bima</h2>
+
+            <p>
+                Life insurance support for eligible
+                registered farmers.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Registered farmers
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='rythubima') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>KCR Kit Scheme</h2>
-        <p>Support for pregnant women and newborn babies.</p>
-        <p><b>Eligibility:</b> Pregnant Women</p>
-        <p><b>Last Date:</b> Open</p>
-       <a href="scheme_details.html?scheme=kcrkit">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         9. AASARA
+    ================================================== -->
+
+    <div class="card" data-category="Pension">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/aasara.jpg') }}"
+            class="scheme-img"
+            alt="Aasara Pension">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Pension
+            </span>
+
+            <h2>Aasara Pension</h2>
+
+            <p>
+                Social welfare pension support for
+                eligible citizens.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible beneficiaries
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='aasara') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Mission Bhagiratha</h2>
-        <p>Safe drinking water supply scheme.</p>
-        <p><b>Eligibility:</b> Telangana Residents</p>
-        <p><b>Last Date:</b> Open</p>
-        <a href="scheme_details.html?scheme=bhagiratha">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         10. KALYANA LAKSHMI
+    ================================================== -->
+
+    <div class="card" data-category="Women">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/kalyana-lakshmi.jpg') }}"
+            class="scheme-img"
+            alt="Kalyana Lakshmi">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Women
+            </span>
+
+            <h2>Kalyana Lakshmi</h2>
+
+            <p>
+                Marriage financial assistance for
+                eligible beneficiaries.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible women
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='kalyanalakshmi') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Indiramma Housing Scheme</h2>
-        <p>Housing support for poor families.</p>
-        <p><b>Eligibility:</b> Eligible Families</p>
-        <p><b>Last Date:</b> Open</p>
-       <a href="scheme_details.html?scheme=indiramma">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         11. SHAADI MUBARAK
+    ================================================== -->
+
+    <div class="card" data-category="Women">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/shaadi-mubarak.jpg') }}"
+            class="scheme-img"
+            alt="Shaadi Mubarak">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Women
+            </span>
+
+            <h2>Shaadi Mubarak</h2>
+
+            <p>
+                Marriage assistance programme for
+                eligible beneficiaries.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible beneficiaries
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='shaadimubarak') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Free Bus Travel Scheme</h2>
-        <p>Free bus travel for women in Telangana.</p>
-        <p><b>Eligibility:</b> Women Residents of Telangana</p>
-        <p><b>Last Date:</b> Open</p>
-       <a href="scheme_details.html?scheme=freebus">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         12. KCR KIT
+    ================================================== -->
+
+    <div class="card" data-category="Health">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/kcr-kit.jpg') }}"
+            class="scheme-img"
+            alt="KCR Kit Scheme">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Health
+            </span>
+
+            <h2>KCR Kit Scheme</h2>
+
+            <p>
+                Support for pregnant women and
+                newborn babies.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible pregnant women
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='kcrkit') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="card">
-        <h2>Cheyutha Scheme</h2>
-        <p>Financial support for self-employment.</p>
-        <p><b>Eligibility:</b> Eligible Beneficiaries</p>
-        <p><b>Last Date:</b> Open</p>
-        <a href="scheme_details.html?scheme=cheyutha">
-    <button>View Details</button>
-</a>
+
+
+    <!-- =================================================
+         13. MISSION BHAGIRATHA
+    ================================================== -->
+
+    <div class="card" data-category="Water">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/bhagiratha.jpg') }}"
+            class="scheme-img"
+            alt="Mission Bhagiratha">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Water
+            </span>
+
+            <h2>Mission Bhagiratha</h2>
+
+            <p>
+                Safe and reliable drinking water
+                supply for Telangana residents.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Telangana residents
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='bhagiratha') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
     </div>
 
-</div>
-<script src="script.js"></script>
+
+
+    <!-- =================================================
+         14. INDIRAMMA
+    ================================================== -->
+
+    <div class="card" data-category="Housing">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/indiramma.jpg') }}"
+            class="scheme-img"
+            alt="Indiramma Housing Scheme">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Housing
+            </span>
+
+            <h2>Indiramma Housing Scheme</h2>
+
+            <p>
+                Housing support for eligible families
+                in Telangana.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible families
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='indiramma') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         15. FREE BUS
+    ================================================== -->
+
+    <div class="card" data-category="Transport">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/free-bus.jpg') }}"
+            class="scheme-img"
+            alt="Free Bus Travel Scheme">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Transport
+            </span>
+
+            <h2>Free Bus Travel Scheme</h2>
+
+            <p>
+                Public transport facility for eligible
+                women in Telangana.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible women residents
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='freebus') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         16. CHEYUTHA
+    ================================================== -->
+
+    <div class="card" data-category="Employment">
+
+        <img
+            src="{{ url_for('static', filename='images/schemes/cheyutha.jpg') }}"
+            class="scheme-img"
+            alt="Cheyutha Scheme">
+
+        <div class="card-content">
+
+            <span class="scheme-category">
+                Employment
+            </span>
+
+            <h2>Cheyutha Scheme</h2>
+
+            <p>
+                Livelihood and self-employment support
+                for eligible beneficiaries.
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                Eligible beneficiaries
+            </p>
+
+            <div class="scheme-actions">
+
+                <a href="{{ url_for('scheme_details', scheme='cheyutha') }}"
+                   class="details-btn">
+                    <i class="fa-solid fa-circle-info"></i>
+                    View Details
+                </a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- NO RESULTS -->
+
+    <div id="noResults" class="no-results">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <h3>No schemes found</h3>
+
+        <p>
+            Try another scheme name or category.
+        </p>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="{{ url_for('static', filename='js/schemes.js') }}"></script>
+
+
 <script>
-async function loadSchemes() {
-    try {
-        const response = await fetch("http://127.0.0.1:5000/api/schemes");
 
-        if (!response.ok) {
-            throw new Error("Unable to load schemes");
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchScheme() {
+
+    const searchInput =
+        document.getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const cards =
+        document.querySelectorAll(".card");
+
+    let visibleCount = 0;
+
+    cards.forEach(function(card) {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        if (text.includes(searchInput)) {
+
+            card.style.display = "block";
+
+            visibleCount++;
+
+        } else {
+
+            card.style.display = "none";
+
         }
 
-        const schemes = await response.json();
+    });
 
-        console.log("Schemes loaded from MySQL:", schemes);
+    updateSchemeCount(visibleCount);
 
-    } catch (error) {
-        console.error("Error loading schemes:", error);
+    const noResults =
+        document.getElementById("noResults");
+
+    if (visibleCount === 0) {
+
+        noResults.style.display = "block";
+
+    } else {
+
+        noResults.style.display = "none";
+
     }
+
 }
 
-loadSchemes();
+
+/* =====================================================
+   CATEGORY FILTER
+===================================================== */
+
+function filterCategory(category, button) {
+
+    const cards =
+        document.querySelectorAll(".card");
+
+    const buttons =
+        document.querySelectorAll(
+            ".category-filter button"
+        );
+
+    buttons.forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+    let visibleCount = 0;
+
+    cards.forEach(function(card) {
+
+        const cardCategory =
+            card.getAttribute("data-category");
+
+        if (
+            category === "all" ||
+            cardCategory === category
+        ) {
+
+            card.style.display = "block";
+
+            visibleCount++;
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+    updateSchemeCount(visibleCount);
+
+    document.getElementById("search").value = "";
+
+    const noResults =
+        document.getElementById("noResults");
+
+    if (visibleCount === 0) {
+
+        noResults.style.display = "block";
+
+    } else {
+
+        noResults.style.display = "none";
+
+    }
+
+}
+
+
+/* =====================================================
+   COUNT
+===================================================== */
+
+function updateSchemeCount(count) {
+
+    document.getElementById("schemeCount")
+        .textContent = count;
+
+}
+
 </script>
+
+
 </body>
 </html>

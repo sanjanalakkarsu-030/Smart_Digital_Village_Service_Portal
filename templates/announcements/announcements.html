@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Village Announcements | Smart Digital Village Service Portal</title>
 
-    <link rel="stylesheet" href="style.css">
+    <title>Village Announcements | Smart Digital Village</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+    <!-- Font Awesome -->
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <!-- Existing Announcement CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/announcements.css') }}">
 
 </head>
 
+
 <body>
 
-<!-- Header -->
+
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -24,28 +34,32 @@
 
         <i class="fa-solid fa-bullhorn"></i>
 
-        <h2>Smart Digital Village Service Portal</h2>
+        <h2>
+            Smart Digital Village Service Portal
+        </h2>
 
     </div>
 
 </header>
 
-<!-- Hero Section -->
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
-    <h1>📢 Village Announcements</h1>
+    <h1>
+        📢 Village Announcements
+    </h1>
 
     <p>
-
-        Stay updated with the latest government notices,
-        health campaigns, village meetings and public services.
-
+        Stay updated with the latest news, events and important
+        information from our village administration.
     </p>
 
 </section>
 
-<!-- Search -->
+
+<!-- ================= SEARCH ================= -->
 
 <section class="search-section">
 
@@ -54,335 +68,438 @@
         <i class="fa-solid fa-magnifying-glass"></i>
 
         <input
-        type="text"
-        id="searchInput"
-        placeholder="Search announcements..."
-        onkeyup="searchAnnouncements()">
+            type="text"
+            id="searchInput"
+            placeholder="Search announcements..."
+            onkeyup="searchAnnouncements()">
 
     </div>
 
 </section>
 
-<!-- Top Menu -->
 
-<section class="menu-bar">
+<!-- ================= FILTERS ================= -->
 
-<div>
+<div class="menu-bar">
 
-<label>
 
-🌐 Language
+    <!-- Category -->
 
-</label>
+    <div>
 
-<select id="language" onchange="changeLanguage()">
+        <label for="categoryFilter">
+            <i class="fa-solid fa-filter"></i>
+            Category
+        </label>
 
-<option value="en">English</option>
+        <select id="categoryFilter"
+                onchange="filterCategory()">
 
-<option value="te">తెలుగు</option>
+            <option value="all">
+                All Categories
+            </option>
 
-<option value="hi">हिन्दी</option>
+            <option value="Health">
+                Health
+            </option>
 
-</select>
+            <option value="Women">
+                Women
+            </option>
+
+            <option value="Panchayat">
+                Panchayat
+            </option>
+
+            <option value="Utility">
+                Utility
+            </option>
+
+            <option value="Agriculture">
+                Agriculture
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <!-- Language -->
+
+    <div>
+
+        <label for="language">
+
+            <i class="fa-solid fa-language"></i>
+            Language
+
+        </label>
+
+        <select id="language"
+                onchange="changeLanguage()">
+
+            <option value="en">
+                English
+            </option>
+
+            <option value="te">
+                తెలుగు
+            </option>
+
+            <option value="hi">
+                हिन्दी
+            </option>
+
+        </select>
+
+    </div>
 
 </div>
 
-<div>
 
-<label>
-
-🏷 Category
-
-</label>
-
-<select id="categoryFilter"
-onchange="filterCategory()">
-
-<option value="all">All</option>
-
-<option value="Health">Health</option>
-
-<option value="Panchayat">Panchayat</option>
-
-<option value="Women">Women</option>
-
-<option value="Utility">Utility</option>
-
-</select>
-
-</div>
-
-<div>
-
-<label>
-
-📅 Sort
-
-</label>
-
-<select>
-
-<option>
-
-Latest First
-
-</option>
-
-</select>
-
-</div>
-
-</section>
-
-<!-- Latest Announcement Heading -->
+<!-- ================= LATEST ================= -->
 
 <section class="latest">
 
-<h2>
+    <h2>
+        Latest Announcements
+    </h2>
 
-Latest Announcements
-
-</h2>
-
-<p>
-
-Stay informed about important village updates.
-
-</p>
+    <p>
+        Important updates from Raorukula Village Administration
+    </p>
 
 </section>
 
-<!-- Announcement Cards -->
+
+<!-- ================= ANNOUNCEMENT CARDS ================= -->
 
 <div id="announcementContainer">
- <!-- 1. Polio Vaccination -->
 
-<div class="announcement-card" data-category="Health">
+    {% if announcements %}
 
-    <span class="badge urgent">URGENT</span>
+        {% for announcement in announcements %}
 
-    <h3 class="title"
-        data-en="Polio Vaccination Drive"
-        data-te="పోలియో టీకా కార్యక్రమం"
-        data-hi="पोलियो टीकाकरण अभियान">
+        <div class="announcement-card"
+             data-category="{{ announcement.category }}">
 
-        👶 Polio Vaccination Drive
+            <span class="badge new">NEW</span>
 
-    </h3>
+            <h3 class="title">
+                📢 {{ announcement.title }}
+            </h3>
 
-    <p class="description"
-       data-en="Free polio drops for all children below 5 years. Parents are requested to bring their children to the Primary Health Centre."
-       data-te="5 సంవత్సరాల లోపు పిల్లలకు ఉచిత పోలియో చుక్కలు వేయబడతాయి."
-       data-hi="5 वर्ष से कम आयु के बच्चों के लिए निःशुल्क पोलियो ड्रॉप्स उपलब्ध हैं।">
+            <p class="description">
+                {{ announcement.description }}
+            </p>
 
-       Free polio drops for all children below 5 years.
+            <small>
+                📅
+                {% if announcement.event_date %}
+                    {{ announcement.event_date }}
+                {% else %}
+                    Date not specified
+                {% endif %}
 
-    </p>
+                &nbsp; | &nbsp;
 
-    <small>
-        📅 12 Aug 2026 |
-        🕒 9:00 AM |
-        👤 Health Department
-    </small>
+                🏷️ {{ announcement.category }}
 
-    <br><br>
+                &nbsp; | &nbsp;
 
-    <button class="read-btn"
-    onclick="openDetails(
-    'Polio Vaccination Drive',
-    'Free polio drops for all children below five years at the Primary Health Centre. Parents should bring the child health card if available.',
-    '12 Aug 2026',
-    '9:00 AM',
-    'Health Department',
-    'Primary Health Centre')">
+                👤 {{ announcement.posted_by_name }}
+            </small>
 
-    Read More →
+            <br><br>
 
-    </button>
+            <a href="{{ url_for(
+                'announcement_details',
+                announcement_id=announcement.announcement_id
+            ) }}"
+            class="details-btn">
+                View Details →
+            </a>
 
-</div>
+        </div>
 
-<!-- 2. Women Health -->
+        {% endfor %}
 
-<div class="announcement-card" data-category="Women">
+    {% else %}
 
-    <span class="badge new">NEW</span>
+        <div class="announcement-card">
+            <span class="badge">INFO</span>
 
-    <h3 class="title"
-        data-en="Women Health Awareness"
-        data-te="మహిళల ఆరోగ్య అవగాహన"
-        data-hi="महिला स्वास्थ्य जागरूकता">
+            <h3>No Announcements Available</h3>
 
-        👩 Women Health Awareness
+            <p>
+                There are currently no published announcements.
+                New village updates will appear here once published
+                by the administration.
+            </p>
+        </div>
 
-    </h3>
-
-    <p class="description"
-       data-en="Free awareness programme on nutrition, hygiene and maternal health."
-       data-te="పోషకాహారం, పరిశుభ్రత మరియు తల్లి ఆరోగ్యంపై ఉచిత అవగాహన కార్యక్రమం."
-       data-hi="पोषण, स्वच्छता और मातृ स्वास्थ्य पर निःशुल्क जागरूकता कार्यक्रम।">
-
-       Free awareness programme on nutrition and maternal health.
-
-    </p>
-
-    <small>
-        📅 15 Aug 2026 |
-        🕒 11:00 AM |
-        👤 Women Welfare Department
-    </small>
-
-    <br><br>
-
-    <button class="read-btn"
-    onclick="openDetails(
-    'Women Health Awareness',
-    'Doctors will conduct awareness sessions on nutrition, hygiene, maternal care and government welfare schemes. Free health check-up will also be available.',
-    '15 Aug 2026',
-    '11:00 AM',
-    'Women Welfare Department',
-    'Community Hall')">
-
-    Read More →
-
-    </button>
+    {% endif %}
 
 </div>
+<!-- ================= ADD ANNOUNCEMENT ================= -->
 
-<!-- 3. Gram Sabha -->
+<!-- =========================
+     ADD ANNOUNCEMENT SECTION
+     ========================= -->
 
-<div class="announcement-card" data-category="Panchayat">
+<section class="add-announcement-section">
 
-    <h3 class="title"
-        data-en="Gram Sabha Meeting"
-        data-te="గ్రామ సభ సమావేశం"
-        data-hi="ग्राम सभा बैठक">
+    <div class="add-announcement-header">
 
-        📢 Gram Sabha Meeting
+        <div>
+            <h2>📢 Add New Announcement</h2>
+            <p>
+                Create and publish an important update for the villagers.
+            </p>
+        </div>
 
-    </h3>
+        <button type="button"
+                class="add-announcement-btn"
+                onclick="showForm()">
+            ＋ Add Announcement
+        </button>
 
-    <p class="description"
-       data-en="All villagers are requested to attend the Gram Sabha meeting."
-       data-te="గ్రామ ప్రజలందరూ గ్రామ సభ సమావేశానికి హాజరుకావాలి."
-       data-hi="सभी ग्रामीण ग्राम सभा बैठक में उपस्थित हों।">
-
-       All villagers are requested to attend the Gram Sabha meeting.
-
-    </p>
-
-    <small>
-        📅 18 Aug 2026 |
-        🕒 10:00 AM |
-        👤 Panchayat Office
-    </small>
-
-    <br><br>
-
-    <button class="read-btn"
-    onclick="openDetails(
-    'Gram Sabha Meeting',
-    'Discussion on village development, sanitation, roads, drinking water and government welfare schemes.',
-    '18 Aug 2026',
-    '10:00 AM',
-    'Panchayat Office',
-    'Village Panchayat Office')">
-
-    Read More →
-
-    </button>
-
-</div>
-
-<!-- 4. Water Supply -->
-
-<div class="announcement-card" data-category="Utility">
-
-    <h3 class="title"
-        data-en="Water Supply Maintenance"
-        data-te="నీటి సరఫరా నిర్వహణ"
-        data-hi="जल आपूर्ति रखरखाव">
-
-        💧 Water Supply Maintenance
-
-    </h3>
-
-    <p class="description"
-       data-en="Water supply will be interrupted due to pipeline maintenance."
-       data-te="పైప్‌లైన్ మరమ్మతుల కారణంగా నీటి సరఫరా నిలిపివేయబడుతుంది."
-       data-hi="पाइपलाइन मरम्मत के कारण जल आपूर्ति बाधित रहेगी।">
-
-       Water supply will be interrupted due to maintenance work.
-
-    </p>
-
-    <small>
-        📅 20 Aug 2026 |
-        🕒 8:00 AM |
-        👤 Panchayat Office
-    </small>
-
-    <br><br>
-
-    <button class="read-btn"
-    onclick="openDetails(
-    'Water Supply Maintenance',
-    'Water supply will be unavailable from 8:00 AM to 2:00 PM due to maintenance work. Kindly store sufficient drinking water.',
-    '20 Aug 2026',
-    '8:00 AM',
-    'Panchayat Office',
-    'Entire Village')">
-
-    Read More →
-
-    </button>
-
-</div>
-<section class="add-section">
-
-<button onclick="showForm()" class="add-btn">
-➕ Add Announcement
-</button>
+    </div>
 
 
-<div id="addForm" class="add-form">
+    <!-- FORM -->
 
-<h2>Add New Announcement</h2>
+    <div id="addForm" class="announcement-form-wrapper">
 
-<input id="newTitle" placeholder="Announcement Title">
+        <div class="announcement-form-card">
 
-<textarea id="newDescription" placeholder="Description"></textarea>
+            <div class="form-heading">
 
+                <h3>📢 Create Announcement</h3>
 
-<select id="newCategory">
+                <p>
+                    Enter the announcement details below.
+                </p>
 
-<option value="Health">Health</option>
-<option value="Panchayat">Panchayat</option>
-<option value="Women">Women</option>
-<option value="Utility">Utility</option>
-
-</select>
+            </div>
 
 
-<input id="newPostedBy" placeholder="Posted By">
+            <form method="POST"
+                  action="{{ url_for('add_announcement') }}">
 
 
-<button onclick="addAnnouncement()" class="publish-btn">
-Publish
-</button>
+                <!-- TITLE -->
 
-</div>
+                <div class="form-group">
+
+                    <label for="title">
+                        Announcement Title
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        placeholder="Example: Gram Sabha Meeting"
+                        required>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                        <span>*</span>
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        placeholder="Enter complete announcement details..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- CATEGORY + DATE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="category"
+                            name="category"
+                            required>
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Panchayat">
+                                Panchayat
+                            </option>
+
+                            <option value="Health">
+                                Health
+                            </option>
+
+                            <option value="Agriculture">
+                                Agriculture
+                            </option>
+
+                            <option value="Education">
+                                Education
+                            </option>
+
+                            <option value="Women">
+                                Women
+                            </option>
+
+                            <option value="Utility">
+                                Utility
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="event_date">
+                            Event Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="event_date"
+                            name="event_date">
+
+                    </div>
+
+                </div>
+
+
+                <!-- POSTED BY + STATUS -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="posted_by">
+                            Posted By
+                            <span>*</span>
+                        </label>
+
+                        <select
+                            id="posted_by"
+                            name="posted_by"
+                            required>
+
+                            <option value="">
+                                Select Administrator
+                            </option>
+
+                            {% for admin in admins %}
+
+                            <option value="{{ admin.admin_id }}">
+                                {{ admin.full_name }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="status">
+                            Status
+                        </label>
+
+                        <select
+                            id="status"
+                            name="status">
+
+                            <option value="Published">
+                                Published
+                            </option>
+
+                            <option value="Draft">
+                                Draft
+                            </option>
+
+                            <option value="Expired">
+                                Expired
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="submit"
+                        class="publish-btn">
+                        📢 Publish Announcement
+                    </button>
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        onclick="showForm()">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
 
 </section>
-</div>
+
+
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
-<p> 2026 Smart Digital Village Service Portal | Village Announcements</p>
+    <p>
+        © 2026 Smart Digital Village Service Portal
+    </p>
 
 </footer>
 
-<script src="script.js"></script>
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="{{ url_for('static', filename='js/announcements.js') }}"></script>
 
 </body>
+
 </html>

@@ -931,6 +931,13 @@ footer{
     text-align:center;
 
     color:#ddd;
+} 
+html {
+    scroll-behavior: smooth;
+}
+
+section {
+    scroll-margin-top: 80px;
 }
 /* ===============================
    Responsive Design

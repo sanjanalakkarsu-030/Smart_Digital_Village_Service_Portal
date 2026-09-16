@@ -1,87 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply for Scheme</title>
-    <link rel="stylesheet" href="style.css">
+
+    <title>Apply for Government Scheme</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/schemes.css') }}">
 </head>
+
 <body>
 
 <header>
     <h1>Apply for Government Scheme</h1>
 </header>
 
+
 <div class="container">
 
-<div class="card">
+    <div class="card">
 
-<form>
-<label>Full Name</label><br>
-<input type="text" placeholder="Enter Full Name" required><br><br>
+        <form>
 
-<label>Father's Name</label><br>
-<input type="text" placeholder="Enter Father's Name" required><br><br>
+            <!-- Full Name -->
+            <label>Full Name</label>
+            <input
+                type="text"
+                name="full_name"
+                placeholder="Enter Full Name"
+                required>
 
-<label>Aadhaar Number</label><br>
-<input type="text" placeholder="Enter Aadhaar Number" required><br><br>
 
-<label>Mobile Number</label><br>
-<input type="tel" placeholder="Enter Mobile Number" required><br><br>
+            <!-- Father's Name -->
+            <label>Father's Name</label>
+            <input
+                type="text"
+                name="father_name"
+                placeholder="Enter Father's Name"
+                required>
 
-<label>Email</label><br>
-<input type="email" placeholder="Enter Email"><br><br>
 
-<label>Gender</label><br>
-<select>
-<option>Male</option>
-<option>Female</option>
-<option>Other</option>
-</select><br><br>
+            <!-- Aadhaar Number -->
+            <label>Aadhaar Number</label>
+            <input
+                type="text"
+                name="aadhaar_number"
+                placeholder="Enter Aadhaar Number"
+                maxlength="12"
+                required>
 
-<label>Scheme Name</label><br>
-<input type="text" id="schemeName" readonly><br><br>
-<select>
-<option>PM Kisan Samman Nidhi</option>
-<option>PM Awas Yojana</option>
-<option>Ayushman Bharat</option>
-<option>PM Ujjwala Yojana</option>
-<option>PM Mudra Yojana</option>
-<option>National Scholarship Portal</option>
-<option>Rythu Bandhu</option>
-<option>Rythu Bima</option>
-<option>Aasara Pension</option>
-<option>Kalyana Lakshmi</option>
-<option>Shaadi Mubarak</option>
-<option>KCR Kit</option>
-<option>Mission Bhagiratha</option>
-<option>Indiramma Housing Scheme</option>
-<option>Free Bus Travel Scheme</option>
-<option>Cheyutha Scheme</option>
-</select><br><br>
 
-<label>Village</label><br>
-<input type="text" placeholder="Village Name"><br><br>
+            <!-- Mobile Number -->
+            <label>Mobile Number</label>
+            <input
+                type="tel"
+                name="mobile"
+                placeholder="Enter Mobile Number"
+                maxlength="10"
+                required>
 
-<label>Mandal</label><br>
-<input type="text" placeholder="Mandal"><br><br>
 
-<label>District</label><br>
-<input type="text" placeholder="District"><br><br>
+            <!-- Email -->
+            <label>Email</label>
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Email">
 
-<label>Upload Aadhaar</label><br>
-<input type="file"><br><br>
 
-<label>Upload Income Certificate</label><br>
-<input type="file"><br><br>
+            <!-- Gender -->
+            <label>Gender</label>
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
 
-<button type="submit">Submit Application</button>
 
-</form>
+            <!-- Scheme Name -->
+            <label>Scheme Name</label>
+            <input
+                type="text"
+                id="schemeName"
+                name="scheme_name"
+                readonly>
+
+
+            <!-- Village -->
+            <label>Village</label>
+            <input
+                type="text"
+                name="village"
+                placeholder="Village Name"
+                required>
+
+
+            <!-- Mandal -->
+            <label>Mandal</label>
+            <input
+                type="text"
+                name="mandal"
+                placeholder="Mandal"
+                required>
+
+
+            <!-- District -->
+            <label>District</label>
+            <input
+                type="text"
+                name="district"
+                placeholder="District"
+                required>
+
+
+            <!-- Aadhaar Document -->
+            <label>Upload Aadhaar</label>
+            <input
+                type="file"
+                name="aadhaar_document"
+                accept=".pdf,.jpg,.jpeg,.png">
+
+
+            <!-- Income Certificate -->
+            <label>Upload Income Certificate</label>
+            <input
+                type="file"
+                name="income_certificate"
+                accept=".pdf,.jpg,.jpeg,.png">
+
+
+            <!-- Submit -->
+            <button type="submit">
+                Submit Application
+            </button>
+
+        </form>
+
+    </div>
 
 </div>
+
+
+<!-- Schemes JavaScript -->
+<script src="{{ url_for('static', filename='js/schemes.js') }}"></script>
+
+
+<!-- Get Selected Scheme -->
 <script>
-<script src="script.js"></script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    const scheme = params.get("scheme");
+
+    if (scheme) {
+
+        document.getElementById("schemeName").value = scheme;
+
+    }
+
 </script>
+
 </body>
 </html>

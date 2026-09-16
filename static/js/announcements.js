@@ -168,54 +168,44 @@ form.style.display="block";
 
 
 
-function addAnnouncement(){
+function showForm() {
 
-let title=document.getElementById("newTitle").value;
+    const form = document.getElementById("addForm");
 
-let description=document.getElementById("newDescription").value;
+    if (form.style.display === "none" ||
+        form.style.display === "") {
 
-let category=document.getElementById("newCategory").value;
+        form.style.display = "block";
 
-let posted=document.getElementById("newPostedBy").value;
+        form.scrollIntoView({
+            behavior: "smooth"
+        });
 
+    } else {
 
-let date=new Date().toLocaleDateString();
+        form.style.display = "none";
+    }
+}
+function showForm() {
 
-let time=new Date().toLocaleTimeString();
+    const form = document.getElementById("addForm");
+    const button = document.querySelector(".add-announcement-btn");
 
+    if (form.style.display === "block") {
 
-let card=document.createElement("div");
+        form.style.display = "none";
 
-card.className="announcement-card";
+        button.innerHTML = "＋ Add Announcement";
 
-card.dataset.category=category;
+    } else {
 
+        form.style.display = "block";
 
-card.innerHTML=`
+        button.innerHTML = "✕ Close Form";
 
-<span class="badge new">NEW</span>
-
-<h3 class="title">
-📢 ${title}
-</h3>
-
-<p class="description">
-${description}
-</p>
-
-<small>
-📅 ${date} |
-🕒 ${time} |
-👤 ${posted}
-</small>
-
-`;
-
-document
-.getElementById("announcementContainer")
-.prepend(card);
-
-
-alert("Announcement Added Successfully!");
-
+        form.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
 }
