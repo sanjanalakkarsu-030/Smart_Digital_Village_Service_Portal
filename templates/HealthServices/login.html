@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Smart Digital Village Service Portal</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="logo">
+            👤
+        </div>
+
+        <h2>Citizen Login</h2>
+
+        <p class="subtitle">
+            Login to access Smart Digital Village Services.
+        </p>
+
+        <div class="input-group">
+            <label>Username</label>
+
+            <input type="text"
+                   id="username"
+                   placeholder="Enter your username"
+                   required>
+        </div>
+
+        <div class="input-group">
+
+            <label>Password</label>
+
+            <div class="password-box">
+
+                <input type="password"
+                       id="password"
+                       placeholder="Enter your password"
+                       required>
+
+                <span class="toggle" onclick="togglePassword()">
+                    👁
+                </span>
+
+            </div>
+
+        </div>
+
+        <button id="loginBtn" onclick="login()">
+            Login
+        </button>
+
+        <div class="loader" id="loader"></div>
+
+        <div class="message" id="message"></div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="links">
+
+            <a href="/forgot-password">
+                Forgot Password?
+            </a>
+
+            <a href="/register">
+                New Registration
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
