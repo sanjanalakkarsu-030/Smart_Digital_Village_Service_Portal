@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Village - Admin Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body class="login-body">
+
+    <div class="login-container">
+
+        <!-- Left Side -->
+        <div class="login-left">
+
+            <div class="village-logo">
+                🏠
+            </div>
+
+            <h1>Smart Village</h1>
+
+            <p class="portal-text">
+                Admin Portal
+            </p>
+
+            <div class="login-description">
+                <h2>Smart Digital Village</h2>
+
+                <p>
+                    Manage village services, citizens, complaints,
+                    government schemes and announcements from one
+                    centralized dashboard.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- Right Side -->
+        <div class="login-right">
+
+            <!-- Login Form -->
+            <div id="loginSection">
+
+                <h2>Administrator Login</h2>
+
+                <p class="welcome-text">
+                    Welcome back! Please login to continue.
+                </p>
+
+                <form id="loginForm">
+
+                    <label>Email or Mobile Number</label>
+
+                    <div class="input-box">
+                        <span>📱</span>
+
+                        <input
+                            type="text"
+                            id="userInput"
+                            placeholder="Enter email or mobile number"
+                            required>
+                    </div>
+
+
+                    <label>Password</label>
+
+                    <div class="input-box">
+                        <span>🔒</span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="togglePassword()">
+                            👁
+                        </button>
+                    </div>
+
+
+                    <div class="login-options">
+
+                        <label class="remember">
+                            <input type="checkbox">
+                            Remember me
+                        </label>
+
+                        <a href="#" onclick="showForgotPassword()">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <button type="submit" class="login-button">
+                        Login
+                    </button>
+
+                </form>
+
+                <p class="security-text">
+                    🔐 Secure Administrator Access
+                </p>
+
+            </div>
+
+
+            <!-- OTP Section -->
+            <div id="otpSection" style="display:none;">
+
+                <div class="otp-icon">
+                    🔐
+                </div>
+
+                <h2>Verify OTP</h2>
+
+                <p class="welcome-text">
+                    We have sent a verification OTP to your
+                    registered email/mobile number.
+                </p>
+
+                <div class="otp-inputs">
+
+                    <input type="text" maxlength="1" class="otp">
+                    <input type="text" maxlength="1" class="otp">
+                    <input type="text" maxlength="1" class="otp">
+                    <input type="text" maxlength="1" class="otp">
+                    <input type="text" maxlength="1" class="otp">
+                    <input type="text" maxlength="1" class="otp">
+
+                </div>
+
+                <button
+                    class="login-button"
+                    onclick="verifyOTP()">
+                    Verify OTP
+                </button>
+
+                <p class="resend-text">
+                    Didn't receive OTP?
+                    <a href="#" onclick="sendOTP()">Resend OTP</a>
+                </p>
+
+                <button
+                    class="back-button"
+                    onclick="backToLogin()">
+                    ← Back to Login
+                </button>
+
+            </div>
+
+
+            <!-- Forgot Password -->
+            <div id="forgotSection" style="display:none;">
+
+                <h2>Reset Password</h2>
+
+                <p class="welcome-text">
+                    Enter your registered email or mobile number.
+                </p>
+
+                <div class="input-box">
+
+                    <span>📱</span>
+
+                    <input
+                        type="text"
+                        placeholder="Email or Mobile Number">
+
+                </div>
+
+                <button
+                    class="login-button"
+                    onclick="sendResetOTP()">
+                    Send OTP
+                </button>
+
+                <button
+                    class="back-button"
+                    onclick="backToLogin()">
+                    ← Back to Login
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+</body>
+</html>
