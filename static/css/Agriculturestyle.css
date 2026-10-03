@@ -1,0 +1,1073 @@
+/* =========================================
+   SMART DIGITAL VILLAGE
+   AGRICULTURE SUPPORT
+   COMMON STYLE.CSS
+========================================= */
+
+
+/* =========================================
+   BASIC RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    font-family: "Noto Sans Telugu", Arial, sans-serif;
+    background-color: #f4f8f3;
+    color: #333;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   LANGUAGE SYSTEM
+========================================= */
+
+.lang-en {
+    display: initial;
+}
+
+.lang-te {
+    display: none;
+    font-family: "Noto Sans Telugu", Arial, sans-serif;
+}
+
+
+/* Telugu mode */
+
+body.telugu-mode .lang-en {
+    display: none;
+}
+
+body.telugu-mode .lang-te {
+    display: initial;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    background-color: #2e7d32;
+    color: white;
+
+    padding: 15px 6%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+
+nav a {
+    color: white;
+    text-decoration: none;
+
+    padding: 8px 12px;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+
+nav a:hover {
+    background-color: #1b5e20;
+}
+
+
+nav a.active {
+    background-color: #1b5e20;
+}
+
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero {
+    min-height: 350px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #e8f5e9,
+        #f1f8e9
+    );
+}
+
+
+.hero-content {
+    max-width: 850px;
+}
+
+
+.hero h1 {
+    color: #2e7d32;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+}
+
+
+.hero p {
+    color: #555;
+
+    font-size: 18px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   HERO BUTTON
+========================================= */
+
+.hero button {
+    background-color: #2e7d32;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.hero button:hover {
+    background-color: #1b5e20;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   LANGUAGE SWITCHER
+========================================= */
+
+.language-switcher {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+
+.language-btn {
+    padding: 10px 25px;
+
+    border: 2px solid #2e7d32;
+
+    border-radius: 25px;
+
+    background-color: white;
+
+    color: #2e7d32;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.language-btn:hover {
+    background-color: #e8f5e9;
+}
+
+
+.language-btn.active {
+    background-color: #2e7d32;
+
+    color: white;
+}
+
+
+/* =========================================
+   SERVICES SECTION
+========================================= */
+
+.services {
+    padding: 50px 6%;
+}
+
+
+.services h2 {
+    text-align: center;
+
+    color: #2e7d32;
+
+    margin-bottom: 30px;
+
+    font-size: 30px;
+}
+
+
+.services-container {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 25px;
+
+    max-width: 1100px;
+
+    margin: auto;
+}
+
+
+/* =========================================
+   SERVICE CARD
+========================================= */
+
+.service-card {
+    background-color: white;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+
+.service-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.13);
+}
+
+
+.service-card h3 {
+    color: #2e7d32;
+
+    margin-bottom: 10px;
+
+    font-size: 21px;
+}
+
+
+.service-card p {
+    color: #666;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   SERVICE BUTTON
+========================================= */
+
+.service-card button {
+    background-color: #2e7d32;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+
+.service-card button:hover {
+    background-color: #1b5e20;
+}
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
+
+.page-title {
+    text-align: center;
+
+    padding: 40px 20px 20px;
+}
+
+
+.page-title h1 {
+    color: #2e7d32;
+
+    font-size: 35px;
+
+    margin-bottom: 10px;
+}
+
+
+.page-title p {
+    color: #666;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   SEARCH CONTAINER
+========================================= */
+
+.search-container {
+    width: 90%;
+
+    max-width: 700px;
+
+    margin: 20px auto 30px;
+
+    text-align: center;
+}
+
+
+.search-container input {
+    width: 100%;
+
+    padding: 14px 18px;
+
+    border: 2px solid #c8e6c9;
+
+    border-radius: 30px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    background-color: white;
+
+    transition: 0.3s;
+}
+
+
+.search-container input:focus {
+    border-color: #2e7d32;
+
+    box-shadow:
+        0 0 6px rgba(46, 125, 50, 0.2);
+}
+
+
+.search-hint {
+    margin-top: 8px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SEASON BUTTONS
+========================================= */
+
+#seasonButtons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin: 25px auto;
+
+    width: 90%;
+
+    max-width: 900px;
+}
+
+
+.season-btn {
+    padding: 13px 25px;
+
+    border: 2px solid #2e7d32;
+
+    background-color: white;
+
+    color: #2e7d32;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.season-btn:hover {
+    background-color: #e8f5e9;
+}
+
+
+.season-btn.active {
+    background-color: #2e7d32;
+
+    color: white;
+}
+
+
+/* =========================================
+   SEASON SECTION
+========================================= */
+
+.season-section {
+    display: none;
+
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 20px auto;
+}
+
+
+.season-section.active {
+    display: block;
+}
+
+
+/* =========================================
+   CROP CONTAINER
+========================================= */
+
+.crop-container {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 20px auto 40px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================
+   CROP CARD
+========================================= */
+
+.crop-card {
+    background-color: white;
+
+    padding: 22px;
+
+    border-radius: 12px;
+
+    border-left: 5px solid #2e7d32;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+
+.crop-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+.crop-card h2 {
+    color: #2e7d32;
+
+    font-size: 21px;
+
+    margin-bottom: 12px;
+}
+
+
+.crop-card p {
+    margin-bottom: 8px;
+
+    color: #555;
+
+    font-size: 15px;
+}
+
+
+.crop-card strong {
+    color: #333;
+}
+
+
+/* =========================================
+   CROP INFORMATION
+========================================= */
+
+.crop-info {
+    background-color: #f1f8e9;
+
+    padding: 15px;
+
+    margin-top: 12px;
+
+    border-radius: 8px;
+}
+
+
+.crop-info p {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================
+   BACK BUTTON CONTAINER
+========================================= */
+
+.back-container {
+    display: flex;
+
+    justify-content: center;
+
+    margin: 25px 0 40px;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-btn {
+    background-color: #2e7d32;
+
+    color: white;
+
+    border: none;
+
+    padding: 11px 24px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.back-btn:hover {
+    background-color: #1b5e20;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   NO RESULT
+========================================= */
+
+.no-result {
+    text-align: center;
+
+    color: #c62828;
+
+    font-size: 17px;
+
+    margin: 30px auto;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    background-color: #1b5e20;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px 15px;
+
+    margin-top: 40px;
+}
+
+
+footer p {
+    margin: 5px 0;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   TELUGU TEXT
+========================================= */
+
+.telugu-text {
+    font-family:
+        "Noto Sans Telugu",
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================
+   WEATHER PAGE
+========================================= */
+
+.weather-container {
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+}
+
+
+.weather-card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.weather-card h2 {
+    color: #2e7d32;
+
+    margin-bottom: 10px;
+}
+
+
+.weather-card p {
+    color: #555;
+}
+
+
+/* =========================================
+   FARMER QUERY PAGE
+========================================= */
+
+.query-container {
+    width: 90%;
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.query-container label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #2e7d32;
+
+    font-weight: bold;
+}
+
+
+.query-container input,
+.query-container textarea,
+.query-container select {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    outline: none;
+}
+
+
+.query-container input:focus,
+.query-container textarea:focus,
+.query-container select:focus {
+    border-color: #2e7d32;
+}
+
+
+.query-container textarea {
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+
+.query-container button {
+    background-color: #2e7d32;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 25px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.query-container button:hover {
+    background-color: #1b5e20;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        text-align: center;
+    }
+
+
+    nav {
+        justify-content: center;
+    }
+
+
+    nav a {
+        font-size: 14px;
+
+        padding: 7px 9px;
+    }
+
+
+    .hero {
+        min-height: 300px;
+
+        padding: 35px 15px;
+    }
+
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+
+    .services {
+        padding: 35px 5%;
+    }
+
+
+    .services h2 {
+        font-size: 25px;
+    }
+
+
+    .crop-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .season-btn {
+        width: 100%;
+
+        max-width: 320px;
+    }
+
+
+    .language-switcher {
+        gap: 8px;
+    }
+
+
+    .language-btn {
+        padding: 9px 18px;
+    }
+
+
+    .query-container {
+        padding: 20px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .logo {
+        font-size: 19px;
+    }
+
+
+    nav {
+        gap: 4px;
+    }
+
+
+    nav a {
+        font-size: 12px;
+
+        padding: 6px 7px;
+    }
+
+
+    .hero h1 {
+        font-size: 25px;
+    }
+
+
+    .hero p {
+        font-size: 14px;
+    }
+
+
+    .page-title {
+        padding-top: 30px;
+    }
+
+
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+
+    .language-btn {
+        padding: 8px 15px;
+
+        font-size: 14px;
+    }
+
+
+    .crop-card {
+        padding: 18px;
+    }
+
+
+    .crop-card h2 {
+        font-size: 19px;
+    }
+
+
+    .crop-card p {
+        font-size: 14px;
+    }
+
+}
+/* =========================================
+   WEATHER LOCATION
+========================================= */
+
+.weather-location {
+    text-align: center;
+    margin: 25px auto 35px;
+}
+
+
+.weather-location-btn {
+    background-color: #2e7d32;
+    color: white;
+
+    border: none;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+
+.weather-location-btn:hover {
+    background-color: #1b5e20;
+
+    transform: translateY(-2px);
+}
+
+
+#locationStatus {
+    margin-top: 12px;
+
+    color: #555;
+
+    font-size: 15px;
+}
+
+
+/* WEATHER CARDS */
+
+.weather-container {
+    width: 90%;
+
+    max-width: 1000px;
+
+    margin: 30px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+}
+
+
+.weather-card {
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.weather-card h2 {
+    color: #2e7d32;
+
+    margin-bottom: 12px;
+}
+
+
+.weather-card p {
+    color: #555;
+
+    font-size: 16px;
+}
