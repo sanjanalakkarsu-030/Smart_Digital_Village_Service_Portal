@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Disease Prediction | వ్యాధి గుర్తింపు</title>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .prediction-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 25px 20px 50px;
+        }
+
+        .prediction-intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .prediction-intro p {
+            color: #555;
+            max-width: 760px;
+            margin: 10px auto;
+            line-height: 1.7;
+        }
+
+        .prediction-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2e7d32;
+        }
+
+        .form-group select {
+            padding: 13px;
+            border: 1px solid #c8e6c9;
+            border-radius: 9px;
+            font-size: 15px;
+            background: #fff;
+            outline: none;
+        }
+
+        .form-group select:focus {
+            border-color: #2e7d32;
+        }
+
+        .predict-button {
+            display: block;
+            margin: 25px auto 0;
+            border: none;
+            border-radius: 25px;
+            padding: 13px 30px;
+            background: #2e7d32;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .predict-button:hover {
+            background: #1b5e20;
+        }
+
+        .result-box {
+            display: none;
+            background: #f8fff8;
+            border: 1px solid #c8e6c9;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .result-title {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .result-card {
+            background: white;
+            padding: 16px;
+            border-radius: 10px;
+            border-left: 4px solid #66bb6a;
+        }
+
+        .result-card strong {
+            display: block;
+            margin-bottom: 7px;
+            color: #2e7d32;
+        }
+
+        .recommendation {
+            background: #f1f8e9;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 18px;
+        }
+
+        .recommendation h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .recommendation ul {
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+
+        .warning {
+            background: #fff8e1;
+            border-left: 4px solid #f9a825;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 18px;
+            line-height: 1.6;
+        }
+
+        .error-message {
+            display: none;
+            text-align: center;
+            color: #c62828;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        @media (max-width: 700px) {
+            .form-grid,
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .prediction-box {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <span class="lang-en">🌾 Agriculture Support</span>
+        <span class="lang-te">🌾 వ్యవసాయ సహాయం</span>
+    </div>
+
+    <nav>
+        <a href="index.html">
+            <span class="lang-en">Home</span>
+            <span class="lang-te">హోమ్</span>
+        </a>
+
+        <a href="crop-details.html">
+            <span class="lang-en">Crop Details</span>
+            <span class="lang-te">పంటల వివరాలు</span>
+        </a>
+
+        <a href="fertilizer.html">
+            <span class="lang-en">Fertilizer</span>
+            <span class="lang-te">ఎరువులు</span>
+        </a>
+
+        <a href="weather.html">
+            <span class="lang-en">Weather</span>
+            <span class="lang-te">వాతావరణం</span>
+        </a>
+
+        <a href="farmer-query.html">
+            <span class="lang-en">Farmer Query</span>
+            <span class="lang-te">రైతు ప్రశ్న</span>
+        </a>
+
+        <a href="disease-prediction.html">
+            <span class="lang-en">Disease Prediction</span>
+            <span class="lang-te">వ్యాధి గుర్తింపు</span>
+        </a>
+    </nav>
+</header>
+
+<div class="language-switcher">
+    <button id="englishBtn" class="language-btn active"
+            onclick="setLanguage('english')">
+        🇬🇧 English
+    </button>
+
+    <button id="teluguBtn" class="language-btn"
+            onclick="setLanguage('telugu')">
+        🇮🇳 తెలుగు
+    </button>
+</div>
+
+<main class="prediction-page">
+
+    <section class="prediction-intro">
+        <h1>
+            <span class="lang-en">🌿 Crop Disease Prediction</span>
+            <span class="lang-te">🌿 పంట వ్యాధి గుర్తింపు</span>
+        </h1>
+
+        <p>
+            <span class="lang-en">
+                Select your crop and visible symptoms to get a possible disease
+                identification and general nutrient/fertilizer guidance.
+            </span>
+            <span class="lang-te">
+                మీ పంట మరియు కనిపిస్తున్న లక్షణాలను ఎంచుకుని సాధ్యమైన వ్యాధి
+                గుర్తింపు మరియు సాధారణ పోషకాలు/ఎరువుల సూచనలను పొందండి.
+            </span>
+        </p>
+    </section>
+
+    <section class="prediction-box">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>
+                    <span class="lang-en">Select Crop</span>
+                    <span class="lang-te">పంటను ఎంచుకోండి</span>
+                </label>
+
+                <select id="crop">
+                    <option value="">-- Select Crop --</option>
+                    <option value="paddy">Paddy / వరి</option>
+                    <option value="cotton">Cotton / పత్తి</option>
+                    <option value="maize">Maize / మొక్కజొన్న</option>
+                    <option value="chilli">Chilli / మిరప</option>
+                    <option value="tomato">Tomato / టమాటా</option>
+                    <option value="groundnut">Groundnut / వేరుశెనగ</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span class="lang-en">Leaf Colour</span>
+                    <span class="lang-te">ఆకు రంగు</span>
+                </label>
+
+                <select id="leafColour">
+                    <option value="normal">Normal / సాధారణం</option>
+                    <option value="yellow">Yellow / పసుపు</option>
+                    <option value="brown">Brown / గోధుమ</option>
+                    <option value="dark">Dark green / ముదురు ఆకుపచ్చ</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span class="lang-en">Leaf Spots</span>
+                    <span class="lang-te">ఆకుపై మచ్చలు</span>
+                </label>
+
+                <select id="spots">
+                    <option value="no">No / లేదు</option>
+                    <option value="yes">Yes / ఉన్నాయి</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span class="lang-en">Leaf Drying</span>
+                    <span class="lang-te">ఆకులు ఎండిపోవడం</span>
+                </label>
+
+                <select id="drying">
+                    <option value="no">No / లేదు</option>
+                    <option value="yes">Yes / ఉంది</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span class="lang-en">Wilting</span>
+                    <span class="lang-te">వాడిపోవడం</span>
+                </label>
+
+                <select id="wilting">
+                    <option value="no">No / లేదు</option>
+                    <option value="yes">Yes / ఉంది</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <span class="lang-en">Insect Damage</span>
+                    <span class="lang-te">పురుగు నష్టం</span>
+                </label>
+
+                <select id="insects">
+                    <option value="no">No / లేదు</option>
+                    <option value="yes">Yes / ఉంది</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="predict-button" onclick="predictDisease()">
+            🔍
+            <span class="lang-en">Predict Disease</span>
+            <span class="lang-te">వ్యాధిని గుర్తించండి</span>
+        </button>
+
+        <div id="errorMessage" class="error-message">
+            <span class="lang-en">Please select a crop first.</span>
+            <span class="lang-te">దయచేసి ముందుగా పంటను ఎంచుకోండి.</span>
+        </div>
+
+    </section>
+
+    <section id="resultBox" class="result-box">
+
+        <h2 class="result-title">
+            🩺
+            <span class="lang-en">Prediction Result</span>
+            <span class="lang-te">గుర్తింపు ఫలితం</span>
+        </h2>
+
+        <div class="result-grid">
+
+            <div class="result-card">
+                <strong>
+                    <span class="lang-en">Crop</span>
+                    <span class="lang-te">పంట</span>
+                </strong>
+                <span id="resultCrop"></span>
+            </div>
+
+            <div class="result-card">
+                <strong>
+                    <span class="lang-en">Possible Disease</span>
+                    <span class="lang-te">సాధ్యమైన వ్యాధి</span>
+                </strong>
+                <span id="resultDisease"></span>
+            </div>
+
+            <div class="result-card">
+                <strong>
+                    <span class="lang-en">Symptoms Considered</span>
+                    <span class="lang-te">పరిగణించిన లక్షణాలు</span>
+                </strong>
+                <span id="resultSymptoms"></span>
+            </div>
+
+            <div class="result-card">
+                <strong>
+                    <span class="lang-en">Confidence</span>
+                    <span class="lang-te">అంచనా స్థాయి</span>
+                </strong>
+                <span id="resultConfidence"></span>
+            </div>
+
+        </div>
+
+        <div class="recommendation">
+            <h3>
+                🧪
+                <span class="lang-en">Nutrient / Fertilizer Guidance</span>
+                <span class="lang-te">పోషకాలు / ఎరువుల సూచన</span>
+            </h3>
+
+            <ul id="fertilizerList"></ul>
+        </div>
+
+        <div class="recommendation">
+            <h3>
+                🌱
+                <span class="lang-en">General Management</span>
+                <span class="lang-te">సాధారణ నిర్వహణ</span>
+            </h3>
+
+            <p id="managementText"></p>
+        </div>
+
+        <div class="warning">
+            ⚠️
+            <span class="lang-en">
+                This is a frontend rule-based project demonstration, not a
+                laboratory diagnosis. Fertilizer quantity should be decided
+                using soil-test results, crop stage and local agricultural
+                recommendations.
+            </span>
+
+            <span class="lang-te">
+                ఇది ఫ్రంట్‌ఎండ్ రూల్-బేస్డ్ ప్రాజెక్ట్ డెమో మాత్రమే; ఇది
+                ప్రయోగశాల ఆధారిత నిర్ధారణ కాదు. ఎరువుల పరిమాణాన్ని నేల పరీక్ష,
+                పంట దశ మరియు స్థానిక వ్యవసాయ సూచనల ఆధారంగా నిర్ణయించాలి.
+            </span>
+        </div>
+
+    </section>
+
+    <div class="back-home">
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <span class="lang-en">← Back to Home</span>
+            <span class="lang-te">← హోమ్‌కు తిరిగి వెళ్లండి</span>
+        </button>
+    </div>
+
+</main>
+
+<footer>
+    <p>
+        <span class="lang-en">© 2026 Agriculture Support</span>
+        <span class="lang-te">© 2026 వ్యవసాయ సహాయం</span>
+    </p>
+</footer>
+
+<script>
+const diseaseData = {
+
+    paddy: {
+        name: "Paddy / వరి",
+        diseases: [
+            {
+                condition: (s) => s.spots === "yes" && s.drying === "yes",
+                diseaseEn: "Possible Leaf Blast",
+                diseaseTe: "ఆకు బ్లాస్ట్ వ్యాధి ఉండే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Avoid excessive nitrogen application.",
+                    "Maintain balanced nitrogen, phosphorus and potassium nutrition.",
+                    "Use soil-test-based fertilizer recommendations."
+                ],
+                fertilizerTe: [
+                    "అధిక నత్రజని ఎరువుల వాడకాన్ని నివారించండి.",
+                    "నత్రజని, భాస్వరం మరియు పొటాషియం పోషకాలను సమతుల్యంగా అందించండి.",
+                    "నేల పరీక్ష ఆధారంగా ఎరువుల సిఫార్సులను అనుసరించండి."
+                ],
+                managementEn: "Maintain proper field water management and monitor the crop regularly. For confirmed disease, follow local agricultural extension recommendations.",
+                managementTe: "పొలంలో సరైన నీటి నిర్వహణ పాటించి పంటను క్రమం తప్పకుండా గమనించండి. వ్యాధి నిర్ధారణ అయితే స్థానిక వ్యవసాయ అధికారుల సూచనలు పాటించండి."
+            },
+            {
+                condition: (s) => s.leafColour === "yellow",
+                diseaseEn: "Possible Nutrient Deficiency / Yellowing",
+                diseaseTe: "పోషక లోపం / ఆకులు పసుపు రంగులోకి మారే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Check soil nutrient status before applying fertilizer.",
+                    "Balanced nitrogen nutrition may be required depending on soil-test results.",
+                    "Do not apply excess fertilizer without diagnosis."
+                ],
+                fertilizerTe: [
+                    "ఎరువు వేయడానికి ముందు నేలలోని పోషక స్థితిని పరీక్షించండి.",
+                    "నేల పరీక్ష ఫలితాలను బట్టి సమతుల్య నత్రజని పోషణ అవసరం కావచ్చు.",
+                    "నిర్ధారణ లేకుండా అధిక ఎరువులు వేయవద్దు."
+                ],
+                managementEn: "Check irrigation, root condition and soil fertility because yellow leaves can have multiple causes.",
+                managementTe: "ఆకులు పసుపు రంగులోకి మారడానికి అనేక కారణాలు ఉండవచ్చు కాబట్టి నీటిపారుదల, వేర్ల పరిస్థితి మరియు నేల సారాన్ని పరిశీలించండి."
+            }
+        ]
+    },
+
+    cotton: {
+        name: "Cotton / పత్తి",
+        diseases: [
+            {
+                condition: (s) => s.wilting === "yes" && s.leafColour === "yellow",
+                diseaseEn: "Possible Wilt Symptoms",
+                diseaseTe: "వాడిపోయే వ్యాధి లక్షణాలు ఉండే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Maintain balanced nutrition rather than increasing one fertilizer blindly.",
+                    "Use soil-test-based nitrogen, phosphorus and potassium recommendations."
+                ],
+                fertilizerTe: [
+                    "ఒక ఎరువును ఎక్కువగా వేయకుండా సమతుల్య పోషణ అందించండి.",
+                    "నేల పరీక్ష ఆధారంగా నత్రజని, భాస్వరం మరియు పొటాషియం సిఫార్సులను అనుసరించండి."
+                ],
+                managementEn: "Inspect affected plants and field drainage. Confirm the cause before applying disease-control products.",
+                managementTe: "ప్రభావిత మొక్కలు మరియు పొలంలో నీటి పారుదలను పరిశీలించండి. వ్యాధి నియంత్రణ మందులు ఉపయోగించే ముందు కారణాన్ని నిర్ధారించండి."
+            },
+            {
+                condition: (s) => s.insects === "yes",
+                diseaseEn: "Possible Insect Damage",
+                diseaseTe: "పురుగు నష్టం ఉండే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Do not increase fertilizer simply because insect damage is visible.",
+                    "Maintain balanced crop nutrition based on soil-test results."
+                ],
+                fertilizerTe: [
+                    "పురుగు నష్టం కనిపించినందుకు మాత్రమే ఎరువుల మోతాదును పెంచవద్దు.",
+                    "నేల పరీక్ష ఫలితాల ఆధారంగా సమతుల్య పోషణ అందించండి."
+                ],
+                managementEn: "Inspect the underside of leaves and growing points and follow integrated pest management guidance.",
+                managementTe: "ఆకుల కింది భాగం మరియు కొత్తగా పెరుగుతున్న భాగాలను పరిశీలించి సమగ్ర పురుగు నిర్వహణ సూచనలను పాటించండి."
+            }
+        ]
+    },
+
+    maize: {
+        name: "Maize / మొక్కజొన్న",
+        diseases: [
+            {
+                condition: (s) => s.spots === "yes" && s.drying === "yes",
+                diseaseEn: "Possible Leaf Spot Disease",
+                diseaseTe: "ఆకు మచ్చల వ్యాధి ఉండే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Maintain balanced nitrogen and potassium nutrition.",
+                    "Use soil-test results before deciding fertilizer quantity."
+                ],
+                fertilizerTe: [
+                    "నత్రజని మరియు పొటాషియం సమతుల్యంగా అందించండి.",
+                    "ఎరువుల పరిమాణాన్ని నిర్ణయించే ముందు నేల పరీక్ష ఫలితాలను చూడండి."
+                ],
+                managementEn: "Remove severely affected plant material where appropriate and maintain good field sanitation.",
+                managementTe: "తీవ్రంగా ప్రభావితమైన మొక్క భాగాలను అవసరమైతే తొలగించి పొలంలో పరిశుభ్రతను పాటించండి."
+            }
+        ]
+    },
+
+    chilli: {
+        name: "Chilli / మిరప",
+        diseases: [
+            {
+                condition: (s) => s.spots === "yes" && s.wilting === "yes",
+                diseaseEn: "Possible Disease Stress",
+                diseaseTe: "వ్యాధి ఒత్తిడి ఉండే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Maintain balanced NPK nutrition.",
+                    "Avoid excessive nitrogen and follow soil-test recommendations."
+                ],
+                fertilizerTe: [
+                    "సమతుల్య NPK పోషణ అందించండి.",
+                    "అధిక నత్రజని వాడకాన్ని నివారించి నేల పరీక్ష సిఫార్సులను పాటించండి."
+                ],
+                managementEn: "Check drainage, affected leaves and roots. Confirm the disease before choosing a specific control measure.",
+                managementTe: "నీటి పారుదల, ప్రభావిత ఆకులు మరియు వేర్లను పరిశీలించండి. నిర్దిష్ట నియంత్రణ చర్య తీసుకునే ముందు వ్యాధిని నిర్ధారించండి."
+            }
+        ]
+    },
+
+    tomato: {
+        name: "Tomato / టమాటా",
+        diseases: [
+            {
+                condition: (s) => s.spots === "yes" && s.drying === "yes",
+                diseaseEn: "Possible Leaf Spot / Blight Symptoms",
+                diseaseTe: "ఆకు మచ్చలు / బ్లైట్ లక్షణాలు ఉండే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Maintain balanced potassium and other essential nutrients.",
+                    "Avoid excessive nitrogen.",
+                    "Use soil-test-based fertilizer recommendations."
+                ],
+                fertilizerTe: [
+                    "సమతుల్య పొటాషియం మరియు ఇతర అవసరమైన పోషకాలను అందించండి.",
+                    "అధిక నత్రజనిని నివారించండి.",
+                    "నేల పరీక్ష ఆధారంగా ఎరువుల సిఫార్సులను పాటించండి."
+                ],
+                managementEn: "Avoid prolonged leaf wetness, maintain field sanitation and seek local expert confirmation.",
+                managementTe: "ఆకులు ఎక్కువసేపు తడిగా ఉండకుండా చూసి పొలంలో పరిశుభ్రతను పాటించండి మరియు స్థానిక నిపుణుల నిర్ధారణ పొందండి."
+            }
+        ]
+    },
+
+    groundnut: {
+        name: "Groundnut / వేరుశెనగ",
+        diseases: [
+            {
+                condition: (s) => s.spots === "yes" && s.drying === "yes",
+                diseaseEn: "Possible Leaf Spot Symptoms",
+                diseaseTe: "ఆకు మచ్చల లక్షణాలు ఉండే అవకాశం",
+                confidence: "Rule-based indication",
+                fertilizerEn: [
+                    "Maintain balanced nutrition based on soil-test results.",
+                    "Ensure adequate potassium and other nutrients according to soil status."
+                ],
+                fertilizerTe: [
+                    "నేల పరీక్ష ఫలితాల ఆధారంగా సమతుల్య పోషణ అందించండి.",
+                    "నేల స్థితిని బట్టి సరిపడా పొటాషియం మరియు ఇతర పోషకాలను అందించండి."
+                ],
+                managementEn: "Monitor disease spread and maintain good crop and field hygiene.",
+                managementTe: "వ్యాధి వ్యాప్తిని గమనించి పంట మరియు పొలంలో పరిశుభ్రతను పాటించండి."
+            }
+        ]
+    }
+};
+
+function setLanguage(language) {
+    const englishButton = document.getElementById("englishBtn");
+    const teluguButton = document.getElementById("teluguBtn");
+
+    if (language === "telugu") {
+        document.body.classList.add("telugu-mode");
+        englishButton.classList.remove("active");
+        teluguButton.classList.add("active");
+        localStorage.setItem("language", "telugu");
+    } else {
+        document.body.classList.remove("telugu-mode");
+        englishButton.classList.add("active");
+        teluguButton.classList.remove("active");
+        localStorage.setItem("language", "english");
+    }
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+    const savedLanguage = localStorage.getItem("language");
+
+    if (savedLanguage === "telugu") {
+        setLanguage("telugu");
+    } else {
+        setLanguage("english");
+    }
+});
+
+function predictDisease() {
+
+    const crop = document.getElementById("crop").value;
+    const error = document.getElementById("errorMessage");
+    const resultBox = document.getElementById("resultBox");
+
+    if (!crop) {
+        error.style.display = "block";
+        resultBox.classList.remove("show");
+        return;
+    }
+
+    error.style.display = "none";
+
+    const symptoms = {
+        leafColour: document.getElementById("leafColour").value,
+        spots: document.getElementById("spots").value,
+        drying: document.getElementById("drying").value,
+        wilting: document.getElementById("wilting").value,
+        insects: document.getElementById("insects").value
+    };
+
+    const cropInfo = diseaseData[crop];
+    let matched = cropInfo.diseases.find(item => item.condition(symptoms));
+
+    if (!matched) {
+        matched = {
+            diseaseEn: "No clear match from selected symptoms",
+            diseaseTe: "ఎంచుకున్న లక్షణాలకు స్పష్టమైన వ్యాధి సరిపోలలేదు",
+            confidence: "Needs further inspection",
+            fertilizerEn: [
+                "Do not apply disease-specific fertilizer blindly.",
+                "Check soil fertility and crop growth stage.",
+                "Consult a local agricultural expert if symptoms continue."
+            ],
+            fertilizerTe: [
+                "వ్యాధి పేరుతో నిర్దిష్ట ఎరువును అంచనా వేసి వేయవద్దు.",
+                "నేల సారం మరియు పంట పెరుగుదల దశను పరిశీలించండి.",
+                "లక్షణాలు కొనసాగితే స్థానిక వ్యవసాయ నిపుణులను సంప్రదించండి."
+            ],
+            managementEn: "The selected symptoms are not enough for a reliable rule-based match. Inspect the crop closely and get expert confirmation.",
+            managementTe: "ఎంచుకున్న లక్షణాలు రూల్-బేస్డ్ గుర్తింపుకు సరిపోవు. పంటను జాగ్రత్తగా పరిశీలించి నిపుణుల నిర్ధారణ పొందండి."
+        };
+    }
+
+    document.getElementById("resultCrop").textContent = cropInfo.name;
+
+    document.getElementById("resultDisease").innerHTML = `
+        <span class="lang-en">${matched.diseaseEn}</span>
+        <span class="lang-te">${matched.diseaseTe}</span>
+    `;
+
+    const symptomNames = [];
+
+    if (symptoms.leafColour !== "normal") {
+        symptomNames.push(symptoms.leafColour);
+    }
+    if (symptoms.spots === "yes") symptomNames.push("leaf spots");
+    if (symptoms.drying === "yes") symptomNames.push("leaf drying");
+    if (symptoms.wilting === "yes") symptomNames.push("wilting");
+    if (symptoms.insects === "yes") symptomNames.push("insect damage");
+
+    document.getElementById("resultSymptoms").textContent =
+        symptomNames.length ? symptomNames.join(", ") : "No major selected symptom";
+
+    document.getElementById("resultConfidence").innerHTML = `
+        <span class="lang-en">${matched.confidence}</span>
+        <span class="lang-te">రూల్-బేస్డ్ అంచనా</span>
+    `;
+
+    const fertilizerList = document.getElementById("fertilizerList");
+
+    fertilizerList.innerHTML = "";
+
+    matched.fertilizerEn.forEach((item, index) => {
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+            <span class="lang-en">${item}</span>
+            <span class="lang-te">${matched.fertilizerTe[index]}</span>
+        `;
+
+        fertilizerList.appendChild(li);
+    });
+
+    document.getElementById("managementText").innerHTML = `
+        <span class="lang-en">${matched.managementEn}</span>
+        <span class="lang-te">${matched.managementTe}</span>
+    `;
+
+    resultBox.classList.add("show");
+
+    const savedLanguage = localStorage.getItem("language");
+    setLanguage(savedLanguage === "telugu" ? "telugu" : "english");
+
+    resultBox.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+</script>
+
+</body>
+</html>
