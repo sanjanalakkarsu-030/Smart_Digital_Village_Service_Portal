@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Announcement Details</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <!-- Announcement CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/announcements.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+
+        <i class="fa-solid fa-bullhorn"></i>
+
+        <h2>
+            Smart Digital Village Service Portal
+        </h2>
+
+    </div>
+
+</header>
+<a href="{{ url_for('home') }}" class="home-btn">
+    <i class="fa-solid fa-house"></i>
+    Back to Home
+</a>
+
+
+<!-- ================= HOME BUTTON ================= -->
+
+<a href="{{ url_for('announcements') }}" class="home-btn">
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+    Back to Announcements
+
+</a>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <h1>
+        📢 Announcement Details
+    </h1>
+
+    <p>
+        Complete information about village announcement
+    </p>
+
+</section>
+
+
+<!-- ================= DETAILS ================= -->
+
+<div class="details-container">
+
+    {% if announcement %}
+
+        <span class="badge new">
+            NOTICE
+        </span>
+
+
+        <!-- Title -->
+
+        <h2 id="detailTitle">
+
+            {{ announcement.title }}
+
+        </h2>
+
+
+        <!-- Information -->
+
+        <div class="info">
+
+            <!-- Date -->
+
+            {% if announcement.event_date %}
+
+            <p>
+
+                <strong>
+                    📅 Date:
+                </strong>
+
+                <span>
+                    {{ announcement.event_date }}
+                </span>
+
+            </p>
+
+            {% endif %}
+
+
+            <!-- Published Date -->
+
+            {% if announcement.published_date %}
+
+            <p>
+
+                <strong>
+                    🕒 Published:
+                </strong>
+
+                <span>
+                    {{ announcement.published_date }}
+                </span>
+
+            </p>
+
+            {% endif %}
+
+
+            <!-- Posted By -->
+
+            <p>
+
+                <strong>
+                    👤 Posted By:
+                </strong>
+
+                <span>
+                    Village Administration
+                </span>
+
+            </p>
+
+
+            <!-- Category -->
+
+            {% if announcement.category %}
+
+            <p>
+
+                <strong>
+                    📂 Category:
+                </strong>
+
+                <span>
+                    {{ announcement.category }}
+                </span>
+
+            </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <hr>
+
+
+        <!-- Description -->
+
+        <h3>
+            Description
+        </h3>
+
+        <p id="detailDescription">
+
+            {{ announcement.description }}
+
+        </p>
+
+
+        <br>
+
+
+        <!-- Print -->
+
+        <button onclick="window.print()">
+
+            🖨 Print Announcement
+
+        </button>
+
+
+        <!-- Back -->
+
+        <button onclick="history.back()">
+
+            ⬅ Back
+
+        </button>
+
+
+    {% else %}
+
+        <!-- No announcement -->
+
+        <div class="no-announcements">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <h2>
+                Announcement Not Found
+            </h2>
+
+            <p>
+                The requested announcement is not available.
+            </p>
+
+            <br>
+
+            <a href="{{ url_for('announcements') }}"
+               class="read-btn">
+
+                ← Back to Announcements
+
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        © 2026 Smart Digital Village Service Portal
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

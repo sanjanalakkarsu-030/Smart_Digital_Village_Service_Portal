@@ -1,0 +1,622 @@
+{% extends "admin/admin_base.html" %}
+
+
+{% block title %}
+Manage Complaints | Smart Digital Village
+{% endblock %}
+
+
+{% block page_title %}
+Manage Complaints
+{% endblock %}
+
+
+{% block content %}
+
+<div class="complaints-page">
+
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <div class="page-header">
+
+        <div>
+
+            <span class="page-label">
+                COMPLAINT MANAGEMENT
+            </span>
+
+            <h1>
+                Manage Complaints
+            </h1>
+
+            <p>
+                View, track and manage complaints submitted
+                by village citizens.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         STAT SUMMARY
+    ====================================================== -->
+
+    <div class="complaint-summary">
+
+
+        <div class="complaint-summary-card">
+
+            <div class="summary-icon total">
+                <i class="fa-solid fa-file-circle-exclamation"></i>
+            </div>
+
+            <div>
+
+                <span>Total Complaints</span>
+
+                <strong>
+                    {{ complaints|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="complaint-summary-card">
+
+            <div class="summary-icon pending">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+
+            <div>
+
+                <span>Pending</span>
+
+                <strong id="pendingCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="complaint-summary-card">
+
+            <div class="summary-icon progress">
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+
+            <div>
+
+                <span>In Progress</span>
+
+                <strong id="progressCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="complaint-summary-card">
+
+            <div class="summary-icon resolved">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+
+                <span>Resolved</span>
+
+                <strong id="resolvedCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         MANAGEMENT CARD
+    ====================================================== -->
+
+    <div class="management-card">
+
+
+        <!-- Toolbar -->
+
+        <div class="complaints-toolbar">
+
+
+            <div class="complaint-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="complaintSearch"
+                    placeholder="Search by citizen, subject, category..."
+                    onkeyup="filterComplaints()"
+                >
+
+            </div>
+
+
+            <div class="complaint-filter">
+
+                <i class="fa-solid fa-filter"></i>
+
+                <select
+                    id="statusFilter"
+                    onchange="filterComplaints()"
+                >
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="In Progress">
+                        In Progress
+                    </option>
+
+                    <option value="Resolved">
+                        Resolved
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             TABLE
+        ================================================== -->
+
+        <div class="complaint-table-wrapper">
+
+            <table
+                class="complaint-table"
+                id="complaintTable"
+            >
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Citizen</th>
+
+                        <th>Category</th>
+
+                        <th>Subject</th>
+
+                        <th>Ward</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+
+                    {% for complaint in complaints %}
+
+                    <tr
+                        data-status="{{ complaint.status }}"
+                    >
+
+
+                        <!-- ID -->
+
+                        <td>
+
+                            <span class="complaint-id">
+
+                                #{{ complaint.complaint_id }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- Citizen -->
+
+                        <td>
+
+                            <div class="citizen-info">
+
+
+                                <div class="citizen-avatar">
+
+                                    {{ complaint.full_name[:1]|upper }}
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        {{ complaint.full_name }}
+                                    </strong>
+
+                                    <small>
+                                        {{ complaint.mobile_number }}
+                                    </small>
+
+                                </div>
+
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Category -->
+
+                        <td>
+
+                            <span class="category-badge">
+
+                                {{ complaint.category }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- Subject -->
+
+                        <td>
+
+                            <div class="subject-cell">
+
+                                {{ complaint.subject }}
+
+                                <small>
+                                    {{ complaint.location }}
+                                </small>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- Ward -->
+
+                        <td>
+
+                            <span class="ward-badge">
+
+                                Ward {{ complaint.ward_number }}
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- Date -->
+
+                        <td>
+
+                            {{ complaint.complaint_date.strftime('%d %b %Y') }}
+
+                        </td>
+
+
+                        <!-- Status -->
+
+                        <td>
+
+                            {% if complaint.status == "Pending" %}
+
+                            <span class="complaint-status pending">
+                                <i class="fa-solid fa-clock"></i>
+                                Pending
+                            </span>
+
+
+                            {% elif complaint.status == "In Progress" %}
+
+                            <span class="complaint-status progress">
+                                <i class="fa-solid fa-spinner"></i>
+                                In Progress
+                            </span>
+
+
+                            {% else %}
+
+                            <span class="complaint-status resolved">
+                                <i class="fa-solid fa-check"></i>
+                                Resolved
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <!-- Action -->
+
+                        <td>
+
+                            <div class="complaint-actions">
+
+
+                                <a
+                                    href="{{ url_for(
+                                        'view_complaint',
+                                        complaint_id=complaint.complaint_id
+                                    ) }}"
+                                    class="complaint-action view"
+                                    title="View Complaint"
+                                >
+
+                                    <i class="fa-solid fa-eye"></i>
+
+                                </a>
+
+
+                                <form
+                                    method="POST"
+                                    action="{{ url_for(
+                                        'delete_complaint',
+                                        complaint_id=complaint.complaint_id
+                                    ) }}"
+                                    onsubmit="return confirm(
+                                        'Are you sure you want to delete this complaint?'
+                                    );"
+                                >
+
+                                    <button
+                                        type="submit"
+                                        class="complaint-action delete"
+                                        title="Delete Complaint"
+                                    >
+
+                                        <i class="fa-solid fa-trash"></i>
+
+                                    </button>
+
+                                </form>
+
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% else %}
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="empty-complaints"
+                        >
+
+                            <div>
+
+                                <i class="fa-solid fa-file-circle-xmark"></i>
+
+                                <h3>
+                                    No Complaints Found
+                                </h3>
+
+                                <p>
+                                    No citizen complaints have been submitted yet.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- No Search Result -->
+
+        <div
+            id="noSearchResult"
+            class="no-search-result"
+        >
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <h3>
+                No matching complaints
+            </h3>
+
+            <p>
+                Try another search term or status filter.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     SEARCH + FILTER SCRIPT
+========================================================= -->
+
+<script>
+
+function filterComplaints() {
+
+    const searchInput =
+        document.getElementById("complaintSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const statusFilter =
+        document.getElementById("statusFilter")
+        .value;
+
+
+    const rows =
+        document.querySelectorAll(
+            "#complaintTable tbody tr[data-status]"
+        );
+
+
+    let visibleRows = 0;
+
+
+    rows.forEach(function(row) {
+
+        const rowText =
+            row.innerText.toLowerCase();
+
+
+        const rowStatus =
+            row.getAttribute("data-status");
+
+
+        const searchMatch =
+            rowText.includes(searchInput);
+
+
+        const statusMatch =
+            statusFilter === "all" ||
+            rowStatus === statusFilter;
+
+
+        if (searchMatch && statusMatch) {
+
+            row.style.display = "";
+
+            visibleRows++;
+
+        } else {
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+
+    const noResult =
+        document.getElementById("noSearchResult");
+
+
+    if (visibleRows === 0 && rows.length > 0) {
+
+        noResult.style.display = "block";
+
+    } else {
+
+        noResult.style.display = "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   SUMMARY COUNTS
+========================================================= */
+
+function updateComplaintCounts() {
+
+    const rows =
+        document.querySelectorAll(
+            "#complaintTable tbody tr[data-status]"
+        );
+
+
+    let pending = 0;
+    let progress = 0;
+    let resolved = 0;
+
+
+    rows.forEach(function(row) {
+
+        const status =
+            row.getAttribute("data-status");
+
+
+        if (status === "Pending") {
+
+            pending++;
+
+        } else if (status === "In Progress") {
+
+            progress++;
+
+        } else if (status === "Resolved") {
+
+            resolved++;
+
+        }
+
+    });
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent = pending;
+
+
+    document.getElementById(
+        "progressCount"
+    ).textContent = progress;
+
+
+    document.getElementById(
+        "resolvedCount"
+    ).textContent = resolved;
+
+}
+
+
+updateComplaintCounts();
+
+</script>
+
+
+{% endblock %}

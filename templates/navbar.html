@@ -1,0 +1,102 @@
+<header class="top-bar">
+
+    <div>
+        <i class="fa-solid fa-phone"></i>
+        +91 9876543210
+    </div>
+
+    <div>
+        <i class="fa-solid fa-envelope"></i>
+        support@sdvsp.gov.in
+    </div>
+
+    <div>
+        <i class="fa-solid fa-location-dot"></i>
+        Raorukula, Siddipet Rural
+    </div>
+
+</header>
+
+
+<nav class="navbar">
+
+    <!-- Logo -->
+    <div class="logo">
+        <h2>Smart Digital Village</h2>
+    </div>
+
+
+    <!-- Hamburger -->
+    <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
+
+    <!-- Navigation Menu -->
+    <ul id="nav-menu">
+
+        <!-- Home -->
+        <li>
+            <a href="{{ url_for('home') }}">Home</a>
+        </li>
+
+        <!-- About Village -->
+        <li>
+            <a href="{{ url_for('home') }}#about">
+                About Village
+            </a>
+        </li>
+
+        <!-- Services -->
+        <li>
+            <a href="{{ url_for('home') }}#services">
+                Services
+            </a>
+        </li>
+
+        <!-- Government Schemes -->
+        <li>
+            <a href="{{ url_for('government') }}">
+                Government Schemes
+            </a>
+        </li>
+
+        <!-- Announcements -->
+        <li>
+            <a href="{{ url_for('announcements') }}">
+                Announcements
+            </a>
+        </li>
+
+        <!-- Contact -->
+        <li>
+            <a href="{{ url_for('home') }}#contact">
+                Contact
+            </a>
+        </li>
+
+        <!-- Citizen Login -->
+        <li>
+            <button class="login-btn">
+                Login
+            </button>
+        </li>
+
+        <!-- Citizen Register -->
+        <li>
+            <button class="register-btn">
+                Register
+            </button>
+        </li>
+
+        <!-- Admin Login -->
+       <li>
+    <a href="{{ url_for('admin_login') }}" class="admin-login-btn">
+        <i class="fa-solid fa-user-shield"></i>
+        Admin Login
+    </a>
+</li>
+
+    </ul>
+
+</nav>

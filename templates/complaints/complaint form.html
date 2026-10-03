@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+        <title>Complaint Registration</title>
+        <link href='https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap' rel='stylesheet'>
+        <style>
+                :root{
+                    --primary:#166534;
+                    --primary-light:#16A34A;
+                    --secondary:#1E3A8A;
+                    --bg:#F8FAFC;
+                    --border:#E5E7EB
+                }
+                
+                *{
+                    margin:0;
+                    padding:0;
+                    box-sizing:border-box;
+                    font-family:Poppins,sans-serif;
+                }
+                
+                body{
+                    background:var(--bg)
+                }
+                
+                header{
+                    background:#fff;
+                    text-align:center;
+                    padding:18px;
+                    border-bottom:1px solid var(--border);
+                }
+
+                header h1{
+                    color:var(--primary);
+                }
+
+                header p{
+                    color:#555;
+                    margin-top:5px;
+                }
+
+                footer{
+                    background:var(--primary);
+                    color:#fff;
+                    text-align:center;
+                    padding:18px;
+                    margin-top:30px;
+                }
+                
+                .container{
+                    max-width:700px;
+                    width:90%;
+                    margin:30px auto;
+                    background:#fff;
+                    padding:30px;
+                    border-radius:12px;
+                    box-shadow:0 4px 12px rgba(0,0,0,.08)
+                }
+                
+                h2{
+                    text-align:center;
+                    color:var(--secondary);
+                    margin-bottom:20px
+                }
+                
+                .form-group{
+                    margin-bottom:16px
+                }
+                
+                label{
+                    display:block;
+                    margin-bottom:6px;font-weight:600
+                }
+                
+                input,
+                
+                select,
+                
+                textarea{
+                    width:100%;
+                    padding:12px;
+                    border:1px solid var(--border);
+                    border-radius:10px
+                }
+                
+                .buttons{
+                    display:flex;
+                    gap:15px;
+                    margin-top: 20PX;
+                }
+                
+                .submit{
+                    background:var(--primary-light);
+                    color:#fff
+                }
+                
+                .reset{
+                    background:var(--secondary);
+                    color:#fff
+                }
+                
+
+
+                .checkbox{
+                     display:flex;
+                    align-items:flex-start;
+                    gap:10px;
+                }
+
+                .checkbox input{
+                    width:auto;
+                    margin-top:5px;
+                }
+
+                .checkbox label{
+                     margin:0;
+                    font-weight:400;
+                }
+
+               button{
+                    flex:1;
+                    padding:12px;
+                    border:none;
+                    border-radius:10px;
+
+                    cursor:pointer;
+                    transition:0.3s;
+                
+               }    
+                .submit:hover{
+                    background:#15803D;
+                }
+
+            .reset:hover{
+                background:#172D6A;
+            }
+        
+            input,
+            select,
+            textarea{
+                 width:100%;
+                 padding:12px;
+                 border:1px solid var(--border);
+                 border-radius:10px;
+                 font-size:15px;
+                 outline:none;
+                 transition:.3s;
+                }
+
+            input:focus,
+            select:focus,
+            textarea:focus{
+                border-color:var(--secondary);
+                box-shadow:0 0 8px rgba(30,58,138,.2);
+            }
+            input[type="file"]{
+               padding:10px;
+                background:#fff;
+                cursor:pointer;
+            }
+
+            input:hover,
+            select:hover,
+            textarea:hover{
+                border-color:var(--primary-light);
+            }
+
+            #complaintId{
+                background:#f1f5f9;
+                font-weight:bold;
+                color:var(--secondary);
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>Smart Digital Village Service Portal</h1>
+            <p>Complaint Registration System</p>
+        </header>
+        
+        <div class='container'><h2>Complaint Registration</h2><form id='complaintForm'>
+        <div class='form-group'><label>Complaint ID</label><input type="text" id="complaintId" readonly></div>
+        <div class='form-group'><label>Mobile Number</label>
+            <input type="tel" maxlength="10" pattern="[0-9]{10}" placeholder="Enter 10-digit Mobile Number" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)" required>
+        </div>
+        <div class='form-group'><label>Complaint Category</label>
+            <select required>
+                <option value="" selected disabled>Select Category</option>
+                <option>Water Supply</option>
+                <option>Electricity</option>
+                <option>Road Problem</option>
+                <option>Street Light</option>
+                <option>Drainage</option>
+                <option>Sanitation</option>
+                <option>Health</option>
+               <option>Agriculture</option>
+                <option>Education</option>
+                <option>Pension</option>
+                <option>Ration</option>
+                <option>Others</option>
+            </select>
+        </div>
+   
+    
+ 
+        <div class='form-group'><label>Complaint Title</label>
+            <input type="text" placeholder="Enter Complaint Title" required>
+        </div>
+        <div class='form-group'><label>Complaint Description</label><textarea rows='5' placeholder="Describe your complaint" required></textarea></div>
+        <div class='form-group'><label>Location / Landmark</label>
+            <input type="text" placeholder="Enter Location / Landmark" required>
+        </div>
+        <div class='form-group'><label>Upload Photo</label><input type='file'></div>
+        <div class="form-group checkbox">
+            <input type="checkbox" id="agree" required>
+            <label for="agree">
+            I confirm that the information provided is true.</label>
+        </div>
+        <div class='buttons'>
+            <button class='submit' type='submit'>Submit</button>
+            <button class='reset' type='reset'>Reset</button>
+        </div>
+            </form>
+        </div>
+           <footer> © 2026 Smart Digital Village Service Portal. All Rights Reserved.
+            </footer>           
+        
+        <script>
+           function generateComplaintID() {
+                document.getElementById("complaintId").value =
+                "CMP" + Math.floor(1000 + Math.random() * 9000);
+            }
+
+            generateComplaintID();
+            
+            document.getElementById("complaintForm").addEventListener("submit", function (e) {
+                e.preventDefault();
+
+            alert(
+                "Complaint Registered Successfully!\nComplaint ID: " +
+                document.getElementById("complaintId").value
+            );
+
+        this.reset();
+        generateComplaintID();
+    });
+
+         </script>
+    </body>
+</html>

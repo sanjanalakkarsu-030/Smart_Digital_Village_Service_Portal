@@ -1,0 +1,85 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <h1>Citizen Details</h1>
+        <p>View registered citizen information.</p>
+    </div>
+
+    <a href="{{ url_for('manage_citizens') }}" class="btn">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back to Citizens
+    </a>
+</div>
+
+
+<div class="citizen-details-card">
+
+    <div class="profile-header">
+
+        <div class="large-avatar">
+            {{ citizen.full_name[:1]|upper }}
+        </div>
+
+        <div>
+            <h2>{{ citizen.full_name }}</h2>
+            <span>Citizen ID: #{{ citizen.citizen_id }}</span>
+        </div>
+
+    </div>
+
+
+    <div class="details-grid">
+
+        <div class="detail-item">
+            <label>Full Name</label>
+            <p>{{ citizen.full_name }}</p>
+        </div>
+
+        <div class="detail-item">
+            <label>Username</label>
+            <p>{{ citizen.username }}</p>
+        </div>
+
+        <div class="detail-item">
+            <label>Mobile Number</label>
+            <p>{{ citizen.mobile_number }}</p>
+        </div>
+
+        <div class="detail-item">
+            <label>House Number</label>
+            <p>{{ citizen.house_number }}</p>
+        </div>
+
+        <div class="detail-item">
+            <label>Ward Number</label>
+            <p>{{ citizen.ward_number }}</p>
+        </div>
+
+        <div class="detail-item">
+            <label>Gender</label>
+            <p>{{ citizen.gender }}</p>
+        </div>
+
+        <div class="detail-item">
+            <label>Registration Date</label>
+            <p>{{ citizen.registration_date }}</p>
+        </div>
+
+        <div class="detail-item">
+            <label>Account Status</label>
+            <p>{{ citizen.account_status }}</p>
+        </div>
+
+        <div class="detail-item full-width">
+            <label>Address</label>
+            <p>{{ citizen.address }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

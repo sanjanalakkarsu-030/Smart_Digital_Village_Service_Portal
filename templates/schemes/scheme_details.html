@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scheme Details | Smart Digital Village</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/schemes.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<header class="scheme-header">
+
+    <div class="header-content">
+
+        <div class="brand">
+            <i class="fa-solid fa-landmark"></i>
+
+            <div>
+                <h1>Government Schemes</h1>
+                <p>Scheme Information & Citizen Services</p>
+            </div>
+        </div>
+
+        <a href="{{ url_for('government') }}" class="home-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            Back to Schemes
+        </a>
+
+    </div>
+
+</header>
+<a href="{{ url_for('home') }}" class="home-btn">
+    <i class="fa-solid fa-house"></i>
+    Back to Home
+</a>
+
+<main class="details-page">
+
+    <div class="details-card">
+
+        <div class="details-icon">
+            <i class="fa-solid fa-building-columns"></i>
+        </div>
+
+        <h1 id="schemeTitle">Government Scheme</h1>
+
+        <span class="details-category" id="schemeCategory">
+            Government Welfare Scheme
+        </span>
+
+
+        <!-- About -->
+
+        <div class="details-section">
+
+            <h2>
+                <i class="fa-solid fa-circle-info"></i>
+                About the Scheme
+            </h2>
+
+            <p id="schemeDescription">
+                Scheme information will appear here.
+            </p>
+
+        </div>
+
+
+        <!-- Information -->
+
+        <div class="details-grid">
+
+            <div class="detail-box">
+
+                <i class="fa-solid fa-user-check"></i>
+
+                <div>
+                    <h3>Eligibility</h3>
+                    <p id="eligibility"></p>
+                </div>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <i class="fa-solid fa-gift"></i>
+
+                <div>
+                    <h3>Benefits</h3>
+                    <p id="benefits"></p>
+                </div>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+                <div>
+                    <h3>Required Documents</h3>
+                    <p id="documents"></p>
+                </div>
+
+            </div>
+
+
+            <div class="detail-box">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                <div>
+                    <h3>Status</h3>
+                    <p id="status"></p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- How to Apply -->
+
+        <div class="how-to-apply">
+
+            <h2>
+                <i class="fa-solid fa-list-check"></i>
+                How to Apply
+            </h2>
+
+            <ol>
+
+                <li>Check your eligibility.</li>
+
+                <li>Keep the required documents ready.</li>
+
+                <li>Visit the official government website.</li>
+
+                <li>Complete the application according to the official instructions.</li>
+
+            </ol>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="details-actions">
+
+            <a id="officialLink"
+               href="#"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="apply-main-btn">
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                Apply / Visit Official Website
+
+            </a>
+
+
+            <a href="{{ url_for('government') }}"
+               class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Schemes
+
+            </a>
+
+        </div>
+
+
+        <!-- Important Note -->
+
+        <div class="important-note">
+
+            <i class="fa-solid fa-circle-exclamation"></i>
+
+            <p>
+                Always verify the latest eligibility, documents,
+                deadlines and application instructions on the
+                official government website.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Smart Digital Village Service Portal
+    </p>
+
+    <p>
+        Government Schemes & Citizen Services
+    </p>
+
+</footer>
+
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const scheme = params.get("scheme");
+
+
+const schemeData = {
+
+    /* 1 */
+
+    pmkisan: {
+
+        title: "PM Kisan Samman Nidhi",
+
+        category: "Agriculture & Farmers",
+
+        description:
+        "A government scheme providing financial support to eligible farmers.",
+
+        eligibility:
+        "Eligible farmers as per the current government guidelines.",
+
+        benefits:
+        "Financial assistance for eligible farmers.",
+
+        documents:
+        "Aadhaar Card, land records and other required documents.",
+
+        status: "Active",
+
+        link: "https://pmkisan.gov.in/"
+
+    },
+
+
+    /* 2 */
+
+    pmawas: {
+
+        title: "PM Awas Yojana",
+
+        category: "Housing",
+
+        description:
+        "Housing assistance programme for eligible families.",
+
+        eligibility:
+        "Eligible families according to the applicable government criteria.",
+
+        benefits:
+        "Housing assistance for eligible beneficiaries.",
+
+        documents:
+        "Aadhaar Card, income proof, residence proof and other required documents.",
+
+        status: "Active",
+
+        link: "https://pmaymis.gov.in/"
+
+    },
+
+
+    /* 3 */
+
+    ayushman: {
+
+        title: "Ayushman Bharat",
+
+        category: "Health",
+
+        description:
+        "Health protection programme providing healthcare support to eligible beneficiaries.",
+
+        eligibility:
+        "Eligible beneficiaries according to the current scheme guidelines.",
+
+        benefits:
+        "Healthcare coverage and cashless treatment at participating facilities.",
+
+        documents:
+        "Aadhaar Card, beneficiary identification documents and required records.",
+
+        status: "Active",
+
+        link: "https://pmjay.gov.in/"
+
+    },
+
+
+    /* 4 */
+
+    ujjwala: {
+
+        title: "PM Ujjwala Yojana",
+
+        category: "Women & Welfare",
+
+        description:
+        "LPG connection support scheme for eligible households and women.",
+
+        eligibility:
+        "Eligible women and households according to current guidelines.",
+
+        benefits:
+        "Support for obtaining an LPG connection.",
+
+        documents:
+        "Aadhaar Card, ration card and other required documents.",
+
+        status: "Active",
+
+        link: "https://www.pmuy.gov.in/"
+
+    },
+
+
+    /* 5 */
+
+    mudra: {
+
+        title: "PM Mudra Yojana",
+
+        category: "Employment & Business",
+
+        description:
+        "Financial support programme for eligible micro and small business activities.",
+
+        eligibility:
+        "Eligible entrepreneurs and small business applicants.",
+
+        benefits:
+        "Access to eligible business financing through participating institutions.",
+
+        documents:
+        "Aadhaar Card, PAN Card, business documents and other required records.",
+
+        status: "Active",
+
+        link: "https://www.mudra.org.in/"
+
+    },
+
+
+    /* 6 */
+
+    scholarship: {
+
+        title: "National Scholarship Portal",
+
+        category: "Education & Scholarships",
+
+        description:
+        "Online platform providing information and application services for eligible scholarships.",
+
+        eligibility:
+        "Students meeting the eligibility requirements of the respective scholarship.",
+
+        benefits:
+        "Educational financial assistance through eligible scholarships.",
+
+        documents:
+        "Aadhaar Card, student records, bonafide certificate and other required documents.",
+
+        status: "Check Notification",
+
+        link: "https://scholarships.gov.in/"
+
+    },
+
+
+    /* 7 */
+
+    rythubandhu: {
+
+        title: "Rythu Bandhu",
+
+        category: "Agriculture & Farmers",
+
+        description:
+        "Agricultural investment support programme for eligible farmers in Telangana.",
+
+        eligibility:
+        "Eligible farmers according to applicable Telangana government guidelines.",
+
+        benefits:
+        "Agricultural investment support.",
+
+        documents:
+        "Farmer identification, land records and other required documents.",
+
+        status: "Active",
+
+        link: "https://www.telangana.gov.in/"
+
+    },
+
+
+    /* 8 */
+
+    rythubima: {
+
+        title: "Rythu Bima",
+
+        category: "Agriculture & Farmers",
+
+        description:
+        "Farmer life insurance support programme in Telangana.",
+
+        eligibility:
+        "Registered eligible farmers according to the applicable guidelines.",
+
+        benefits:
+        "Life insurance protection for eligible farmers.",
+
+        documents:
+        "Farmer identification and required registration documents.",
+
+        status: "Active",
+
+        link: "https://www.telangana.gov.in/"
+
+    },
+
+
+    /* 9 */
+
+    aasara: {
+
+        title: "Aasara Pension",
+
+        category: "Pension & Social Welfare",
+
+        description:
+        "Social welfare pension support for eligible vulnerable citizens.",
+
+        eligibility:
+        "Eligible senior citizens, widows, persons with disabilities and other approved categories.",
+
+        benefits:
+        "Regular social welfare pension support.",
+
+        documents:
+        "Aadhaar Card, residence proof and other required documents.",
+
+        status: "Active",
+
+        link: "https://www.telangana.gov.in/"
+
+    },
+
+
+    /* 10 */
+
+    kalyanalakshmi: {
+
+        title: "Kalyana Lakshmi",
+
+        category: "Women & Welfare",
+
+        description:
+        "Marriage assistance programme for eligible beneficiaries in Telangana.",
+
+        eligibility:
+        "Eligible beneficiaries according to current government guidelines.",
+
+        benefits:
+        "Financial assistance for eligible marriages.",
+
+        documents:
+        "Aadhaar Card, income certificate, caste certificate and required documents.",
+
+        status: "Active",
+
+        link: "https://telanganaepass.cgg.gov.in/"
+
+    },
+
+
+    /* 11 */
+
+    shaadimubarak: {
+
+        title: "Shaadi Mubarak",
+
+        category: "Women & Welfare",
+
+        description:
+        "Marriage assistance programme for eligible beneficiaries.",
+
+        eligibility:
+        "Eligible beneficiaries according to current Telangana government guidelines.",
+
+        benefits:
+        "Financial assistance for eligible marriages.",
+
+        documents:
+        "Aadhaar Card, income certificate and other required documents.",
+
+        status: "Active",
+
+        link: "https://telanganaepass.cgg.gov.in/"
+
+    },
+
+
+    /* 12 */
+
+    kcrkit: {
+
+        title: "KCR Kit Scheme",
+
+        category: "Women & Child Welfare",
+
+        description:
+        "Support programme for pregnant women and newborn babies.",
+
+        eligibility:
+        "Eligible pregnant women according to applicable guidelines.",
+
+        benefits:
+        "Maternal and newborn support through the applicable programme benefits.",
+
+        documents:
+        "Aadhaar Card, health records and other required documents.",
+
+        status: "Active",
+
+        link: "https://www.telangana.gov.in/"
+
+    },
+
+
+    /* 13 */
+
+    bhagiratha: {
+
+        title: "Mission Bhagiratha",
+
+        category: "Water Supply",
+
+        description:
+        "Programme focused on providing safe drinking water to households in Telangana.",
+
+        eligibility:
+        "Residents and households covered by the programme.",
+
+        benefits:
+        "Access to safe drinking water supply.",
+
+        documents:
+        "Usually no individual scheme application is required for basic supply.",
+
+        status: "Active",
+
+        link: "https://www.telangana.gov.in/"
+
+    },
+
+
+    /* 14 */
+
+    indiramma: {
+
+        title: "Indiramma Housing Scheme",
+
+        category: "Housing",
+
+        description:
+        "Housing support programme for eligible families.",
+
+        eligibility:
+        "Eligible families according to current government guidelines.",
+
+        benefits:
+        "Housing assistance for eligible beneficiaries.",
+
+        documents:
+        "Aadhaar Card, residence proof, income documents and other required records.",
+
+        status: "Active",
+
+        link: "https://www.telangana.gov.in/"
+
+    },
+
+
+    /* 15 */
+
+    freebus: {
+
+        title: "Free Bus Travel Scheme",
+
+        category: "Transport",
+
+        description:
+        "Public transport concession providing free bus travel for eligible women in Telangana.",
+
+        eligibility:
+        "Eligible women residents according to the applicable transport rules.",
+
+        benefits:
+        "Eligible women can access the applicable free bus travel facility.",
+
+        documents:
+        "Valid identification document as required by the transport service.",
+
+        status: "Active",
+
+        link: "https://www.tgsrtc.telangana.gov.in/"
+
+    },
+
+
+    /* 16 */
+
+    cheyutha: {
+
+        title: "Cheyutha Scheme",
+
+        category: "Employment & Livelihood",
+
+        description:
+        "Support programme intended to assist eligible beneficiaries with livelihood and self-employment opportunities.",
+
+        eligibility:
+        "Eligible beneficiaries according to applicable government guidelines.",
+
+        benefits:
+        "Support for livelihood and self-employment activities.",
+
+        documents:
+        "Aadhaar Card, income proof and other required documents.",
+
+        status: "Active",
+
+        link: "https://www.telangana.gov.in/"
+
+    }
+
+};
+
+
+if (scheme && schemeData[scheme]) {
+
+    const data = schemeData[scheme];
+
+    document.getElementById("schemeTitle").textContent =
+        data.title;
+
+    document.getElementById("schemeCategory").textContent =
+        data.category;
+
+    document.getElementById("schemeDescription").textContent =
+        data.description;
+
+    document.getElementById("eligibility").textContent =
+        data.eligibility;
+
+    document.getElementById("benefits").textContent =
+        data.benefits;
+
+    document.getElementById("documents").textContent =
+        data.documents;
+
+    document.getElementById("status").textContent =
+        data.status;
+
+    document.getElementById("officialLink").href =
+        data.link;
+
+}
+else {
+
+    document.getElementById("schemeTitle").textContent =
+        "Scheme Not Found";
+
+    document.getElementById("schemeDescription").textContent =
+        "The requested scheme could not be found.";
+
+    document.getElementById("eligibility").textContent =
+        "-";
+
+    document.getElementById("benefits").textContent =
+        "-";
+
+    document.getElementById("documents").textContent =
+        "-";
+
+    document.getElementById("status").textContent =
+        "Not Available";
+
+}
+
+</script>
+
+</body>
+</html>

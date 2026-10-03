@@ -1,0 +1,871 @@
+{% extends "admin/admin_base.html" %}
+
+
+{% block title %}
+Admin Dashboard | Smart Digital Village
+{% endblock %}
+
+
+{% block page_title %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+
+<!-- =========================================
+     WELCOME
+========================================= -->
+
+<section class="welcome-section">
+
+    <div>
+
+        <span class="welcome-label">
+            ADMIN DASHBOARD
+        </span>
+
+        <h2>
+            Welcome back, Administrator 👋
+        </h2>
+
+        <p>
+            Here's what's happening in your village today.
+        </p>
+
+    </div>
+
+
+    <div class="date-card">
+
+        <i class="fa-regular fa-calendar"></i>
+
+        <span id="currentDate">
+            Loading...
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     STATISTICS
+========================================= -->
+
+<section class="stats-grid">
+
+
+    <!-- Citizens -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon citizen-icon">
+
+            <i class="fa-solid fa-users"></i>
+
+        </div>
+
+        <div>
+
+            <span>Total Citizens</span>
+
+            <h3>{{ total_citizens }}</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+            <small class="green-text">
+
+                <i class="fa-solid fa-arrow-up"></i>
+
+                8% this month
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Complaints -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon complaint-icon">
+
+            <i class="fa-solid fa-file-circle-exclamation"></i>
+
+        </div>
+
+        <div>
+
+            <span>Total Complaints</span>
+
+            <h3>{{ total_complaints }}</h3>
+
+            <small class="orange-text">
+
+                <i class="fa-solid fa-clock"></i>
+
+                15 pending
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Resolved -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon resolved-icon">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div>
+
+            <span>Resolved Complaints</span>
+
+            <h3>{{ resolved_complaints }}</h3>
+
+            <small class="green-text">
+
+                <i class="fa-solid fa-check"></i>
+
+                64% resolved
+
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Schemes -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon scheme-icon">
+
+            <i class="fa-solid fa-landmark"></i>
+
+        </div>
+
+        <div>
+
+            <span>Government Schemes</span>
+
+            <h3>{{ total_schemes }}</h3>
+            <small>
+                Active schemes
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Announcements -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon announcement-icon">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+        </div>
+
+        <div>
+
+            <span>Announcements</span>
+
+            <h3>{{ total_announcements }}</h3>
+
+            <small>
+                Published
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Agriculture -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon agriculture-icon">
+
+            <i class="fa-solid fa-seedling"></i>
+
+        </div>
+
+        <div>
+
+            <span>Agriculture Posts</span>
+
+            <h3>{{ agriculture_posts }}</h3>
+            <small class="green-text">
+                Information available
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Health -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon health-icon">
+
+            <i class="fa-solid fa-heart-pulse"></i>
+
+        </div>
+
+        <div>
+
+            <span>Health Updates</span>
+
+            <h3>{{ health_updates }}</h3>
+
+            <small class="green-text">
+                Latest information
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Pending -->
+
+    <div class="stat-card">
+
+        <div class="stat-icon pending-icon">
+
+            <i class="fa-solid fa-hourglass-half"></i>
+
+        </div>
+
+        <div>
+
+            <span>Pending Complaints</span>
+
+            <h3>15</h3>
+
+            <small class="orange-text">
+                Requires attention
+            </small>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================
+     MIDDLE SECTION
+========================================= -->
+
+<section class="dashboard-columns">
+
+
+    <!-- Complaint Overview -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <h3>
+                    Complaint Overview
+                </h3>
+
+                <p>
+                    Current complaint status
+                </p>
+
+            </div>
+
+            <button class="dots-btn">
+
+                <i class="fa-solid fa-ellipsis"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="complaint-overview">
+
+
+            <div class="complaint-circle">
+
+                <div>
+
+                    <strong>{{ total_complaints }}</strong>
+                    <span>Total</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="complaint-legend">
+
+
+                <div>
+
+                    <span class="dot pending-dot"></span>
+
+                    <label>Pending</label>
+
+                    <strong>{{ pending_complaints }}</strong>
+                </div>
+
+
+                <div>
+
+                    <span class="dot progress-dot"></span>
+
+                    <label>In Progress</label>
+
+                    <strong>{{ in_progress_complaints }}</strong>
+
+                </div>
+
+
+                <div>
+
+                    <span class="dot resolved-dot"></span>
+
+                    <label>Resolved</label>
+
+                    <strong>{{ resolved_complaints }}</strong>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Quick Actions -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <h3>
+                    Quick Actions
+                </h3>
+
+                <p>
+                    Frequently used actions
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+
+            <button>
+
+                <span class="quick-icon purple">
+
+                    <i class="fa-solid fa-landmark"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>Add Government Scheme</strong>
+
+                    <small>
+                        Create new scheme
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button>
+
+                <span class="quick-icon orange">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>New Announcement</strong>
+
+                    <small>
+                        Publish announcement
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button>
+
+                <span class="quick-icon green">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>Agriculture Information</strong>
+
+                    <small>
+                        Add agriculture information
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+
+            <button>
+
+                <span class="quick-icon red">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                </span>
+
+                <span>
+
+                    <strong>Health Information</strong>
+
+                    <small>
+                        Add health update
+                    </small>
+
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     RECENT COMPLAINTS
+========================================= -->
+
+<section class="dashboard-card complaints-card">
+
+
+    <div class="card-heading">
+
+        <div>
+
+            <h3>
+                Recent Complaints
+            </h3>
+
+            <p>
+                Latest complaints submitted by citizens
+            </p>
+
+        </div>
+
+
+        <a href="#">
+            View All
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Citizen</th>
+
+                    <th>Category</th>
+
+                    <th>Subject</th>
+
+                    <th>Date</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+    {% for complaint in recent_complaints %}
+
+    <tr>
+
+        <td>
+            #{{ complaint.complaint_id }}
+        </td>
+
+        <td>
+            <div class="citizen">
+                <div>
+                    {{ complaint.full_name[:2]|upper }}
+                </div>
+
+                {{ complaint.full_name }}
+            </div>
+        </td>
+
+        <td>
+            {{ complaint.category }}
+        </td>
+
+        <td>
+            {{ complaint.subject }}
+        </td>
+
+        <td>
+            -
+        </td>
+
+        <td>
+
+            <span class="status {{ complaint.status|lower|replace(' ', '-') }}">
+                {{ complaint.status }}
+            </span>
+
+        </td>
+
+        <td>
+
+            <button class="view-btn">
+                <i class="fa-solid fa-eye"></i>
+            </button>
+
+        </td>
+
+    </tr>
+
+    {% else %}
+
+    <tr>
+
+        <td colspan="7" style="text-align:center;">
+            No complaints found.
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     BOTTOM SECTION
+========================================= -->
+
+<section class="dashboard-columns">
+
+
+    <!-- Announcements -->
+
+    <div class="announcement-grid">
+
+    <!-- Announcement 1 -->
+    <div class="announcement-card">
+        <div class="announcement-top">
+            <div class="announcement-icon">
+                <i class="fa-solid fa-bullhorn"></i>
+            </div>
+
+            <span class="announcement-status">Published</span>
+        </div>
+
+        <h3>Gram Sabha Meeting</h3>
+
+        <p>
+            All villagers are requested to attend the Gram Sabha meeting
+            to discuss village development and important local issues.
+        </p>
+
+        <div class="announcement-footer">
+            <span>
+                <i class="fa-regular fa-calendar"></i>
+                18 August 2026
+            </span>
+
+            <span class="announcement-category">
+                Panchayat
+            </span>
+        </div>
+    </div>
+
+
+    <!-- Announcement 2 -->
+    <div class="announcement-card">
+        <div class="announcement-top">
+            <div class="announcement-icon">
+                <i class="fa-solid fa-droplet"></i>
+            </div>
+
+            <span class="announcement-status">Published</span>
+        </div>
+
+        <h3>Water Supply Maintenance</h3>
+
+        <p>
+            Water supply will be temporarily interrupted due to pipeline
+            maintenance work. Residents are requested to store sufficient water.
+        </p>
+
+        <div class="announcement-footer">
+            <span>
+                <i class="fa-regular fa-calendar"></i>
+                20 August 2026
+            </span>
+
+            <span class="announcement-category">
+                Utility
+            </span>
+        </div>
+    </div>
+
+
+    <!-- Announcement 3 -->
+    <div class="announcement-card">
+        <div class="announcement-top">
+            <div class="announcement-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <span class="announcement-status">Published</span>
+        </div>
+
+        <h3>Polio Vaccination Drive</h3>
+
+        <p>
+            Free polio drops will be provided for all children below 5 years.
+            Parents are requested to bring their children to the vaccination centre.
+        </p>
+
+        <div class="announcement-footer">
+            <span>
+                <i class="fa-regular fa-calendar"></i>
+                12 August 2026
+            </span>
+
+            <span class="announcement-category">
+                Health
+            </span>
+        </div>
+    </div>
+
+</div>
+
+
+    <!-- Village Services -->
+
+    <div class="dashboard-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <h3>
+                    Village Services
+                </h3>
+
+                <p>
+                    Service overview
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="service-list">
+
+
+            <div class="service-item">
+
+                <div class="service-icon agriculture">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Agriculture
+                    </strong>
+
+                    <span>
+                        35 information posts
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+
+            <div class="service-item">
+
+                <div class="service-icon health">
+
+                    <i class="fa-solid fa-heart-pulse"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Health Services
+                    </strong>
+
+                    <span>
+                        20 health updates
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+
+            <div class="service-item">
+
+                <div class="service-icon scheme">
+
+                    <i class="fa-solid fa-landmark"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Government Schemes
+                    </strong>
+
+                    <span>
+                        18 active schemes
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+
+            <div class="service-item">
+
+                <div class="service-icon announcement">
+
+                    <i class="fa-solid fa-bullhorn"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Announcements
+                    </strong>
+
+                    <span>
+                        12 published
+                    </span>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
