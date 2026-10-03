@@ -1,0 +1,3222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fertilizer Information | ఎరువుల సమాచారం</title>
+
+    <!-- Telugu Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .fertilizer-cost {
+            background: #f1f8e9;
+            border-left: 4px solid #2e7d32;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .fertilizer-cost strong {
+            margin-right: 5px;
+        }
+    
+
+/* Fertilizer schedule */
+.fertilizer-schedule {
+    margin-top: 16px;
+    background: #fafdf7;
+    border: 1px solid #d8e8d2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fertilizer-schedule h3 {
+    margin: 0;
+    padding: 10px 12px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    font-size: 17px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 9px 8px;
+    border-bottom: 1px solid #e3eee0;
+    text-align: left;
+    vertical-align: top;
+}
+
+.schedule-table th {
+    background: #f1f8e9;
+    color: #33691e;
+}
+
+.schedule-note {
+    margin: 10px 12px 12px;
+    padding: 9px 10px;
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .schedule-table {
+        font-size: 12px;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 7px 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+            🌾
+            <span class="lang-en">Agriculture Support</span>
+            <span class="lang-te">వ్యవసాయ సహాయం</span>
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                <span class="lang-en">Home</span>
+                <span class="lang-te">హోమ్</span>
+            </a>
+
+            <a href="crop-details.html">
+                <span class="lang-en">Crops</span>
+                <span class="lang-te">పంటలు</span>
+            </a>
+
+            <a href="fertilizer.html" class="active">
+                <span class="lang-en">Fertilizer</span>
+                <span class="lang-te">ఎరువులు</span>
+            </a>
+
+            <a href="weather.html">
+                <span class="lang-en">Weather</span>
+                <span class="lang-te">వాతావరణం</span>
+            </a>
+
+            <a href="farmer-query.html">
+                <span class="lang-en">Farmer Query</span>
+                <span class="lang-te">రైతు ప్రశ్న</span>
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <section class="page-title">
+
+        <h1>
+            <span class="lang-en">🌱 Fertilizer Information</span>
+            <span class="lang-te">🌱 ఎరువుల సమాచారం</span>
+        </h1>
+
+        <p>
+            <span class="lang-en">
+                Find general fertilizer guidance for different crops.
+            </span>
+
+            <span class="lang-te">
+                వివిధ పంటలకు సంబంధించిన సాధారణ ఎరువుల సమాచారాన్ని తెలుసుకోండి.
+            </span>
+        </p>
+
+    </section>
+
+
+    <!-- ================= LANGUAGE BUTTONS ================= -->
+
+    <div class="language-switcher">
+
+        <button id="englishBtn"
+                class="language-btn active"
+                onclick="setLanguage('english')">
+
+            🇬🇧 English
+
+        </button>
+
+        <button id="teluguBtn"
+                class="language-btn"
+                onclick="setLanguage('telugu')">
+
+            🇮🇳 తెలుగు
+
+        </button>
+
+    </div>
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="fertilizerSearch"
+            placeholder="Search crop, soil or fertilizer..."
+            onkeyup="searchFertilizer()">
+
+        <p class="search-hint">
+
+            <span class="lang-en">
+                Search by crop name, soil type or fertilizer.
+            </span>
+
+            <span class="lang-te">
+                పంట పేరు, నేల రకం లేదా ఎరువు పేరుతో వెతకండి.
+            </span>
+
+        </p>
+
+    </div>
+
+
+    <!-- ================= FERTILIZER CARDS ================= -->
+
+    <section class="crop-container">
+
+
+        <!-- 1. PADDY -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌾 Paddy</span>
+                <span class="lang-te">🌾 వరి</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Clay and loamy soil</span>
+                <span class="lang-te">బంకమట్టి మరియు లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Urea, DAP and Potash</span>
+                <span class="lang-te">యూరియా, DAP మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Apply nutrients in split doses according to crop stage and soil test.
+                </span>
+
+                <span class="lang-te">
+                    పంట దశ మరియు నేల పరీక్ష ఆధారంగా పోషకాలను విడతలుగా అందించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹650 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹650</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Transplanting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–7 days</span><span class="lang-te">0–7 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Tillering</span><span class="lang-te">పిలకల దశ</span></td>
+                            <td><span class="lang-en">20–25 days</span><span class="lang-te">20–25 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Panicle initiation</span><span class="lang-te">కంకి ఏర్పడే దశ</span></td>
+                            <td><span class="lang-en">40–45 days</span><span class="lang-te">40–45 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 2. COTTON -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌿 Cotton</span>
+                <span class="lang-te">🌿 పత్తి</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Black soil and loamy soil</span>
+                <span class="lang-te">నల్ల నేల మరియు లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Urea, DAP and Potash</span>
+                <span class="lang-te">యూరియా, DAP మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Maintain balanced nitrogen, phosphorus and potassium nutrition.
+                </span>
+
+                <span class="lang-te">
+                    నైట్రోజన్, ఫాస్ఫరస్ మరియు పొటాష్ పోషకాలను సమతుల్యంగా అందించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹750 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹750</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తిన తర్వాత</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">శాఖలు పెరిగే దశ</span></td>
+                            <td><span class="lang-en">30–40 days</span><span class="lang-te">30–40 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Boll formation</span><span class="lang-te">పుష్పించే / కాయ ఏర్పడే దశ</span></td>
+                            <td><span class="lang-en">60–75 days</span><span class="lang-te">60–75 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 3. MAIZE -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌽 Maize</span>
+                <span class="lang-te">🌽 మొక్కజొన్న</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Urea, DAP and Potash</span>
+                <span class="lang-te">యూరియా, DAP మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Nitrogen is commonly supplied in split applications.
+                </span>
+
+                <span class="lang-te">
+                    నైట్రోజన్‌ను సాధారణంగా విడతలుగా అందిస్తారు.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹650 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹650</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Knee-high stage</span><span class="lang-te">మోకాలి ఎత్తు దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Tasseling</span><span class="lang-te">పూత దశ</span></td>
+                            <td><span class="lang-en">45–55 days</span><span class="lang-te">45–55 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 4. RED GRAM -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Red Gram</span>
+                <span class="lang-te">🌱 కంది</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained black or red soil</span>
+                <span class="lang-te">నీరు బాగా పారే నల్ల లేదా ఎర్ర నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">DAP and Phosphorus fertilizers</span>
+                <span class="lang-te">DAP మరియు ఫాస్ఫరస్ ఎరువులు</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Phosphorus is important for root development.
+                </span>
+
+                <span class="lang-te">
+                    వేర్ల అభివృద్ధికి ఫాస్ఫరస్ ముఖ్యమైనది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">30–40 days</span><span class="lang-te">30–40 రోజులు</span></td>
+                            <td><span class="lang-en">Urea (if required)</span><span class="lang-te">యూరియా (అవసరమైతే)</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Pod formation</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">60–75 days</span><span class="lang-te">60–75 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + micronutrients if advised</span><span class="lang-te">పొటాష్ + సూచించిన సూక్ష్మపోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 5. GREEN GRAM -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Green Gram</span>
+                <span class="lang-te">🌱 పెసలు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Loamy soil</span>
+                <span class="lang-te">లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Phosphorus and Potash</span>
+                <span class="lang-te">ఫాస్ఫరస్ మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Avoid excessive nitrogen application.
+                </span>
+
+                <span class="lang-te">
+                    అధిక నైట్రోజన్ ఎరువుల వాడకాన్ని నివారించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Balanced nutrient application</span><span class="lang-te">సమతుల పోషకాల అందింపు</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering</span><span class="lang-te">పుష్పించే దశ</span></td>
+                            <td><span class="lang-en">35–45 days</span><span class="lang-te">35–45 రోజులు</span></td>
+                            <td><span class="lang-en">Potash if advised</span><span class="lang-te">సూచించినట్లయితే పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 6. BLACK GRAM -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Black Gram</span>
+                <span class="lang-te">🌱 మినుములు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Loamy soil</span>
+                <span class="lang-te">లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">DAP and Potash</span>
+                <span class="lang-te">DAP మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Use balanced nutrients based on soil condition.
+                </span>
+
+                <span class="lang-te">
+                    నేల పరిస్థితిని బట్టి సమతుల్య పోషకాలను అందించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Balanced nutrient application</span><span class="lang-te">సమతుల పోషకాల అందింపు</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering</span><span class="lang-te">పుష్పించే దశ</span></td>
+                            <td><span class="lang-en">35–45 days</span><span class="lang-te">35–45 రోజులు</span></td>
+                            <td><span class="lang-en">Potash if advised</span><span class="lang-te">సూచించినట్లయితే పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 7. GROUNDNUT -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🥜 Groundnut</span>
+                <span class="lang-te">🥜 వేరుశెనగ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Sandy loam soil</span>
+                <span class="lang-te">ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Gypsum, Phosphorus and Potash</span>
+                <span class="lang-te">జిప్సం, ఫాస్ఫరస్ మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Calcium and sulphur are important for pod development.
+                </span>
+
+                <span class="lang-te">
+                    కాయల అభివృద్ధికి కాల్షియం మరియు సల్ఫర్ ముఖ్యమైనవి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">25–35 days</span><span class="lang-te">25–35 రోజులు</span></td>
+                            <td><span class="lang-en">Gypsum / nutrients as locally recommended</span><span class="lang-te">స్థానిక సిఫార్సు ప్రకారం జిప్సం / పోషకాలు</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Pegging / Pod formation</span><span class="lang-te">పెగింగ్ / కాయ ఏర్పడే దశ</span></td>
+                            <td><span class="lang-en">40–55 days</span><span class="lang-te">40–55 రోజులు</span></td>
+                            <td><span class="lang-en">Gypsum + Potash if advised</span><span class="lang-te">సూచించినట్లయితే జిప్సం + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 8. SOYBEAN -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Soybean</span>
+                <span class="lang-te">🌱 సోయాబీన్</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Phosphorus and Potash</span>
+                <span class="lang-te">ఫాస్ఫరస్ మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Maintain good soil fertility and drainage.
+                </span>
+
+                <span class="lang-te">
+                    నేల సారాన్ని మరియు నీటి పారుదలను సరిగ్గా నిర్వహించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹950 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹950</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Balanced nutrients</span><span class="lang-te">సమతుల పోషకాలు</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Pod filling</span><span class="lang-te">పుష్పించే / కాయ నింపే దశ</span></td>
+                            <td><span class="lang-en">45–60 days</span><span class="lang-te">45–60 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + micronutrients if advised</span><span class="lang-te">పొటాష్ + సూచించిన సూక్ష్మపోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 9. CHILLI -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌶️ Chilli</span>
+                <span class="lang-te">🌶️ మిరప</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK, DAP and Potash</span>
+                <span class="lang-te">NPK, DAP మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Balanced nutrition supports flowering and fruit development.
+                </span>
+
+                <span class="lang-te">
+                    సమతుల్య పోషకాలు పూత మరియు కాయల అభివృద్ధికి సహాయపడతాయి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹700 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹700</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Transplanting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">30–45 days</span><span class="lang-te">30–45 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruit setting</span><span class="lang-te">పుష్పించే / కాయ కట్టే దశ</span></td>
+                            <td><span class="lang-en">60–75 days</span><span class="lang-te">60–75 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 10. TURMERIC -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌿 Turmeric</span>
+                <span class="lang-te">🌿 పసుపు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Rich loamy soil</span>
+                <span class="lang-te">సారవంతమైన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Farmyard manure, NPK and Potash</span>
+                <span class="lang-te">పశువుల ఎరువు, NPK మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Organic matter helps improve soil structure.
+                </span>
+
+                <span class="lang-te">
+                    సేంద్రియ పదార్థాలు నేల నిర్మాణాన్ని మెరుగుపరచడంలో సహాయపడతాయి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Planting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">ఆకులు పెరిగే దశ</span></td>
+                            <td><span class="lang-en">45–60 days</span><span class="lang-te">45–60 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Rhizome development</span><span class="lang-te">దుంప అభివృద్ధి దశ</span></td>
+                            <td><span class="lang-en">90–120 days</span><span class="lang-te">90–120 రోజులు</span></td>
+                            <td><span class="lang-en">Potash</span><span class="lang-te">పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 11. SESAME -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Sesame</span>
+                <span class="lang-te">🌱 నువ్వులు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Light loamy soil</span>
+                <span class="lang-te">తేలికపాటి లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK and Phosphorus</span>
+                <span class="lang-te">NPK మరియు ఫాస్ఫరస్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Avoid excessive nitrogen for better crop balance.
+                </span>
+
+                <span class="lang-te">
+                    మంచి పంట పెరుగుదల కోసం అధిక నైట్రోజన్‌ను నివారించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹550 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹550</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Capsule formation</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">35–50 days</span><span class="lang-te">35–50 రోజులు</span></td>
+                            <td><span class="lang-en">Potash if advised</span><span class="lang-te">సూచించినట్లయితే పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 12. CASTOR -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Castor</span>
+                <span class="lang-te">🌱 ఆముదం</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Deep well-drained soil</span>
+                <span class="lang-te">లోతైన నీరు బాగా పారే నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK and organic manure</span>
+                <span class="lang-te">NPK మరియు సేంద్రియ ఎరువు</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Use nutrients according to soil fertility.
+                </span>
+
+                <span class="lang-te">
+                    నేల సారాన్ని బట్టి పోషకాలను అందించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹750 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹750</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">30–45 days</span><span class="lang-te">30–45 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Capsule development</span><span class="lang-te">పుష్పించే / కాయ అభివృద్ధి</span></td>
+                            <td><span class="lang-en">60–90 days</span><span class="lang-te">60–90 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash if advised</span><span class="lang-te">సూచించినట్లయితే యూరియా + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 13. SORGHUM -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌾 Sorghum</span>
+                <span class="lang-te">🌾 జొన్న</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Black and loamy soil</span>
+                <span class="lang-te">నల్ల మరియు లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Urea, DAP and Potash</span>
+                <span class="lang-te">యూరియా, DAP మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Apply nitrogen according to crop growth.
+                </span>
+
+                <span class="lang-te">
+                    పంట పెరుగుదలను బట్టి నైట్రోజన్‌ను అందించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹650 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹650</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Tillering</span><span class="lang-te">పిలకల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Panicle initiation</span><span class="lang-te">కంకి ఏర్పడే దశ</span></td>
+                            <td><span class="lang-en">40–50 days</span><span class="lang-te">40–50 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 14. PEARL MILLET -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌾 Pearl Millet</span>
+                <span class="lang-te">🌾 సజ్జలు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Sandy loam soil</span>
+                <span class="lang-te">ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Urea and Phosphorus</span>
+                <span class="lang-te">యూరియా మరియు ఫాస్ఫరస్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Use balanced fertilizer based on soil testing.
+                </span>
+
+                <span class="lang-te">
+                    నేల పరీక్ష ఆధారంగా సమతుల్య ఎరువులను ఉపయోగించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹500 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹500</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Tillering</span><span class="lang-te">పిలకల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Ear formation</span><span class="lang-te">కంకి ఏర్పడే దశ</span></td>
+                            <td><span class="lang-en">40–50 days</span><span class="lang-te">40–50 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 15. FINGER MILLET -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌾 Finger Millet</span>
+                <span class="lang-te">🌾 రాగులు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Red and loamy soil</span>
+                <span class="lang-te">ఎర్ర మరియు లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK and organic manure</span>
+                <span class="lang-te">NPK మరియు సేంద్రియ ఎరువు</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Organic manure can improve soil fertility.
+                </span>
+
+                <span class="lang-te">
+                    సేంద్రియ ఎరువు నేల సారాన్ని మెరుగుపరచడంలో సహాయపడుతుంది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹700 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹700</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Planting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Tillering</span><span class="lang-te">పిలకల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Ear formation</span><span class="lang-te">కంకి ఏర్పడే దశ</span></td>
+                            <td><span class="lang-en">40–50 days</span><span class="lang-te">40–50 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 16. COWPEA -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Cowpea</span>
+                <span class="lang-te">🌱 అలసందలు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Sandy loam soil</span>
+                <span class="lang-te">ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Phosphorus and Potash</span>
+                <span class="lang-te">ఫాస్ఫరస్ మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Avoid unnecessary excess nitrogen.
+                </span>
+
+                <span class="lang-te">
+                    అవసరం లేని అధిక నైట్రోజన్ వాడకాన్ని నివారించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Balanced nutrients</span><span class="lang-te">సమతుల పోషకాలు</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Pod formation</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">35–50 days</span><span class="lang-te">35–50 రోజులు</span></td>
+                            <td><span class="lang-en">Potash if advised</span><span class="lang-te">సూచించినట్లయితే పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 17. HORSE GRAM -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Horse Gram</span>
+                <span class="lang-te">🌱 ఉలవలు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Red and black soil</span>
+                <span class="lang-te">ఎర్ర మరియు నల్ల నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Phosphorus-based fertilizer</span>
+                <span class="lang-te">ఫాస్ఫరస్ ఆధారిత ఎరువు</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Apply fertilizer according to soil fertility.
+                </span>
+
+                <span class="lang-te">
+                    నేల సారాన్ని బట్టి ఎరువులను ఉపయోగించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹850 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹850</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Balanced nutrients</span><span class="lang-te">సమతుల పోషకాలు</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering</span><span class="lang-te">పుష్పించే దశ</span></td>
+                            <td><span class="lang-en">35–45 days</span><span class="lang-te">35–45 రోజులు</span></td>
+                            <td><span class="lang-en">Potash if advised</span><span class="lang-te">సూచించినట్లయితే పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 18. SUNFLOWER -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌻 Sunflower</span>
+                <span class="lang-te">🌻 పొద్దుతిరుగుడు</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK and Potash</span>
+                <span class="lang-te">NPK మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Potassium supports healthy seed development.
+                </span>
+
+                <span class="lang-te">
+                    ఆరోగ్యకరమైన గింజల అభివృద్ధికి పొటాష్ సహాయపడుతుంది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">25–35 days</span><span class="lang-te">25–35 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Bud / Flowering</span><span class="lang-te">మొగ్గ / పుష్పించే దశ</span></td>
+                            <td><span class="lang-en">45–60 days</span><span class="lang-te">45–60 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 19. TOMATO -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🍅 Tomato</span>
+                <span class="lang-te">🍅 టమాటా</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK, Calcium and Potash</span>
+                <span class="lang-te">NPK, కాల్షియం మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Balanced nutrition supports fruit development.
+                </span>
+
+                <span class="lang-te">
+                    సమతుల్య పోషకాలు కాయల అభివృద్ధికి సహాయపడతాయి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹650 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹650</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Transplanting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">25–40 days</span><span class="lang-te">25–40 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruiting</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">50–80 days</span><span class="lang-te">50–80 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 20. BRINJAL -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🍆 Brinjal</span>
+                <span class="lang-te">🍆 వంకాయ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Fertile loamy soil</span>
+                <span class="lang-te">సారవంతమైన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Farmyard manure and NPK</span>
+                <span class="lang-te">పశువుల ఎరువు మరియు NPK</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Maintain balanced nutrition throughout crop growth.
+                </span>
+
+                <span class="lang-te">
+                    పంట పెరుగుదల సమయంలో సమతుల్య పోషకాలను అందించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹650 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹650</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Transplanting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">25–40 days</span><span class="lang-te">25–40 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruiting</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">50–80 days</span><span class="lang-te">50–80 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 21. BOTTLE GOURD -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🥒 Bottle Gourd</span>
+                <span class="lang-te">🥒 సొరకాయ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Sandy loam soil</span>
+                <span class="lang-te">ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Compost and NPK</span>
+                <span class="lang-te">కంపోస్ట్ మరియు NPK</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Organic manure can improve soil condition.
+                </span>
+
+                <span class="lang-te">
+                    సేంద్రియ ఎరువు నేల పరిస్థితిని మెరుగుపరచడంలో సహాయపడుతుంది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹450 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹450</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vine growth</span><span class="lang-te">తీగ పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–35 days</span><span class="lang-te">20–35 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruiting</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">40–70 days</span><span class="lang-te">40–70 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 22. BITTER GOURD -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🥒 Bitter Gourd</span>
+                <span class="lang-te">🥒 కాకరకాయ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Compost, NPK and Potash</span>
+                <span class="lang-te">కంపోస్ట్, NPK మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Potassium is useful during fruit development.
+                </span>
+
+                <span class="lang-te">
+                    కాయల అభివృద్ధి సమయంలో పొటాష్ ఉపయోగకరంగా ఉంటుంది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹500 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹500</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vine growth</span><span class="lang-te">తీగ పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–35 days</span><span class="lang-te">20–35 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruiting</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">40–70 days</span><span class="lang-te">40–70 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 23. RIDGE GOURD -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🥒 Ridge Gourd</span>
+                <span class="lang-te">🥒 బీరకాయ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Fertile loamy soil</span>
+                <span class="lang-te">సారవంతమైన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Compost and NPK</span>
+                <span class="lang-te">కంపోస్ట్ మరియు NPK</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Use organic matter along with balanced nutrients.
+                </span>
+
+                <span class="lang-te">
+                    సమతుల్య పోషకాలతో పాటు సేంద్రియ పదార్థాలను ఉపయోగించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹450 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹450</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vine growth</span><span class="lang-te">తీగ పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–35 days</span><span class="lang-te">20–35 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruiting</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">40–70 days</span><span class="lang-te">40–70 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 24. CUCUMBER -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🥒 Cucumber</span>
+                <span class="lang-te">🥒 దోసకాయ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Sandy loam soil</span>
+                <span class="lang-te">ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Compost and NPK</span>
+                <span class="lang-te">కంపోస్ట్ మరియు NPK</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Maintain good drainage and balanced nutrition.
+                </span>
+
+                <span class="lang-te">
+                    మంచి నీటి పారుదల మరియు సమతుల్య పోషకాలను నిర్వహించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹450 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹450</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vine growth</span><span class="lang-te">తీగ పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruiting</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">35–60 days</span><span class="lang-te">35–60 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 25. PUMPKIN -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🎃 Pumpkin</span>
+                <span class="lang-te">🎃 గుమ్మడికాయ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Fertile sandy loam soil</span>
+                <span class="lang-te">సారవంతమైన ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Compost, NPK and Potash</span>
+                <span class="lang-te">కంపోస్ట్, NPK మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Potassium can support fruit development.
+                </span>
+
+                <span class="lang-te">
+                    కాయల అభివృద్ధికి పొటాష్ సహాయపడుతుంది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹500 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹500</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vine growth</span><span class="lang-te">తీగ పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–35 days</span><span class="lang-te">20–35 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Fruiting</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">40–70 days</span><span class="lang-te">40–70 రోజులు</span></td>
+                            <td><span class="lang-en">Potash + balanced nutrients</span><span class="lang-te">పొటాష్ + సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 26. WHEAT -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌾 Wheat</span>
+                <span class="lang-te">🌾 గోధుమ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Loamy soil</span>
+                <span class="lang-te">లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Urea, DAP and Potash</span>
+                <span class="lang-te">యూరియా, DAP మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Nitrogen should be managed according to crop stage.
+                </span>
+
+                <span class="lang-te">
+                    పంట దశను బట్టి నైట్రోజన్‌ను నిర్వహించాలి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹700 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹700</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Crown root / Tillering</span><span class="lang-te">క్రౌన్ రూట్ / పిలకల దశ</span></td>
+                            <td><span class="lang-en">20–25 days</span><span class="lang-te">20–25 రోజులు</span></td>
+                            <td><span class="lang-en">Urea</span><span class="lang-te">యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Grain filling</span><span class="lang-te">పుష్పించే / గింజ నింపే దశ</span></td>
+                            <td><span class="lang-en">45–70 days</span><span class="lang-te">45–70 రోజులు</span></td>
+                            <td><span class="lang-en">Nutrients as advised</span><span class="lang-te">సూచించిన పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 27. CHICKPEA -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌱 Chickpea</span>
+                <span class="lang-te">🌱 శనగ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">DAP and Phosphorus</span>
+                <span class="lang-te">DAP మరియు ఫాస్ఫరస్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Phosphorus supports root and crop development.
+                </span>
+
+                <span class="lang-te">
+                    ఫాస్ఫరస్ వేర్లు మరియు పంట అభివృద్ధికి సహాయపడుతుంది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹900 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹900</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">DAP + Potash</span><span class="lang-te">DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">25–35 days</span><span class="lang-te">25–35 రోజులు</span></td>
+                            <td><span class="lang-en">Balanced nutrients</span><span class="lang-te">సమతుల పోషకాలు</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Flowering / Pod formation</span><span class="lang-te">పుష్పించే / కాయ దశ</span></td>
+                            <td><span class="lang-en">45–60 days</span><span class="lang-te">45–60 రోజులు</span></td>
+                            <td><span class="lang-en">Potash if advised</span><span class="lang-te">సూచించినట్లయితే పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 28. ONION -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🧅 Onion</span>
+                <span class="lang-te">🧅 ఉల్లిపాయ</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Sandy loam soil</span>
+                <span class="lang-te">ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK and Potash</span>
+                <span class="lang-te">NPK మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Avoid excessive nitrogen near bulb maturity.
+                </span>
+
+                <span class="lang-te">
+                    ఉల్లి గడ్డ పరిపక్వత సమయంలో అధిక నైట్రోజన్‌ను నివారించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹650 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹650</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Transplanting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–15 days</span><span class="lang-te">0–15 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Bulb development</span><span class="lang-te">గడ్డ అభివృద్ధి దశ</span></td>
+                            <td><span class="lang-en">30–45 days</span><span class="lang-te">30–45 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Bulb enlargement</span><span class="lang-te">గడ్డ పరిమాణం పెరిగే దశ</span></td>
+                            <td><span class="lang-en">60–75 days</span><span class="lang-te">60–75 రోజులు</span></td>
+                            <td><span class="lang-en">Potash</span><span class="lang-te">పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 29. POTATO -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🥔 Potato</span>
+                <span class="lang-te">🥔 బంగాళాదుంప</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Sandy loam soil</span>
+                <span class="lang-te">ఇసుకతో కూడిన లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">NPK and Potash</span>
+                <span class="lang-te">NPK మరియు పొటాష్</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Potassium supports tuber development.
+                </span>
+
+                <span class="lang-te">
+                    దుంపల అభివృద్ధికి పొటాష్ సహాయపడుతుంది.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹600 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹600</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Planting</span><span class="lang-te">బేసల్ / నాట్లు</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">25–35 days</span><span class="lang-te">25–35 రోజులు</span></td>
+                            <td><span class="lang-en">Urea + Potash</span><span class="lang-te">యూరియా + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Tuber development</span><span class="lang-te">దుంప అభివృద్ధి దశ</span></td>
+                            <td><span class="lang-en">45–60 days</span><span class="lang-te">45–60 రోజులు</span></td>
+                            <td><span class="lang-en">Potash</span><span class="lang-te">పొటాష్</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+        <!-- 30. CORIANDER -->
+
+        <div class="crop-card">
+
+            <h2>
+                <span class="lang-en">🌿 Coriander</span>
+                <span class="lang-te">🌿 కొత్తిమీర</span>
+            </h2>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Soil:</span>
+                    <span class="lang-te">నేల:</span>
+                </strong>
+
+                <span class="lang-en">Well-drained loamy soil</span>
+                <span class="lang-te">నీరు బాగా పారే లోమీ నేల</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Fertilizer:</span>
+                    <span class="lang-te">ఎరువు:</span>
+                </strong>
+
+                <span class="lang-en">Compost and balanced NPK</span>
+                <span class="lang-te">కంపోస్ట్ మరియు సమతుల్య NPK</span>
+            </p>
+
+            <p>
+                <strong>
+                    <span class="lang-en">Guidance:</span>
+                    <span class="lang-te">సూచన:</span>
+                </strong>
+
+                <span class="lang-en">
+                    Use moderate fertilizer and maintain adequate moisture.
+                </span>
+
+                <span class="lang-te">
+                    మితమైన ఎరువులను ఉపయోగించి తగినంత తేమను నిర్వహించండి.
+                </span>
+            </p>
+
+        
+            <p class="fertilizer-cost">
+                <strong>
+                    <span class="lang-en">Estimated Cost:</span>
+                    <span class="lang-te">అంచనా ధర:</span>
+                </strong>
+                <span class="lang-en">₹500 per 50 kg</span>
+                <span class="lang-te">50 కిలోలకు ₹500</span>
+            </p>
+
+
+            <div class="fertilizer-schedule">
+                <h3>
+                    <span class="lang-en">Fertilizer Schedule</span>
+                    <span class="lang-te">ఎరువుల షెడ్యూల్</span>
+                </h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th><span class="lang-en">Stage</span><span class="lang-te">దశ</span></th>
+                            <th><span class="lang-en">Duration</span><span class="lang-te">కాలం</span></th>
+                            <th><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువు</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="lang-en">Basal / Sowing</span><span class="lang-te">బేసల్ / విత్తే దశ</span></td>
+                            <td><span class="lang-en">0–10 days</span><span class="lang-te">0–10 రోజులు</span></td>
+                            <td><span class="lang-en">FYM/compost + DAP + Potash</span><span class="lang-te">FYM/కంపోస్ట్ + DAP + పొటాష్</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Vegetative growth</span><span class="lang-te">పెరుగుదల దశ</span></td>
+                            <td><span class="lang-en">20–30 days</span><span class="lang-te">20–30 రోజులు</span></td>
+                            <td><span class="lang-en">Urea if advised</span><span class="lang-te">సూచించినట్లయితే యూరియా</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="lang-en">Leaf/Seed development</span><span class="lang-te">ఆకు / విత్తన అభివృద్ధి</span></td>
+                            <td><span class="lang-en">35–55 days</span><span class="lang-te">35–55 రోజులు</span></td>
+                            <td><span class="lang-en">Balanced nutrients</span><span class="lang-te">సమతుల పోషకాలు</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="schedule-note">
+                    <span class="lang-en"><strong>Note:</strong> This is a project-friendly typical schedule. Final fertilizer dose should be based on soil testing, crop variety and local agriculture recommendations.</span>
+                    <span class="lang-te"><strong>గమనిక:</strong> ఇది ప్రాజెక్ట్ కోసం ఇచ్చిన సాధారణ షెడ్యూల్. తుది ఎరువు మోతాదు నేల పరీక్ష, పంట రకం మరియు స్థానిక వ్యవసాయ సిఫార్సుల ఆధారంగా నిర్ణయించాలి.</span>
+                </p>
+            </div>
+</div>
+
+
+    </section>
+
+
+    <!-- ================= NO RESULT ================= -->
+
+    <div id="noResult" class="no-result" style="display:none;">
+
+        <span class="lang-en">
+            ❌ No fertilizer information found.
+        </span>
+
+        <span class="lang-te">
+            ❌ ఎరువుల సమాచారం కనుగొనబడలేదు.
+        </span>
+
+    </div>
+
+
+    <!-- ================= BACK BUTTON ================= -->
+
+    <div class="back-container">
+
+        <button class="back-btn" onclick="window.location.href='index.html'">
+
+            🏠
+            <span class="lang-en">Back to Home</span>
+            <span class="lang-te">హోమ్‌కు తిరిగి వెళ్ళండి</span>
+
+        </button>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            <span class="lang-en">
+                © 2026 Smart Digital Village Service Portal
+            </span>
+
+            <span class="lang-te">
+                © 2026 స్మార్ట్ డిజిటల్ విలేజ్ సర్వీస్ పోర్టల్
+            </span>
+
+        </p>
+
+        <p>
+
+            <span class="lang-en">
+                Agriculture Support Module
+            </span>
+
+            <span class="lang-te">
+                వ్యవసాయ సహాయ మాడ్యూల్
+            </span>
+
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* =========================================
+           LANGUAGE SWITCHING
+        ========================================= */
+
+        function setLanguage(language) {
+
+            const englishButton =
+                document.getElementById("englishBtn");
+
+            const teluguButton =
+                document.getElementById("teluguBtn");
+
+
+            if (language === "telugu") {
+
+                document.body.classList.add("telugu-mode");
+
+                englishButton.classList.remove("active");
+
+                teluguButton.classList.add("active");
+
+                localStorage.setItem("language", "telugu");
+
+            } else {
+
+                document.body.classList.remove("telugu-mode");
+
+                englishButton.classList.add("active");
+
+                teluguButton.classList.remove("active");
+
+                localStorage.setItem("language", "english");
+
+            }
+
+        }
+
+
+        /* =========================================
+           LOAD SAVED LANGUAGE
+        ========================================= */
+
+        window.addEventListener("DOMContentLoaded", function () {
+
+            const savedLanguage =
+                localStorage.getItem("language");
+
+            if (savedLanguage === "telugu") {
+
+                setLanguage("telugu");
+
+            } else {
+
+                setLanguage("english");
+
+            }
+
+        });
+
+
+        /* =========================================
+           FERTILIZER SEARCH
+        ========================================= */
+
+        function searchFertilizer() {
+
+            const searchText =
+                document
+                    .getElementById("fertilizerSearch")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const cards =
+                document.querySelectorAll(".crop-card");
+
+            let found = 0;
+
+
+            cards.forEach(function (card) {
+
+                /*
+                    innerText contains BOTH
+                    English and Telugu text.
+                */
+
+                const cardText =
+                    card.innerText.toLowerCase();
+
+
+                if (cardText.includes(searchText)) {
+
+                    card.style.display = "block";
+
+                    found++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+
+            const noResult =
+                document.getElementById("noResult");
+
+
+            if (found === 0) {
+
+                noResult.style.display = "block";
+
+            } else {
+
+                noResult.style.display = "none";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

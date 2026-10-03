@@ -1,0 +1,1067 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farm Records - Smart Digital Village</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: #f5fbf5;
+        }
+
+        .page-title {
+            text-align: center;
+            margin: 40px 20px 10px;
+            color: #2e7d32;
+        }
+
+        .page-description {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 30px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .record-container {
+            width: 90%;
+            max-width: 850px;
+            margin: 30px auto;
+        }
+
+        .record-form,
+        .saved-records {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .record-form h2,
+        .saved-records h2 {
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2e7d32;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .save-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #2e7d32;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .save-btn:hover {
+            background: #1b5e20;
+        }
+
+        .record-card {
+            border: 1px solid #d8ead8;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 18px;
+            background: #fbfffb;
+        }
+
+        .record-card h3 {
+            margin-top: 0;
+            color: #2e7d32;
+        }
+
+        .record-info {
+            margin: 8px 0;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .record-notes {
+            background: #f1f8f1;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .delete-btn {
+            margin-top: 15px;
+            padding: 9px 16px;
+            border: none;
+            border-radius: 7px;
+            background: #d32f2f;
+            color: white;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b71c1c;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+
+        .back-container {
+            text-align: center;
+            margin: 30px 0 50px;
+        }
+
+        .back-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background: #2e7d32;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background: #1b5e20;
+        }
+
+        .language-switcher {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .language-btn {
+            padding: 8px 16px;
+            margin: 3px;
+            border: 1px solid #2e7d32;
+            border-radius: 20px;
+            background: white;
+            color: #2e7d32;
+            cursor: pointer;
+        }
+
+        .language-btn.active {
+            background: #2e7d32;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .record-form,
+            .saved-records {
+                padding: 20px;
+            }
+
+            .page-title {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo">
+            🌾
+            <span class="lang-en">Smart Digital Village</span>
+            <span class="lang-te">స్మార్ట్ డిజిటల్ విలేజ్</span>
+        </div>
+
+        <nav>
+            <a href="index.html">
+                <span class="lang-en">Home</span>
+                <span class="lang-te">హోమ్</span>
+            </a>
+
+            <a href="crop-details.html">
+                <span class="lang-en">Crops</span>
+                <span class="lang-te">పంటలు</span>
+            </a>
+
+            <a href="fertilizer.html">
+                <span class="lang-en">Fertilizer</span>
+                <span class="lang-te">ఎరువులు</span>
+            </a>
+
+            <a href="weather.html">
+                <span class="lang-en">Weather</span>
+                <span class="lang-te">వాతావరణం</span>
+            </a>
+
+            <a href="farmer-query.html">
+                <span class="lang-en">Farmer Query</span>
+                <span class="lang-te">రైతు ప్రశ్న</span>
+            </a>
+        </nav>
+
+    </header>
+
+
+    <!-- LANGUAGE SWITCHER -->
+    <div class="language-switcher">
+
+        <button
+            id="englishBtn"
+            class="language-btn active"
+            onclick="setLanguage('english')">
+            🇬🇧 English
+        </button>
+
+        <button
+            id="teluguBtn"
+            class="language-btn"
+            onclick="setLanguage('telugu')">
+            🇮🇳 తెలుగు
+        </button>
+
+    </div>
+
+
+    <!-- PAGE TITLE -->
+
+    <h1 class="page-title">
+
+        <span class="lang-en">
+            📋 Farm Records
+        </span>
+
+        <span class="lang-te">
+            📋 వ్యవసాయ రికార్డులు
+        </span>
+
+    </h1>
+
+
+    <p class="page-description">
+
+        <span class="lang-en">
+            Maintain important information about your crops, land and farming activities in one place.
+        </span>
+
+        <span class="lang-te">
+            మీ పంటలు, భూమి మరియు వ్యవసాయ కార్యకలాపాలకు సంబంధించిన ముఖ్యమైన సమాచారాన్ని ఒకే చోట నమోదు చేసుకోండి.
+        </span>
+
+    </p>
+
+
+    <div class="record-container">
+
+
+        <!-- FARM RECORD FORM -->
+
+        <div class="record-form">
+
+            <h2>
+
+                <span class="lang-en">
+                    🌾 Add Farm Record
+                </span>
+
+                <span class="lang-te">
+                    🌾 వ్యవసాయ రికార్డు జోడించండి
+                </span>
+
+            </h2>
+
+
+            <!-- CROP -->
+
+            <div class="form-group">
+
+                <label for="crop">
+
+                    <span class="lang-en">
+                        Crop Name
+                    </span>
+
+                    <span class="lang-te">
+                        పంట పేరు
+                    </span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="crop"
+                    placeholder="Example: Paddy">
+
+            </div>
+
+
+            <!-- SEASON -->
+
+            <div class="form-group">
+
+                <label for="season">
+
+                    <span class="lang-en">
+                        Season
+                    </span>
+
+                    <span class="lang-te">
+                        సీజన్
+                    </span>
+
+                </label>
+
+                <select id="season">
+
+                    <option value="">
+
+                        Select Season
+
+                    </option>
+
+                    <option value="Kharif">
+
+                        Kharif / ఖరీఫ్
+
+                    </option>
+
+                    <option value="Rabi">
+
+                        Rabi / రబీ
+
+                    </option>
+
+                    <option value="Zaid">
+
+                        Zaid / వేసవి
+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- LAND AREA -->
+
+            <div class="form-group">
+
+                <label for="area">
+
+                    <span class="lang-en">
+                        Land Area (Acres)
+                    </span>
+
+                    <span class="lang-te">
+                        భూమి విస్తీర్ణం (ఎకరాలు)
+                    </span>
+
+                </label>
+
+                <input
+                    type="number"
+                    id="area"
+                    min="0"
+                    step="0.01"
+                    placeholder="Example: 2">
+
+            </div>
+
+
+            <!-- SOWING DATE -->
+
+            <div class="form-group">
+
+                <label for="sowingDate">
+
+                    <span class="lang-en">
+                        Sowing Date
+                    </span>
+
+                    <span class="lang-te">
+                        విత్తిన తేదీ
+                    </span>
+
+                </label>
+
+                <input
+                    type="date"
+                    id="sowingDate">
+
+            </div>
+
+
+            <!-- HARVEST DATE -->
+
+            <div class="form-group">
+
+                <label for="harvestDate">
+
+                    <span class="lang-en">
+                        Expected Harvest Date
+                    </span>
+
+                    <span class="lang-te">
+                        అంచనా కోత తేదీ
+                    </span>
+
+                </label>
+
+                <input
+                    type="date"
+                    id="harvestDate">
+
+            </div>
+
+
+            <!-- NOTES -->
+
+            <div class="form-group">
+
+                <label for="notes">
+
+                    <span class="lang-en">
+                        Farm Notes
+                    </span>
+
+                    <span class="lang-te">
+                        వ్యవసాయ గమనికలు
+                    </span>
+
+                </label>
+
+                <textarea
+                    id="notes"
+                    placeholder="Enter important farm information..."></textarea>
+
+            </div>
+
+
+            <!-- SAVE -->
+
+            <button
+                class="save-btn"
+                onclick="saveRecord()">
+
+                <span class="lang-en">
+                    💾 Save Farm Record
+                </span>
+
+                <span class="lang-te">
+                    💾 వ్యవసాయ రికార్డును సేవ్ చేయండి
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- SAVED RECORDS -->
+
+        <div class="saved-records">
+
+            <h2>
+
+                <span class="lang-en">
+                    📋 Saved Farm Records
+                </span>
+
+                <span class="lang-te">
+                    📋 సేవ్ చేసిన వ్యవసాయ రికార్డులు
+                </span>
+
+            </h2>
+
+
+            <div id="recordsList">
+
+                <div class="empty-message">
+
+                    <span class="lang-en">
+                        No farm records saved yet.
+                    </span>
+
+                    <span class="lang-te">
+                        ఇంకా వ్యవసాయ రికార్డులు సేవ్ చేయలేదు.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK TO HOME -->
+
+    <div class="back-container">
+
+        <button
+            class="back-btn"
+            onclick="window.location.href='index.html'">
+
+            <span class="lang-en">
+                ← Back to Home
+            </span>
+
+            <span class="lang-te">
+                ← హోమ్‌కు తిరిగి వెళ్లండి
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+
+            <span class="lang-en">
+                © 2026 Smart Digital Village - Agriculture Support
+            </span>
+
+            <span class="lang-te">
+                © 2026 స్మార్ట్ డిజిటల్ విలేజ్ - వ్యవసాయ సహాయం
+            </span>
+
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        /* =========================
+           LANGUAGE SWITCHING
+        ========================= */
+
+        function setLanguage(language) {
+
+            const englishButton =
+                document.getElementById("englishBtn");
+
+            const teluguButton =
+                document.getElementById("teluguBtn");
+
+
+            if (language === "telugu") {
+
+                document.body.classList.add("telugu-mode");
+
+                englishButton.classList.remove("active");
+
+                teluguButton.classList.add("active");
+
+                localStorage.setItem(
+                    "language",
+                    "telugu"
+                );
+
+            } else {
+
+                document.body.classList.remove("telugu-mode");
+
+                englishButton.classList.add("active");
+
+                teluguButton.classList.remove("active");
+
+                localStorage.setItem(
+                    "language",
+                    "english"
+                );
+            }
+
+        }
+
+
+        /* =========================
+           FARM RECORD STORAGE
+        ========================= */
+
+        function getRecords() {
+
+            return JSON.parse(
+                localStorage.getItem("farmRecords")
+            ) || [];
+
+        }
+
+
+        function saveRecord() {
+
+            const crop =
+                document.getElementById("crop").value.trim();
+
+            const season =
+                document.getElementById("season").value;
+
+            const area =
+                document.getElementById("area").value;
+
+            const sowingDate =
+                document.getElementById("sowingDate").value;
+
+            const harvestDate =
+                document.getElementById("harvestDate").value;
+
+            const notes =
+                document.getElementById("notes").value.trim();
+
+
+            const isTelugu =
+                document.body.classList.contains("telugu-mode");
+
+
+            /* VALIDATION */
+
+            if (crop === "") {
+
+                alert(
+                    isTelugu
+                        ? "దయచేసి పంట పేరును నమోదు చేయండి."
+                        : "Please enter the crop name."
+                );
+
+                return;
+            }
+
+
+            if (season === "") {
+
+                alert(
+                    isTelugu
+                        ? "దయచేసి సీజన్‌ను ఎంచుకోండి."
+                        : "Please select the season."
+                );
+
+                return;
+            }
+
+
+            if (area === "" || Number(area) <= 0) {
+
+                alert(
+                    isTelugu
+                        ? "దయచేసి సరైన భూమి విస్తీర్ణాన్ని నమోదు చేయండి."
+                        : "Please enter a valid land area."
+                );
+
+                return;
+            }
+
+
+            /* CREATE RECORD */
+
+            const record = {
+
+                id: Date.now(),
+
+                crop: crop,
+
+                season: season,
+
+                area: area,
+
+                sowingDate: sowingDate,
+
+                harvestDate: harvestDate,
+
+                notes: notes
+
+            };
+
+
+            /* GET EXISTING RECORDS */
+
+            const records = getRecords();
+
+
+            /* ADD NEW RECORD */
+
+            records.push(record);
+
+
+            /* SAVE */
+
+            localStorage.setItem(
+                "farmRecords",
+                JSON.stringify(records)
+            );
+
+
+            /* CLEAR FORM */
+
+            document.getElementById("crop").value = "";
+
+            document.getElementById("season").value = "";
+
+            document.getElementById("area").value = "";
+
+            document.getElementById("sowingDate").value = "";
+
+            document.getElementById("harvestDate").value = "";
+
+            document.getElementById("notes").value = "";
+
+
+            /* DISPLAY */
+
+            displayRecords();
+
+
+            alert(
+                isTelugu
+                    ? "వ్యవసాయ రికార్డు విజయవంతంగా సేవ్ చేయబడింది."
+                    : "Farm record saved successfully."
+            );
+
+        }
+
+
+        /* =========================
+           DISPLAY RECORDS
+        ========================= */
+
+        function displayRecords() {
+
+            const records = getRecords();
+
+            const recordsList =
+                document.getElementById("recordsList");
+
+
+            if (records.length === 0) {
+
+                recordsList.innerHTML = `
+
+                    <div class="empty-message">
+
+                        <span class="lang-en">
+                            No farm records saved yet.
+                        </span>
+
+                        <span class="lang-te">
+                            ఇంకా వ్యవసాయ రికార్డులు సేవ్ చేయలేదు.
+                        </span>
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            recordsList.innerHTML = "";
+
+
+            records.forEach(function(record) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className = "record-card";
+
+
+                card.innerHTML = `
+
+                    <h3>
+                        🌾 ${escapeHTML(record.crop)}
+                    </h3>
+
+                    <div class="record-info">
+
+                        <strong>
+                            <span class="lang-en">Season:</span>
+                            <span class="lang-te">సీజన్:</span>
+                        </strong>
+
+                        ${escapeHTML(record.season)}
+
+                    </div>
+
+
+                    <div class="record-info">
+
+                        <strong>
+                            <span class="lang-en">Land Area:</span>
+                            <span class="lang-te">భూమి విస్తీర్ణం:</span>
+                        </strong>
+
+                        ${escapeHTML(record.area)} acres
+
+                    </div>
+
+
+                    <div class="record-info">
+
+                        <strong>
+                            <span class="lang-en">Sowing Date:</span>
+                            <span class="lang-te">విత్తిన తేదీ:</span>
+                        </strong>
+
+                        ${record.sowingDate
+                            ? escapeHTML(formatDate(record.sowingDate))
+                            : "-"
+                        }
+
+                    </div>
+
+
+                    <div class="record-info">
+
+                        <strong>
+                            <span class="lang-en">Expected Harvest:</span>
+                            <span class="lang-te">అంచనా కోత తేదీ:</span>
+                        </strong>
+
+                        ${record.harvestDate
+                            ? escapeHTML(formatDate(record.harvestDate))
+                            : "-"
+                        }
+
+                    </div>
+
+
+                    ${
+                        record.notes
+                            ? `
+                                <div class="record-notes">
+
+                                    <strong>
+
+                                        <span class="lang-en">
+                                            Farm Notes:
+                                        </span>
+
+                                        <span class="lang-te">
+                                            వ్యవసాయ గమనికలు:
+                                        </span>
+
+                                    </strong>
+
+                                    <br>
+
+                                    ${escapeHTML(record.notes)}
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteRecord(${record.id})">
+
+                        <span class="lang-en">
+                            🗑️ Delete
+                        </span>
+
+                        <span class="lang-te">
+                            🗑️ తొలగించండి
+                        </span>
+
+                    </button>
+
+                `;
+
+
+                recordsList.appendChild(card);
+
+            });
+
+
+            applyCurrentLanguage();
+
+        }
+
+
+        /* =========================
+           DELETE RECORD
+        ========================= */
+
+        function deleteRecord(id) {
+
+            const isTelugu =
+                document.body.classList.contains("telugu-mode");
+
+
+            const confirmDelete =
+                confirm(
+                    isTelugu
+                        ? "ఈ రికార్డును తొలగించాలా?"
+                        : "Do you want to delete this record?"
+                );
+
+
+            if (!confirmDelete) {
+                return;
+            }
+
+
+            let records = getRecords();
+
+
+            records = records.filter(function(record) {
+
+                return record.id !== id;
+
+            });
+
+
+            localStorage.setItem(
+                "farmRecords",
+                JSON.stringify(records)
+            );
+
+
+            displayRecords();
+
+        }
+
+
+        /* =========================
+           DATE FORMAT
+        ========================= */
+
+        function formatDate(dateString) {
+
+            const date =
+                new Date(dateString + "T00:00:00");
+
+
+            return date.toLocaleDateString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        /* =========================
+           SECURITY
+        ========================= */
+
+        function escapeHTML(value) {
+
+            return String(value)
+
+                .replace(/&/g, "&amp;")
+
+                .replace(/</g, "&lt;")
+
+                .replace(/>/g, "&gt;")
+
+                .replace(/"/g, "&quot;")
+
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =========================
+           APPLY LANGUAGE
+        ========================= */
+
+        function applyCurrentLanguage() {
+
+            const savedLanguage =
+                localStorage.getItem("language");
+
+
+            if (savedLanguage === "telugu") {
+
+                document.body.classList.add("telugu-mode");
+
+                document
+                    .getElementById("englishBtn")
+                    .classList.remove("active");
+
+                document
+                    .getElementById("teluguBtn")
+                    .classList.add("active");
+
+            } else {
+
+                document.body.classList.remove("telugu-mode");
+
+                document
+                    .getElementById("englishBtn")
+                    .classList.add("active");
+
+                document
+                    .getElementById("teluguBtn")
+                    .classList.remove("active");
+
+            }
+
+        }
+
+
+        /* =========================
+           PAGE LOAD
+        ========================= */
+
+        window.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                applyCurrentLanguage();
+
+                displayRecords();
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
+```
+
+

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farmer Query | Agriculture Support</title>
+
+    <!-- Google Telugu Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================================
+           FARMER QUERY PAGE
+        ================================= */
+
+        .query-container {
+            width: 90%;
+            max-width: 850px;
+            margin: 35px auto;
+        }
+
+        .query-intro {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .query-intro h2 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+
+        .query-intro p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .query-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #cfcfcf;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.10);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #1b5e20;
+        }
+
+        .success-message {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* Submitted Query */
+
+        .submitted-query {
+            display: none;
+            margin-top: 25px;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #2e7d32;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .submitted-query h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .query-detail {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .query-detail strong {
+            color: #333;
+        }
+
+        .back-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .back-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background: #555;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .back-btn:hover {
+            background: #333;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .query-card {
+                padding: 20px;
+            }
+
+            .query-container {
+                width: 94%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header>
+
+        <div class="logo">
+            🌾
+            <span class="lang-en">Agriculture Support</span>
+            <span class="lang-te">వ్యవసాయ సహాయం</span>
+        </div>
+
+        <!-- Language Buttons -->
+
+        <div class="language-switcher">
+
+            <button id="englishBtn"
+                class="language-btn active"
+                onclick="setLanguage('english')">
+                🇬🇧 English
+            </button>
+
+            <button id="teluguBtn"
+                class="language-btn"
+                onclick="setLanguage('telugu')">
+                🇮🇳 తెలుగు
+            </button>
+
+        </div>
+
+        <!-- Navigation -->
+
+        <nav>
+
+            <a href="index.html">
+                <span class="lang-en">Home</span>
+                <span class="lang-te">హోమ్</span>
+            </a>
+
+            <a href="crop-details.html">
+                <span class="lang-en">Crop Details</span>
+                <span class="lang-te">పంటల వివరాలు</span>
+            </a>
+
+            <a href="fertilizer.html">
+                <span class="lang-en">Fertilizer</span>
+                <span class="lang-te">ఎరువులు</span>
+            </a>
+
+            <a href="weather.html">
+                <span class="lang-en">Weather</span>
+                <span class="lang-te">వాతావరణం</span>
+            </a>
+
+            <a href="farmer-query.html">
+                <span class="lang-en">Farmer Query</span>
+                <span class="lang-te">రైతు ప్రశ్న</span>
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================================
+         PAGE TITLE
+    ================================= -->
+
+    <section class="page-title">
+
+        <h1>
+
+            <span class="lang-en">
+                👨‍🌾 Farmer Query
+            </span>
+
+            <span class="lang-te">
+                👨‍🌾 రైతు ప్రశ్న
+            </span>
+
+        </h1>
+
+        <p>
+
+            <span class="lang-en">
+                Ask your agriculture-related questions
+            </span>
+
+            <span class="lang-te">
+                వ్యవసాయానికి సంబంధించిన మీ ప్రశ్నలను అడగండి
+            </span>
+
+        </p>
+
+    </section>
+
+
+    <!-- ================================
+         QUERY CONTENT
+    ================================= -->
+
+    <main class="query-container">
+
+        <div class="query-intro">
+
+            <h2>
+
+                <span class="lang-en">
+                    How Can We Help You?
+                </span>
+
+                <span class="lang-te">
+                    మేము మీకు ఎలా సహాయం చేయగలం?
+                </span>
+
+            </h2>
+
+            <p>
+
+                <span class="lang-en">
+                    Enter your details and describe your agriculture-related question.
+                    This page provides a simple way to record your query.
+                </span>
+
+                <span class="lang-te">
+                    మీ వివరాలను నమోదు చేసి, వ్యవసాయానికి సంబంధించిన మీ ప్రశ్నను వివరించండి.
+                    ఈ పేజీ మీ ప్రశ్నను సులభంగా నమోదు చేయడానికి ఉపయోగపడుతుంది.
+                </span>
+
+            </p>
+
+        </div>
+
+
+        <!-- ================================
+             FORM
+        ================================= -->
+
+        <div class="query-card">
+
+            <form id="farmerQueryForm">
+
+                <!-- Farmer Name -->
+
+                <div class="form-group">
+
+                    <label for="farmerName">
+
+                        <span class="lang-en">
+                            Farmer Name
+                        </span>
+
+                        <span class="lang-te">
+                            రైతు పేరు
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="farmerName"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <!-- Mobile Number -->
+
+                <div class="form-group">
+
+                    <label for="mobileNumber">
+
+                        <span class="lang-en">
+                            Mobile Number
+                        </span>
+
+                        <span class="lang-te">
+                            మొబైల్ నంబర్
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="mobileNumber"
+                        placeholder="Enter mobile number"
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                        required>
+
+                </div>
+
+
+                <!-- Query Category -->
+
+                <div class="form-group">
+
+                    <label for="queryCategory">
+
+                        <span class="lang-en">
+                            Query Category
+                        </span>
+
+                        <span class="lang-te">
+                            ప్రశ్న వర్గం
+                        </span>
+
+                    </label>
+
+                    <select id="queryCategory" required>
+
+                        <option value="">
+
+                            Select Category
+
+                        </option>
+
+                        <option value="crop">
+
+                            Crop Information / పంటల సమాచారం
+
+                        </option>
+
+                        <option value="fertilizer">
+
+                            Fertilizer / ఎరువులు
+
+                        </option>
+
+                        <option value="pest">
+
+                            Pest & Disease / పురుగులు & వ్యాధులు
+
+                        </option>
+
+                        <option value="weather">
+
+                            Weather / వాతావరణం
+
+                        </option>
+
+                        <option value="irrigation">
+
+                            Irrigation / నీటిపారుదల
+
+                        </option>
+
+                        <option value="other">
+
+                            Other / ఇతర
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Crop Name -->
+
+                <div class="form-group">
+
+                    <label for="cropName">
+
+                        <span class="lang-en">
+                            Crop Name
+                        </span>
+
+                        <span class="lang-te">
+                            పంట పేరు
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cropName"
+                        placeholder="Example: Paddy">
+
+                </div>
+
+
+                <!-- Question -->
+
+                <div class="form-group">
+
+                    <label for="farmerQuestion">
+
+                        <span class="lang-en">
+                            Your Question
+                        </span>
+
+                        <span class="lang-te">
+                            మీ ప్రశ్న
+                        </span>
+
+                    </label>
+
+                    <textarea
+                        id="farmerQuestion"
+                        placeholder="Describe your agriculture problem or question..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="submit-btn">
+
+                    <span class="lang-en">
+                        Submit Query
+                    </span>
+
+                    <span class="lang-te">
+                        ప్రశ్నను పంపండి
+                    </span>
+
+                </button>
+
+            </form>
+
+
+            <!-- Success -->
+
+            <div
+                id="successMessage"
+                class="success-message">
+
+                <span class="lang-en">
+                    ✅ Your query has been recorded successfully!
+                </span>
+
+                <span class="lang-te">
+                    ✅ మీ ప్రశ్న విజయవంతంగా నమోదు చేయబడింది!
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================
+             SUBMITTED QUERY
+        ================================= -->
+
+        <div
+            id="submittedQuery"
+            class="submitted-query">
+
+            <h3>
+
+                <span class="lang-en">
+                    Your Submitted Query
+                </span>
+
+                <span class="lang-te">
+                    మీరు పంపిన ప్రశ్న
+                </span>
+
+            </h3>
+
+
+            <div class="query-detail">
+
+                <strong>
+
+                    <span class="lang-en">
+                        Name:
+                    </span>
+
+                    <span class="lang-te">
+                        పేరు:
+                    </span>
+
+                </strong>
+
+                <span id="displayName"></span>
+
+            </div>
+
+
+            <div class="query-detail">
+
+                <strong>
+
+                    <span class="lang-en">
+                        Mobile:
+                    </span>
+
+                    <span class="lang-te">
+                        మొబైల్:
+                    </span>
+
+                </strong>
+
+                <span id="displayMobile"></span>
+
+            </div>
+
+
+            <div class="query-detail">
+
+                <strong>
+
+                    <span class="lang-en">
+                        Category:
+                    </span>
+
+                    <span class="lang-te">
+                        వర్గం:
+                    </span>
+
+                </strong>
+
+                <span id="displayCategory"></span>
+
+            </div>
+
+
+            <div class="query-detail">
+
+                <strong>
+
+                    <span class="lang-en">
+                        Crop:
+                    </span>
+
+                    <span class="lang-te">
+                        పంట:
+                    </span>
+
+                </strong>
+
+                <span id="displayCrop"></span>
+
+            </div>
+
+
+            <div class="query-detail">
+
+                <strong>
+
+                    <span class="lang-en">
+                        Question:
+                    </span>
+
+                    <span class="lang-te">
+                        ప్రశ్న:
+                    </span>
+
+                </strong>
+
+                <span id="displayQuestion"></span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================
+             BACK TO HOME
+        ================================= -->
+
+        <div class="back-container">
+
+            <button
+                class="back-btn"
+                onclick="window.location.href='index.html'">
+
+                <span class="lang-en">
+                    ← Back to Home
+                </span>
+
+                <span class="lang-te">
+                    ← హోమ్‌కు తిరిగి వెళ్లండి
+                </span>
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer>
+
+        <p>
+
+            <span class="lang-en">
+                © 2026 Agriculture Support | Smart Digital Village Service Portal
+            </span>
+
+            <span class="lang-te">
+                © 2026 వ్యవసాయ సహాయం | స్మార్ట్ డిజిటల్ విలేజ్ సర్వీస్ పోర్టల్
+            </span>
+
+        </p>
+
+    </footer>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        /* ================================
+           LANGUAGE SWITCH
+        ================================= */
+
+        function setLanguage(language) {
+
+            const englishButton =
+                document.getElementById("englishBtn");
+
+            const teluguButton =
+                document.getElementById("teluguBtn");
+
+
+            if (language === "telugu") {
+
+                document.body.classList.add("telugu-mode");
+
+                englishButton.classList.remove("active");
+
+                teluguButton.classList.add("active");
+
+                localStorage.setItem(
+                    "language",
+                    "telugu"
+                );
+
+            } else {
+
+                document.body.classList.remove("telugu-mode");
+
+                englishButton.classList.add("active");
+
+                teluguButton.classList.remove("active");
+
+                localStorage.setItem(
+                    "language",
+                    "english"
+                );
+            }
+        }
+
+
+        /* ================================
+           LOAD SAVED LANGUAGE
+        ================================= */
+
+        window.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                const savedLanguage =
+                    localStorage.getItem("language");
+
+                if (savedLanguage === "telugu") {
+
+                    setLanguage("telugu");
+
+                } else {
+
+                    setLanguage("english");
+
+                }
+
+            }
+        );
+
+
+        /* ================================
+           FORM SUBMISSION
+        ================================= */
+
+        document
+            .getElementById("farmerQueryForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById("farmerName").value.trim();
+
+                const mobile =
+                    document.getElementById("mobileNumber").value.trim();
+
+                const category =
+                    document.getElementById("queryCategory");
+
+                const crop =
+                    document.getElementById("cropName").value.trim();
+
+                const question =
+                    document.getElementById("farmerQuestion").value.trim();
+
+
+                /* Get category text */
+
+                const categoryText =
+                    category.options[category.selectedIndex].text;
+
+
+                /* Display submitted data */
+
+                document.getElementById("displayName").textContent =
+                    name;
+
+                document.getElementById("displayMobile").textContent =
+                    mobile;
+
+                document.getElementById("displayCategory").textContent =
+                    categoryText;
+
+                document.getElementById("displayCrop").textContent =
+                    crop || "Not specified";
+
+                document.getElementById("displayQuestion").textContent =
+                    question;
+
+
+                /* Show success message */
+
+                document.getElementById("successMessage")
+                    .style.display = "block";
+
+
+                /* Show submitted query */
+
+                document.getElementById("submittedQuery")
+                    .style.display = "block";
+
+
+                /* Scroll to submitted query */
+
+                document.getElementById("submittedQuery")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            });
+
+    </script>
+
+</body>
+
+</html>

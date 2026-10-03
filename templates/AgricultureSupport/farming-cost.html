@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Farming Cost Calculator - Agriculture Support</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .cost-page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 35px 20px 50px;
+        }
+
+        .page-title {
+            text-align: center;
+            color: #1b5e20;
+            margin-bottom: 10px;
+        }
+
+        .page-intro {
+            text-align: center;
+            color: #555;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto 25px;
+        }
+
+        /* Language Buttons */
+        .language-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0 25px;
+        }
+
+        .language-btn {
+            border: 1px solid #2e7d32;
+            background: white;
+            color: #2e7d32;
+            padding: 9px 18px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .language-btn.active,
+        .language-btn:hover {
+            background: #2e7d32;
+            color: white;
+        }
+
+        /* Calculator */
+        .calculator-box {
+            background: white;
+            max-width: 750px;
+            margin: 30px auto;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
+        }
+
+        .calculator-box h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2e7d32;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #2e7d32;
+            color: white;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            background: #1b5e20;
+        }
+
+        /* Result */
+        .result-box {
+            display: none;
+            margin-top: 25px;
+            background: #f1f8e9;
+            border: 2px solid #81c784;
+            border-radius: 14px;
+            padding: 22px;
+        }
+
+        .result-box h2 {
+            color: #1b5e20;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #c8e6c9;
+        }
+
+        .cost-row:last-child {
+            border-bottom: none;
+        }
+
+        .total-cost {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .note {
+            margin-top: 18px;
+            background: #fff8e1;
+            border-left: 4px solid #f9a825;
+            padding: 12px 15px;
+            border-radius: 8px;
+            line-height: 1.6;
+            color: #5d4037;
+        }
+
+        /* Back button */
+        .back-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-btn {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: #1b5e20;
+        }
+
+        /* Language */
+        .lang-en {
+            display: initial;
+        }
+
+        .lang-te {
+            display: none;
+            font-family: "Noto Sans Telugu", Arial, sans-serif;
+        }
+
+        body.telugu-mode .lang-en {
+            display: none;
+        }
+
+        body.telugu-mode .lang-te {
+            display: initial;
+        }
+
+        @media (max-width: 600px) {
+            .cost-page {
+                padding: 25px 12px 40px;
+            }
+
+            .calculator-box {
+                padding: 20px;
+            }
+
+            .cost-row {
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .total-cost {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <span class="lang-en">🌾 Agriculture Support</span>
+            <span class="lang-te">🌾 వ్యవసాయ సహాయం</span>
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                <span class="lang-en">Home</span>
+                <span class="lang-te">హోమ్</span>
+            </a>
+
+            <a href="crop-details.html">
+                <span class="lang-en">Crop Details</span>
+                <span class="lang-te">పంట వివరాలు</span>
+            </a>
+
+            <a href="fertilizer.html">
+                <span class="lang-en">Fertilizer</span>
+                <span class="lang-te">ఎరువులు</span>
+            </a>
+
+            <a href="weather.html">
+                <span class="lang-en">Weather</span>
+                <span class="lang-te">వాతావరణం</span>
+            </a>
+
+            <a href="farmer-query.html">
+                <span class="lang-en">Farmer Query</span>
+                <span class="lang-te">రైతు ప్రశ్న</span>
+            </a>
+
+            <a href="disease-prediction.html">
+                <span class="lang-en">Disease Prediction</span>
+                <span class="lang-te">వ్యాధి గుర్తింపు</span>
+            </a>
+
+            <a href="farming-cost.html">
+                <span class="lang-en">Farming Cost</span>
+                <span class="lang-te">వ్యవసాయ ఖర్చు</span>
+            </a>
+
+            <a href="farming-tips.html">
+                <span class="lang-en">Farming Tips</span>
+                <span class="lang-te">వ్యవసాయ సూచనలు</span>
+            </a>
+
+        </nav>
+    </header>
+
+
+    <!-- LANGUAGE SWITCH -->
+    <div class="language-switcher">
+
+        <button id="englishBtn"
+                class="language-btn active"
+                onclick="setLanguage('english')">
+            🇬🇧 English
+        </button>
+
+        <button id="teluguBtn"
+                class="language-btn"
+                onclick="setLanguage('telugu')">
+            🇮🇳 తెలుగు
+        </button>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="cost-page">
+
+        <h1 class="page-title">
+
+            <span class="lang-en">
+                💰 Farming Cost Calculator
+            </span>
+
+            <span class="lang-te">
+                💰 వ్యవసాయ ఖర్చు కాలిక్యులేటర్
+            </span>
+
+        </h1>
+
+
+        <p class="page-intro">
+
+            <span class="lang-en">
+                Calculate the estimated total cost of farming by entering
+                your crop area and different farming expenses.
+            </span>
+
+            <span class="lang-te">
+                పంట విస్తీర్ణం మరియు వివిధ వ్యవసాయ ఖర్చులను నమోదు చేసి
+                మొత్తం అంచనా వ్యవసాయ ఖర్చును లెక్కించండి.
+            </span>
+
+        </p>
+
+
+        <!-- CALCULATOR -->
+        <div class="calculator-box">
+
+            <h2>
+
+                <span class="lang-en">
+                    Enter Farming Details
+                </span>
+
+                <span class="lang-te">
+                    వ్యవసాయ వివరాలను నమోదు చేయండి
+                </span>
+
+            </h2>
+
+
+            <!-- Crop -->
+            <div class="form-group">
+
+                <label>
+
+                    <span class="lang-en">
+                        🌾 Select Crop
+                    </span>
+
+                    <span class="lang-te">
+                        🌾 పంటను ఎంచుకోండి
+                    </span>
+
+                </label>
+
+                <select id="crop">
+
+                    <option value="">
+                        Select Crop
+                    </option>
+
+                    <option>Paddy / వరి</option>
+                    <option>Cotton / పత్తి</option>
+                    <option>Maize / మొక్కజొన్న</option>
+                    <option>Red Gram / కంది</option>
+                    <option>Green Gram / పెసలు</option>
+                    <option>Black Gram / మినుములు</option>
+                    <option>Groundnut / వేరుశెనగ</option>
+                    <option>Soybean / సోయాబీన్</option>
+                    <option>Chilli / మిరప</option>
+                    <option>Turmeric / పసుపు</option>
+                    <option>Tomato / టమాటా</option>
+                    <option>Brinjal / వంకాయ</option>
+                    <option>Onion / ఉల్లిపాయ</option>
+                    <option>Potato / బంగాళాదుంప</option>
+                    <option>Wheat / గోధుమ</option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Land Area -->
+            <div class="form-group">
+
+                <label>
+
+                    <span class="lang-en">
+                        📏 Land Area (Acres)
+                    </span>
+
+                    <span class="lang-te">
+                        📏 భూమి విస్తీర్ణం (ఎకరాలు)
+                    </span>
+
+                </label>
+
+                <input
+                    type="number"
+                    id="area"
+                    min="0"
+                    step="0.01"
+                    placeholder="Example: 2"
+                >
+
+            </div>
+
+
+            <!-- Seed -->
+            <div class="form-group">
+
+                <label>
+
+                    <span class="lang-en">
+                        🌱 Seed Cost (₹)
+                    </span>
+
+                    <span class="lang-te">
+                        🌱 విత్తనాల ఖర్చు (₹)
+                    </span>
+
+                </label>
+
+                <input
+                    type="number"
+                    id="seedCost"
+                    min="0"
+                    placeholder="Example: 3000"
+                >
+
+            </div>
+
+
+            <!-- Fertilizer -->
+            <div class="form-group">
+
+                <label>
+
+                    <span class="lang-en">
+                        🧪 Fertilizer Cost (₹)
+                    </span>
+
+                    <span class="lang-te">
+                        🧪 ఎరువుల ఖర్చు (₹)
+                    </span>
+
+                </label>
+
+                <input
+                    type="number"
+                    id="fertilizerCost"
+                    min="0"
+                    placeholder="Example: 5000"
+                >
+
+            </div>
+
+
+            <!-- Labour -->
+            <div class="form-group">
+
+                <label>
+
+                    <span class="lang-en">
+                        👨‍🌾 Labour Cost (₹)
+                    </span>
+
+                    <span class="lang-te">
+                        👨‍🌾 కూలీల ఖర్చు (₹)
+                    </span>
+
+                </label>
+
+                <input
+                    type="number"
+                    id="labourCost"
+                    min="0"
+                    placeholder="Example: 8000"
+                >
+
+            </div>
+
+
+            <!-- Irrigation -->
+            <div class="form-group">
+
+                <label>
+
+                    <span class="lang-en">
+                        💧 Irrigation Cost (₹)
+                    </span>
+
+                    <span class="lang-te">
+                        💧 నీటిపారుదల ఖర్చు (₹)
+                    </span>
+
+                </label>
+
+                <input
+                    type="number"
+                    id="irrigationCost"
+                    min="0"
+                    placeholder="Example: 2000"
+                >
+
+            </div>
+
+
+            <!-- Other -->
+            <div class="form-group">
+
+                <label>
+
+                    <span class="lang-en">
+                        📦 Other Expenses (₹)
+                    </span>
+
+                    <span class="lang-te">
+                        📦 ఇతర ఖర్చులు (₹)
+                    </span>
+
+                </label>
+
+                <input
+                    type="number"
+                    id="otherCost"
+                    min="0"
+                    placeholder="Example: 2000"
+                >
+
+            </div>
+
+
+            <!-- Calculate -->
+            <button class="calculate-btn" onclick="calculateCost()">
+
+                <span class="lang-en">
+                    🧮 Calculate Total Cost
+                </span>
+
+                <span class="lang-te">
+                    🧮 మొత్తం ఖర్చును లెక్కించండి
+                </span>
+
+            </button>
+
+
+            <!-- RESULT -->
+            <div id="resultBox" class="result-box">
+
+                <h2>
+
+                    <span class="lang-en">
+                        📊 Farming Cost Result
+                    </span>
+
+                    <span class="lang-te">
+                        📊 వ్యవసాయ ఖర్చు ఫలితం
+                    </span>
+
+                </h2>
+
+
+                <div class="cost-row">
+
+                    <strong>
+                        <span class="lang-en">Crop</span>
+                        <span class="lang-te">పంట</span>
+                    </strong>
+
+                    <span id="resultCrop">-</span>
+
+                </div>
+
+
+                <div class="cost-row">
+
+                    <strong>
+                        <span class="lang-en">Land Area</span>
+                        <span class="lang-te">భూమి విస్తీర్ణం</span>
+                    </strong>
+
+                    <span id="resultArea">-</span>
+
+                </div>
+
+
+                <div class="cost-row">
+
+                    <strong>
+                        <span class="lang-en">Seed Cost</span>
+                        <span class="lang-te">విత్తనాల ఖర్చు</span>
+                    </strong>
+
+                    <span id="resultSeed">₹0</span>
+
+                </div>
+
+
+                <div class="cost-row">
+
+                    <strong>
+                        <span class="lang-en">Fertilizer Cost</span>
+                        <span class="lang-te">ఎరువుల ఖర్చు</span>
+                    </strong>
+
+                    <span id="resultFertilizer">₹0</span>
+
+                </div>
+
+
+                <div class="cost-row">
+
+                    <strong>
+                        <span class="lang-en">Labour Cost</span>
+                        <span class="lang-te">కూలీల ఖర్చు</span>
+                    </strong>
+
+                    <span id="resultLabour">₹0</span>
+
+                </div>
+
+
+                <div class="cost-row">
+
+                    <strong>
+                        <span class="lang-en">Irrigation Cost</span>
+                        <span class="lang-te">నీటిపారుదల ఖర్చు</span>
+                    </strong>
+
+                    <span id="resultIrrigation">₹0</span>
+
+                </div>
+
+
+                <div class="cost-row">
+
+                    <strong>
+                        <span class="lang-en">Other Expenses</span>
+                        <span class="lang-te">ఇతర ఖర్చులు</span>
+                    </strong>
+
+                    <span id="resultOther">₹0</span>
+
+                </div>
+
+
+                <div class="total-cost">
+
+                    <span class="lang-en">
+                        Total Farming Cost:
+                    </span>
+
+                    <span class="lang-te">
+                        మొత్తం వ్యవసాయ ఖర్చు:
+                    </span>
+
+                    <span id="totalCost">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="note">
+
+                    <span class="lang-en">
+                        <strong>Note:</strong>
+                        This is an estimated calculator for project/demo purposes.
+                        Actual farming costs may vary depending on crop, location,
+                        land condition, labour rates, input prices and season.
+                    </span>
+
+                    <span class="lang-te">
+                        <strong>గమనిక:</strong>
+                        ఇది ప్రాజెక్ట్/డెమో కోసం రూపొందించిన అంచనా కాలిక్యులేటర్.
+                        పంట, ప్రాంతం, భూమి పరిస్థితి, కూలీ ధరలు, ఇన్‌పుట్ ధరలు
+                        మరియు సీజన్ ఆధారంగా వాస్తవ వ్యవసాయ ఖర్చులు మారవచ్చు.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BACK -->
+        <div class="back-container">
+
+            <button
+                class="back-btn"
+                onclick="window.location.href='index.html'">
+
+                <span class="lang-en">
+                    ← Back to Home
+                </span>
+
+                <span class="lang-te">
+                    ← హోమ్‌కు తిరిగి వెళ్లండి
+                </span>
+
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* LANGUAGE SWITCH */
+
+        function setLanguage(language) {
+
+            const englishButton =
+                document.getElementById("englishBtn");
+
+            const teluguButton =
+                document.getElementById("teluguBtn");
+
+
+            if (language === "telugu") {
+
+                document.body.classList.add("telugu-mode");
+
+                englishButton.classList.remove("active");
+
+                teluguButton.classList.add("active");
+
+                localStorage.setItem("language", "telugu");
+
+            } else {
+
+                document.body.classList.remove("telugu-mode");
+
+                englishButton.classList.add("active");
+
+                teluguButton.classList.remove("active");
+
+                localStorage.setItem("language", "english");
+
+            }
+
+        }
+
+
+        /* COST CALCULATOR */
+
+        function calculateCost() {
+
+            const crop =
+                document.getElementById("crop").value;
+
+            const area =
+                parseFloat(document.getElementById("area").value) || 0;
+
+            const seed =
+                parseFloat(document.getElementById("seedCost").value) || 0;
+
+            const fertilizer =
+                parseFloat(document.getElementById("fertilizerCost").value) || 0;
+
+            const labour =
+                parseFloat(document.getElementById("labourCost").value) || 0;
+
+            const irrigation =
+                parseFloat(document.getElementById("irrigationCost").value) || 0;
+
+            const other =
+                parseFloat(document.getElementById("otherCost").value) || 0;
+
+
+            if (crop === "") {
+
+                alert(
+                    document.body.classList.contains("telugu-mode")
+                    ? "దయచేసి పంటను ఎంచుకోండి."
+                    : "Please select a crop."
+                );
+
+                return;
+
+            }
+
+
+            if (area <= 0) {
+
+                alert(
+                    document.body.classList.contains("telugu-mode")
+                    ? "దయచేసి భూమి విస్తీర్ణాన్ని నమోదు చేయండి."
+                    : "Please enter a valid land area."
+                );
+
+                return;
+
+            }
+
+
+            const total =
+                seed +
+                fertilizer +
+                labour +
+                irrigation +
+                other;
+
+
+            document.getElementById("resultCrop").textContent = crop;
+
+            document.getElementById("resultArea").textContent =
+                area + " acres";
+
+
+            document.getElementById("resultSeed").textContent =
+                "₹" + seed.toLocaleString("en-IN");
+
+            document.getElementById("resultFertilizer").textContent =
+                "₹" + fertilizer.toLocaleString("en-IN");
+
+            document.getElementById("resultLabour").textContent =
+                "₹" + labour.toLocaleString("en-IN");
+
+            document.getElementById("resultIrrigation").textContent =
+                "₹" + irrigation.toLocaleString("en-IN");
+
+            document.getElementById("resultOther").textContent =
+                "₹" + other.toLocaleString("en-IN");
+
+            document.getElementById("totalCost").textContent =
+                "₹" + total.toLocaleString("en-IN");
+
+
+            document.getElementById("resultBox").style.display = "block";
+
+
+            document.getElementById("resultBox").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+        /* LOAD SAVED LANGUAGE */
+
+        window.addEventListener("DOMContentLoaded", function() {
+
+            const savedLanguage =
+                localStorage.getItem("language");
+
+
+            if (savedLanguage === "telugu") {
+
+                setLanguage("telugu");
+
+            } else {
+
+                setLanguage("english");
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

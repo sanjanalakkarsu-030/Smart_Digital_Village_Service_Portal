@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farming Tips - Agriculture Support</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.lang-en{display:initial}.lang-te{display:none;font-family:"Noto Sans Telugu",Arial,sans-serif}body.telugu-mode .lang-en{display:none}body.telugu-mode .lang-te{display:initial}
+.language-switcher{text-align:center;margin:20px}.language-btn{padding:9px 18px;border:1px solid #2e7d32;border-radius:22px;background:#fff;color:#2e7d32;font-weight:600;cursor:pointer;margin:4px}.language-btn.active,.language-btn:hover{background:#2e7d32;color:#fff}
+.tips-page{max-width:1100px;margin:auto;padding:25px 20px 50px}.page-title{text-align:center;color:#1b5e20}.page-intro{text-align:center;color:#555;line-height:1.7;max-width:800px;margin:0 auto 30px}
+.tip-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:15px;margin:25px 0}.category-btn{border:0;background:#e8f5e9;color:#1b5e20;padding:18px 12px;border-radius:14px;font-size:16px;font-weight:700;cursor:pointer}.category-btn:hover,.category-btn.active{background:#2e7d32;color:#fff}
+.tips-section{display:none;background:#fff;border-radius:16px;padding:25px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-top:20px}.tips-section.active{display:block}.tips-section h2{color:#2e7d32}.tip-list{display:grid;gap:14px}.tip-item{background:#f8fff8;border-left:5px solid #43a047;border-radius:10px;padding:15px 18px;line-height:1.7}.tip-item strong{color:#1b5e20}.back-container{text-align:center;margin-top:35px}.back-btn{background:#2e7d32;color:#fff;border:0;padding:12px 25px;border-radius:25px;cursor:pointer;font-weight:600}
+</style>
+</head>
+<body>
+<header>
+<div class="logo"><span class="lang-en">🌾 Agriculture Support</span><span class="lang-te">🌾 వ్యవసాయ సహాయం</span></div>
+<nav>
+<a href="index.html"><span class="lang-en">Home</span><span class="lang-te">హోమ్</span></a>
+<a href="crop-details.html"><span class="lang-en">Crop Details</span><span class="lang-te">పంట వివరాలు</span></a>
+<a href="fertilizer.html"><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువులు</span></a>
+<a href="weather.html"><span class="lang-en">Weather</span><span class="lang-te">వాతావరణం</span></a>
+<a href="farmer-query.html"><span class="lang-en">Farmer Query</span><span class="lang-te">రైతు ప్రశ్న</span></a>
+<a href="disease-prediction.html"><span class="lang-en">Disease Prediction</span><span class="lang-te">వ్యాధి గుర్తింపు</span></a>
+<a href="farming-cost.html"><span class="lang-en">Farming Cost</span><span class="lang-te">వ్యవసాయ ఖర్చు</span></a>
+<a href="farming-tips.html"><span class="lang-en">Farming Tips</span><span class="lang-te">వ్యవసాయ సూచనలు</span></a>
+</nav>
+</header>
+<div class="language-switcher">
+<button id="englishBtn" class="language-btn active" onclick="setLanguage('english')">🇬🇧 English</button>
+<button id="teluguBtn" class="language-btn" onclick="setLanguage('telugu')">🇮🇳 తెలుగు</button>
+</div>
+<main class="tips-page">
+<h1 class="page-title"><span class="lang-en">🌱 Farming Tips</span><span class="lang-te">🌱 వ్యవసాయ సూచనలు</span></h1>
+<p class="page-intro"><span class="lang-en">Select a category below to view useful farming practices and crop management tips.</span><span class="lang-te">క్రింద ఉన్న విభాగాన్ని ఎంచుకుని ఉపయోగకరమైన వ్యవసాయ పద్ధతులు మరియు పంట నిర్వహణ సూచనలను చూడండి.</span></p>
+<div class="tip-categories">
+<button class="category-btn" onclick="showTips('kharif',this)">🌧️ <span class="lang-en">Kharif Tips</span><span class="lang-te">ఖరీఫ్ సూచనలు</span></button>
+<button class="category-btn" onclick="showTips('rabi',this)">❄️ <span class="lang-en">Rabi Tips</span><span class="lang-te">రబీ సూచనలు</span></button>
+<button class="category-btn" onclick="showTips('zaid',this)">☀️ <span class="lang-en">Summer / Zaid Tips</span><span class="lang-te">వేసవి / జైద్ సూచనలు</span></button>
+<button class="category-btn" onclick="showTips('water',this)">💧 <span class="lang-en">Water Management</span><span class="lang-te">నీటి నిర్వహణ</span></button>
+<button class="category-btn" onclick="showTips('fertilizer',this)">🧪 <span class="lang-en">Fertilizer Tips</span><span class="lang-te">ఎరువుల సూచనలు</span></button>
+<button class="category-btn" onclick="showTips('pest',this)">🐛 <span class="lang-en">Pest Prevention</span><span class="lang-te">పురుగు నివారణ</span></button>
+<button class="category-btn" onclick="showTips('harvest',this)">🌾 <span class="lang-en">Harvesting Tips</span><span class="lang-te">కోత సూచనలు</span></button>
+<button class="category-btn" onclick="showTips('soil',this)">🌱 <span class="lang-en">Soil Care</span><span class="lang-te">నేల సంరక్షణ</span></button>
+</div>
+<div id="kharif" class="tips-section"><h2>🌧️ <span class="lang-en">Kharif Farming Tips</span><span class="lang-te">ఖరీఫ్ వ్యవసాయ సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Prepare the field properly before sowing and ensure good drainage.</span><span class="lang-te">విత్తే ముందు పొలాన్ని సరిగ్గా సిద్ధం చేసి, మంచి డ్రైనేజీ ఉండేలా చూడండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Use good-quality seeds suitable for the local climate and soil.</span><span class="lang-te">స్థానిక వాతావరణం మరియు నేలకు అనుకూలమైన మంచి నాణ్యత గల విత్తనాలను ఉపయోగించండి.</span></div>
+<div class="tip-item">3. <span class="lang-en">After heavy rain, check for waterlogging, pests and diseases.</span><span class="lang-te">భారీ వర్షాల తర్వాత నీరు నిల్వ ఉండటం, పురుగులు మరియు వ్యాధులను గమనించండి.</span></div>
+<div class="tip-item">4. <span class="lang-en">Remove weeds regularly so crops receive enough water, nutrients and sunlight.</span><span class="lang-te">పంటలకు తగినంత నీరు, పోషకాలు మరియు సూర్యకాంతి అందేందుకు కలుపును క్రమం తప్పకుండా తొలగించండి.</span></div>
+</div></div>
+<div id="rabi" class="tips-section"><h2>❄️ <span class="lang-en">Rabi Farming Tips</span><span class="lang-te">రబీ వ్యవసాయ సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Choose crops and varieties suitable for the cooler season.</span><span class="lang-te">చల్లని కాలానికి అనుకూలమైన పంటలు మరియు రకాలను ఎంచుకోండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Maintain proper soil moisture during important crop growth stages.</span><span class="lang-te">పంట పెరుగుదలలో ముఖ్యమైన దశల్లో నేలలో సరైన తేమను నిర్వహించండి.</span></div>
+<div class="tip-item">3. <span class="lang-en">Watch for seasonal pests and diseases and act early when symptoms appear.</span><span class="lang-te">కాలానుగుణ పురుగులు మరియు వ్యాధులను గమనించి, లక్షణాలు కనిపిస్తే ముందుగానే చర్యలు తీసుకోండి.</span></div>
+<div class="tip-item">4. <span class="lang-en">Protect sensitive crops from unexpected cold conditions when possible.</span><span class="lang-te">సాధ్యమైనప్పుడు చలికి సున్నితమైన పంటలను అనూహ్యమైన చలి నుంచి రక్షించండి.</span></div>
+</div></div>
+<div id="zaid" class="tips-section"><h2>☀️ <span class="lang-en">Summer / Zaid Farming Tips</span><span class="lang-te">వేసవి / జైద్ వ్యవసాయ సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Use water efficiently because evaporation is higher during hot weather.</span><span class="lang-te">వేసవిలో ఆవిరీభవనం ఎక్కువగా ఉంటుంది కాబట్టి నీటిని సమర్థవంతంగా ఉపయోగించండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Mulching can help conserve soil moisture and reduce weed growth.</span><span class="lang-te">మల్చింగ్ వల్ల నేల తేమను కాపాడటానికి మరియు కలుపు పెరుగుదలను తగ్గించడానికి సహాయపడుతుంది.</span></div>
+<div class="tip-item">3. <span class="lang-en">Check crops regularly for heat stress, wilting and pest activity.</span><span class="lang-te">వేడి ప్రభావం, వాడిపోవడం మరియు పురుగుల కోసం పంటలను క్రమం తప్పకుండా పరిశీలించండి.</span></div>
+<div class="tip-item">4. <span class="lang-en">Plan irrigation according to soil moisture and crop requirement.</span><span class="lang-te">నేల తేమ మరియు పంట అవసరానికి అనుగుణంగా నీటిపారుదలని ప్రణాళిక చేయండి.</span></div>
+</div></div>
+<div id="water" class="tips-section"><h2>💧 <span class="lang-en">Water Management Tips</span><span class="lang-te">నీటి నిర్వహణ సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Avoid unnecessary irrigation when the soil already has sufficient moisture.</span><span class="lang-te">నేలలో ఇప్పటికే తగినంత తేమ ఉంటే అవసరం లేకుండా నీరు పెట్టడం నివారించండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Check soil moisture before irrigation.</span><span class="lang-te">నీరు పెట్టే ముందు నేల తేమను పరిశీలించండి.</span></div>
+<div class="tip-item">3. <span class="lang-en">Repair leaking pipes and channels to reduce water loss.</span><span class="lang-te">నీటి నష్టం తగ్గించడానికి లీక్ అవుతున్న పైపులు మరియు కాలువలను సరిచేయండి.</span></div>
+</div></div>
+<div id="fertilizer" class="tips-section"><h2>🧪 <span class="lang-en">Fertilizer Tips</span><span class="lang-te">ఎరువుల సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Prefer soil-test-based fertilizer recommendations whenever possible.</span><span class="lang-te">సాధ్యమైనప్పుడు నేల పరీక్ష ఆధారంగా ఎరువుల సిఫార్సులను అనుసరించండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Apply fertilizers according to crop stage and recommended dose.</span><span class="lang-te">పంట దశ మరియు సిఫార్సు చేసిన మోతాదుకు అనుగుణంగా ఎరువులను వేయండి.</span></div>
+<div class="tip-item">3. <span class="lang-en">Do not increase fertilizer quantity just because a crop appears weak.</span><span class="lang-te">పంట బలహీనంగా కనిపిస్తుందని మాత్రమే ఎరువుల పరిమాణాన్ని పెంచకండి.</span></div>
+</div></div>
+<div id="pest" class="tips-section"><h2>🐛 <span class="lang-en">Pest Prevention Tips</span><span class="lang-te">పురుగు నివారణ సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Inspect leaves, stems and fruits regularly for early pest symptoms.</span><span class="lang-te">ప్రారంభ పురుగు లక్షణాల కోసం ఆకులు, కాండం మరియు పండ్లను క్రమం తప్పకుండా పరిశీలించండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Remove heavily affected plant parts when appropriate and dispose of them safely.</span><span class="lang-te">అవసరమైనప్పుడు ఎక్కువగా ప్రభావితమైన మొక్క భాగాలను తొలగించి సురక్షితంగా నిర్వహించండి.</span></div>
+<div class="tip-item">3. <span class="lang-en">Use recommended pest-control methods and follow product label instructions.</span><span class="lang-te">సిఫార్సు చేసిన పురుగు నియంత్రణ పద్ధతులను ఉపయోగించి ఉత్పత్తి లేబుల్ సూచనలను పాటించండి.</span></div>
+</div></div>
+<div id="harvest" class="tips-section"><h2>🌾 <span class="lang-en">Harvesting Tips</span><span class="lang-te">కోత సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Harvest crops at the recommended maturity stage to maintain quality.</span><span class="lang-te">నాణ్యతను కాపాడటానికి సిఫార్సు చేసిన పరిపక్వ దశలో పంటను కోయండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Avoid harvesting during wet conditions when it can increase post-harvest moisture problems.</span><span class="lang-te">కోత తర్వాత తేమ సమస్యలు పెరిగే అవకాశం ఉంటే తడి పరిస్థితుల్లో కోతను నివారించండి.</span></div>
+<div class="tip-item">3. <span class="lang-en">Dry harvested produce properly before storage according to crop requirements.</span><span class="lang-te">పంట అవసరానికి అనుగుణంగా నిల్వ చేయడానికి ముందు కోసిన పంటను సరిగ్గా ఆరబెట్టండి.</span></div>
+</div></div>
+<div id="soil" class="tips-section"><h2>🌱 <span class="lang-en">Soil Care Tips</span><span class="lang-te">నేల సంరక్షణ సూచనలు</span></h2><div class="tip-list">
+<div class="tip-item">1. <span class="lang-en">Test soil periodically to understand nutrient status and soil condition.</span><span class="lang-te">పోషక స్థితి మరియు నేల పరిస్థితిని తెలుసుకోవడానికి కాలానుగుణంగా నేల పరీక్ష చేయించండి.</span></div>
+<div class="tip-item">2. <span class="lang-en">Use crop rotation where suitable to support soil health.</span><span class="lang-te">సాధ్యమైనప్పుడు నేల ఆరోగ్యాన్ని మెరుగుపరచడానికి పంట మార్పిడి చేయండి.</span></div>
+<div class="tip-item">3. <span class="lang-en">Add suitable organic matter according to local recommendations and soil condition.</span><span class="lang-te">స్థానిక సిఫార్సులు మరియు నేల పరిస్థితికి అనుగుణంగా తగిన సేంద్రియ పదార్థాన్ని ఉపయోగించండి.</span></div>
+</div></div>
+<div class="back-container"><button class="back-btn" onclick="window.location.href='index.html'"><span class="lang-en">← Back to Home</span><span class="lang-te">← హోమ్‌కు తిరిగి వెళ్లండి</span></button></div>
+</main>
+<script>
+function setLanguage(language){const e=document.getElementById('englishBtn'),t=document.getElementById('teluguBtn');if(language==='telugu'){document.body.classList.add('telugu-mode');e.classList.remove('active');t.classList.add('active');localStorage.setItem('language','telugu')}else{document.body.classList.remove('telugu-mode');e.classList.add('active');t.classList.remove('active');localStorage.setItem('language','english')}}
+function showTips(id,btn){document.querySelectorAll('.tips-section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+window.addEventListener('DOMContentLoaded',()=>setLanguage(localStorage.getItem('language')==='telugu'?'telugu':'english'));
+</script>
+</body>
+</html>
