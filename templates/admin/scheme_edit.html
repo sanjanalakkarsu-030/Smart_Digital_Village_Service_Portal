@@ -1,0 +1,247 @@
+{% extends "admin/admin_base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1>Edit Government Scheme</h1>
+
+        <p>
+            Update scheme information.
+        </p>
+
+    </div>
+
+    <a
+        href="{{ url_for('manage_schemes') }}"
+        class="secondary-action-btn">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Back
+
+    </a>
+
+</div>
+
+
+<div class="scheme-edit-card">
+
+    <form
+        method="POST"
+        action="{{ url_for('edit_scheme', scheme_id=scheme.scheme_id) }}">
+
+
+        <div class="scheme-form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Scheme Name *
+                </label>
+
+                <input
+                    type="text"
+                    name="scheme_name"
+                    value="{{ scheme.scheme_name }}"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Category *
+                </label>
+
+                <select
+                    name="category"
+                    required>
+
+                    <option value="{{ scheme.category }}" selected>
+                        {{ scheme.category }}
+                    </option>
+
+                    <option>
+                        Agriculture & Farmers
+                    </option>
+
+                    <option>
+                        Health
+                    </option>
+
+                    <option>
+                        Education & Scholarships
+                    </option>
+
+                    <option>
+                        Women & Welfare
+                    </option>
+
+                    <option>
+                        Housing
+                    </option>
+
+                    <option>
+                        Pension & Social Welfare
+                    </option>
+
+                    <option>
+                        Employment & Business
+                    </option>
+
+                    <option>
+                        Water Supply
+                    </option>
+
+                    <option>
+                        Transport
+                    </option>
+
+                    <option>
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    Description *
+                </label>
+
+                <textarea
+                    name="description"
+                    rows="5"
+                    required>{{ scheme.description }}</textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Eligibility *
+                </label>
+
+                <textarea
+                    name="eligibility"
+                    rows="5"
+                    required>{{ scheme.eligibility }}</textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Required Documents *
+                </label>
+
+                <textarea
+                    name="required_documents"
+                    rows="5"
+                    required>{{ scheme.required_documents }}</textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Last Date
+                </label>
+
+                <input
+                    type="date"
+                    name="last_date"
+                    value="{{ scheme.last_date or '' }}">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Official Application Link
+                </label>
+
+                <input
+                    type="url"
+                    name="apply_link"
+                    value="{{ scheme.apply_link or '' }}">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Status
+                </label>
+
+                <select name="status">
+
+                    <option
+                        value="Active"
+                        {% if scheme.status == "Active" %}
+                        selected
+                        {% endif %}>
+
+                        Active
+
+                    </option>
+
+                    <option
+                        value="Inactive"
+                        {% if scheme.status == "Inactive" %}
+                        selected
+                        {% endif %}>
+
+                        Inactive
+
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <a
+                href="{{ url_for('manage_schemes') }}"
+                class="cancel-btn">
+
+                Cancel
+
+            </a>
+
+
+            <button
+                type="submit"
+                class="save-btn">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Update Scheme
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

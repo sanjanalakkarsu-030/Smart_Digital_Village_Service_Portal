@@ -25,17 +25,17 @@
 
         <div class="hero-buttons">
 
-            <a href="#" class="btn-primary">
-                <i class="fa-solid fa-user"></i>
-                Citizen Login
-            </a>
+    <a href="#" class="hero-btn primary-btn">
+        <i class="fa-solid fa-user"></i>
+        Citizen Login
+    </a>
 
-            <a href="#" class="btn-secondary">
-                <i class="fa-solid fa-user-plus"></i>
-                New Registration
-            </a>
+    <a href="#" class="hero-btn secondary-btn">
+        <i class="fa-solid fa-user-plus"></i>
+        New Registration
+    </a>
 
-        </div>
+</div>
 
     </div>
 
@@ -43,54 +43,54 @@
 <!-- Hero Section End -->
  <!-- Village Information -->
 
-<section class="village-info">
+<section class="village-stats">
 
-    <div class="info-item">
+    <div class="village-stat">
         <i class="fa-solid fa-users"></i>
-        <h3>2,667</h3>
+        <strong>2,667</strong>
         <span>Population</span>
     </div>
 
-    <div class="info-item">
+    <div class="village-stat">
         <i class="fa-solid fa-house"></i>
-        <h3>656</h3>
+        <strong>656</strong>
         <span>Households</span>
     </div>
 
-    <div class="info-item">
-        <i class="fa-solid fa-map-location-dot"></i>
-        <h3>8</h3>
+    <div class="village-stat">
+        <i class="fa-solid fa-location-dot"></i>
+        <strong>8</strong>
         <span>Village Wards</span>
     </div>
 
-    <div class="info-item">
-        <i class="fa-solid fa-book-open"></i>
-        <h3>54.03%</h3>
-        <span>Literacy Rate</span>
+    <div class="village-stat">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <strong>54.03%</strong>
+        <span>Literacy</span>
     </div>
 
-    <div class="info-item">
+    <div class="village-stat">
         <i class="fa-solid fa-seedling"></i>
-        <h3>Agriculture</h3>
+        <strong>Agriculture</strong>
         <span>Main Occupation</span>
     </div>
 
-    <div class="info-item">
+    <div class="village-stat">
         <i class="fa-solid fa-hospital"></i>
-        <h3>Available</h3>
-        <span>Health Centre</span>
+        <strong>Available</strong>
+        <span>Health Sub-Centre</span>
     </div>
 
-    <div class="info-item">
+    <div class="village-stat">
         <i class="fa-solid fa-envelope"></i>
-        <h3>Available</h3>
+        <strong>Available</strong>
         <span>Post Office</span>
     </div>
 
-    <div class="info-item">
-        <i class="fa-solid fa-location-dot"></i>
-        <h3>13 km</h3>
-        <span>Nearest Town</span>
+    <div class="village-stat">
+        <i class="fa-solid fa-road"></i>
+        <strong>13 km</strong>
+        <span>From Siddipet</span>
     </div>
 
 </section>
@@ -227,6 +227,7 @@
 
     <div class="scheme-container">
 
+        <!-- Rythu Bharosa -->
         <div class="scheme-card">
             <img src="{{ url_for('static', filename='images/rythu-bharosa.jpg') }}" alt="Rythu Bharosa">
 
@@ -237,45 +238,54 @@
                     Financial assistance for eligible farmers to support agricultural activities.
                 </p>
 
-                <a href="#">Apply Now</a>
+                <a href="https://rythubharosa.telangana.gov.in/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Official Website ↗
+                </a>
             </div>
-
         </div>
 
-        <div class="scheme-card">
 
-            <img src="{{ url_for('static', filename='images/schemes/kalyana-lakshmi.jpg') }}" alt="Kalyana Lakshmi">
+        <!-- Kalyana Lakshmi -->
+        <div class="scheme-card">
+            <img src="{{ url_for('static', filename='images/schemes/kalyana-lakshmi.jpg') }}"
+                 alt="Kalyana Lakshmi">
 
             <div class="scheme-content">
-
                 <h3>Kalyana Lakshmi</h3>
 
                 <p>
                     Financial assistance for marriage of eligible women from economically weaker families.
                 </p>
 
-                <a href="#">Apply Now</a>
-
+                <a href="https://telanganaepass.cgg.gov.in/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Official Website ↗
+                </a>
             </div>
-
         </div>
 
-        <div class="scheme-card">
 
-            <img src="{{ url_for('static', filename='images/schemes/aasara.jpg') }}" alt="Aasara Pension">
+        <!-- Aasara Pension -->
+        <div class="scheme-card">
+            <img src="{{ url_for('static', filename='images/schemes/aasara.jpg') }}"
+                 alt="Aasara Pension">
 
             <div class="scheme-content">
-
                 <h3>Aasara Pension</h3>
 
                 <p>
                     Monthly financial support for senior citizens, widows and differently-abled persons.
                 </p>
 
-                <a href="#">Apply Now</a>
-
+                <a href="https://www.aasara.telangana.gov.in/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Official Website ↗
+                </a>
             </div>
-
         </div>
 
     </div>

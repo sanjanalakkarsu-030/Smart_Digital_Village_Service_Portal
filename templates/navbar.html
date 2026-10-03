@@ -20,6 +20,7 @@
 
 <nav class="navbar">
 
+    <!-- Logo -->
     <div class="logo">
         <h2>Smart Digital Village</h2>
     </div>
@@ -34,45 +35,68 @@
     <!-- Navigation Menu -->
     <ul id="nav-menu">
 
+        <!-- Home -->
         <li>
             <a href="{{ url_for('home') }}">Home</a>
         </li>
 
+        <!-- About Village -->
         <li>
-            <a href="{{ url_for('home') }}#about">About Village</a>
+            <a href="{{ url_for('home') }}#about">
+                About Village
+            </a>
         </li>
 
+        <!-- Services -->
         <li>
-            <li><a href="{{ url_for('home') }}#services">Services</a></li>
+            <a href="{{ url_for('home') }}#services">
+                Services
+            </a>
         </li>
 
+        <!-- Government Schemes -->
         <li>
             <a href="{{ url_for('government') }}">
                 Government Schemes
             </a>
         </li>
 
+        <!-- Announcements -->
         <li>
             <a href="{{ url_for('announcements') }}">
                 Announcements
             </a>
         </li>
 
-        <<li>
-    <a href="{{ url_for('home') }}#contact">Contact</a>
+        <!-- Contact -->
+        <li>
+            <a href="{{ url_for('home') }}#contact">
+                Contact
+            </a>
+        </li>
+
+        <!-- Citizen Login -->
+        <li>
+            <button class="login-btn">
+                Login
+            </button>
+        </li>
+
+        <!-- Citizen Register -->
+        <li>
+            <button class="register-btn">
+                Register
+            </button>
+        </li>
+
+        <!-- Admin Login -->
+       <li>
+    <a href="{{ url_for('admin_login') }}" class="admin-login-btn">
+        <i class="fa-solid fa-user-shield"></i>
+        Admin Login
+    </a>
 </li>
-
-        <li>
-            <button class="login-btn">Login</button>
-        </li>
-
-        <li>
-            <button class="register-btn">Register</button>
-        </li>
 
     </ul>
 
 </nav>
-
-</nav>
-

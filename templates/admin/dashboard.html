@@ -72,8 +72,8 @@ Dashboard
 
             <span>Total Citizens</span>
 
-            <h3>250</h3>
-
+            <h3>{{ total_citizens }}</h3>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       
             <small class="green-text">
 
                 <i class="fa-solid fa-arrow-up"></i>
@@ -102,7 +102,7 @@ Dashboard
 
             <span>Total Complaints</span>
 
-            <h3>42</h3>
+            <h3>{{ total_complaints }}</h3>
 
             <small class="orange-text">
 
@@ -132,7 +132,7 @@ Dashboard
 
             <span>Resolved Complaints</span>
 
-            <h3>27</h3>
+            <h3>{{ resolved_complaints }}</h3>
 
             <small class="green-text">
 
@@ -162,8 +162,7 @@ Dashboard
 
             <span>Government Schemes</span>
 
-            <h3>18</h3>
-
+            <h3>{{ total_schemes }}</h3>
             <small>
                 Active schemes
             </small>
@@ -188,7 +187,7 @@ Dashboard
 
             <span>Announcements</span>
 
-            <h3>12</h3>
+            <h3>{{ total_announcements }}</h3>
 
             <small>
                 Published
@@ -214,8 +213,7 @@ Dashboard
 
             <span>Agriculture Posts</span>
 
-            <h3>35</h3>
-
+            <h3>{{ agriculture_posts }}</h3>
             <small class="green-text">
                 Information available
             </small>
@@ -240,7 +238,7 @@ Dashboard
 
             <span>Health Updates</span>
 
-            <h3>20</h3>
+            <h3>{{ health_updates }}</h3>
 
             <small class="green-text">
                 Latest information
@@ -323,8 +321,7 @@ Dashboard
 
                 <div>
 
-                    <strong>42</strong>
-
+                    <strong>{{ total_complaints }}</strong>
                     <span>Total</span>
 
                 </div>
@@ -341,8 +338,7 @@ Dashboard
 
                     <label>Pending</label>
 
-                    <strong>15</strong>
-
+                    <strong>{{ pending_complaints }}</strong>
                 </div>
 
 
@@ -352,7 +348,7 @@ Dashboard
 
                     <label>In Progress</label>
 
-                    <strong>8</strong>
+                    <strong>{{ in_progress_complaints }}</strong>
 
                 </div>
 
@@ -363,8 +359,7 @@ Dashboard
 
                     <label>Resolved</label>
 
-                    <strong>19</strong>
-
+                    <strong>{{ resolved_complaints }}</strong>
                 </div>
 
 
@@ -565,207 +560,67 @@ Dashboard
 
             <tbody>
 
+    {% for complaint in recent_complaints %}
 
-                <tr>
+    <tr>
 
-                    <td>#1025</td>
+        <td>
+            #{{ complaint.complaint_id }}
+        </td>
 
-                    <td>
+        <td>
+            <div class="citizen">
+                <div>
+                    {{ complaint.full_name[:2]|upper }}
+                </div>
 
-                        <div class="citizen">
+                {{ complaint.full_name }}
+            </div>
+        </td>
 
-                            <div>RK</div>
+        <td>
+            {{ complaint.category }}
+        </td>
 
-                            Ravi Kumar
+        <td>
+            {{ complaint.subject }}
+        </td>
 
-                        </div>
+        <td>
+            -
+        </td>
 
-                    </td>
+        <td>
 
-                    <td>
-                        Street Light
-                    </td>
+            <span class="status {{ complaint.status|lower|replace(' ', '-') }}">
+                {{ complaint.status }}
+            </span>
 
-                    <td>
-                        Street light not working
-                    </td>
+        </td>
 
-                    <td>
-                        17 Aug 2026
-                    </td>
+        <td>
 
-                    <td>
+            <button class="view-btn">
+                <i class="fa-solid fa-eye"></i>
+            </button>
 
-                        <span class="status pending">
-                            Pending
-                        </span>
+        </td>
 
-                    </td>
+    </tr>
 
-                    <td>
+    {% else %}
 
-                        <button class="view-btn">
+    <tr>
 
-                            <i class="fa-solid fa-eye"></i>
+        <td colspan="7" style="text-align:center;">
+            No complaints found.
+        </td>
 
-                        </button>
+    </tr>
 
-                    </td>
+    {% endfor %}
 
-                </tr>
-
-
-
-                <tr>
-
-                    <td>#1024</td>
-
-                    <td>
-
-                        <div class="citizen">
-
-                            <div>SK</div>
-
-                            Suresh Kumar
-
-                        </div>
-
-                    </td>
-
-                    <td>
-                        Water Supply
-                    </td>
-
-                    <td>
-                        Water supply issue
-                    </td>
-
-                    <td>
-                        16 Aug 2026
-                    </td>
-
-                    <td>
-
-                        <span class="status progress">
-                            In Progress
-                        </span>
-
-                    </td>
-
-                    <td>
-
-                        <button class="view-btn">
-
-                            <i class="fa-solid fa-eye"></i>
-
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
-
-                <tr>
-
-                    <td>#1023</td>
-
-                    <td>
-
-                        <div class="citizen">
-
-                            <div>LM</div>
-
-                            Lakshmi
-
-                        </div>
-
-                    </td>
-
-                    <td>
-                        Road
-                    </td>
-
-                    <td>
-                        Road repair required
-                    </td>
-
-                    <td>
-                        15 Aug 2026
-                    </td>
-
-                    <td>
-
-                        <span class="status resolved">
-                            Resolved
-                        </span>
-
-                    </td>
-
-                    <td>
-
-                        <button class="view-btn">
-
-                            <i class="fa-solid fa-eye"></i>
-
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
-
-                <tr>
-
-                    <td>#1022</td>
-
-                    <td>
-
-                        <div class="citizen">
-
-                            <div>VM</div>
-
-                            Venkatesh
-
-                        </div>
-
-                    </td>
-
-                    <td>
-                        Sanitation
-                    </td>
-
-                    <td>
-                        Garbage collection issue
-                    </td>
-
-                    <td>
-                        14 Aug 2026
-                    </td>
-
-                    <td>
-
-                        <span class="status resolved">
-                            Resolved
-                        </span>
-
-                    </td>
-
-                    <td>
-
-                        <button class="view-btn">
-
-                            <i class="fa-solid fa-eye"></i>
-
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
-            </tbody>
+</tbody>
 
         </table>
 
@@ -784,114 +639,98 @@ Dashboard
 
     <!-- Announcements -->
 
-    <div class="dashboard-card">
+    <div class="announcement-grid">
 
-
-        <div class="card-heading">
-
-            <div>
-
-                <h3>
-                    Recent Announcements
-                </h3>
-
-                <p>
-                    Latest village announcements
-                </p>
-
+    <!-- Announcement 1 -->
+    <div class="announcement-card">
+        <div class="announcement-top">
+            <div class="announcement-icon">
+                <i class="fa-solid fa-bullhorn"></i>
             </div>
 
-            <a href="#">
-                View All
-            </a>
-
+            <span class="announcement-status">Published</span>
         </div>
 
+        <h3>Gram Sabha Meeting</h3>
 
-        <div class="announcement-list">
+        <p>
+            All villagers are requested to attend the Gram Sabha meeting
+            to discuss village development and important local issues.
+        </p>
 
+        <div class="announcement-footer">
+            <span>
+                <i class="fa-regular fa-calendar"></i>
+                18 August 2026
+            </span>
 
-            <div class="announcement-item">
-
-                <div class="announcement-date">
-
-                    <strong>20</strong>
-
-                    <span>AUG</span>
-
-                </div>
-
-                <div>
-
-                    <h4>
-                        Village Development Meeting
-                    </h4>
-
-                    <p>
-                        Meeting regarding village development activities.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="announcement-item">
-
-                <div class="announcement-date">
-
-                    <strong>18</strong>
-
-                    <span>AUG</span>
-
-                </div>
-
-                <div>
-
-                    <h4>
-                        Health Awareness Camp
-                    </h4>
-
-                    <p>
-                        Free health awareness camp for villagers.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="announcement-item">
-
-                <div class="announcement-date">
-
-                    <strong>15</strong>
-
-                    <span>AUG</span>
-
-                </div>
-
-                <div>
-
-                    <h4>
-                        Agriculture Training Program
-                    </h4>
-
-                    <p>
-                        Training program for local farmers.
-                    </p>
-
-                </div>
-
-            </div>
-
-
+            <span class="announcement-category">
+                Panchayat
+            </span>
         </div>
-
     </div>
 
+
+    <!-- Announcement 2 -->
+    <div class="announcement-card">
+        <div class="announcement-top">
+            <div class="announcement-icon">
+                <i class="fa-solid fa-droplet"></i>
+            </div>
+
+            <span class="announcement-status">Published</span>
+        </div>
+
+        <h3>Water Supply Maintenance</h3>
+
+        <p>
+            Water supply will be temporarily interrupted due to pipeline
+            maintenance work. Residents are requested to store sufficient water.
+        </p>
+
+        <div class="announcement-footer">
+            <span>
+                <i class="fa-regular fa-calendar"></i>
+                20 August 2026
+            </span>
+
+            <span class="announcement-category">
+                Utility
+            </span>
+        </div>
+    </div>
+
+
+    <!-- Announcement 3 -->
+    <div class="announcement-card">
+        <div class="announcement-top">
+            <div class="announcement-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <span class="announcement-status">Published</span>
+        </div>
+
+        <h3>Polio Vaccination Drive</h3>
+
+        <p>
+            Free polio drops will be provided for all children below 5 years.
+            Parents are requested to bring their children to the vaccination centre.
+        </p>
+
+        <div class="announcement-footer">
+            <span>
+                <i class="fa-regular fa-calendar"></i>
+                12 August 2026
+            </span>
+
+            <span class="announcement-category">
+                Health
+            </span>
+        </div>
+    </div>
+
+</div>
 
 
     <!-- Village Services -->
