@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register | Smart Digital Village Service Portal</title>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/citizen.css') }}">
+</head>
+
+<body class="page-register">
+
+<div class="container">
+
+<div class="logo">
+📝
+</div>
+
+<h2>Citizen Registration</h2>
+
+<p class="subtitle">
+Register to access Smart Digital Village Services.
+</p>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" id="fullName" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="input-group">
+        <label>Mobile Number</label>
+        <input type="tel" id="mobile" placeholder="10-digit mobile number" maxlength="10" required>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>House Number</label>
+        <input type="text" id="houseNumber" placeholder="e.g. 4-123" required>
+    </div>
+
+    <div class="input-group">
+        <label>Ward Number</label>
+        <select id="wardNumber" required>
+            <option value="">Select Ward</option>
+            <option value="1">Ward 1</option>
+            <option value="2">Ward 2</option>
+            <option value="3">Ward 3</option>
+            <option value="4">Ward 4</option>
+            <option value="5">Ward 5</option>
+            <option value="6">Ward 6</option>
+            <option value="7">Ward 7</option>
+            <option value="8">Ward 8</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Gender</label>
+        <select id="gender" required>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+    </div>
+</div>
+
+<div class="input-group">
+    <label>Address</label>
+    <textarea id="address" placeholder="Enter your complete address" required></textarea>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Username</label>
+        <input type="text" id="username" placeholder="Choose a username" required>
+    </div>
+</div>
+
+<div class="form-row">
+    <div class="input-group">
+        <label>Password</label>
+        <div class="password-box">
+            <input type="password" id="password" placeholder="Create a password" onkeyup="registerCheckStrength()" required>
+            <span class="toggle" onclick="registerTogglePassword('password',this)">👁</span>
+        </div>
+        <div id="strength"></div>
+    </div>
+
+    <div class="input-group">
+        <label>Confirm Password</label>
+        <div class="password-box">
+            <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+            <span class="toggle" onclick="registerTogglePassword('confirmPassword',this)">👁</span>
+        </div>
+    </div>
+</div>
+
+<button id="registerBtn" onclick="register()">
+Create Account
+</button>
+
+<div class="loader" id="loader"></div>
+
+<div class="message" id="message"></div>
+<div class="error-message" id="errorMessage"></div>
+
+<a href="/login" class="back">
+Already have an account? Login
+</a>
+
+</div>
+
+
+
+    <script src="{{ url_for('static', filename='js/citizen.js') }}"></script>
+</body>
+</html>

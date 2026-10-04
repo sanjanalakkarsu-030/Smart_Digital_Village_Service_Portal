@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verify OTP | Smart Digital Village</title>
+
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/citizen.css') }}">
+</head>
+
+<body class="page-verify-otp">
+
+<div class="container">
+
+<div class="logo">
+📧
+</div>
+
+<h2>Verify OTP</h2>
+
+<p>Please enter the 6-digit OTP sent to your email.</p>
+
+<div class="otp-container">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+<input class="otp" maxlength="1">
+</div>
+
+<button onclick="verifyOTP()">
+Verify OTP
+</button>
+
+<div class="timer">
+Resend OTP in <span id="time">60</span> seconds
+</div>
+
+<button id="resendBtn" disabled onclick="resendOTP()">
+Resend OTP
+</button>
+
+<a href="/forgot-password" class="back">
+← Back
+</a>
+
+</div>
+
+
+
+    <script src="{{ url_for('static', filename='js/citizen.js') }}"></script>
+</body>
+</html>
