@@ -1,203 +1,430 @@
-<!DOCTYPE html>
+ <DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Smart Village - Admin Login</title>
+    <title>Admin Login | Smart Digital Village</title>
 
     <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/admin.css') }}">
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            background:
+                linear-gradient(rgba(5, 55, 35, 0.82),
+                                rgba(5, 55, 35, 0.82)),
+                linear-gradient(135deg, #0b5d3b, #063c28);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 430px;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 38px;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .brand {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .admin-icon {
+            width: 78px;
+            height: 78px;
+
+            margin: 0 auto 18px;
+
+            border-radius: 50%;
+
+            background: #0b5d3b;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+
+            box-shadow: 0 8px 20px rgba(11, 93, 59, 0.25);
+        }
+
+        .brand h1 {
+            color: #123c2b;
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .brand p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .security-badge {
+            background: #eef8f2;
+            color: #176b46;
+
+            border-radius: 9px;
+
+            padding: 10px;
+
+            text-align: center;
+
+            font-size: 13px;
+
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            color: #333;
+
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box i {
+            position: absolute;
+
+            left: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #0b5d3b;
+        }
+
+        .input-box input {
+            width: 100%;
+
+            padding: 14px 45px;
+
+            border: 1px solid #d9dfdc;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        .input-box input:focus {
+            border-color: #0b5d3b;
+
+            box-shadow:
+                0 0 0 3px rgba(11, 93, 59, 0.10);
+        }
+
+        .password-toggle {
+            position: absolute;
+
+            right: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #777;
+
+            cursor: pointer;
+        }
+
+        .login-button {
+            width: 100%;
+
+            border: none;
+
+            padding: 14px;
+
+            border-radius: 10px;
+
+            background: #0b5d3b;
+            color: white;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            background: #08482e;
+            transform: translateY(-1px);
+        }
+
+        .login-button i {
+            margin-right: 8px;
+        }
+
+        .error-message {
+            background: #fff0f0;
+            color: #c62828;
+
+            border: 1px solid #ffd1d1;
+
+            padding: 11px;
+
+            border-radius: 9px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            margin-bottom: 18px;
+        }
+
+        .back-home {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #0b5d3b;
+
+            text-decoration: none;
+
+            font-size: 14px;
+        }
+
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        .footer-text {
+            text-align: center;
+
+            color: #999;
+
+            font-size: 12px;
+
+            margin-top: 25px;
+        }
+
+        @media (max-width: 500px) {
+
+            .login-card {
+                padding: 28px 22px;
+            }
+
+            .brand h1 {
+                font-size: 24px;
+            }
+        }
+
+    </style>
+
 </head>
 
-<body class="login-body">
+<body>
 
-    <div class="login-container">
+<div class="login-wrapper">
 
-        <!-- Left Side -->
-        <div class="login-left">
+    <div class="login-card">
 
-            <div class="village-logo">
-                🏠
+        <div class="brand">
+
+            <div class="admin-icon">
+                <i class="fa-solid fa-user-shield"></i>
             </div>
 
-            <h1>Smart Village</h1>
+            <h1>Admin Login</h1>
 
-            <p class="portal-text">
-                Admin Portal
+            <p>
+                Smart Digital Village Service Portal
             </p>
-
-            <div class="login-description">
-                <h2>Smart Digital Village</h2>
-
-                <p>
-                    Manage village services, citizens, complaints,
-                    government schemes and announcements from one
-                    centralized dashboard.
-                </p>
-            </div>
 
         </div>
 
 
-        <!-- Right Side -->
-        <div class="login-right">
+        <div class="security-badge">
 
-            <!-- Login Form -->
-            <div id="loginSection">
+            <i class="fa-solid fa-lock"></i>
 
-                <h2>Administrator Login</h2>
+            Authorized administrators only
 
-                <p class="welcome-text">
-                    Welcome back! Please login to continue.
-                </p>
-
-                <form id="loginForm">
-
-                    <label>Email or Mobile Number</label>
-
-                    <div class="input-box">
-                        <span>📱</span>
-
-                        <input
-                            type="text"
-                            id="userInput"
-                            placeholder="Enter email or mobile number"
-                            required>
-                    </div>
+        </div>
 
 
-                    <label>Password</label>
+        {% if error %}
 
-                    <div class="input-box">
-                        <span>🔒</span>
+        <div class="error-message">
 
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Enter password"
-                            required>
+            <i class="fa-solid fa-circle-exclamation"></i>
 
-                        <button
-                            type="button"
-                            class="show-password"
-                            onclick="togglePassword()">
-                            👁
-                        </button>
-                    </div>
+            {{ error }}
+
+        </div>
+
+        {% endif %}
 
 
-                    <div class="login-options">
-
-                        <label class="remember">
-                            <input type="checkbox">
-                            Remember me
-                        </label>
-
-                        <a href="#" onclick="showForgotPassword()">
-                            Forgot Password?
-                        </a>
-
-                    </div>
+        <form method="POST"
+              action="{{ url_for('admin_login') }}">
 
 
-                    <button type="submit" class="login-button">
-                        Login
-                    </button>
+            <div class="form-group">
 
-                </form>
-
-                <p class="security-text">
-                    🔐 Secure Administrator Access
-                </p>
-
-            </div>
-
-
-            <!-- OTP Section -->
-            <div id="otpSection" style="display:none;">
-
-                <div class="otp-icon">
-                    🔐
-                </div>
-
-                <h2>Verify OTP</h2>
-
-                <p class="welcome-text">
-                    We have sent a verification OTP to your
-                    registered email/mobile number.
-                </p>
-
-                <div class="otp-inputs">
-
-                    <input type="text" maxlength="1" class="otp">
-                    <input type="text" maxlength="1" class="otp">
-                    <input type="text" maxlength="1" class="otp">
-                    <input type="text" maxlength="1" class="otp">
-                    <input type="text" maxlength="1" class="otp">
-                    <input type="text" maxlength="1" class="otp">
-
-                </div>
-
-                <button
-                    class="login-button"
-                    onclick="verifyOTP()">
-                    Verify OTP
-                </button>
-
-                <p class="resend-text">
-                    Didn't receive OTP?
-                    <a href="#" onclick="sendOTP()">Resend OTP</a>
-                </p>
-
-                <button
-                    class="back-button"
-                    onclick="backToLogin()">
-                    ← Back to Login
-                </button>
-
-            </div>
-
-
-            <!-- Forgot Password -->
-            <div id="forgotSection" style="display:none;">
-
-                <h2>Reset Password</h2>
-
-                <p class="welcome-text">
-                    Enter your registered email or mobile number.
-                </p>
+                <label>
+                    Username / Email / Mobile Number
+                </label>
 
                 <div class="input-box">
 
-                    <span>📱</span>
+                    <i class="fa-solid fa-user"></i>
 
                     <input
                         type="text"
-                        placeholder="Email or Mobile Number">
+                        name="login_id"
+                        placeholder="Enter username, email or mobile"
+                        required
+                        autocomplete="username"
+                    >
 
                 </div>
 
-                <button
-                    class="login-button"
-                    onclick="sendResetOTP()">
-                    Send OTP
-                </button>
+            </div>
 
-                <button
-                    class="back-button"
-                    onclick="backToLogin()">
-                    ← Back to Login
-                </button>
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <div class="input-box">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                        autocomplete="current-password"
+                    >
+
+                    <span
+                        class="password-toggle"
+                        onclick="togglePassword()">
+
+                        <i
+                            class="fa-solid fa-eye"
+                            id="eyeIcon">
+                        </i>
+
+                    </span>
+
+                </div>
 
             </div>
+
+
+            <button
+                type="submit"
+                class="login-button">
+
+                <i class="fa-solid fa-right-to-bracket"></i>
+
+                Login to Admin Panel
+
+            </button>
+
+        </form>
+
+
+        <a
+            href="{{ url_for('home') }}"
+            class="back-home">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to Home
+
+        </a>
+
+
+        <div class="footer-text">
+
+            Protected Administrative Area
 
         </div>
 
     </div>
 
+</div>
 
-    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+<script>
+
+function togglePassword() {
+
+    const password =
+        document.getElementById("password");
+
+    const icon =
+        document.getElementById("eyeIcon");
+
+    if (password.type === "password") {
+
+        password.type = "text";
+
+        icon.classList.remove("fa-eye");
+
+        icon.classList.add("fa-eye-slash");
+
+    } else {
+
+        password.type = "password";
+
+        icon.classList.remove("fa-eye-slash");
+
+        icon.classList.add("fa-eye");
+
+    }
+
+}
+
+</script>
 
 </body>
+
 </html>
