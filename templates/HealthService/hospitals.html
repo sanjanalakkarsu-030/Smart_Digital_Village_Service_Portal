@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hospitals | Smart Digital Village Service Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/Health.css') }}">
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="title">
+        🏥 Smart Digital Village Service Portal
+    </div>
+
+    <nav>
+        <a href="{{ url_for('health') }}">
+            Health
+        </a>
+
+        <a href="{{ url_for('hospitals') }}"
+           class="active">
+            Hospitals
+        </a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1 id="pageTitle">
+        🏥 Hospitals & Healthcare Facilities
+    </h1>
+
+    <p id="pageSubtitle">
+        Find hospitals and healthcare facilities in Siddipet District
+    </p>
+
+</section>
+
+
+<main class="container">
+
+<div id="hospitalView">
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3>
+                🔎 Search Hospitals
+            </h3>
+
+            <input
+                type="text"
+                id="hospitalSearch"
+                class="search-box"
+                placeholder="Search hospitals, location or services..."
+                onkeyup="filterHospitals()"
+            >
+
+        </div>
+
+    </section>
+
+
+    <section class="wide-section" id="categorySection">
+
+        <div class="wide-card">
+
+            <h3>
+                🏥 Hospital Categories
+            </h3>
+
+            <div class="category-container">
+
+                <button class="category-button"
+                        onclick="filterCategory('all')">
+                    🏥 All Hospitals
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('adult')">
+                    👨 Adult
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('children')">
+                    👶 Children
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('eye')">
+                    👁️ Eye
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('heart')">
+                    ❤️ Heart
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('skin')">
+                    🧴 Skin
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('dental')">
+                    🦷 Dental
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('kidney')">
+                    🫘 Kidney
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('liver')">
+                    🫀 Liver
+                </button>
+
+                <button class="category-button"
+                        onclick="filterCategory('veterinary')">
+                    🐄 Veterinary
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3 id="hospitalListTitle">
+                🏥 Hospitals
+            </h3>
+
+            <div class="hospital-list"
+                 id="hospitalList">
+            </div>
+
+            <div id="noResults"
+                 style="display:none;text-align:center;padding:30px;">
+
+                <h3>
+                    ❌ No hospitals found
+                </h3>
+
+                <p>
+                    Try another search or category.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<div id="phcView" style="display:none;">
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3>
+                🏥 Primary Health Centres
+            </h3>
+
+            <p>
+                Government Primary Health Centres
+                in Siddipet District
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3>
+                🔎 Search Primary Health Centres
+            </h3>
+
+            <input
+                type="text"
+                id="phcSearch"
+                class="search-box"
+                placeholder="Search PHCs by name or location..."
+                onkeyup="filterPHCs()"
+            >
+
+        </div>
+
+    </section>
+
+
+    <div class="hospital-list"
+         id="phcList">
+    </div>
+
+
+    <div id="noPHCResults"
+         style="display:none;text-align:center;padding:30px;">
+
+        <h3>
+            ❌ No PHCs found
+        </h3>
+
+        <p>
+            Try another PHC search.
+        </p>
+
+    </div>
+
+
+    <section class="wide-section">
+
+        <a href="{{ url_for('health') }}"
+           class="back-button">
+            ← Back to Health Services
+        </a>
+
+    </section>
+
+</div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Smart Digital Village Service Portal
+    </p>
+
+</footer>
+
+
+<script>
+
+const hospitals = [
+    {
+        id:1,
+        name:"Government General Hospital",
+        location:"Near Komati Cheruvu, Siddipet",
+        category:"adult",
+        services:"General Medicine, Surgery, Paediatrics, Ophthalmology"
+    },
+    {
+        id:2,
+        name:"Area Hospital Gajwel",
+        location:"Gajwel, Siddipet District",
+        category:"adult",
+        services:"General Medicine, Surgery, Gynaecology, Paediatrics, Orthopaedics, Ophthalmology, Dialysis"
+    },
+    {
+        id:3,
+        name:"CHC Cherial",
+        location:"Ravinagar, Cherial, Siddipet District",
+        category:"adult",
+        services:"General Medicine, Surgery, Gynaecology, Paediatrics, Orthopaedics, Ophthalmology"
+    },
+    {
+        id:4,
+        name:"CHC Dubbak",
+        location:"Saraswathi Nagar, Dubbak",
+        category:"adult",
+        services:"General Medicine, Surgery, Gynaecology, Paediatrics, Orthopaedics, Ophthalmology"
+    },
+    {
+        id:5,
+        name:"CHC Husnabad",
+        location:"Husnabad, Siddipet District",
+        category:"adult",
+        services:"General healthcare and primary medical services"
+    },
+    {
+        id:6,
+        name:"Government Medical College – Siddipet",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Medical education, General healthcare, Speciality healthcare"
+    },
+    {
+        id:7,
+        name:"Government Maternity Hospital – Siddipet",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Maternity care, Women's healthcare, Pregnancy-related healthcare"
+    },
+    {
+        id:8,
+        name:"Government Children Hospital – Siddipet",
+        location:"Siddipet District",
+        category:"children",
+        services:"Child healthcare, Paediatric services, Child health services"
+    },
+    {
+        id:9,
+        name:"Government Tuberculosis Hospital – Siddipet",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Tuberculosis-related healthcare, Respiratory health services"
+    },
+    {
+        id:10,
+        name:"LohithSai Super Specialty Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Super speciality healthcare, Medical consultation"
+    },
+    {
+        id:11,
+        name:"Nishhthaa Multispeciality Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Multi-speciality healthcare, Medical consultation"
+    },
+    {
+        id:12,
+        name:"CARE HOSPITAL SIDDIPET",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Multi-speciality healthcare, Medical consultation"
+    },
+    {
+        id:13,
+        name:"Sushma Multispeciality Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Multi-speciality healthcare, Medical consultation"
+    },
+    {
+        id:14,
+        name:"SUNRISE HOSPITAL",
+        location:"Siddipet District",
+        category:"adult",
+        services:"General healthcare, Medical consultation"
+    },
+    {
+        id:15,
+        name:"Sai Pallavi Multispeciality Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Multi-speciality healthcare, Medical consultation"
+    },
+    {
+        id:16,
+        name:"Samraksha Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"General healthcare, Medical consultation"
+    },
+    {
+        id:17,
+        name:"Siddhartha Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"General healthcare, Medical consultation"
+    },
+    {
+        id:18,
+        name:"Veda Multi Speciality Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"Multi-speciality healthcare, Medical consultation"
+    },
+    {
+        id:19,
+        name:"SRI VISHNU HOSPITAL",
+        location:"Siddipet District",
+        category:"adult",
+        services:"General healthcare, Medical consultation"
+    },
+    {
+        id:20,
+        name:"Arogya Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"General healthcare, Medical consultation"
+    },
+    {
+        id:21,
+        name:"Primecare Hospital",
+        location:"Siddipet District",
+        category:"adult",
+        services:"General healthcare, Medical consultation"
+    },
+    {
+        id:22,
+        name:"RICH CHILDREN'S HOSPITAL",
+        location:"Siddipet District",
+        category:"children",
+        services:"Child healthcare, Paediatric consultation"
+    },
+    {
+        id:23,
+        name:"Bindu Children's Hospital",
+        location:"Siddipet District",
+        category:"children",
+        services:"Child healthcare, Paediatric consultation"
+    },
+    {
+        id:24,
+        name:"Centre For Sight Group of Eye Hospitals",
+        location:"Siddipet District",
+        category:"eye",
+        services:"Eye consultation, Ophthalmology, Eye care"
+    },
+    {
+        id:25,
+        name:"Dr Agarwals Eye Hospital",
+        location:"Siddipet District",
+        category:"eye",
+        services:"Eye consultation, Ophthalmology, Eye care"
+    },
+    {
+        id:26,
+        name:"Avishai Cardiac Centre",
+        location:"Siddipet District",
+        category:"heart",
+        services:"Cardiac consultation, Heart healthcare"
+    },
+    {
+        id:27,
+        name:"Vidya Skin Hospital",
+        location:"Siddipet District",
+        category:"skin",
+        services:"Skin consultation, Dermatology services"
+    },
+    {
+        id:28,
+        name:"Adhya Skin and Hair Transplant Hospital",
+        location:"Siddipet District",
+        category:"skin",
+        services:"Skin consultation, Dermatology, Hair healthcare"
+    },
+    {
+        id:29,
+        name:"RAMA SMILE CARE DENTAL HOSPITAL",
+        location:"Siddipet District",
+        category:"dental",
+        services:"Dental consultation, Oral healthcare, Dental treatment"
+    },
+    {
+        id:30,
+        name:"Telangana Super Speciality Dental Hospital",
+        location:"Siddipet District",
+        category:"dental",
+        services:"Dental consultation, Oral healthcare, Dental speciality services"
+    },
+    {
+        id:31,
+        name:"DR CHANDRA PRAKASH KIDNEY CARE HOSPITAL",
+        location:"Siddipet District",
+        category:"kidney",
+        services:"Kidney consultation, Renal healthcare, Kidney patient care"
+    },
+    {
+        id:32,
+        name:"Paw Care Vet Clinic - Siddipet",
+        location:"Siddipet District",
+        category:"veterinary",
+        services:"Pet healthcare, Veterinary consultation, Animal healthcare"
+    },
+    {
+        id:33,
+        name:"Veterinary Hospital",
+        location:"Siddipet District",
+        category:"veterinary",
+        services:"Animal healthcare, Veterinary consultation, Animal treatment"
+    },
+    {
+        id:34,
+        name:"Sri Venkateshwara Eye Hospital and Dry Eye Treatment Center",
+        location:"Siddipet District",
+        category:"eye",
+        services:"Eye consultation, Ophthalmology, Dry eye care"
+    }
+];
+
+
+const phcs = [
+    "Ahmedipur PHC",
+    "Akkanapet PHC",
+    "Bejjanki PHC",
+    "Boompally PHC",
+    "Chinnakodur PHC",
+    "Chinthamadaka PHC",
+    "Doulthabad PHC",
+    "Ibrahimnagar PHC",
+    "Indupriyal PHC",
+    "Jagadevpur PHC",
+    "Koheda PHC",
+    "Komuravelly PHC",
+    "Kondapaka PHC",
+    "Kukunoorpally PHC",
+    "Ladnoor PHC",
+    "Maddur PHC",
+    "Markook PHC",
+    "Mirdoddi PHC",
+    "Mulugu PHC",
+    "Nangnoor PHC",
+    "Narayanraopet PHC",
+    "Pullur PHC",
+    "Raipole PHC",
+    "Rajagopalpet PHC",
+    "Ramakkapet PHC",
+    "Singannagudem PHC",
+    "Sirigiripally PHC",
+    "Theegul PHC",
+    "Thimmapur PHC",
+    "Thoguta PHC",
+    "Thotapally PHC"
+];
+
+
+let selectedCategory = "all";
+
+
+function displayHospitals() {
+
+    const list =
+        document.getElementById("hospitalList");
+
+    list.innerHTML = "";
+
+    hospitals.forEach(function(hospital) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "hospital-item";
+
+        card.setAttribute(
+            "data-category",
+            hospital.category
+        );
+
+        card.setAttribute(
+            "data-search",
+            (
+                hospital.name + " " +
+                hospital.location + " " +
+                hospital.services
+            ).toLowerCase()
+        );
+
+        card.innerHTML = `
+            <h3>🏥 ${hospital.name}</h3>
+
+            <p>📍 ${hospital.location}</p>
+
+            <p class="facility-type">
+                🏥 Healthcare Facility
+            </p>
+
+            <p>
+                🩺 ${hospital.services}
+            </p>
+
+            <a href="/health/hospital/${hospital.id}"
+               class="main-hospital-button details-button">
+
+                View Details →
+
+            </a>
+        `;
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+function displayPHCs() {
+
+    const list =
+        document.getElementById("phcList");
+
+    list.innerHTML = "";
+
+    phcs.forEach(function(phc, index) {
+
+        const phcDetailIds = [
+            9,10,11,12,13,14,15,16,
+            null,
+            17,18,19,20,21,22,23,24,
+            25,26,27,28,29,30,31,32,
+            33,34,35,36,37,38
+        ];
+
+        const id =
+            phcDetailIds[index];
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "hospital-item";
+
+        card.setAttribute(
+            "data-phc-search",
+            (
+                phc + " " +
+                phc.replace(" PHC","") +
+                " Siddipet District"
+            ).toLowerCase()
+        );
+
+        card.innerHTML = `
+
+            <h3>
+                🏥 ${phc}
+            </h3>
+
+            <p>
+                📍 ${phc.replace(" PHC","")},
+                Siddipet District
+            </p>
+
+            <p class="facility-type">
+                🏛️ Government Primary Health Centre
+            </p>
+
+            <p>
+                🩺 Primary healthcare,
+                General medical consultation
+                and Basic health services
+            </p>
+
+            ${
+                id
+                ?
+                `<a href="/health/hospital/${id}"
+                   class="main-hospital-button details-button">
+                    View Details →
+                </a>`
+                :
+                `<a href="{{ url_for('hospitals') }}"
+                   class="main-hospital-button details-button">
+                    View PHC List →
+                </a>`
+            }
+
+        `;
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+function filterCategory(category) {
+
+    selectedCategory = category;
+
+    if (category === "phc") {
+
+        document.getElementById(
+            "hospitalView"
+        ).style.display = "none";
+
+        document.getElementById(
+            "phcView"
+        ).style.display = "block";
+
+        filterPHCs();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        return;
+    }
+
+    document.getElementById(
+        "hospitalView"
+    ).style.display = "block";
+
+    document.getElementById(
+        "phcView"
+    ).style.display = "none";
+
+    filterHospitals();
+
+}
+
+
+function filterHospitals() {
+
+    const searchBox =
+        document.getElementById(
+            "hospitalSearch"
+        );
+
+    const searchText =
+        searchBox.value
+        .toLowerCase()
+        .trim();
+
+    const cards =
+        document.querySelectorAll(
+            "#hospitalList .hospital-item[data-category]"
+        );
+
+    let found = 0;
+
+    cards.forEach(function(hospital) {
+
+        const category =
+            hospital.getAttribute(
+                "data-category"
+            );
+
+        const searchData =
+            hospital.getAttribute(
+                "data-search"
+            ) || "";
+
+        const categoryMatch =
+            selectedCategory === "all" ||
+            category === selectedCategory;
+
+        const searchMatch =
+            searchText === "" ||
+            searchData.includes(searchText);
+
+        if (
+            categoryMatch &&
+            searchMatch
+        ) {
+
+            hospital.style.display =
+                "block";
+
+            found++;
+
+        } else {
+
+            hospital.style.display =
+                "none";
+
+        }
+
+    });
+
+    document.getElementById(
+        "noResults"
+    ).style.display =
+        found === 0
+        ? "block"
+        : "none";
+
+}
+
+
+function filterPHCs() {
+
+    const searchBox =
+        document.getElementById(
+            "phcSearch"
+        );
+
+    const searchText =
+        searchBox.value
+        .toLowerCase()
+        .trim();
+
+    const cards =
+        document.querySelectorAll(
+            "#phcList .hospital-item"
+        );
+
+    let found = 0;
+
+    cards.forEach(function(phc) {
+
+        const searchData =
+            phc.getAttribute(
+                "data-phc-search"
+            ) || "";
+
+        const text =
+            phc.innerText
+            .toLowerCase();
+
+        if (
+            searchText === "" ||
+            searchData.includes(searchText) ||
+            text.includes(searchText)
+        ) {
+
+            phc.style.display =
+                "block";
+
+            found++;
+
+        } else {
+
+            phc.style.display =
+                "none";
+
+        }
+
+    });
+
+    document.getElementById(
+        "noPHCResults"
+    ).style.display =
+        found === 0
+        ? "block"
+        : "none";
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        displayHospitals();
+
+        displayPHCs();
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+        const category =
+            params.get("category");
+
+        if (category === "phc") {
+
+            document.getElementById(
+                "hospitalView"
+            ).style.display = "none";
+
+            document.getElementById(
+                "phcView"
+            ).style.display = "block";
+
+            filterPHCs();
+
+        } else {
+
+            document.getElementById(
+                "hospitalView"
+            ).style.display = "block";
+
+            document.getElementById(
+                "phcView"
+            ).style.display = "none";
+
+            filterHospitals();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
