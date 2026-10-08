@@ -1,0 +1,780 @@
+/* =====================================================
+   SMART DIGITAL VILLAGE SERVICE PORTAL
+   UPDATED CSS
+===================================================== */
+
+
+/* ================= ROOT ================= */
+
+:root {
+
+    --primary: #166534;
+    --primary-light: #16A34A;
+    --primary-dark: #15803D;
+
+    --secondary: #1E3A8A;
+    --secondary-dark: #172D6A;
+
+    --bg: #F8FAFC;
+    --border: #E5E7EB;
+
+    --text: #1F2937;
+    --muted: #64748B;
+
+    --success-bg: #DCFCE7;
+    --success-text: #166534;
+
+    --warning-bg: #FEF3C7;
+    --warning-text: #92400E;
+
+    --danger-bg: #FEE2E2;
+    --danger-text: #991B1B;
+
+}
+
+
+/* ================= GLOBAL ================= */
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: "Poppins", sans-serif;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+
+body {
+
+    background: var(--bg);
+    color: var(--text);
+
+    min-height: 100vh;
+
+}
+
+
+/* ================= HEADER ================= */
+
+header {
+
+    background: #ffffff;
+
+    text-align: center;
+
+    padding: 24px 20px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+header h1 {
+
+    color: var(--primary);
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+}
+
+
+header p {
+
+    color: #555;
+
+    margin-top: 5px;
+
+    font-size: 15px;
+
+}
+
+
+/* ================= MAIN ================= */
+
+main {
+
+    padding-top: 1px;
+
+}
+
+
+/* ================= CONTAINERS ================= */
+
+.container,
+.track-container,
+.registered-container {
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+
+}
+
+
+/* ================= REGISTRATION ================= */
+
+.container {
+
+    max-width: 700px;
+
+    width: 90%;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+}
+
+
+/* ================= HEADINGS ================= */
+
+h2 {
+
+    text-align: center;
+
+    color: var(--secondary);
+
+    margin-bottom: 25px;
+
+    font-size: 23px;
+
+}
+
+
+/* ================= FORM ================= */
+
+.form-group {
+
+    margin-bottom: 18px;
+
+}
+
+
+label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-weight: 600;
+
+}
+
+
+/* ================= INPUTS ================= */
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    color: var(--text);
+
+    background: #ffffff;
+
+    outline: none;
+
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+
+}
+
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color: var(--secondary);
+
+    box-shadow:
+        0 0 8px rgba(30, 58, 138, 0.2);
+
+}
+
+
+input:hover,
+select:hover,
+textarea:hover {
+
+    border-color: var(--primary-light);
+
+}
+
+
+textarea {
+
+    resize: vertical;
+
+    min-height: 120px;
+
+}
+
+
+/* ================= FIELD HELP ================= */
+
+.field-help {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 5px;
+
+}
+
+
+/* ================= COMPLAINT ID ================= */
+
+#complaintId {
+
+    background: #F1F5F9;
+
+    font-weight: 700;
+
+    color: var(--secondary);
+
+    cursor: not-allowed;
+
+}
+
+
+/* ================= FILE INPUT ================= */
+
+input[type="file"] {
+
+    padding: 10px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+}
+
+
+/* ================= PHOTO PREVIEW ================= */
+
+.photo-preview {
+
+    margin-top: 12px;
+
+}
+
+
+.photo-preview img {
+
+    display: block;
+
+    width: 100%;
+
+    max-width: 300px;
+
+    max-height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border);
+
+}
+
+
+/* ================= CHECKBOX ================= */
+
+.checkbox {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+}
+
+
+.checkbox input {
+
+    width: auto;
+
+    margin-top: 5px;
+
+    cursor: pointer;
+
+}
+
+
+.checkbox label {
+
+    margin: 0;
+
+    font-weight: 400;
+
+    cursor: pointer;
+
+}
+
+
+/* ================= BUTTONS ================= */
+
+.buttons {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+}
+
+
+button {
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+    transition:
+        background 0.3s,
+        transform 0.2s;
+
+    color: #ffffff;
+
+}
+
+
+button:hover {
+
+    transform: translateY(-1px);
+
+}
+
+
+button:active {
+
+    transform: translateY(0);
+
+}
+
+
+/* ================= SUBMIT ================= */
+
+.submit {
+
+    flex: 1;
+
+    background: var(--primary-light);
+
+}
+
+
+.submit:hover {
+
+    background: var(--primary-dark);
+
+}
+
+
+/* ================= RESET ================= */
+
+.reset {
+
+    flex: 1;
+
+    background: var(--secondary);
+
+}
+
+
+.reset:hover {
+
+    background: var(--secondary-dark);
+
+}
+
+
+/* =====================================================
+   TRACK COMPLAINT
+===================================================== */
+
+.track-container {
+
+    max-width: 700px;
+
+    width: 90%;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+}
+
+
+/* ================= TRACK BUTTON ================= */
+
+.track-btn {
+
+    width: 100%;
+
+    background: var(--secondary);
+
+}
+
+
+.track-btn:hover {
+
+    background: var(--secondary-dark);
+
+}
+
+
+/* ================= STATUS RESULT ================= */
+
+.status-result {
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    display: none;
+
+    background: #F1F5F9;
+
+    border: 1px solid var(--border);
+
+}
+
+
+.status-result h3 {
+
+    color: var(--secondary);
+
+    margin-bottom: 12px;
+
+}
+
+
+.status-result p {
+
+    margin: 8px 0;
+
+    line-height: 1.6;
+
+}
+
+
+/* ================= TRACK PHOTO ================= */
+
+.track-photo {
+
+    width: 100%;
+
+    max-width: 400px;
+
+    max-height: 300px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-top: 8px;
+
+    border: 1px solid var(--border);
+
+}
+
+
+/* =====================================================
+   STATUS TIMELINE
+===================================================== */
+
+.status-timeline {
+
+    margin-top: 20px;
+
+}
+
+
+.status-step {
+
+    padding: 13px;
+
+    margin-bottom: 8px;
+
+    border-left: 4px solid #D1D5DB;
+
+    background: #F8FAFC;
+
+    border-radius: 5px;
+
+    transition: 0.3s;
+
+}
+
+
+.status-step.completed {
+
+    border-left-color: var(--primary);
+
+    background: #F0FDF4;
+
+}
+
+
+.status-step.active {
+
+    border-left-color: var(--primary-light);
+
+    background: #ECFDF5;
+
+    font-weight: 600;
+
+}
+
+
+/* =====================================================
+   REGISTERED COMPLAINTS
+===================================================== */
+
+.registered-container {
+
+    max-width: 900px;
+
+    width: 90%;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+}
+
+
+/* ================= COMPLAINT CARD ================= */
+
+.complaint-card {
+
+    border: 1px solid var(--border);
+
+    border-left: 5px solid var(--primary-light);
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+
+    background: #F8FAFC;
+
+}
+
+
+.complaint-card h3 {
+
+    color: var(--secondary);
+
+    margin-bottom: 10px;
+
+}
+
+
+.complaint-card p {
+
+    margin: 6px 0;
+
+    line-height: 1.5;
+
+}
+
+
+/* ================= STATUS BADGE ================= */
+
+.status-badge {
+
+    display: inline-block;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    background: var(--success-bg);
+
+    color: var(--success-text);
+
+    font-weight: 600;
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+}
+
+
+/* ================= COMPLAINT PHOTO ================= */
+
+.complaint-photo {
+
+    width: 100%;
+
+    max-width: 250px;
+
+    max-height: 200px;
+
+    object-fit: cover;
+
+    margin-top: 8px;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--border);
+
+}
+
+
+/* ================= NO COMPLAINT ================= */
+
+.no-complaints {
+
+    text-align: center;
+
+    color: #777;
+
+    padding: 15px;
+
+}
+
+
+/* ================= ERROR ================= */
+
+.error-message {
+
+    color: var(--danger-text);
+
+    background: var(--danger-bg);
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    text-align: center;
+
+    padding: 18px;
+
+    margin-top: 30px;
+
+}
+
+
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    header {
+
+        padding: 18px 15px;
+
+    }
+
+
+    header h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    header p {
+
+        font-size: 13px;
+
+    }
+
+
+    .container,
+    .track-container,
+    .registered-container {
+
+        width: 94%;
+
+        padding: 20px;
+
+        margin-top: 20px;
+
+    }
+
+
+    h2 {
+
+        font-size: 20px;
+
+    }
+
+
+    .buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    button {
+
+        width: 100%;
+
+    }
+
+
+    .complaint-card {
+
+        padding: 15px;
+
+    }
+
+}
