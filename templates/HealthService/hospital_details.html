@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hospital Details | Smart Digital Village</title>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/Health.css') }}">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0fff5;
+    color: #17324d;
+}
+
+.top-header {
+    background: #126b36;
+    color: white;
+    padding: 15px 35px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 30px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: bold;
+    flex: 1;
+}
+
+nav {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    background: linear-gradient(135deg, #137333, #20b957);
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+.hero h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 35px auto;
+}
+
+.details-card {
+    background: white;
+    border: 1px solid #b9e8ca;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.details-card h2 {
+    color: #08752f;
+    margin-top: 0;
+    font-size: 30px;
+}
+
+.hospital-type {
+    display: inline-block;
+    background: #d9f7e3;
+    color: #08752f;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.info-box {
+    border: 1px solid #c8ead3;
+    border-radius: 10px;
+    padding: 18px;
+    background: #f8fffa;
+}
+
+.info-box h3 {
+    margin-top: 0;
+    color: #08752f;
+}
+
+.info-box p {
+    line-height: 1.6;
+}
+
+.services {
+    margin-top: 25px;
+}
+
+.services ul {
+    line-height: 2;
+}
+
+.button-area {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.back-button {
+    display: inline-block;
+    background: #14833f;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background: #0d642f;
+}
+
+.health-button {
+    background: #555;
+}
+
+.health-button:hover {
+    background: #333;
+}
+
+footer {
+    background: #126b36;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+@media (max-width: 700px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    nav {
+        gap: 10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="logo">🏥</div>
+
+    <div class="title">
+        Smart Digital Village Service Portal
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="/citizen">Citizen</a>
+        <a href="/complaints">Complaints</a>
+        <a href="/government">Government</a>
+        <a href="/announcements">Announcements</a>
+        <a href="/agriculture">Agriculture</a>
+        <a href="/health">Health</a>
+        <a href="/admin">Admin</a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>🏥 Hospital / PHC Details</h1>
+
+    <p>
+        Complete healthcare information for Siddipet District
+    </p>
+
+</section>
+
+
+<main class="container">
+
+    <div class="details-card">
+
+        <h2 id="hospitalName">
+            Hospital / PHC Details
+        </h2>
+
+        <span class="hospital-type"
+              id="hospitalType">
+            Healthcare Facility
+        </span>
+
+
+        <div class="info-grid">
+
+            <div class="info-box">
+                <h3>📍 Location</h3>
+                <p id="hospitalLocation">
+                    Siddipet District
+                </p>
+            </div>
+
+
+            <div class="info-box">
+                <h3>🏠 Address</h3>
+                <p id="hospitalAddress">
+                    Siddipet District, Telangana
+                </p>
+            </div>
+
+
+            <div class="info-box">
+                <h3>📮 PIN Code</h3>
+                <p id="hospitalPincode">
+                    Not provided
+                </p>
+            </div>
+
+
+            <div class="info-box">
+                <h3>📞 Contact Number</h3>
+                <p id="hospitalPhone">
+                    Contact information available at the facility
+                </p>
+            </div>
+
+
+            <div class="info-box">
+                <h3>🕐 Working Hours</h3>
+                <p id="hospitalHours">
+                    Please contact the facility for current timings.
+                </p>
+            </div>
+
+
+            <div class="info-box">
+                <h3>🚑 Emergency Services</h3>
+                <p id="hospitalEmergency">
+                    Contact the hospital for emergency availability.
+                </p>
+            </div>
+
+
+            <div class="info-box">
+                <h3>🩺 Healthcare Category</h3>
+                <p id="hospitalCategory">
+                    General Healthcare
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="info-box services">
+
+            <h3>🩺 Services Available</h3>
+
+            <ul id="hospitalServices">
+                <li>General medical consultation</li>
+                <li>Primary healthcare</li>
+                <li>Basic diagnostic services</li>
+                <li>Medical advice and treatment</li>
+            </ul>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <h3>ℹ️ Additional Information</h3>
+
+            <p id="hospitalAdditional">
+                Please contact the healthcare facility before visiting
+                to confirm departments, doctors, timings and services.
+            </p>
+
+        </div>
+
+
+        <div class="button-area">
+
+            <a href="{{ url_for('hospitals') }}"
+               class="back-button">
+                ← Back to Hospitals
+            </a>
+
+            <a href="{{ url_for('health') }}"
+               class="back-button health-button">
+                ← Back to Health Services
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Smart Digital Village Service Portal |
+        Health Services
+    </p>
+
+</footer>
+
+
+<script>
+
+const hospitalId = {{ hospital_id }};
+
+
+/*
+=====================================================
+COMPLETE FACILITY DETAILS
+=====================================================
+
+PIN codes are kept as "Not provided" because the
+existing project data does not contain verified PIN
+codes. No PIN code is invented.
+*/
+
+const hospitals = {
+
+    1: {
+        name: "Government General Hospital",
+        type: "🏛️ Government Hospital",
+        location: "Siddipet",
+        address: "Near Komati Cheruvu, Siddipet",
+        pincode: "Not provided",
+        phone: "Government Hospital",
+        hours: "Please contact hospital for current timings",
+        emergency: "Emergency healthcare services",
+        category: "General & Adult Healthcare",
+        services: [
+            "General Medicine",
+            "General Surgery",
+            "Paediatrics",
+            "Emergency Care",
+            "Basic Diagnostic Services"
+        ],
+        additional:
+            "Government healthcare facility serving people in Siddipet."
+    },
+
+    2: {
+        name: "Area Hospital Gajwel",
+        type: "🏛️ Government Hospital",
+        location: "Gajwel",
+        address: "Gajwel, Siddipet District",
+        pincode: "Not provided",
+        phone: "Government Hospital",
+        hours: "Please contact hospital for current timings",
+        emergency: "Emergency healthcare services",
+        category: "General & Adult Healthcare",
+        services: [
+            "General Medicine",
+            "General Surgery",
+            "Gynaecology",
+            "Paediatrics",
+            "Emergency Care"
+        ],
+        additional:
+            "Government area hospital providing healthcare services in Gajwel."
+    },
+
+    3: {
+        name: "Community Health Centre Dubbak",
+        type: "🏛️ Government Hospital",
+        location: "Dubbak",
+        address: "Dubbak, Siddipet District",
+        pincode: "Not provided",
+        phone: "Government Health Facility",
+        hours: "Please contact facility for current timings",
+        emergency: "Healthcare support available",
+        category: "General Healthcare",
+        services: [
+            "General Healthcare",
+            "Primary Medical Care",
+            "Basic Treatment",
+            "Health Consultation"
+        ],
+        additional:
+            "Community healthcare facility serving Dubbak area."
+    },
+
+    4: {
+        name: "Community Health Centre Cherial",
+        type: "🏛️ Government Hospital",
+        location: "Cherial",
+        address: "Cherial, Siddipet District",
+        pincode: "Not provided",
+        phone: "Government Health Facility",
+        hours: "Please contact facility for current timings",
+        emergency: "Healthcare support available",
+        category: "General Healthcare",
+        services: [
+            "General Healthcare",
+            "Primary Medical Care",
+            "Basic Treatment",
+            "Health Consultation"
+        ],
+        additional:
+            "Community healthcare facility serving Cherial area."
+    },
+
+    5: {
+        name: "Community Health Centre Husnabad",
+        type: "🏛️ Government Hospital",
+        location: "Husnabad",
+        address: "Husnabad, Siddipet District",
+        pincode: "Not provided",
+        phone: "Government Health Facility",
+        hours: "Please contact facility for current timings",
+        emergency: "Healthcare support available",
+        category: "General Healthcare",
+        services: [
+            "General Healthcare",
+            "Primary Medical Care",
+            "Basic Treatment",
+            "Health Consultation"
+        ],
+        additional:
+            "Community healthcare facility serving Husnabad area."
+    },
+
+    6: {
+        name: "Government General Hospital – Paediatrics",
+        type: "🏛️ Government Hospital",
+        location: "Siddipet",
+        address: "Siddipet District",
+        pincode: "Not provided",
+        phone: "Government Hospital",
+        hours: "Please contact hospital for current timings",
+        emergency: "Emergency healthcare support",
+        category: "Children's Healthcare",
+        services: [
+            "Paediatric Care",
+            "Child Healthcare",
+            "Child Medical Consultation",
+            "General Paediatric Services"
+        ],
+        additional:
+            "Paediatric healthcare services for children and adolescents."
+    },
+
+    7: {
+        name: "Area Hospital Gajwel – Paediatric Services",
+        type: "🏛️ Government Hospital",
+        location: "Gajwel",
+        address: "Gajwel, Siddipet District",
+        pincode: "Not provided",
+        phone: "Government Hospital",
+        hours: "Please contact hospital for current timings",
+        emergency: "Emergency healthcare support",
+        category: "Children's Healthcare",
+        services: [
+            "Paediatric Care",
+            "Child Healthcare",
+            "Child Medical Consultation",
+            "Paediatric Services"
+        ],
+        additional:
+            "Child healthcare services available through the hospital."
+    },
+
+    8: {
+        name: "CHC Dubbak – Child Healthcare",
+        type: "🏛️ Government Hospital",
+        location: "Dubbak",
+        address: "Dubbak, Siddipet District",
+        pincode: "Not provided",
+        phone: "Government Health Facility",
+        hours: "Please contact facility for current timings",
+        emergency: "Healthcare support available",
+        category: "Children's Healthcare",
+        services: [
+            "Child Healthcare",
+            "Paediatric Consultation",
+            "General Child Care",
+            "Primary Healthcare"
+        ],
+        additional:
+            "Child healthcare support through the community health centre."
+    },
+
+    9: {
+        name: "PHC Ahmedipur / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Gajwel Mandal",
+        address: "Ahmedipur, Gajwel Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9154627769",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care",
+            "Health Services"
+        ],
+        additional:
+            "Primary Health Centre serving Ahmedipur and surrounding areas."
+    },
+
+    10: {
+        name: "PHC Akkanapet",
+        type: "🏥 Primary Health Centre",
+        location: "Husnabad Mandal",
+        address: "Akkanapet, Husnabad Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "966308706",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Akkanapet area."
+    },
+
+    11: {
+        name: "PHC Bejjanki / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Bejjanki Mandal",
+        address: "Bejjanki Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9391174331",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Bejjanki area."
+    },
+
+    12: {
+        name: "PHC Boompally",
+        type: "🏥 Primary Health Centre",
+        location: "Mirdoddi Mandal",
+        address: "Boompally, Mirdoddi Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9989573909",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Boompally area."
+    },
+
+    13: {
+        name: "PHC Chinnakodur / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Chinnakodur Mandal",
+        address: "Chinnakodur Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "7207664363",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Chinnakodur area."
+    },
+
+    14: {
+        name: "PHC Chinthamadaka",
+        type: "🏥 Primary Health Centre",
+        location: "Siddipet Mandal",
+        address: "Chinthamadaka, Siddipet Mandal",
+        pincode: "Not provided",
+        phone: "9985889666",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Chinthamadaka area."
+    },
+
+    15: {
+        name: "PHC Doulthabad (G)",
+        type: "🏥 Primary Health Centre",
+        location: "Doulthabad Mandal",
+        address: "Doulthabad, Siddipet District",
+        pincode: "Not provided",
+        phone: "9963813690",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Doulthabad area."
+    },
+
+    16: {
+        name: "PHC Ibrahimnagar",
+        type: "🏥 Primary Health Centre",
+        location: "Chinnakodur Mandal",
+        address: "Ibrahimnagar, Chinnakodur Mandal",
+        pincode: "Not provided",
+        phone: "9652729197",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Ibrahimnagar area."
+    },
+
+    17: {
+        name: "PHC Jagadevpur",
+        type: "🏥 Primary Health Centre",
+        location: "Jagadevpur Mandal",
+        address: "Jagadevpur Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9440400333",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Jagadevpur area."
+    },
+
+    18: {
+        name: "PHC Koheda / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Koheda Mandal",
+        address: "Koheda Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9550928028",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Koheda area."
+    },
+
+    19: {
+        name: "PHC Komuravelly",
+        type: "🏥 Primary Health Centre",
+        location: "Komuravelli Mandal",
+        address: "Komuravelli Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9989351294",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Komuravelli area."
+    },
+
+    20: {
+        name: "PHC Kondapaka",
+        type: "🏥 Primary Health Centre",
+        location: "Kondapaka Mandal",
+        address: "Kondapaka Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "8978457478",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Kondapaka area."
+    },
+
+    21: {
+        name: "PHC Kukunoorpally / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Kondapaka Mandal",
+        address: "Kukunoorpally, Kondapaka Mandal",
+        pincode: "Not provided",
+        phone: "8977666656",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Kukunoorpally area."
+    },
+
+    22: {
+        name: "PHC Ladnoor / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Maddur Mandal",
+        address: "Ladnoor, Maddur Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9849463739",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Ladnoor area."
+    },
+
+    23: {
+        name: "PHC Maddur",
+        type: "🏥 Primary Health Centre",
+        location: "Maddur Mandal",
+        address: "Maddur Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "8341648292",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Maddur area."
+    },
+
+    24: {
+        name: "PHC Markook",
+        type: "🏥 Primary Health Centre",
+        location: "Markook Mandal",
+        address: "Markook Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "8978719940",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Markook area."
+    },
+
+    25: {
+        name: "PHC Mirdoddi",
+        type: "🏥 Primary Health Centre",
+        location: "Mirdoddi Mandal",
+        address: "Mirdoddi Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9885614618",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Mirdoddi area."
+    },
+
+    26: {
+        name: "PHC Mulugu / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Mulugu Mandal",
+        address: "Mulugu Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9440486846",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Mulugu area."
+    },
+
+    27: {
+        name: "PHC Nangnoor / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Nangnoor Mandal",
+        address: "Nangnoor Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "8978719940",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Nangnoor area."
+    },
+
+    28: {
+        name: "PHC Narayanraopet",
+        type: "🏥 Primary Health Centre",
+        location: "Narayanraopet Mandal",
+        address: "Narayanraopet Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "8142574749",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Narayanraopet area."
+    },
+
+    29: {
+        name: "PHC Pullur / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Siddipet Mandal",
+        address: "Pullur, Siddipet Mandal",
+        pincode: "Not provided",
+        phone: "7901679949",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Pullur area."
+    },
+
+    30: {
+        name: "PHC Raipole",
+        type: "🏥 Primary Health Centre",
+        location: "Raipole Mandal",
+        address: "Raipole Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9963997535",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Raipole area."
+    },
+
+    31: {
+        name: "PHC Rajagopalpet / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Nangnoor Mandal",
+        address: "Rajagopalpet, Nangnoor Mandal",
+        pincode: "Not provided",
+        phone: "9959715715",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Rajagopalpet area."
+    },
+
+    32: {
+        name: "PHC Ramakkapet",
+        type: "🏥 Primary Health Centre",
+        location: "Dubbak Mandal",
+        address: "Ramakkapet, Dubbak Mandal",
+        pincode: "Not provided",
+        phone: "9985889666",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Ramakkapet area."
+    },
+
+    33: {
+        name: "PHC Singannagudem",
+        type: "🏥 Primary Health Centre",
+        location: "Mulugu Mandal",
+        address: "Singannagudem, Mulugu Mandal",
+        pincode: "Not provided",
+        phone: "7013939253",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Singannagudem area."
+    },
+
+    34: {
+        name: "PHC Sirigiripally",
+        type: "🏥 Primary Health Centre",
+        location: "Gajwel Mandal",
+        address: "Sirigiripally, Gajwel Mandal",
+        pincode: "Not provided",
+        phone: "9985584141",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Sirigiripally area."
+    },
+
+    35: {
+        name: "PHC Theegul / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Jagadevpur Mandal",
+        address: "Theegul, Jagadevpur Mandal",
+        pincode: "Not provided",
+        phone: "8790576586",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Theegul area."
+    },
+
+    36: {
+        name: "PHC Thimmapur / 24×7",
+        type: "🏥 Primary Health Centre",
+        location: "Dubbak Mandal",
+        address: "Thimmapur, Dubbak Mandal",
+        pincode: "Not provided",
+        phone: "9550928028",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Thimmapur area."
+    },
+
+    37: {
+        name: "PHC Thoguta",
+        type: "🏥 Primary Health Centre",
+        location: "Thoguta Mandal",
+        address: "Thoguta Mandal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9494987372",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Thoguta area."
+    },
+
+    38: {
+        name: "PHC Thotapally",
+        type: "🏥 Primary Health Centre",
+        location: "Bejjanki Mandal",
+        address: "Thotapally, Bejjanki Mandal",
+        pincode: "Not provided",
+        phone: "7995200108",
+        hours: "Please contact PHC",
+        emergency: "Primary healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Primary Health Centre serving Thotapally area."
+    },
+
+    39: {
+        name: "PP Unit Cheriyal",
+        type: "🏥 Government Health Facility",
+        location: "Cherial",
+        address: "Cherial, Siddipet District",
+        pincode: "Not provided",
+        phone: "9989351294",
+        hours: "Please contact facility",
+        emergency: "Healthcare support",
+        category: "Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Government health facility serving Cherial."
+    },
+
+    40: {
+        name: "UPHC Ambedkarnagar",
+        type: "🏥 Urban Primary Health Centre",
+        location: "Siddipet",
+        address: "Ambedkarnagar, Siddipet",
+        pincode: "Not provided",
+        phone: "9550493756",
+        hours: "Please contact UPHC",
+        emergency: "Primary healthcare support",
+        category: "Urban Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Urban Primary Health Centre serving Ambedkarnagar."
+    },
+
+    41: {
+        name: "UPHC Husnabad / 24×7",
+        type: "🏥 Urban Primary Health Centre",
+        location: "Husnabad",
+        address: "Husnabad, Siddipet District",
+        pincode: "Not provided",
+        phone: "7993484594",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Urban Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Urban Primary Health Centre serving Husnabad."
+    },
+
+    42: {
+        name: "UPHC Nasarpura",
+        type: "🏥 Urban Primary Health Centre",
+        location: "Siddipet",
+        address: "Nasarpura, Siddipet",
+        pincode: "Not provided",
+        phone: "8106836019",
+        hours: "Please contact UPHC",
+        emergency: "Primary healthcare support",
+        category: "Urban Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Urban Primary Health Centre serving Nasarpura."
+    },
+
+    43: {
+        name: "UPHC Wargal / 24×7",
+        type: "🏥 Urban Primary Health Centre",
+        location: "Wargal",
+        address: "Wargal, Siddipet District",
+        pincode: "Not provided",
+        phone: "9618037914",
+        hours: "24×7",
+        emergency: "24×7 primary healthcare support",
+        category: "Urban Primary Healthcare",
+        services: [
+            "Primary Healthcare",
+            "General Consultation",
+            "Basic Medical Care"
+        ],
+        additional:
+            "Urban Primary Health Centre serving Wargal."
+    }
+
+};
+
+
+const hospital = hospitals[hospitalId];
+
+
+if (hospital) {
+
+    document.getElementById("hospitalName").textContent =
+        hospital.name;
+
+    document.getElementById("hospitalType").textContent =
+        hospital.type;
+
+    document.getElementById("hospitalLocation").textContent =
+        hospital.location;
+
+    document.getElementById("hospitalAddress").textContent =
+        hospital.address;
+
+    document.getElementById("hospitalPincode").textContent =
+        hospital.pincode || "Not provided";
+
+    document.getElementById("hospitalPhone").textContent =
+        hospital.phone;
+
+    document.getElementById("hospitalHours").textContent =
+        hospital.hours;
+
+    document.getElementById("hospitalEmergency").textContent =
+        hospital.emergency;
+
+    document.getElementById("hospitalCategory").textContent =
+        hospital.category;
+
+    document.getElementById("hospitalAdditional").textContent =
+        hospital.additional;
+
+
+    const services =
+        document.getElementById("hospitalServices");
+
+    services.innerHTML = "";
+
+    hospital.services.forEach(function(service) {
+
+        const li = document.createElement("li");
+
+        li.textContent = service;
+
+        services.appendChild(li);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
