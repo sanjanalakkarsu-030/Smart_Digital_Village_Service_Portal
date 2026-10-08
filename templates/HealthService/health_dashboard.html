@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Health Services | Smart Digital Village Service Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/Health.css') }}">
+</head>
+
+<body>
+
+<header class="top-header">
+
+    <div class="title">
+        🏥 Smart Digital Village Service Portal
+    </div>
+
+    <nav>
+        <a href="{{ url_for('health') }}" class="active">
+            Health
+        </a>
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>❤ Health Services</h1>
+
+    <p>
+        Healthcare services available for Siddipet District
+    </p>
+
+</section>
+
+
+<main class="container">
+
+
+    <!-- =====================================================
+         1. HOSPITALS & HEALTHCARE FACILITIES
+    ====================================================== -->
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3>
+                🏥 Hospitals & Healthcare Facilities
+            </h3>
+
+            <p>
+                Find hospitals and healthcare facilities
+                available in Siddipet District.
+            </p>
+
+            <a href="{{ url_for('hospitals') }}"
+               class="main-hospital-button">
+
+                View All Hospitals →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         2. PRIMARY HEALTH CENTRES
+    ====================================================== -->
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3>
+                🏥 Primary Health Centres
+            </h3>
+
+            <p>
+                Government Primary Health Centres provide
+                basic healthcare services to people in villages.
+            </p>
+
+            <a href="{{ url_for('hospitals') }}?category=phc"
+               class="main-hospital-button">
+
+                View All PHCs →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         3. EMERGENCY SERVICES
+    ====================================================== -->
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3>
+                🚑 Emergency Services
+            </h3>
+
+            <p>
+                Emergency healthcare, ambulance services
+                and important emergency contacts.
+            </p>
+
+            <a href="{{ url_for('emergency_contacts') }}"
+               class="main-hospital-button">
+
+                Emergency Contacts →
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+
+    <!-- =====================================================
+         4. HEALTH TIPS
+    ====================================================== -->
+
+    <section class="wide-section">
+
+        <div class="wide-card">
+
+            <h3>
+                💚 Health Tips & Awareness
+            </h3>
+
+            <p>
+                Simple health tips for maintaining a
+                healthy and safe lifestyle.
+            </p>
+
+           <button class="main-hospital-button"
+        onclick="showHealthTips()">
+    View Health Tips →
+</button>
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HEALTH TIPS CONTENT
+    ====================================================== -->
+
+   <section class="wide-section"
+         id="healthTipsSection"
+         style="display:none;">
+
+        <div class="wide-card">
+
+            <h3>
+                💚 Health Tips & Awareness
+            </h3>
+
+            <p>
+                Follow these simple tips to maintain good health.
+            </p>
+
+
+            <div class="health-tips">
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        💧
+                    </div>
+
+                    <h4>
+                        Drink Enough Water
+                    </h4>
+
+                    <p>
+                        Drink enough clean water throughout
+                        the day to stay hydrated.
+                    </p>
+
+                </div>
+
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        🥗
+                    </div>
+
+                    <h4>
+                        Eat a Balanced Diet
+                    </h4>
+
+                    <p>
+                        Eat fruits, vegetables, grains
+                        and other nutritious foods.
+                    </p>
+
+                </div>
+
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        🏃
+                    </div>
+
+                    <h4>
+                        Stay Physically Active
+                    </h4>
+
+                    <p>
+                        Regular walking and physical activity
+                        help maintain good health.
+                    </p>
+
+                </div>
+
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        🧼
+                    </div>
+
+                    <h4>
+                        Maintain Hygiene
+                    </h4>
+
+                    <p>
+                        Wash your hands regularly and keep
+                        yourself and your surroundings clean.
+                    </p>
+
+                </div>
+
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        😴
+                    </div>
+
+                    <h4>
+                        Get Enough Sleep
+                    </h4>
+
+                    <p>
+                        Follow a regular sleep schedule
+                        and get enough rest every day.
+                    </p>
+
+                </div>
+
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        🩺
+                    </div>
+
+                    <h4>
+                        Regular Health Check-ups
+                    </h4>
+
+                    <p>
+                        Regular check-ups can help identify
+                        health problems early.
+                    </p>
+
+                </div>
+
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        🦟
+                    </div>
+
+                    <h4>
+                        Prevent Mosquito Diseases
+                    </h4>
+
+                    <p>
+                        Keep surroundings clean and avoid
+                        stagnant water near your home.
+                    </p>
+
+                </div>
+
+
+                <div class="health-tip">
+
+                    <div class="tip-image">
+                        🚭
+                    </div>
+
+                    <h4>
+                        Avoid Tobacco
+                    </h4>
+
+                    <p>
+                        Avoid tobacco products and other
+                        harmful substances.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button class="back-button"
+                    onclick="hideHealthTips()">
+
+                ← Back to Health Services
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Smart Digital Village Service Portal
+    </p>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/health.js') }}"></script>
+
+</body>
+
+</html>
