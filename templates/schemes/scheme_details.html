@@ -50,11 +50,10 @@
             <i class="fa-solid fa-building-columns"></i>
         </div>
 
-        <h1 id="schemeTitle">Government Scheme</h1>
+<h1 id="schemeTitle"></h1>        
+<span class="details-category" id="schemeCategory">
 
-        <span class="details-category" id="schemeCategory">
-            Government Welfare Scheme
-        </span>
+</span>
 
 
         <!-- About -->
@@ -67,8 +66,8 @@
             </h2>
 
             <p id="schemeDescription">
-                Scheme information will appear here.
-            </p>
+    
+</p>
 
         </div>
 
@@ -83,8 +82,7 @@
 
                 <div>
                     <h3>Eligibility</h3>
-                    <p id="eligibility"></p>
-                </div>
+<p id="eligibility"></p>                </div>
 
             </div>
 
@@ -95,8 +93,9 @@
 
                 <div>
                     <h3>Benefits</h3>
-                    <p id="benefits"></p>
-                </div>
+                    <p id="benefits">
+    Benefits are provided according to the scheme description and eligibility criteria.
+</p>               </div>
 
             </div>
 
@@ -107,8 +106,7 @@
 
                 <div>
                     <h3>Required Documents</h3>
-                    <p id="documents"></p>
-                </div>
+<p id="documents"></p>                </div>
 
             </div>
 
@@ -119,7 +117,7 @@
 
                 <div>
                     <h3>Status</h3>
-                    <p id="status"></p>
+                    <p id="status"></p><p id="status"></p>
                 </div>
 
             </div>
@@ -155,11 +153,12 @@
 
         <div class="details-actions">
 
-            <a id="officialLink"
-               href="#"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="apply-main-btn">
+            <a
+    id="officialLink"
+    href="#"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="apply-main-btn">
 
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
@@ -216,10 +215,7 @@
 
 const params = new URLSearchParams(window.location.search);
 
-const scheme = params.get("scheme");
-
-
-const schemeData = {
+const scheme = params.get("scheme");const schemeData = {
 
     /* 1 */
 
@@ -706,7 +702,56 @@ else {
 
 }
 
+
+<script>
+document.getElementById("schemeTitle").textContent =
+    {{ db_scheme.scheme_name|tojson }};
+
+document.getElementById("schemeCategory").textContent =
+    {{ db_scheme.category|tojson }};
+
+document.getElementById("schemeDescription").textContent =
+    {{ db_scheme.description|tojson }};
+
+document.getElementById("eligibility").textContent =
+    {{ db_scheme.eligibility|tojson }};
+
+document.getElementById("documents").textContent =
+    {{ db_scheme.required_documents|tojson }};
+
+document.getElementById("status").textContent =
+    {{ db_scheme.status|tojson }};
+
+document.getElementById("officialLink").href =
+    {{ (db_scheme.apply_link or '#')|tojson }};
+</script>
+
+
 </script>
 
 </body>
+{% if db_scheme %}
+<script>
+document.getElementById("schemeTitle").textContent =
+    {{ db_scheme.scheme_name|tojson }};
+
+document.getElementById("schemeCategory").textContent =
+    {{ db_scheme.category|tojson }};
+
+document.getElementById("schemeDescription").textContent =
+    {{ db_scheme.description|tojson }};
+
+document.getElementById("eligibility").textContent =
+    {{ db_scheme.eligibility|tojson }};
+
+document.getElementById("documents").textContent =
+    {{ db_scheme.required_documents|tojson }};
+
+document.getElementById("status").textContent =
+    {{ db_scheme.status|tojson }};
+
+document.getElementById("officialLink").href =
+    {{ (db_scheme.apply_link or '#')|tojson }};
+</script>
+{% endif %}
 </html>

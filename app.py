@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb
+import os
+from werkzeug.utils import secure_filename
 from functools import wraps
 app = Flask(__name__)
 app.secret_key = "smart-digital-village-secret-key"
@@ -35,9 +37,7 @@ def complaints():
 @app.route("/government")
 def government():
 
-    cursor = mysql.connection.cursor(
-        MySQLdb.cursors.DictCursor
-    )
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
     cursor.execute("""
         SELECT
@@ -49,6 +49,7 @@ def government():
             required_documents,
             last_date,
             apply_link,
+            image_path,
             status
         FROM government_schemes
         WHERE status = 'Active'
@@ -62,18 +63,41 @@ def government():
     return render_template(
         "schemes/schemes.html",
         schemes=schemes
-    )
+    )    
 
 @app.route("/government/details")
 def scheme_details():
-    scheme = request.args.get("scheme")
 
+    scheme_id = request.args.get("scheme")
+
+    # If it is a numeric ID, get the scheme from MySQL
+    if scheme_id and scheme_id.isdigit():
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
+        cursor.execute("""
+            SELECT scheme_id, scheme_name, category, description,
+                   eligibility, required_documents, last_date,
+                   apply_link, status
+            FROM government_schemes
+            WHERE scheme_id = %s
+              AND status = 'Active'
+        """, (scheme_id,))
+
+        db_scheme = cursor.fetchone()
+        cursor.close()
+
+        if db_scheme:
+            return render_template(
+                "schemes/scheme_details.html",
+                db_scheme=db_scheme
+            )
+
+    # Existing 16 schemes continue exactly as before
     return render_template(
         "schemes/scheme_details.html",
-        scheme=scheme
+        scheme=scheme_id
     )
-
-
 @app.route("/government/apply")
 def apply_scheme():
     scheme = request.args.get("scheme")
@@ -840,6 +864,10 @@ def manage_schemes():
 # ADD NEW SCHEME
 # ==========================================================
 
+# ==========================================================
+# ADD SCHEME
+# ==========================================================
+
 @app.route("/admin/schemes/add", methods=["POST"])
 @admin_required
 def add_scheme():
@@ -848,20 +876,10 @@ def add_scheme():
     category = request.form.get("category", "").strip()
     description = request.form.get("description", "").strip()
     eligibility = request.form.get("eligibility", "").strip()
-    required_documents = request.form.get(
-        "required_documents", ""
-    ).strip()
-
+    required_documents = request.form.get("required_documents", "").strip()
     last_date = request.form.get("last_date") or None
-
-    apply_link = request.form.get(
-        "apply_link", ""
-    ).strip()
-
-    status = request.form.get(
-        "status",
-        "Active"
-    )
+    apply_link = request.form.get("apply_link", "").strip()
+    status = request.form.get("status", "Active")
 
     created_by = session.get("admin_id")
 
@@ -883,6 +901,36 @@ def add_scheme():
     if not created_by:
         return redirect(url_for("admin_login"))
 
+    # -----------------------------
+    # SAVE IMAGE
+    # -----------------------------
+
+    image = request.files.get("image")
+    image_path = None
+
+    if image and image.filename:
+
+        filename = secure_filename(image.filename)
+
+        upload_folder = os.path.join(
+            app.root_path,
+            "static",
+            "images",
+            "schemes"
+        )
+
+        os.makedirs(upload_folder, exist_ok=True)
+
+        image.save(
+            os.path.join(upload_folder, filename)
+        )
+
+        image_path = filename
+
+    # -----------------------------
+    # INSERT INTO DATABASE
+    # -----------------------------
+
     cursor = mysql.connection.cursor()
 
     cursor.execute("""
@@ -895,21 +943,11 @@ def add_scheme():
             required_documents,
             last_date,
             apply_link,
+            image_path,
             status,
             created_by
         )
-        VALUES
-        (
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s,
-            %s
-        )
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, (
         scheme_name,
         category,
@@ -918,12 +956,12 @@ def add_scheme():
         required_documents,
         last_date,
         apply_link,
+        image_path,
         status,
         created_by
     ))
 
     mysql.connection.commit()
-
     cursor.close()
 
     return redirect(url_for("manage_schemes"))
@@ -979,6 +1017,10 @@ def edit_scheme(scheme_id):
         MySQLdb.cursors.DictCursor
     )
 
+    # -----------------------------
+    # UPDATE SCHEME
+    # -----------------------------
+
     if request.method == "POST":
 
         scheme_name = request.form.get(
@@ -1014,29 +1056,98 @@ def edit_scheme(scheme_id):
             "Active"
         )
 
-        cursor.execute("""
-            UPDATE government_schemes
-            SET
-                scheme_name = %s,
-                category = %s,
-                description = %s,
-                eligibility = %s,
-                required_documents = %s,
-                last_date = %s,
-                apply_link = %s,
-                status = %s
-            WHERE scheme_id = %s
-        """, (
-            scheme_name,
-            category,
-            description,
-            eligibility,
-            required_documents,
-            last_date,
-            apply_link,
-            status,
-            scheme_id
-        ))
+        # -----------------------------
+        # GET NEW IMAGE
+        # -----------------------------
+
+        image = request.files.get("image")
+
+        image_path = None
+
+        if image and image.filename:
+
+            filename = secure_filename(
+                image.filename
+            )
+
+            upload_folder = os.path.join(
+                app.root_path,
+                "static",
+                "images",
+                "schemes"
+            )
+
+            os.makedirs(
+                upload_folder,
+                exist_ok=True
+            )
+
+            image.save(
+                os.path.join(
+                    upload_folder,
+                    filename
+                )
+            )
+
+            image_path = filename
+
+        # -----------------------------
+        # UPDATE WITH IMAGE
+        # -----------------------------
+
+        if image_path:
+
+            cursor.execute("""
+                UPDATE government_schemes
+                SET
+                    scheme_name = %s,
+                    category = %s,
+                    description = %s,
+                    eligibility = %s,
+                    required_documents = %s,
+                    last_date = %s,
+                    apply_link = %s,
+                    image_path = %s,
+                    status = %s
+                WHERE scheme_id = %s
+            """, (
+                scheme_name,
+                category,
+                description,
+                eligibility,
+                required_documents,
+                last_date,
+                apply_link,
+                image_path,
+                status,
+                scheme_id
+            ))
+
+        else:
+
+            cursor.execute("""
+                UPDATE government_schemes
+                SET
+                    scheme_name = %s,
+                    category = %s,
+                    description = %s,
+                    eligibility = %s,
+                    required_documents = %s,
+                    last_date = %s,
+                    apply_link = %s,
+                    status = %s
+                WHERE scheme_id = %s
+            """, (
+                scheme_name,
+                category,
+                description,
+                eligibility,
+                required_documents,
+                last_date,
+                apply_link,
+                status,
+                scheme_id
+            ))
 
         mysql.connection.commit()
 
@@ -1045,6 +1156,10 @@ def edit_scheme(scheme_id):
         return redirect(
             url_for("manage_schemes")
         )
+
+    # -----------------------------
+    # GET EXISTING SCHEME
+    # -----------------------------
 
     cursor.execute("""
         SELECT *
@@ -1066,7 +1181,7 @@ def edit_scheme(scheme_id):
 
 
 # ==========================================================
-# ACTIVATE / DEACTIVATE
+# ACTIVATE / DEACTIVATE SCHEME
 # ==========================================================
 
 @app.route(
@@ -1107,7 +1222,6 @@ def toggle_scheme(scheme_id):
     ))
 
     mysql.connection.commit()
-
     cursor.close()
 
     return redirect(
@@ -1134,13 +1248,11 @@ def delete_scheme(scheme_id):
     """, (scheme_id,))
 
     mysql.connection.commit()
-
     cursor.close()
 
     return redirect(
         url_for("manage_schemes")
-    )
-# ============================================================
+    )# ============================================================
 # RUN APPLICATION
 # ============================================================
 

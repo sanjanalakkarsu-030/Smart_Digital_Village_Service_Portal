@@ -404,8 +404,9 @@
 
 
         <form
-            method="POST"
-            action="{{ url_for('add_scheme') }}">
+    method="POST"
+    action="{{ url_for('add_scheme') }}"
+    enctype="multipart/form-data">
 
 
             <div class="scheme-form-grid">
@@ -554,8 +555,23 @@
                         name="apply_link"
                         placeholder="https://example.gov.in">
 
-                </div>
+<div class="form-group">
 
+    <label>
+        Scheme Image
+    </label>
+
+    <input
+        type="file"
+        name="image"
+        id="image"
+        accept="image/*">
+
+    <small>
+        Upload JPG, JPEG, PNG or WEBP image
+    </small>
+
+</div>
 
                 <div class="form-group">
 

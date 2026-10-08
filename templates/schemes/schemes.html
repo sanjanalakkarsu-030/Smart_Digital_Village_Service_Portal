@@ -925,7 +925,56 @@
 
     </div>
 
+<!-- Database Added Schemes -->
+{% if schemes %}
+    {% for db_scheme in schemes %}
 
+    <article class="scheme-card">
+
+        <div class="scheme-image">
+            {% if db_scheme.image_path %}
+                <img
+                    src="{{ url_for('static', filename='images/schemes/' + db_scheme.image_path) }}"
+                    alt="{{ db_scheme.scheme_name }}"
+                >
+            {% else %}
+                <div class="scheme-image-placeholder">
+                    <span>No Image</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="scheme-content">
+
+            <span class="category-badge">
+                {{ db_scheme.category }}
+            </span>
+
+            <h3>{{ db_scheme.scheme_name }}</h3>
+
+            <p>
+                {{ db_scheme.description }}
+            </p>
+
+            <p class="scheme-eligibility">
+                <strong>Eligibility:</strong>
+                {{ db_scheme.eligibility }}
+            </p>
+
+            <a
+                href="{{ url_for('scheme_details', scheme=db_scheme.scheme_id) }}"
+                class="scheme-btn"
+            >
+                <i class="fas fa-info-circle"></i>
+                View Details
+            </a>
+
+        </div>
+
+    </article>
+
+    {% endfor %}
+{% endif %}
 </main>
 
 
