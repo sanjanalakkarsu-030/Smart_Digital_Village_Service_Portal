@@ -1,0 +1,1058 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f0fff5;
+    color: #17324d;
+}
+
+
+/* ================= HEADER ================= */
+
+.top-header {
+    background: #126b36;
+    color: white;
+    padding: 16px 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.top-header .title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.top-header nav {
+    display: flex;
+    gap: 12px;
+}
+
+.top-header nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+
+    padding: 9px 16px;
+    border-radius: 7px;
+}
+
+.top-header nav a:hover,
+.top-header nav a.active {
+    background: rgba(255,255,255,0.18);
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #137333,
+        #20b957
+    );
+
+    color: white;
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+.hero h1 {
+    margin: 0 0 12px;
+    font-size: 36px;
+}
+
+.hero p {
+    margin: 0;
+    font-size: 18px;
+}
+
+
+/* ================= CONTAINER ================= */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 35px auto;
+}
+
+.wide-section {
+    margin-bottom: 25px;
+}
+
+
+/* ================= CARDS ================= */
+
+.wide-card {
+    background: white;
+
+    border: 1px solid #b9e8ca;
+    border-radius: 15px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.08);
+}
+
+.wide-card h3 {
+    margin-top: 0;
+
+    color: #08752f;
+
+    font-size: 24px;
+}
+
+.wide-card p {
+    line-height: 1.6;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.main-hospital-button,
+.back-button {
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #14833f;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.main-hospital-button:hover,
+.back-button:hover {
+    background: #0d642f;
+}
+
+
+/* ================= HEALTH TIPS ================= */
+
+.health-tips {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-top: 25px;
+}
+
+.health-tip {
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+
+    border-left: 5px solid #22c55e;
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+    text-align: center;
+}
+
+.tip-image {
+    width: 180px;
+    height: 130px;
+
+    margin: 0 auto 15px;
+
+    background: #dcfce7;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 65px;
+}
+
+.health-tip h4 {
+    color: #166534;
+
+    font-size: 19px;
+
+    margin: 8px 0;
+}
+
+.health-tip p {
+    color: #374151;
+
+    line-height: 1.6;
+
+    margin: 0;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #126b36;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 20px;
+
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .top-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .health-tips {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        width: 94%;
+    }
+}
+/* =========================
+   BIG HOSPITAL SEARCH BAR
+   ========================= */
+
+.search-box {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.search-box input {
+    flex: 1;
+    height: 52px;
+    padding: 0 18px;
+    font-size: 17px;
+    border: 2px solid #008f4c;
+    border-radius: 10px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-box input:focus {
+    border-color: #006b38;
+    box-shadow: 0 0 6px rgba(0, 143, 76, 0.25);
+}
+
+.search-box button {
+    height: 52px;
+    padding: 0 28px;
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+    background: #008f4c;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background: #006b38;
+}
+
+
+/* =========================
+   HOSPITAL CATEGORY BUTTONS
+   ========================= */
+
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.category-container button {
+    padding: 11px 18px;
+    font-size: 15px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+/* All Hospitals */
+.category-container button:nth-child(1) {
+    background: #e8f5e9;
+    color: #087f23;
+    border-color: #087f23;
+}
+
+
+/* Adult */
+.category-container button:nth-child(2) {
+    background: #e3f2fd;
+    color: #1565c0;
+    border-color: #1565c0;
+}
+
+
+/* Children */
+.category-container button:nth-child(3) {
+    background: #fff3e0;
+    color: #e65100;
+    border-color: #e65100;
+}
+
+
+/* Eye */
+.category-container button:nth-child(4) {
+    background: #e0f7fa;
+    color: #00838f;
+    border-color: #00838f;
+}
+
+
+/* Heart */
+.category-container button:nth-child(5) {
+    background: #ffebee;
+    color: #c62828;
+    border-color: #c62828;
+}
+
+
+/* Skin */
+.category-container button:nth-child(6) {
+    background: #fce4ec;
+    color: #ad1457;
+    border-color: #ad1457;
+}
+
+
+/* Dental */
+.category-container button:nth-child(7) {
+    background: #f3e5f5;
+    color: #6a1b9a;
+    border-color: #6a1b9a;
+}
+
+
+/* Kidney */
+.category-container button:nth-child(8) {
+    background: #ede7f6;
+    color: #4527a0;
+    border-color: #4527a0;
+}
+
+
+/* Liver */
+.category-container button:nth-child(9) {
+    background: #fff8e1;
+    color: #f57f17;
+    border-color: #f57f17;
+}
+
+
+/* Veterinary */
+.category-container button:nth-child(10) {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+
+/* Hover effect */
+.category-container button:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+}
+/* =========================================
+   EMERGENCY CONTACTS - COLORFUL DESIGN
+   ========================================= */
+
+/* Emergency page cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin: 25px 0;
+}
+
+.card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    background: white;
+    border-radius: 16px;
+    border: 2px solid #d5f0df;
+    box-shadow: 0 6px 18px rgba(0, 100, 50, 0.12);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 100, 50, 0.18);
+}
+
+/* Card icons */
+.card .icon {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f8ef;
+    border-radius: 50%;
+    font-size: 34px;
+}
+
+/* Card content */
+.card-content h3 {
+    margin: 0 0 10px;
+    color: #087f3f;
+    font-size: 22px;
+}
+
+.card-content p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.card-content h2 {
+    margin: 12px 0;
+    color: #c62828;
+    font-size: 28px;
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+   ========================================= */
+
+.section-heading {
+    color: #087f3f;
+    font-size: 27px;
+    margin: 30px 0 20px;
+}
+
+
+/* =========================================
+   LOCAL DOCTORS & AMBULANCE CARDS
+   ========================================= */
+
+.hospital-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.hospital-item {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    border: 2px solid #d8eee0;
+    box-shadow: 0 5px 15px rgba(0, 100, 50, 0.10);
+    transition: 0.3s ease;
+}
+
+.hospital-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 9px 22px rgba(0, 100, 50, 0.16);
+}
+
+/* Doctor / ambulance title */
+.hospital-item h3 {
+    color: #087f3f;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+/* Information */
+.hospital-item p {
+    color: #444;
+    margin: 9px 0;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   AVAILABLE / BUSY
+   ========================================= */
+
+.available {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #dff7e7;
+    color: #087f3f;
+    font-weight: bold;
+}
+
+.busy {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #ffebee;
+    color: #c62828;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.primary-btn,
+.secondary-btn,
+.emergency-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s ease;
+}
+
+/* Green button */
+.primary-btn {
+    background: #087f3f;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #05652f;
+}
+
+/* Blue button */
+.secondary-btn {
+    background: #1976d2;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background: #125ca4;
+}
+
+/* Red emergency button */
+.emergency-btn {
+    background: #e53935;
+    color: white;
+}
+
+.emergency-btn:hover {
+    background: #c62828;
+}
+
+
+/* =========================================
+   EMERGENCY WARNING BOX
+   ========================================= */
+
+.wide-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    margin: 25px 0;
+    border: 2px solid #c8e6c9;
+    box-shadow: 0 6px 18px rgba(0, 100, 50, 0.12);
+}
+
+.wide-card h2 {
+    color: #c62828;
+}
+
+.wide-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   EMERGENCY NUMBER COLORS
+   ========================================= */
+
+.card:first-child {
+    border-top: 5px solid #e53935;
+}
+
+.card:first-child .icon {
+    background: #ffebee;
+}
+
+.card:nth-child(2) {
+    border-top: 5px solid #1976d2;
+}
+
+.card:nth-child(2) .icon {
+    background: #e3f2fd;
+}
+
+
+/* =========================================
+   LOCAL DOCTOR CARD COLORS
+   ========================================= */
+
+.hospital-item:nth-child(1) {
+    border-top: 5px solid #2e7d32;
+}
+
+.hospital-item:nth-child(2) {
+    border-top: 5px solid #1976d2;
+}
+
+.hospital-item:nth-child(3) {
+    border-top: 5px solid #e53935;
+}
+
+
+/* =========================================
+   AMBULANCE CARD COLORS
+   ========================================= */
+
+.wide-section:nth-of-type(3) .hospital-item:nth-child(1) {
+    border-top: 5px solid #e53935;
+}
+
+.wide-section:nth-of-type(3) .hospital-item:nth-child(2) {
+    border-top: 5px solid #d32f2f;
+}
+
+.wide-section:nth-of-type(3) .hospital-item:nth-child(3) {
+    border-top: 5px solid #757575;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hospital-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .card {
+        flex-direction: column;
+    }
+
+    .card .icon {
+        width: 55px;
+        height: 55px;
+        min-width: 55px;
+        font-size: 28px;
+    }
+
+    .section-heading {
+        font-size: 23px;
+    }
+
+}
+/* =========================================
+   HOSPITAL SEARCH BAR
+   ========================================= */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 950px;
+    margin: 20px auto;
+}
+
+.search-box input {
+    flex: 1;
+    height: 55px;
+    padding: 0 18px;
+    font-size: 18px;
+    border: 2px solid #0b8f4d;
+    border-radius: 10px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-box input:focus {
+    border-color: #056b38;
+    box-shadow: 0 0 8px rgba(11, 143, 77, 0.25);
+}
+
+.search-box button {
+    height: 55px;
+    padding: 0 28px;
+    background: #0b8f4d;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background: #056b38;
+}
+
+
+/* =========================================
+   HOSPITAL CATEGORY BUTTONS
+   ========================================= */
+
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.category-container button {
+    padding: 11px 17px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s ease;
+    border: 2px solid transparent;
+}
+
+
+/* All Hospitals */
+.category-container button:nth-child(1) {
+    background: #e8f5e9;
+    color: #087f23;
+    border-color: #087f23;
+}
+
+/* Adult */
+.category-container button:nth-child(2) {
+    background: #e3f2fd;
+    color: #1565c0;
+    border-color: #1565c0;
+}
+
+/* Children */
+.category-container button:nth-child(3) {
+    background: #fff3e0;
+    color: #e65100;
+    border-color: #e65100;
+}
+
+/* Eye */
+.category-container button:nth-child(4) {
+    background: #e0f7fa;
+    color: #00838f;
+    border-color: #00838f;
+}
+
+/* Heart */
+.category-container button:nth-child(5) {
+    background: #ffebee;
+    color: #c62828;
+    border-color: #c62828;
+}
+
+/* Skin */
+.category-container button:nth-child(6) {
+    background: #fce4ec;
+    color: #ad1457;
+    border-color: #ad1457;
+}
+
+/* Dental */
+.category-container button:nth-child(7) {
+    background: #f3e5f5;
+    color: #6a1b9a;
+    border-color: #6a1b9a;
+}
+
+/* Kidney */
+.category-container button:nth-child(8) {
+    background: #ede7f6;
+    color: #4527a0;
+    border-color: #4527a0;
+}
+
+/* Liver */
+.category-container button:nth-child(9) {
+    background: #fff8e1;
+    color: #f57f17;
+    border-color: #f57f17;
+}
+
+/* Veterinary */
+.category-container button:nth-child(10) {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+
+/* Hover effect */
+.category-container button:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.95);
+}
+/* =====================================
+   ATTRACTIVE HOSPITAL CATEGORIES
+   ===================================== */
+
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.category-button {
+    padding: 14px 12px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 2px solid;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+
+/* All Hospitals */
+.category-button:nth-child(1) {
+    background: #e8f5e9;
+    color: #08752f;
+    border-color: #08752f;
+}
+
+/* Adult */
+.category-button:nth-child(2) {
+    background: #e3f2fd;
+    color: #1565c0;
+    border-color: #1565c0;
+}
+
+/* Children */
+.category-button:nth-child(3) {
+    background: #fff3e0;
+    color: #e65100;
+    border-color: #e65100;
+}
+
+/* Eye */
+.category-button:nth-child(4) {
+    background: #e0f7fa;
+    color: #00838f;
+    border-color: #00838f;
+}
+
+/* Heart */
+.category-button:nth-child(5) {
+    background: #ffebee;
+    color: #c62828;
+    border-color: #c62828;
+}
+
+/* Skin */
+.category-button:nth-child(6) {
+    background: #fce4ec;
+    color: #ad1457;
+    border-color: #ad1457;
+}
+
+/* Dental */
+.category-button:nth-child(7) {
+    background: #f3e5f5;
+    color: #6a1b9a;
+    border-color: #6a1b9a;
+}
+
+/* Kidney */
+.category-button:nth-child(8) {
+    background: #ede7f6;
+    color: #4527a0;
+    border-color: #4527a0;
+}
+
+/* Liver */
+.category-button:nth-child(9) {
+    background: #fff8e1;
+    color: #f57f17;
+    border-color: #f57f17;
+}
+
+/* Veterinary */
+.category-button:nth-child(10) {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-color: #2e7d32;
+}
+
+
+/* Hover Effect */
+
+.category-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    filter: brightness(0.97);
+}
+
+
+/* =====================================
+   REMOVE RED/TOP LINES FROM
+   HOSPITAL + PHC CARDS
+   ===================================== */
+
+.hospital-item {
+    border-top: none !important;
+    border-left: 1px solid #b9e8ca !important;
+    border-right: 1px solid #b9e8ca !important;
+    border-bottom: 1px solid #b9e8ca !important;
+
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+
+/* Keep Hospital and PHC cards clean on hover */
+
+.hospital-item:hover {
+    border-top: none !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.10);
+}
+
+
+/* Responsive categories */
+
+@media (max-width: 900px) {
+    .category-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .category-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .category-button {
+        font-size: 14px;
+        padding: 12px 8px;
+    }
+}
+/* =========================================
+   BIG HEALTH TIP PICTURES
+   ========================================= */
+
+.health-tips {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.health-tip {
+    text-align: center;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 100, 50, 0.12);
+}
+
+.tip-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8f5e9;
+    border-radius: 50%;
+
+    font-size: 75px;
+}
+
+.health-tip h4 {
+    font-size: 19px;
+    margin: 10px 0;
+    color: #087f3f;
+}
+
+.health-tip p {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #555;
+}
+
+
+/* Tablet */
+@media (max-width: 1000px) {
+    .health-tips {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+    .health-tips {
+        grid-template-columns: 1fr;
+    }
+
+    .tip-image {
+        width: 130px;
+        height: 130px;
+        font-size: 65px;
+    }
+}
