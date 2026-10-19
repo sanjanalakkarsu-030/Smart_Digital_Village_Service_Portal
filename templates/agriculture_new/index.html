@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agriculture Services | Smart Digital Village</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/agriculture_new.css') }}">
+</head>
+<body>
+
+<header class="navbar">
+    <a class="brand" href="/">
+        <span class="brand-icon">🌿</span>
+        <span>Smart Digital Village<small>Service Portal</small></span>
+    </a>
+
+    <nav>
+        <a href="/">Home</a>
+        <a class="active" href="{{ url_for('agriculture_new') }}">Agriculture</a>
+        <a href="{{ url_for('health') }}">Health</a>
+        <a href="{{ url_for('announcements') }}">Announcements</a>
+    </nav>
+
+    <a class="nav-button" href="{{ url_for('citizen_login') }}">Login / Register</a>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <div class="eyebrow">HEALTHY FARMS · PROSPEROUS FARMERS</div>
+
+            <h1>Agriculture Services<br>for a <span>Better Tomorrow</span></h1>
+
+            <p>
+                Get useful farming guidance, weather information, soil health
+                guidance and agricultural market prices in one place.
+            </p>
+
+            <a href="#services" class="primary-button">
+                Explore Agriculture Services <span>→</span>
+            </a>
+
+            <div class="hero-note">
+                🌱 Simple information for smarter farming decisions
+            </div>
+        </div>
+
+        <div class="hero-visual" role="img" aria-label="Farmer working in a green agricultural field">
+            <div class="photo-caption">
+                <span>🌾</span>
+                Supporting our farmers
+            
+          
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-heading">
+            <div class="eyebrow">OUR AGRICULTURE SERVICES</div>
+            <h2>Helpful Services for Every Farmer</h2>
+            <p>Choose a service to find information for your farming needs.</p>
+        </div>
+
+        <div class="service-grid">
+            <a class="service-card crop-card" href="{{ url_for('agriculture_crops_new') }}">
+                <div class="service-icon crop">🌱</div>
+                <div class="card-label">01 · CROP PLANNING</div>
+                <h3>Crop Suitability Guidance</h3>
+                <p>Explore crops suitable for your soil, season and water availability.</p>
+                <span class="card-link">View Details <span>→</span></span>
+            </a>
+
+            <a class="service-card soil-card" href="{{ url_for('agriculture_soil_new') }}">
+                <div class="service-icon soil">🪴</div>
+                <div class="card-label">02 · SOIL HEALTH</div>
+                <h3>Soil Health &amp; Fertilizer Guidance</h3>
+                <p>Understand soil reports, fertilizer needs and possible crop risks.</p>
+                <span class="card-link">View Details <span>→</span></span>
+            </a>
+
+            <a class="service-card weather-card" href="{{ url_for('agriculture_weather_new') }}">
+                <div class="service-icon weather">🌦️</div>
+                <div class="card-label">03 · WEATHER</div>
+                <h3>Weather &amp; Rainfall Information</h3>
+                <p>Check weather updates and rainfall information from reliable sources.</p>
+                <span class="card-link">View Details <span>→</span></span>
+            </a>
+
+            <a class="service-card market-card" href="{{ url_for('agriculture_market_new') }}">
+                <div class="service-icon market">📊</div>
+                <div class="card-label">04 · MARKET INSIGHTS</div>
+                <h3>Agricultural Market Prices</h3>
+                <p>Check crop prices with market names, units, dates and sources.</p>
+                <span class="card-link">View Details <span>→</span></span>
+            </a>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="benefit">
+            <span class="benefit-icon">👨‍🌾</span>
+            <div><h3>Farmer Friendly</h3><p>Simple and easy to understand.</p></div>
+        </div>
+        <div class="benefit">
+            <span class="benefit-icon">✓</span>
+            <div><h3>Reliable Information</h3><p>Use verified information sources.</p></div>
+        </div>
+        <div class="benefit">
+            <span class="benefit-icon">📱</span>
+            <div><h3>Access Anywhere</h3><p>Use on mobile or computer.</p></div>
+        </div>
+        <div class="benefit">
+            <span class="benefit-icon">🌿</span>
+            <div><h3>Support for Growth</h3><p>Make better farming decisions.</p></div>
+        </div>
+    </section>
+
+    <section class="farmer-banner">
+        <div class="banner-icon">🌿</div>
+        <div class="banner-telugu">
+            <h2>రైతు సంక్షేమం — మన గ్రామ అభివృద్ధి</h2>
+            <p>మీ వ్యవసాయానికి ఉపయోగకరమైన సమాచారం ఒకే చోట.</p>
+        </div>
+        <div class="banner-english">
+            <p>Better information can support better farming decisions.</p>
+        </div>
+        <a href="#services" class="banner-button">Get Started →</a>
+    </section>
+</main>
+
+<footer class="footer">
+    <span>© 2026 Smart Digital Village Service Portal</span>
+    <span>Supporting Farmers and Rural Communities</span>
+</footer>
+
+</body>
+</html>

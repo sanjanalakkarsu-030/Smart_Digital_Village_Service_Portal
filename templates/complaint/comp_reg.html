@@ -25,10 +25,8 @@
           rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet"
-          href="comp_reg.css">
-
-</head>
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/comp_reg.css') }}"></head>
 
 
 <body>
@@ -329,22 +327,20 @@
                 Track Complaint Status
             </h2>
 
+<div class="form-group">
+    <label for="trackComplaintId">
+        Enter Complaint ID
+    </label>
 
-            <div class="form-group">
-
-                <label for="trackComplaintId">
-                    Enter Complaint ID
-                </label>
-
-                <input
-                    type="text"
-                    id="trackComplaintId"
-                    maxlength="7"
-                    placeholder="Example: CMP4821"
-                >
-
-            </div>
-
+    <input
+        type="text"
+        id="trackComplaintId"
+        maxlength="10"
+        inputmode="numeric"
+        pattern="[0-9]+"
+        placeholder="Example: 1"
+    >
+</div>
 
             <button
                 type="button"
@@ -405,8 +401,7 @@
 
     <!-- JavaScript -->
 
-    <script src="comp_reg.js"></script>
-
+<script src="{{ url_for('static', filename='js/comp_reg.js') }}"></script>
 </body>
 
 </html>

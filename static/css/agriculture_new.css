@@ -1,0 +1,906 @@
+
+
+:root {
+    --green-dark: #145b38;
+    --green: #218449;
+    --green-light: #eaf7ec;
+    --background: #f5faf6;
+    --text: #24372c;
+    --muted: #627166;
+    --white: #fff;
+    --border: #dcebe0;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+.crop-page {
+    color: var(--text);
+    font-family: "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+}
+a { color: inherit; text-decoration: none; }
+
+/* Navigation */
+.navbar {
+    min-height: 76px;
+    padding: 12px 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--green-dark);
+    font-size: 18px;
+    font-weight: 750;
+    line-height: 1.25;
+    white-space: nowrap;
+}
+
+.brand-icon { font-size: 30px; }
+.brand small {
+    display: block;
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.navbar nav a {
+    padding: 8px 0;
+    color: #46594b;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+    color: var(--green);
+    border-bottom-color: var(--green);
+}
+
+.nav-button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: var(--green);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Hero with real farmer photograph */
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    align-items: center;
+    gap: 38px;
+    padding: 44px 4%;
+    background: linear-gradient(110deg, #f2f9f0, #e4f3e5);
+}
+
+.hero-content { max-width: 600px; }
+
+.eyebrow {
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}
+
+.hero h1 {
+    margin: 14px 0;
+    color: #172e24;
+    font-size: clamp(30px, 3.2vw, 38px);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    font-weight: 750;
+}
+
+.hero h1 span { color: var(--green); }
+
+.hero-content > p {
+    max-width: 510px;
+    margin: 0;
+    color: #526357;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 22px;
+    padding: 12px 20px;
+    border-radius: 9px;
+    background: var(--green);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.primary-button:hover,
+.nav-button:hover {
+    background: var(--green-dark);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.hero-note {
+    margin-top: 16px;
+    color: #58705e;
+    font-size: 13px;
+}
+
+/* Photo is stored in static/images/farmer.jpg */
+.hero-visual {
+    position: relative;
+    min-height: 360px;
+    overflow: hidden;
+    border-radius: 16px;
+    background-image:
+        linear-gradient(0deg, rgba(15, 54, 29, 0.18), rgba(15, 54, 29, 0.02)),
+        url("../images/farmer.jpg");
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(28, 75, 40, 0.12);
+}
+
+.photo-caption {
+    position: absolute;
+    left: 18px;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 15px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.94);
+    color: var(--green-dark);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.photo-caption span { font-size: 22px; }
+
+.photo-message {
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.91);
+    color: var(--green-dark);
+    font-size: 15px;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+/* Services */
+.services {
+    padding: 44px 4% 48px;
+    background: #f5fbf6;
+}
+
+.section-heading { margin-bottom: 25px; }
+
+.section-heading h2 {
+    margin: 7px 0;
+    color: var(--green-dark);
+    font-size: 26px;
+    line-height: 1.35;
+    font-weight: 750;
+}
+
+.section-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.service-card {
+    min-width: 0;
+    min-height: 280px;
+    padding: 21px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 4px 14px rgba(22, 73, 39, 0.05);
+    transition: 0.2s ease;
+}
+
+.service-card:hover {
+    border-color: #9bcba6;
+    box-shadow: 0 10px 24px rgba(22, 73, 39, 0.1);
+    transform: translateY(-3px);
+}
+
+.service-icon {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 14px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 27px;
+}
+
+.crop { background: #dcf7d9; }
+.soil { background: #f9ead6; }
+.weather { background: #dff1ff; }
+.market { background: #eee4ff; }
+
+.card-label {
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+.service-card h3 {
+    margin: 8px 0;
+    color: var(--green-dark);
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 750;
+}
+
+.service-card p {
+    margin: 0 0 17px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.card-link {
+    margin-top: auto;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+/* Benefits row */
+.benefits {
+    padding: 24px 5%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    background: #f0f8f1;
+}
+
+.benefit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.benefit-icon {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #9bcba6;
+    border-radius: 50%;
+    background: white;
+    color: var(--green);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.benefit h3 {
+    margin: 0 0 3px;
+    color: var(--green-dark);
+    font-size: 14px;
+}
+
+.benefit p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Telugu banner */
+.farmer-banner {
+    margin: 0 1.5% 25px;
+    padding: 22px 4%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-radius: 13px;
+    background: linear-gradient(110deg, #087d3b, #145b38);
+    color: white;
+}
+
+.banner-icon { font-size: 38px; }
+
+.banner-telugu { flex: 1; }
+.banner-telugu h2 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    line-height: 1.5;
+}
+.banner-telugu p,
+.banner-english p {
+    margin: 0;
+    color: #e0f1e4;
+    font-size: 13px;
+}
+.banner-english {
+    flex: 1;
+    padding-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.banner-button {
+    padding: 10px 17px;
+    border-radius: 30px;
+    background: white;
+    color: var(--green-dark);
+    font-size: 13px;
+    font-weight: 750;
+    white-space: nowrap;
+}
+
+/* Footer */
+
+/* Footer - Smart Digital Village */
+.footer {
+    padding: 40px 5% 20px;
+    display: block;
+    background-color: #0b5d2a;
+    color: #ffffff;
+    border-top: 1px solid #0b5d2a;
+    font-size: 15px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 30px;
+}
+
+.footer-column h3 {
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.footer-column p,
+.footer-column li,
+.footer-column a {
+    color: #eeeeee;
+    line-height: 1.8;
+}
+
+.footer-column a:hover {
+    color: #c8f7d5;
+}
+
+.footer hr {
+    margin: 30px 0 18px;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.footer-bottom {
+    color: #eeeeee;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.footer p { margin: 0; }
+
+/* Tablet */
+@media (max-width: 1050px) {
+    .navbar { flex-wrap: wrap; }
+    .navbar nav { gap: 14px; }
+    .hero { gap: 24px; }
+    .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .navbar {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px 5%;
+        gap: 12px;
+    }
+
+    .navbar nav { gap: 10px 16px; }
+    .navbar nav a { font-size: 13px; }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 35px 5%;
+    }
+
+    .hero h1 { font-size: 29px; }
+    .hero-visual { min-height: 270px; }
+
+    .services { padding: 36px 5%; }
+    .section-heading h2 { font-size: 23px; }
+
+    .service-grid { grid-template-columns: 1fr; }
+    .service-card { min-height: 240px; }
+
+    .benefits { grid-template-columns: 1fr 1fr; padding: 22px 5%; }
+
+    .farmer-banner {
+        margin: 0 4% 22px;
+        padding: 20px;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .banner-english {
+        padding: 10px 0 0;
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+        width: 100%;
+    }
+
+    .footer { padding: 18px 5%; flex-direction: column; }
+}
+
+@media (max-width: 420px) {
+    .hero h1 { font-size: 26px; }
+    .hero-content > p { font-size: 15px; }
+    .benefits { grid-template-columns: 1fr; }
+    .nav-button { font-size: 12px; }
+}
+
+/* Improved readability - Agriculture homepage */
+
+body {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.navbar nav a {
+    font-size: 16px;
+}
+
+.brand {
+    font-size: 20px;
+}
+
+.brand small {
+    font-size: 14px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 3.5vw, 42px);
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+}
+
+.hero-content > p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.eyebrow {
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.primary-button,
+.nav-button {
+    font-size: 15px;
+    padding: 13px 20px;
+}
+
+.hero-note {
+    font-size: 14px;
+}
+
+.section-heading h2 {
+    font-size: 29px;
+    line-height: 1.4;
+}
+
+.section-heading p {
+    font-size: 17px;
+}
+
+.service-card h3 {
+    font-size: 21px;
+    line-height: 1.45;
+}
+
+.service-card p {
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+.card-label {
+    font-size: 12px;
+}
+
+.card-link {
+    font-size: 15px;
+}
+
+.benefit h3 {
+    font-size: 16px;
+}
+
+.benefit p {
+    font-size: 14px;
+}
+
+.banner-telugu h2 {
+    font-size: 22px;
+}
+
+.banner-telugu p,
+.banner-english p {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.footer {
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero-content > p {
+        font-size: 17px;
+    }
+
+    .section-heading h2 {
+        font-size: 26px;
+    }
+
+    .service-card h3 {
+        font-size: 21px;
+    }
+
+    .service-card p {
+        font-size: 16px;
+    }
+
+    .navbar nav a {
+        font-size: 15px;
+    }
+
+    .banner-telugu h2 {
+        font-size: 20px;
+    }
+}
+
+/* Improve text readability */
+body {
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.hero-content > p {
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.section-heading p {
+    font-size: 18px;
+}
+
+.service-card p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.hero-note {
+    font-size: 15px;
+}
+
+.card-label {
+    font-size: 13px;
+}
+
+.card-link {
+    font-size: 16px;
+}
+
+.benefit p {
+    font-size: 15px;
+}
+
+.banner-telugu p,
+.banner-english p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.footer {
+    font-size: 15px;
+}
+```css
+/* ==========================================
+   CROP SUITABILITY FORM
+   Smart Digital Village Service Portal
+   ========================================== */
+
+.crop-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 35px 22px 60px;
+    color: #203b2b;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* Page heading */
+
+.crop-page-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 32px;
+}
+
+.crop-page-header .eyebrow {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 30px;
+    background: #e5f5e8;
+    color: #176b3b;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.crop-page-header h1 {
+    margin: 16px 0 12px;
+    color: #14532d;
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.3;
+}
+
+.crop-page-header p {
+    margin: 0;
+    color: #536659;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Main form card */
+
+.crop-form-card {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 34px;
+    background: #ffffff;
+    border: 1px solid #d7e9da;
+    border-top: 6px solid #218449;
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(24, 76, 42, 0.10);
+}
+
+/* Form sections */
+
+.crop-form-section {
+    margin-bottom: 30px;
+    padding-bottom: 26px;
+    border-bottom: 1px solid #e5eee6;
+}
+
+.crop-form-section:last-of-type {
+    border-bottom: none;
+}
+
+.crop-form-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 8px;
+    color: #185b34;
+    font-size: 23px;
+    line-height: 1.45;
+}
+
+.crop-form-section .section-help {
+    margin: 0 0 20px;
+    color: #637468;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Form grid */
+
+.crop-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.crop-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.crop-form-field.full-width {
+    grid-column: 1 / -1;
+}
+
+/* Labels */
+
+.crop-form-card label {
+    color: #234d32;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Inputs and dropdowns */
+
+.crop-form-card input[type="text"],
+.crop-form-card input[type="number"],
+.crop-form-card select {
+    width: 100%;
+    min-height: 54px;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    border: 1.5px solid #c5d9c9;
+    border-radius: 10px;
+    background: #fbfefb;
+    color: #263b2d;
+    font-family: inherit;
+    font-size: 17px;
+    line-height: 1.5;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.crop-form-card input::placeholder {
+    color: #7b897e;
+    opacity: 1;
+}
+
+.crop-form-card input:focus,
+.crop-form-card select:focus {
+    border-color: #218449;
+    outline: none;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(33, 132, 73, 0.12);
+}
+
+/* Radio option cards */
+
+.crop-option-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.crop-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-height: 56px;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1.5px solid #d3e4d6;
+    border-radius: 11px;
+    background: #fbfefb;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.crop-option:hover {
+    border-color: #65a879;
+    background: #f0f9f1;
+}
+
+.crop-option:has(input:checked) {
+    border-color: #218449;
+    background: #eaf7ed;
+}
+
+.crop-option input[type="radio"] {
+    width: 19px;
+    height: 19px;
+    margin: 3px 0 0;
+    flex-shrink: 0;
+    accent-color: #218449;
+    cursor: pointer;
+}
+
+.crop-option .option-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.crop-option .option-title {
+    color: #244a30;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.crop-option .option-description {
+    color: #66776a;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+/* Information note */
+
+.crop-info-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 16px;
+    border-left: 4px solid #6da77a;
+    border-radius: 8px;
+    background: #f0f8f1;
+    color: #355b40;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Validation messages */
+
+.crop-error {
+    margin: 0 0 20px;
+    padding: 14px 16px;
+    border: 1px solid #e8b4b4;
+    border-radius: 9px;
+    background: #fff1f1;
+    color: #9b2424;
+    font-size: 16px;
+}
+
+.crop-success {
+    margin: 0 0 20px;
+    padding: 15px 17px;
+    border: 1px solid #b8dfc0;
+    border-radius: 9px;
+    background: #edf9ef;
+    color: #185

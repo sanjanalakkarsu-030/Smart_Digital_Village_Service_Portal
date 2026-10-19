@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Farming Tips - Agriculture Support</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/Agriculturestyle.css') }}">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 .lang-en{display:initial}.lang-te{display:none;font-family:"Noto Sans Telugu",Arial,sans-serif}body.telugu-mode .lang-en{display:none}body.telugu-mode .lang-te{display:initial}
@@ -17,16 +18,33 @@
 <body>
 <header>
 <div class="logo"><span class="lang-en">🌾 Agriculture Support</span><span class="lang-te">🌾 వ్యవసాయ సహాయం</span></div>
-<nav>
-<a href="index.html"><span class="lang-en">Home</span><span class="lang-te">హోమ్</span></a>
-<a href="crop-details.html"><span class="lang-en">Crop Details</span><span class="lang-te">పంట వివరాలు</span></a>
-<a href="fertilizer.html"><span class="lang-en">Fertilizer</span><span class="lang-te">ఎరువులు</span></a>
-<a href="weather.html"><span class="lang-en">Weather</span><span class="lang-te">వాతావరణం</span></a>
-<a href="farmer-query.html"><span class="lang-en">Farmer Query</span><span class="lang-te">రైతు ప్రశ్న</span></a>
-<a href="disease-prediction.html"><span class="lang-en">Disease Prediction</span><span class="lang-te">వ్యాధి గుర్తింపు</span></a>
-<a href="farming-cost.html"><span class="lang-en">Farming Cost</span><span class="lang-te">వ్యవసాయ ఖర్చు</span></a>
-<a href="farming-tips.html"><span class="lang-en">Farming Tips</span><span class="lang-te">వ్యవసాయ సూచనలు</span></a>
-</nav>
+        <nav>
+            <a href="index.html">
+                <span class="lang-en">Home</span>
+                <span class="lang-te">హోమ్</span>
+            </a>
+
+            <a href="crop-details.html">
+                <span class="lang-en">Crops</span>
+                <span class="lang-te">పంటలు</span>
+            </a>
+
+            <a href="fertilizer.html">
+                <span class="lang-en">Fertilizer</span>
+                <span class="lang-te">ఎరువులు</span>
+            </a>
+
+            <a href="weather.html">
+                <span class="lang-en">Weather</span>
+                <span class="lang-te">వాతావరణం</span>
+            </a>
+
+            <a href="farmer-query.html">
+                <span class="lang-en">Farmer Query</span>
+                <span class="lang-te">రైతు ప్రశ్న</span>
+            </a>
+        </nav>
+
 </header>
 <div class="language-switcher">
 <button id="englishBtn" class="language-btn active" onclick="setLanguage('english')">🇬🇧 English</button>

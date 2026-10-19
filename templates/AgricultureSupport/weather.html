@@ -26,7 +26,7 @@
     ========================================== -->
 
     <link rel="stylesheet"
-          href="style.css">
+      href="{{ url_for('static', filename='css/Agriculturestyle.css') }}">
 
 
     <style>
@@ -534,73 +534,34 @@
     <nav>
 
 
-        <a href="index.html">
+        <nav>
 
-            <span class="lang-en">
-                Home
-            </span>
+    <a href="{{ url_for('home') }}">
+        <span class="lang-en">Home</span>
+        <span class="lang-te">హోమ్</span>
+    </a>
 
-            <span class="lang-te">
-                హోమ్
-            </span>
+    <a href="{{ url_for('crop_details') }}">
+        <span class="lang-en">Crops</span>
+        <span class="lang-te">పంటలు</span>
+    </a>
 
-        </a>
+    <a href="{{ url_for('agriculture_fertilizer') }}" class="active">
+        <span class="lang-en">Fertilizer</span>
+        <span class="lang-te">ఎరువులు</span>
+    </a>
 
+    <a href="{{ url_for('agriculture_weather') }}">
+        <span class="lang-en">Weather</span>
+        <span class="lang-te">వాతావరణం</span>
+    </a>
 
-        <a href="crop-details.html">
+    <a href="{{ url_for('agriculture_query') }}">
+        <span class="lang-en">Farmer Query</span>
+        <span class="lang-te">రైతు ప్రశ్న</span>
+    </a>
 
-            <span class="lang-en">
-                Crops
-            </span>
-
-            <span class="lang-te">
-                పంటలు
-            </span>
-
-        </a>
-
-
-        <a href="fertilizer.html">
-
-            <span class="lang-en">
-                Fertilizer
-            </span>
-
-            <span class="lang-te">
-                ఎరువులు
-            </span>
-
-        </a>
-
-
-        <a href="weather.html"
-           class="active">
-
-            <span class="lang-en">
-                Weather
-            </span>
-
-            <span class="lang-te">
-                వాతావరణం
-            </span>
-
-        </a>
-
-
-        <a href="farmer-query.html">
-
-            <span class="lang-en">
-                Farmer Query
-            </span>
-
-            <span class="lang-te">
-                రైతు ప్రశ్న
-            </span>
-
-        </a>
-
-
-    </nav>
+</nav>
 
 </header>
 
@@ -1111,7 +1072,6 @@
         </span>
 
     </p>
-
 
     <p>
 

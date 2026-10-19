@@ -12,7 +12,8 @@
         rel="stylesheet">
 
     <!-- Common CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/Agriculturestyle.css') }}">
     <style>
         .fertilizer-cost {
             background: #f1f8e9;
@@ -98,35 +99,34 @@
             <span class="lang-te">వ్యవసాయ సహాయం</span>
         </div>
 
-        <nav>
+<nav>
 
-            <a href="index.html">
-                <span class="lang-en">Home</span>
-                <span class="lang-te">హోమ్</span>
-            </a>
+    <a href="{{ url_for('home') }}">
+        <span class="lang-en">Home</span>
+        <span class="lang-te">హోమ్</span>
+    </a>
 
-            <a href="crop-details.html">
-                <span class="lang-en">Crops</span>
-                <span class="lang-te">పంటలు</span>
-            </a>
+    <a href="{{ url_for('crop_details') }}">
+        <span class="lang-en">Crops</span>
+        <span class="lang-te">పంటలు</span>
+    </a>
 
-            <a href="fertilizer.html" class="active">
-                <span class="lang-en">Fertilizer</span>
-                <span class="lang-te">ఎరువులు</span>
-            </a>
+    <a href="{{ url_for('agriculture_fertilizer') }}" class="active">
+        <span class="lang-en">Fertilizer</span>
+        <span class="lang-te">ఎరువులు</span>
+    </a>
 
-            <a href="weather.html">
-                <span class="lang-en">Weather</span>
-                <span class="lang-te">వాతావరణం</span>
-            </a>
+    <a href="{{ url_for('agriculture_weather') }}">
+        <span class="lang-en">Weather</span>
+        <span class="lang-te">వాతావరణం</span>
+    </a>
 
-            <a href="farmer-query.html">
-                <span class="lang-en">Farmer Query</span>
-                <span class="lang-te">రైతు ప్రశ్న</span>
-            </a>
+    <a href="{{ url_for('agriculture_query') }}">
+        <span class="lang-en">Farmer Query</span>
+        <span class="lang-te">రైతు ప్రశ్న</span>
+    </a>
 
-        </nav>
-
+</nav>
     </header>
 
 

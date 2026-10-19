@@ -54,20 +54,6 @@
             </a>
         </li>
 
-        <!-- Government Schemes -->
-        <li>
-            <a href="{{ url_for('government') }}">
-                Government Schemes
-            </a>
-        </li>
-
-        <!-- Announcements -->
-        <li>
-            <a href="{{ url_for('announcements') }}">
-                Announcements
-            </a>
-        </li>
-
         <!-- Contact -->
         <li>
             <a href="{{ url_for('home') }}#contact">
@@ -76,19 +62,18 @@
         </li>
 
         <!-- Citizen Login -->
-        <li>
-            <button class="login-btn">
-                Login
-            </button>
-        </li>
+<li>
+    <a href="{{ url_for('citizen_login') }}" class="citizen-btn">
+        Citizen Login
+    </a>
+</li>
 
-        <!-- Citizen Register -->
-        <li>
-            <button class="register-btn">
-                Register
-            </button>
-        </li>
-
+<!-- Citizen Register -->
+<li>
+    <a href="{{ url_for('register') }}" class="register-btn">
+        Register
+    </a>
+</li>
         <!-- Admin Login -->
        <li>
     <a href="{{ url_for('admin_login') }}" class="admin-login-btn">

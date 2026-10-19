@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Citizen Dashboard | Smart Digital Village Service Portal</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/citizen.css') }}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Dashboard Header -->
+    <header class="dashboard-topbar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-house-chimney"></i>
+            </div>
+
+            <div>
+                <h2>Smart Digital Village</h2>
+                <span>Citizen Portal</span>
+            </div>
+        </div>
+
+        <div class="topbar-user">
+            <div class="user-avatar">
+                {{ citizen.full_name[0]|upper }}
+            </div>
+
+            <div class="user-info">
+                <strong>{{ citizen.full_name }}</strong>
+                <span>Citizen</span>
+            </div>
+
+            <a href="{{ url_for('citizen_logout') }}"
+               class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </a>
+        </div>
+
+    </header>
+
+
+    <!-- Main Dashboard -->
+    <main class="dashboard-container">
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+
+            <div class="welcome-content">
+                <span class="welcome-label">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Citizen Account
+                </span>
+
+                <h1>Welcome, {{ citizen.full_name }}!</h1>
+
+                <p>
+                    Access village services, submit complaints,
+                    view government schemes and stay updated with
+                    village information from one place.
+                </p>
+            </div>
+
+            <div class="welcome-icon">
+                <i class="fa-solid fa-landmark"></i>
+            </div>
+
+        </section>
+
+
+        <!-- Quick Statistics -->
+        <section class="stats-grid">
+
+            <div class="stat-card">
+                <div class="stat-icon green">
+                    <i class="fa-solid fa-file-circle-check"></i>
+                </div>
+
+                <div>
+                    <span>My Complaints</span>
+                    <strong>{{ complaint_count }}</strong>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon blue">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+
+                <div>
+                    <span>Agriculture Queries</span>
+                    <strong>{{ agriculture_count }}</strong>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon orange">
+                    <i class="fa-solid fa-user-check"></i>
+                </div>
+
+                <div>
+                    <span>Account Status</span>
+                    <strong>{{ citizen.account_status }}</strong>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon purple">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+                <div>
+                    <span>Registered</span>
+                    <strong>
+                        {{ citizen.registration_date.strftime('%d %b %Y') if citizen.registration_date else 'N/A' }}
+                    </strong>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Services -->
+        <section class="services-section">
+
+            <div class="section-heading">
+                <div>
+                    <span>PORTAL SERVICES</span>
+                    <h2>What would you like to do?</h2>
+                </div>
+
+                <p>
+                    Access all important village services quickly.
+                </p>
+            </div>
+
+
+            <div class="services-grid">
+
+                <!-- Profile -->
+                <div class="service-card">
+
+                    <div class="service-icon green-bg">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div class="service-content">
+                        <h3>My Profile</h3>
+
+                        <p>
+                            View your registered citizen information
+                            and account details.
+                        </p>
+
+                        <a href="#" class="service-link">
+                            View Profile
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- Complaints -->
+                <div class="service-card">
+
+                    <div class="service-icon red-bg">
+                        <i class="fa-solid fa-file-circle-plus"></i>
+                    </div>
+
+                    <div class="service-content">
+                        <h3>Complaint Management</h3>
+
+                        <p>
+                            Report village problems and submit
+                            complaints online.
+                        </p>
+
+                        <a href="{{ url_for('complaints') }}"
+                           class="service-link">
+                            Submit Complaint
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- Government Schemes -->
+                <div class="service-card">
+
+                    <div class="service-icon blue-bg">
+                        <i class="fa-solid fa-landmark"></i>
+                    </div>
+
+                    <div class="service-content">
+                        <h3>Government Schemes</h3>
+
+                        <p>
+                            Explore available government schemes,
+                            eligibility and application details.
+                        </p>
+
+                        <a href="{{ url_for('government') }}"
+                           class="service-link">
+                            View Schemes
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- Announcements -->
+                <div class="service-card">
+
+                    <div class="service-icon yellow-bg">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+
+                    <div class="service-content">
+                        <h3>Village Announcements</h3>
+
+                        <p>
+                            View the latest village notices,
+                            events and important updates.
+                        </p>
+
+                        <a href="{{ url_for('announcements') }}"
+                           class="service-link">
+                            View Announcements
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- Agriculture -->
+                <div class="service-card">
+
+                    <div class="service-icon farm-bg">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+
+                    <div class="service-content">
+                        <h3>Agriculture Support</h3>
+
+                        <p>
+                            Get agriculture information and
+                            submit farming-related queries.
+                        </p>
+
+                        <a href="{{ url_for('agriculture') }}"
+                           class="service-link">
+                            Open Agriculture
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <!-- Health -->
+                <div class="service-card">
+
+                    <div class="service-icon health-bg">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+
+                    <div class="service-content">
+                        <h3>Health Services</h3>
+
+                        <p>
+                            Access health-related information
+                            and available village services.
+                        </p>
+
+                        <a href="{{ url_for('health') }}"
+                           class="service-link">
+                            View Health Services
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Citizen Information -->
+        <section class="profile-section">
+
+            <div class="section-heading">
+                <div>
+                    <span>ACCOUNT INFORMATION</span>
+                    <h2>My Details</h2>
+                </div>
+            </div>
+
+            <div class="profile-grid">
+
+                <div class="profile-item">
+                    <span>Full Name</span>
+                    <strong>{{ citizen.full_name }}</strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Mobile Number</span>
+                    <strong>{{ citizen.mobile_number }}</strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>House Number</span>
+                    <strong>{{ citizen.house_number }}</strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Ward Number</span>
+                    <strong>{{ citizen.ward_number }}</strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Gender</span>
+                    <strong>{{ citizen.gender }}</strong>
+                </div>
+
+                <div class="profile-item">
+                    <span>Username</span>
+                    <strong>{{ citizen.username }}</strong>
+                </div>
+
+                <div class="profile-item full-width">
+                    <span>Address</span>
+                    <strong>{{ citizen.address }}</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <p>
+            © 2026 Smart Digital Village Service Portal
+        </p>
+
+        <span>
+            Digital Services for a Better Village
+        </span>
+    </footer>
+
+</body>
+</html>

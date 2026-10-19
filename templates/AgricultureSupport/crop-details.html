@@ -10,8 +10,8 @@
 
     <title>Crop Information - Agriculture Support</title>
 
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='css/Agriculturestyle.css') }}">
 </head>
 
 
@@ -126,30 +126,31 @@
 
 
     <!-- =====================================
-         BACK TO HOME BUTTON
-    ====================================== -->
+<!--
+    ======================================
+    BACK TO HOME BUTTON
+    ======================================
+-->
 
-    <div class="back-container">
+<div class="back-container">
 
-        <button
-            class="back-btn"
-            onclick="window.location.href='index.html'"
-        >
+    <button
+        class="back-btn"
+        onclick="window.location.href='{{ url_for('home') }}'"
+    >
 
-            <span class="english">
-                ← Back to Home
-            </span>
+        <span class="english">
+            ← Back to Home
+        </span>
 
-            <span class="telugu"
-                  style="display:none;">
-                ← హోమ్‌కు తిరిగి వెళ్లండి
-            </span>
+        <span class="telugu"
+              style="display:none;">
+            ← హోమ్‌కు తిరిగి వెళ్లండి
+        </span>
 
-        </button>
+    </button>
 
-    </div>
-
-
+</div>
     <!-- =====================================
          SEASON BUTTONS
     ====================================== -->

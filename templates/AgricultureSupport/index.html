@@ -15,9 +15,8 @@
         rel="stylesheet">
 
     <!-- Common CSS -->
-    <link rel="stylesheet" href="style.css">
-
-</head>
+    <<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/Agriculturestyle.css') }}">
 
 
 <body>
@@ -43,69 +42,54 @@
 
         </div>
 
+<nav>
+        <a href="{{ url_for('home') }}">
+    <span class="lang-en">Home</span>
+    <span class="lang-te">హోమ్</span>
+</a>
 
-        <nav>
+<a href="{{ url_for('crop_details') }}">
+    <span class="lang-en">Crops</span>
+    <span class="lang-te">పంటలు</span>
+</a>
 
-            <a href="index.html">
-                <span class="lang-en">Home</span>
-                <span class="lang-te">హోమ్</span>
-            </a>
+<a href="{{ url_for('agriculture_fertilizer') }}">
+    <span class="lang-en">Fertilizer</span>
+    <span class="lang-te">ఎరువులు</span>
+</a>
 
+<a href="{{ url_for('agriculture_weather') }}">
+    <span class="lang-en">Weather</span>
+    <span class="lang-te">వాతావరణం</span>
+</a>
 
-            <a href="crop-details.html">
-                <span class="lang-en">Crops</span>
-                <span class="lang-te">పంటలు</span>
-            </a>
+<a href="{{ url_for('agriculture_query') }}">
+    <span class="lang-en">Farmer Query</span>
+    <span class="lang-te">రైతు ప్రశ్న</span>
+</a>
 
+<a href="{{ url_for('agriculture_disease') }}">
+    <span class="lang-en">Disease Prediction</span>
+    <span class="lang-te">వ్యాధి గుర్తింపు</span>
+</a>
 
-            <a href="fertilizer.html">
-                <span class="lang-en">Fertilizer</span>
-                <span class="lang-te">ఎరువులు</span>
-            </a>
+<a href="{{ url_for('agriculture_cost') }}">
+    <span class="lang-en">Farming Cost</span>
+    <span class="lang-te">వ్యవసాయ ఖర్చు</span>
+</a>
 
-
-            <a href="weather.html">
-                <span class="lang-en">Weather</span>
-                <span class="lang-te">వాతావరణం</span>
-            </a>
-
-
-            <a href="farmer-query.html">
-                <span class="lang-en">Farmer Query</span>
-                <span class="lang-te">రైతు ప్రశ్న</span>
-            </a>
-
-
-            <a href="disease-prediction.html">
-                <span class="lang-en">Disease Prediction</span>
-                <span class="lang-te">వ్యాధి గుర్తింపు</span>
-            </a>
-
-
-            <a href="farming-cost.html">
-                <span class="lang-en">Farming Cost</span>
-                <span class="lang-te">వ్యవసాయ ఖర్చు</span>
-            </a>
+<a href="{{ url_for('agriculture_tips') }}">
+    <span class="lang-en">Farming Tips</span>
+    <span class="lang-te">వ్యవసాయ సూచనలు</span>
+</a>
 
 
-            <a href="farming-tips.html">
-                <span class="lang-en">Farming Tips</span>
-                <span class="lang-te">వ్యవసాయ సూచనలు</span>
-            </a>
 
-
-            <a href="farm-reminder.html">
-                <span class="lang-en">Farm Reminder</span>
-                <span class="lang-te">వ్యవసాయ రిమైండర్</span>
-            </a>
-
-
-            <a href="farm-records.html">
-                <span class="lang-en">Farm Records</span>
-                <span class="lang-te">వ్యవసాయ రికార్డులు</span>
-            </a>
-
-        </nav>
+<a href="{{ url_for('agriculture_records') }}">
+    <span class="lang-en">Farm Records</span>
+    <span class="lang-te">వ్యవసాయ రికార్డులు</span>
+</a>
+</nav>
 
     </header>
 
@@ -186,19 +170,7 @@
             </p>
 
 
-            <button
-                onclick="window.location.href='crop-details.html'">
-
-                <span class="lang-en">
-                    Explore Crops
-                </span>
-
-                <span class="lang-te">
-                    పంటలను చూడండి
-                </span>
-
-            </button>
-
+            
 
         </div>
 
@@ -212,428 +184,355 @@
 
     <section class="services">
 
-
-        <h2>
-
-            <span class="lang-en">
-                🌱 Agriculture Services
-            </span>
-
-            <span class="lang-te">
-                🌱 వ్యవసాయ సేవలు
-            </span>
-
-        </h2>
-
-
-
-        <div class="services-container">
-
-
-
-            <!-- CROP INFORMATION -->
-
-            <div class="service-card">
-
-                <h3>
-                    <span class="lang-en">
-                        🌾 Crop Information
-                    </span>
-
-                    <span class="lang-te">
-                        🌾 పంటల సమాచారం
-                    </span>
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Learn about different crops
-                        and their growing seasons.
-                    </span>
-
-                    <span class="lang-te">
-                        వివిధ పంటలు మరియు
-                        వాటి సాగు కాలాల గురించి
-                        తెలుసుకోండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                   onclick="window.location.href='{{ url_for('crop_details') }}'"
-                    <span class="lang-en">
-                        View Crops
-                    </span>
-
-                    <span class="lang-te">
-                        పంటలను చూడండి
-                    </span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- FERTILIZER -->
-
-            <div class="service-card">
-
-                <h3>
-
-                    <span class="lang-en">
-                        🌱 Fertilizer
-                    </span>
-
-                    <span class="lang-te">
-                        🌱 ఎరువులు
-                    </span>
-
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Find general fertilizer
-                        information for different crops.
-                    </span>
-
-                    <span class="lang-te">
-                        వివిధ పంటలకు సంబంధించిన
-                        సాధారణ ఎరువుల సమాచారాన్ని
-                        తెలుసుకోండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                    onclick="window.location.href='fertilizer.html'">
-
-                    <span class="lang-en">
-                        View Fertilizer
-                    </span>
-
-                    <span class="lang-te">
-                        ఎరువులను చూడండి
-                    </span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- WEATHER -->
-
-            <div class="service-card">
-
-                <h3>
-
-                    <span class="lang-en">
-                        ☀️ Weather
-                    </span>
-
-                    <span class="lang-te">
-                        ☀️ వాతావరణం
-                    </span>
-
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Check weather information
-                        useful for farming.
-                    </span>
-
-                    <span class="lang-te">
-                        వ్యవసాయానికి ఉపయోగపడే
-                        వాతావరణ సమాచారాన్ని
-                        తెలుసుకోండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                    onclick="window.location.href='weather.html'">
-
-                    <span class="lang-en">
-                        View Weather
-                    </span>
-
-                    <span class="lang-te">
-                        వాతావరణం చూడండి
-                    </span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- FARMER QUERY -->
-
-            <div class="service-card">
-
-                <h3>
-
-                    <span class="lang-en">
-                        👨‍🌾 Farmer Query
-                    </span>
-
-                    <span class="lang-te">
-                        👨‍🌾 రైతు ప్రశ్న
-                    </span>
-
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Submit your agriculture-related
-                        questions and queries.
-                    </span>
-
-                    <span class="lang-te">
-                        వ్యవసాయానికి సంబంధించిన
-                        మీ ప్రశ్నలను పంపండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                    onclick="window.location.href='farmer-query.html'">
-
-                    <span class="lang-en">
-                        Ask Question
-                    </span>
-
-                    <span class="lang-te">
-                        ప్రశ్న అడగండి
-                    </span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- DISEASE PREDICTION -->
-
-            <div class="service-card">
-
-                <h3>
-
-                    <span class="lang-en">
-                        🩺 Disease Prediction
-                    </span>
-
-                    <span class="lang-te">
-                        🩺 పంట వ్యాధి గుర్తింపు
-                    </span>
-
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Check possible crop diseases
-                        using visible crop symptoms.
-                    </span>
-
-                    <span class="lang-te">
-                        కనిపించే పంట లక్షణాల ఆధారంగా
-                        సాధ్యమైన వ్యాధులను గుర్తించండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                    onclick="window.location.href='disease-prediction.html'">
-
-                    <span class="lang-en">
-                        Predict Disease
-                    </span>
-
-                    <span class="lang-te">
-                        వ్యాధిని గుర్తించండి
-                    </span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- FARMING COST -->
-
-            <div class="service-card">
-
-                <h3>
-
-                    <span class="lang-en">
-                        💰 Farming Cost Calculator
-                    </span>
-
-                    <span class="lang-te">
-                        💰 వ్యవసాయ ఖర్చు కాలిక్యులేటర్
-                    </span>
-
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Calculate estimated farming
-                        expenses for your crop.
-                    </span>
-
-                    <span class="lang-te">
-                        మీ పంటకు సంబంధించిన అంచనా
-                        వ్యవసాయ ఖర్చులను లెక్కించండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                    onclick="window.location.href='farming-cost.html'">
-
-                    <span class="lang-en">
-                        Calculate Cost
-                    </span>
-
-                    <span class="lang-te">
-                        ఖర్చు లెక్కించండి
-                    </span>
-
-                </button>
-
-            </div>
-
-
-
-            <!-- FARMING TIPS -->
-
-            <div class="service-card">
-
-                <h3>
-
-                    <span class="lang-en">
-                        🌱 Farming Tips
-                    </span>
-
-                    <span class="lang-te">
-                        🌱 వ్యవసాయ సూచనలు
-                    </span>
-
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Get useful tips about seasons,
-                        water, fertilizer, pests and harvesting.
-                    </span>
-
-                    <span class="lang-te">
-                        కాలాలు, నీరు, ఎరువులు,
-                        పురుగులు మరియు కోత గురించి
-                        ఉపయోగకరమైన సూచనలు పొందండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                    onclick="window.location.href='farming-tips.html'">
-
-                    <span class="lang-en">
-                        View Farming Tips
-                    </span>
-
-                    <span class="lang-te">
-                        వ్యవసాయ సూచనలు చూడండి
-                    </span>
-
-                </button>
-
-            </div>
-
-
-
-            
-
-            <!-- =================================
-                 FARM RECORDS & EXPENSE TRACKER
-            ================================== -->
-
-            <div class="service-card">
-
-                <h3>
-
-                    <span class="lang-en">
-                        📋 Farm Records & Expenses
-                    </span>
-
-                    <span class="lang-te">
-                        📋 వ్యవసాయ రికార్డులు & ఖర్చులు
-                    </span>
-
-                </h3>
-
-
-                <p>
-
-                    <span class="lang-en">
-                        Maintain crop records and
-                        track seeds, fertilizer, labour,
-                        irrigation and other expenses.
-                    </span>
-
-                    <span class="lang-te">
-                        పంట రికార్డులను నిర్వహించి
-                        విత్తనాలు, ఎరువులు, కూలీలు,
-                        నీటిపారుదల మరియు ఇతర ఖర్చులను
-                        ట్రాక్ చేయండి.
-                    </span>
-
-                </p>
-
-
-                <button
-                    onclick="window.location.href='farm-records.html'">
-
-                    <span class="lang-en">
-                        Manage Records
-                    </span>
-
-                    <span class="lang-te">
-                        రికార్డులను నిర్వహించండి
-                    </span>
-
-                </button>
-
-            </div>
-
+    <h2>
+        <span class="lang-en">
+            🌱 Agriculture Services
+        </span>
+
+        <span class="lang-te">
+            🌱 వ్యవసాయ సేవలు
+        </span>
+    </h2>
+
+    <div class="services-container">
+
+        <!-- CROP INFORMATION -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    🌾 Crop Information
+                </span>
+
+                <span class="lang-te">
+                    🌾 పంటల సమాచారం
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Learn about different crops
+                    and their growing seasons.
+                </span>
+
+                <span class="lang-te">
+                    వివిధ పంటలు మరియు
+                    వాటి సాగు కాలాల గురించి
+                    తెలుసుకోండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('crop_details') }}'">
+
+                <span class="lang-en">
+                    View Crops
+                </span>
+
+                <span class="lang-te">
+                    పంటలను చూడండి
+                </span>
+
+            </button>
 
         </div>
 
-    </section>
 
+        <!-- FERTILIZER -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    🌱 Fertilizer
+                </span>
+
+                <span class="lang-te">
+                    🌱 ఎరువులు
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Find general fertilizer
+                    information for different crops.
+                </span>
+
+                <span class="lang-te">
+                    వివిధ పంటలకు సంబంధించిన
+                    సాధారణ ఎరువుల సమాచారాన్ని
+                    తెలుసుకోండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('agriculture_fertilizer') }}'">
+
+                <span class="lang-en">
+                    View Fertilizer
+                </span>
+
+                <span class="lang-te">
+                    ఎరువులను చూడండి
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- WEATHER -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    ☀️ Weather
+                </span>
+
+                <span class="lang-te">
+                    ☀️ వాతావరణం
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Check weather information
+                    useful for farming.
+                </span>
+
+                <span class="lang-te">
+                    వ్యవసాయానికి ఉపయోగపడే
+                    వాతావరణ సమాచారాన్ని
+                    తెలుసుకోండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('agriculture_weather') }}'">
+
+                <span class="lang-en">
+                    View Weather
+                </span>
+
+                <span class="lang-te">
+                    వాతావరణం చూడండి
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- FARMER QUERY -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    👨‍🌾 Farmer Query
+                </span>
+
+                <span class="lang-te">
+                    👨‍🌾 రైతు ప్రశ్న
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Submit your agriculture-related
+                    questions and queries.
+                </span>
+
+                <span class="lang-te">
+                    వ్యవసాయానికి సంబంధించిన
+                    మీ ప్రశ్నలను పంపండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('agriculture_query') }}'">
+
+                <span class="lang-en">
+                    Ask Question
+                </span>
+
+                <span class="lang-te">
+                    ప్రశ్న అడగండి
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- DISEASE PREDICTION -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    🩺 Disease Prediction
+                </span>
+
+                <span class="lang-te">
+                    🩺 పంట వ్యాధి గుర్తింపు
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Check possible crop diseases
+                    using visible crop symptoms.
+                </span>
+
+                <span class="lang-te">
+                    కనిపించే పంట లక్షణాల ఆధారంగా
+                    సాధ్యమైన వ్యాధులను గుర్తించండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('agriculture_disease') }}'">
+
+                <span class="lang-en">
+                    Predict Disease
+                </span>
+
+                <span class="lang-te">
+                    వ్యాధిని గుర్తించండి
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- FARMING COST -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    💰 Farming Cost Calculator
+                </span>
+
+                <span class="lang-te">
+                    💰 వ్యవసాయ ఖర్చు కాలిక్యులేటర్
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Calculate estimated farming
+                    expenses for your crop.
+                </span>
+
+                <span class="lang-te">
+                    మీ పంటకు సంబంధించిన అంచనా
+                    వ్యవసాయ ఖర్చులను లెక్కించండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('agriculture_cost') }}'">
+
+                <span class="lang-en">
+                    Calculate Cost
+                </span>
+
+                <span class="lang-te">
+                    ఖర్చు లెక్కించండి
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- FARMING TIPS -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    🌱 Farming Tips
+                </span>
+
+                <span class="lang-te">
+                    🌱 వ్యవసాయ సూచనలు
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Get useful tips about seasons,
+                    water, fertilizer, pests and harvesting.
+                </span>
+
+                <span class="lang-te">
+                    కాలాలు, నీరు, ఎరువులు,
+                    పురుగులు మరియు కోత గురించి
+                    ఉపయోగకరమైన సూచనలు పొందండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('agriculture_tips') }}'">
+
+                <span class="lang-en">
+                    View Farming Tips
+                </span>
+
+                <span class="lang-te">
+                    వ్యవసాయ సూచనలు చూడండి
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <!-- FARM RECORDS -->
+        <div class="service-card">
+
+            <h3>
+                <span class="lang-en">
+                    📋 Farm Records & Expenses
+                </span>
+
+                <span class="lang-te">
+                    📋 వ్యవసాయ రికార్డులు & ఖర్చులు
+                </span>
+            </h3>
+
+            <p>
+                <span class="lang-en">
+                    Maintain crop records and
+                    track seeds, fertilizer, labour,
+                    irrigation and other expenses.
+                </span>
+
+                <span class="lang-te">
+                    పంట రికార్డులను నిర్వహించి
+                    విత్తనాలు, ఎరువులు, కూలీలు,
+                    నీటిపారుదల మరియు ఇతర ఖర్చులను
+                    ట్రాక్ చేయండి.
+                </span>
+            </p>
+
+            <button
+                onclick="window.location.href='{{ url_for('agriculture_records') }}'">
+
+                <span class="lang-en">
+                    Manage Records
+                </span>
+
+                <span class="lang-te">
+                    రికార్డులను నిర్వహించండి
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
     <!-- =========================================

@@ -122,7 +122,20 @@ nav a:hover {
 nav a.active {
     background-color: #1b5e20;
 }
+/* Agriculture Hero Navigation */
+.hero nav a,
+.hero-section nav a,
+.agriculture-nav a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-weight: 600;
+}
 
+.hero nav a:hover,
+.hero-section nav a:hover,
+.agriculture-nav a:hover {
+    color: #d4edda !important;
+}
 
 /* =========================================
    HERO SECTION
@@ -1070,4 +1083,33 @@ footer p {
     color: #555;
 
     font-size: 16px;
+}
+/* ===== Agriculture Navigation Visibility Fix ===== */
+
+.hero nav,
+.hero-section nav,
+.agriculture-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.hero nav a,
+.hero-section nav a,
+.agriculture-nav a {
+    color: #ffffff !important;
+    background: transparent !important;
+    text-decoration: none !important;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 5px;
+    display: inline-block;
+}
+
+.hero nav a:hover,
+.hero-section nav a:hover,
+.agriculture-nav a:hover {
+    color: #d9f99d !important;
 }

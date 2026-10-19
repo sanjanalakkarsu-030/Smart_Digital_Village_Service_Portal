@@ -1,71 +1,88 @@
 /* Citizen Module - Shared JavaScript */
-
-
 /* ===== Forgot Password ===== */
-async function sendOTP(){
+async function sendOTP() {
+    const username = document.getElementById("username").value.trim();
 
-let email=document.getElementById("email").value.trim();
+    if (!username) {
+        alert("Please enter your username or phone number.");
+        return;
+    }
 
-if(email===""){
-alert("Please enter your email.");
-return;
+    const button = document.getElementById("otpBtn");
+    if (button) {
+        button.disabled = true;
+        button.textContent = "Please wait...";
+    }
+
+    try {
+        const response = await fetch("/send-otp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: username })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            sessionStorage.setItem("resetUsername", username);
+            alert("Demo OTP: " + (result.demo_otp || "123456"));
+            window.location.href = "/verify-otp";
+        } else {
+            alert(result.message || "Unable to generate OTP.");
+        }
+    } catch (error) {
+        console.error("Send OTP error:", error);
+        alert("Unable to connect. Check whether Flask is running.");
+    } finally {
+        if (button) {
+            button.disabled = false;
+            button.textContent = "Continue";
+        }
+    }
 }
 
-document.getElementById("loader").style.display="block";
-document.getElementById("otpBtn").disabled=true;
+async function resendOTP() {
 
-try{
 
-const response=await fetch("/send-otp",{
+    const username = sessionStorage.getItem("resetUsername") || "";
 
-method:"POST",
+    if (!username) {
+        alert("Password reset session expired. Please start again.");
+        window.location.href = "/forgot-password";
+        return;
+    }
 
-headers:{
-"Content-Type":"application/json"
-},
+    try {
 
-body:JSON.stringify({
-email:email
-})
+        const response = await fetch("/send-otp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username
+            })
+        });
 
-});
+        const data = await response.json();
 
-const data=await response.json().catch(()=>({success:false,message:"The server returned an invalid response."}));
+        if (data.success) {
 
-document.getElementById("loader").style.display="none";
-document.getElementById("otpBtn").disabled=false;
+            alert("OTP sent again.\n\nDemo OTP: 123456");
 
-if(data.success){
+            location.reload();
 
-// Store email for resend OTP
-sessionStorage.setItem("resetEmail", email);
+        } else {
 
-document.getElementById("message").style.display="block";
-document.getElementById("message").innerHTML="OTP sent successfully. Redirecting...";
+            alert(data.message);
+        }
 
-setTimeout(function(){
+    } catch (error) {
 
-window.location.href="/verify-otp";
+        console.error(error);
 
-},1200);
-
-}
-else{
-
-alert(data.message || "Unable to send the OTP.");
-
-}
-
-}
-catch(error){
-
-document.getElementById("loader").style.display="none";
-document.getElementById("otpBtn").disabled=false;
-
-alert("Unable to connect to the server.");
-
-}
-
+        alert("Unable to resend OTP.");
+    }
 }
 
 /* ===== Login ===== */
@@ -139,7 +156,7 @@ message.style.display="block";
 
 setTimeout(function(){
 
-window.location.href="/";
+window.location.href="/citizen";
 
 },1000);
 
@@ -379,72 +396,63 @@ strength.style.color="green";
 
 }
 
-async function updatePassword(){
+async function updatePassword() {
 
-const password=document.getElementById("password").value;
-const confirm=document.getElementById("confirmPassword").value;
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword =
+        document.getElementById("confirmPassword").value.trim();
 
-if(password==="" || confirm===""){
+    if (password === "" || confirmPassword === "") {
 
-alert("Please fill all fields.");
+        alert("Please enter both password fields.");
+        return;
+    }
 
-return;
+    if (password !== confirmPassword) {
 
-}
+        alert("Passwords do not match.");
+        return;
+    }
 
-if(password!==confirm){
+    if (password.length < 6) {
 
-alert("Passwords do not match.");
+        alert("Password must contain at least 6 characters.");
+        return;
+    }
 
-return;
+    try {
 
-}
+        const response = await fetch("/update-password", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                password: password
+            })
+        });
 
-if(password.length<6){
+        const result = await response.json();
 
-alert("Password must be at least 6 characters.");
+        if (result.success) {
 
-return;
+            alert("Password updated successfully!");
 
-}
+            sessionStorage.removeItem("resetUsername");
 
-try{
+            window.location.href = "/login";
 
-const response=await fetch("/update-password",{
+        } else {
 
-method:"POST",
+            alert(result.message);
+        }
 
-headers:{
-"Content-Type":"application/json"
-},
+    } catch (error) {
 
-body:JSON.stringify({
-password:password
-})
+        console.error(error);
 
-});
-
-const data=await response.json().catch(()=>({success:false,message:"The server returned an invalid response."}));
-
-if(data.success){
-
-alert("Password updated successfully!");
-
-window.location.href="/login";
-
-}else{
-
-alert(data.message || "Password update failed.");
-
-}
-
-}
-catch{
-
-alert("Server error.");
-
-}
-
+        alert("Something went wrong. Please try again.");
+    }
 }
 /* ===== Verify OTP ===== */
 const otpInputs=document.querySelectorAll(".otp");
@@ -501,60 +509,50 @@ document.getElementById("resendBtn").disabled=false;
 
 });
 
-async function verifyOTP(){
+async function verifyOTP() {
 
-let otp="";
+    let otp = "";
 
-otpInputs.forEach(input=>{
+    document.querySelectorAll(".otp").forEach(input => {
+        otp += input.value.trim();
+    });
 
-otp+=input.value;
+    if (otp.length !== 6) {
+        alert("Please enter the 6-digit OTP.");
+        return;
+    }
 
-});
+    try {
 
-if(otp.length!==6){
+        const response = await fetch("/verify-otp", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                otp: otp
+            })
+        });
 
-alert("Please enter the complete OTP.");
+        const result = await response.json();
 
-return;
+        if (result.success) {
 
-}
+            alert("OTP verified successfully!");
 
-try{
+            window.location.href = "/reset-password";
 
-const response=await fetch("/verify-otp",{
+        } else {
 
-method:"POST",
+            alert(result.message);
+        }
 
-headers:{
-"Content-Type":"application/json"
-},
+    } catch (error) {
 
-body:JSON.stringify({
-otp:otp
-})
+        console.error(error);
 
-});
-
-const data=await response.json().catch(()=>({success:false,message:"The server returned an invalid response."}));
-
-if(data.success){
-
-window.location.href="/reset-password";
-
-}
-else{
-
-alert(data.message || "OTP verification failed.");
-
-}
-
-}
-catch{
-
-alert("Server error.");
-
-}
-
+        alert("Something went wrong. Please try again.");
+    }
 }
 
 // Countdown Timer removed from original; initialized above.

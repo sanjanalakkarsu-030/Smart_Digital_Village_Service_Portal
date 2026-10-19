@@ -1,0 +1,446 @@
+
+{% extends "base.html" %}
+
+{% block title %}Crop Suitability Guidance | Smart Digital Village{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/agriculture_new.css') }}">
+
+<style>
+.crop-page {
+    max-width: 1050px;
+    margin: 30px auto;
+    padding: 0 18px 45px;
+    color: #203b2a;
+    font-size: 16px;
+    line-height: 1.65;
+}
+.crop-hero {
+    background: linear-gradient(135deg, #e5f5e8, #f8fcf6);
+    border: 1px solid #cfe5d3;
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 24px;
+}
+.crop-hero .eyebrow {
+    color: #176b3b;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.crop-hero h1 {
+    color: #155b32;
+    font-size: clamp(27px, 4vw, 38px);
+    line-height: 1.3;
+    margin: 8px 0;
+}
+.crop-hero p { margin-bottom: 0; }
+.crop-form {
+    background: #fff;
+    border: 1px solid #d7e6da;
+    border-top: 5px solid #218449;
+    border-radius: 16px;
+    padding: 26px;
+    box-shadow: 0 8px 25px rgba(25,80,43,.07);
+}
+.crop-section { margin-bottom: 28px; }
+.crop-section h2 {
+    color: #176b3b;
+    font-size: 21px;
+    margin: 0 0 5px;
+}
+.crop-help {
+    color: #5d6e61;
+    margin: 0 0 15px;
+}
+.crop-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
+.crop-field label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #234d32;
+}
+.crop-field input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 48px;
+    padding: 11px 13px;
+    border: 1px solid #c6d9ca;
+    border-radius: 9px;
+    background: #fcfefc;
+    color: #263b2d;
+    font: inherit;
+}
+.crop-optional {
+    color: #617568;
+    font-size: 12px;
+    font-weight: 500;
+}
+.crop-radio-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+.crop-radio {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    border: 1px solid #d4e4d7;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    background: #fbfefb;
+}
+.crop-radio:has(input:checked) {
+    background: #eaf6ed;
+    border-color: #218449;
+}
+.crop-radio input {
+    width: 18px;
+    height: 18px;
+    margin-top: 4px;
+    accent-color: #218449;
+    flex-shrink: 0;
+}
+.crop-notice {
+    border-left: 4px solid #d4a72c;
+    background: #fff9e9;
+    padding: 13px 16px;
+    border-radius: 7px;
+    color: #59481a;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.crop-submit {
+    width: 100%;
+    min-height: 54px;
+    border: none;
+    border-radius: 10px;
+    background: #176b3b;
+    color: white;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.crop-submit:hover { background: #10552e; }
+.crop-message {
+    padding: 15px 17px;
+    border-radius: 10px;
+    margin: 18px 0;
+    overflow-wrap: anywhere;
+}
+.crop-message.error {
+    background: #fff0f0;
+    color: #8b2020;
+    border: 1px solid #f1c6c6;
+}
+.crop-message.info {
+    background: #edf7ef;
+    color: #215c35;
+    border: 1px solid #c9e4ce;
+}
+.crop-results { margin-top: 28px; }
+.crop-results > h2 {
+    color: #176b3b;
+    font-size: 25px;
+}
+.crop-result-card {
+    background: #fff;
+    border: 1px solid #d3e5d6;
+    border-left: 4px solid #218449;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 14px 0;
+    overflow-wrap: anywhere;
+}
+.crop-result-card h3 {
+    margin-top: 0;
+    color: #176b3b;
+    font-size: 22px;
+}
+.crop-source { font-size: 14px; }
+.crop-source a {
+    color: #176b3b;
+    overflow-wrap: anywhere;
+}
+@media (max-width: 650px) {
+    .crop-page { padding: 0 10px 30px; }
+    .crop-hero, .crop-form { padding: 19px; }
+    .crop-grid, .crop-radio-list { grid-template-columns: 1fr; }
+}
+</style>
+
+<main class="crop-page">
+
+<div style="margin-bottom: 20px;">
+    <a href="{{ url_for('agriculture_new') }}"
+       style="display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              padding: 10px 17px;
+              background: #eaf6ec;
+              color: #21683d;
+              border: 1px solid #cde5d2;
+              border-radius: 9px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 14px;">
+        ← Back to Agriculture Home
+    </a>
+</div>
+
+    <section class="crop-hero">
+        <div class="eyebrow">Smart Digital Village · Agriculture</div>
+        <h1>🌱 Crop Suitability Guidance</h1>
+        <p>
+            Find crop options that may suit your farm.
+            Mee polam paristhitulaku tagina pantala options telusukondi.
+        </p>
+    </section>
+
+    {% if error_message %}
+        <div class="crop-message error" role="alert">
+            <strong>Please check:</strong> {{ error_message }}
+        </div>
+    {% endif %}
+
+    <form class="crop-form"
+          method="POST"
+          action="{{ url_for('agriculture_crops_new') }}">
+
+        <section class="crop-section">
+            <h2>1. Farm Location / Polam Vivaralu</h2>
+            <p class="crop-help">
+                Location is optional. Leave these fields blank to search
+                all available crop records.
+            </p>
+
+            <div class="crop-grid">
+                <div class="crop-field">
+                    <label for="district">District / Jilla
+                        <span class="crop-optional">(Optional)</span>
+                    </label>
+                    <input id="district" name="district"
+                           maxlength="100"
+                           value="{{ form_data.get('district', '') }}"
+                           placeholder="Example: Siddipet">
+                </div>
+
+                <div class="crop-field">
+                    <label for="mandal">Mandal
+                        <span class="crop-optional">(Optional)</span>
+                    </label>
+                    <input id="mandal" name="mandal"
+                           maxlength="100"
+                           value="{{ form_data.get('mandal', '') }}"
+                           placeholder="Enter your mandal">
+                </div>
+
+                <div class="crop-field">
+                    <label for="village">Village / Gramam
+                        <span class="crop-optional">(Optional)</span>
+                    </label>
+                    <input id="village" name="village"
+                           maxlength="150"
+                           value="{{ form_data.get('village', '') }}"
+                           placeholder="Enter your village">
+                </div>
+            </div>
+        </section>
+
+        <section class="crop-section">
+            <h2>2. Growing Season / Pantala Season</h2>
+            <p class="crop-help">Which season are you planning for?</p>
+
+            <div class="crop-radio-list">
+                {% for value, label in [
+                    ('Kharif', 'Kharif — Rainy season / Varsha kaalam'),
+                    ('Rabi', 'Rabi — Winter season / Chali kaalam'),
+                    ('Summer', 'Summer / Vesavi kaalam'),
+                    ('Unknown', 'Not sure / Teliyadu')
+                ] %}
+                    <label class="crop-radio">
+                        <input type="radio" name="season"
+                               value="{{ value }}"
+                               {% if form_data.get('season', 'Unknown') == value %}checked{% endif %}
+                               required>
+                        <span>{{ label }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="crop-section">
+            <h2>3. Soil Type / Nela Rakam</h2>
+            <p class="crop-help">Choose the soil type if you know it.</p>
+
+            <div class="crop-radio-list">
+                {% for value, label in [
+                    ('Black', 'Black soil / Nalla regadi nela'),
+                    ('Red', 'Red soil / Erra nela'),
+                    ('Sandy', 'Sandy soil / Isuka nela'),
+                    ('Loamy', 'Loamy soil / Mixed soil'),
+                    ('Unknown', 'Not sure / Teliyadu')
+                ] %}
+                    <label class="crop-radio">
+                        <input type="radio" name="soil_type"
+                               value="{{ value }}"
+                               {% if form_data.get('soil_type', 'Unknown') == value %}checked{% endif %}
+                               required>
+                        <span>{{ label }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="crop-section">
+            <h2>4. Water Availability / Neeti Saukaryam</h2>
+            <p class="crop-help">How much water is available for your farm?</p>
+
+            <div class="crop-radio-list">
+                {% for value, label in [
+                    ('Low', 'Low — Mostly rainfall'),
+                    ('Medium', 'Medium — Limited irrigation'),
+                    ('High', 'High — Regular irrigation'),
+                    ('Unknown', 'Not sure / Teliyadu')
+                ] %}
+                    <label class="crop-radio">
+                        <input type="radio" name="water"
+                               value="{{ value }}"
+                               {% if form_data.get('water', 'Unknown') == value %}checked{% endif %}
+                               required>
+                        <span>{{ label }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="crop-section">
+            <h2>5. Soil Test / Nela Pariksha</h2>
+            <p class="crop-help">
+                A soil test helps you understand soil pH and nutrients.
+                You can continue even if you do not have a report.
+            </p>
+
+            <div class="crop-radio-list">
+                {% for value, label in [
+                    ('Yes', 'Yes — I have a soil test report'),
+                    ('No', 'No — I do not have a report')
+                ] %}
+                    <label class="crop-radio">
+                        <input type="radio" name="soil_test"
+                               value="{{ value }}"
+                               {% if form_data.get('soil_test', 'No') == value %}checked{% endif %}
+                               required>
+                        <span>{{ label }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </section>
+
+        <div class="crop-notice">
+            <strong>Important:</strong>
+            Results depend on verified crop information and local conditions.
+            Unknown details are not treated as confirmed facts.
+            This tool does not guarantee yield or crop success.
+        </div>
+
+        <button class="crop-submit" type="submit">
+            Find Suitable Crop Options / Pantalu Chudandi
+        </button>
+    </form>
+
+    {% if recommendations is not none %}
+        <section class="crop-results" aria-live="polite">
+            <h2>Crop Guidance Results / Pantala Salahalu</h2>
+
+            {% if recommendations %}
+                <p>
+                    These crops match the available verified records.
+                    Review the source and local conditions before deciding.
+                </p>
+
+                {% for crop in recommendations %}
+                    <article class="crop-result-card">
+                        <h3>🌾 {{ crop[0] }}</h3>
+
+                        <p>
+                            <strong>Season:</strong>
+                            {{ crop[1] or 'Not specified in source' }}
+                        </p>
+
+                        <p>
+                            <strong>Soil:</strong>
+                            {{ crop[2] or 'Not specified in source' }}
+                        </p>
+
+                        <p>
+                            <strong>Water:</strong>
+                            {{ crop[3] or 'Not specified in source' }}
+                        </p>
+
+                        <p>
+                            <strong>Guidance:</strong>
+                            {{ crop[4] or 'No additional guidance recorded' }}
+                        </p>
+
+                        <p>
+                            <strong>Sowing period:</strong>
+                            {{ crop[9] or 'Not specified in source' }}
+                        </p>
+
+                        <p class="crop-source">
+                            <strong>Source:</strong>
+                            {% if crop[5] and crop[5].startswith('https://') %}
+                                <a href="{{ crop[5] }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    {{ crop[6] or crop[5] }}
+                                </a>
+                            {% elif crop[5] and crop[5].startswith('http://') %}
+                                <a href="{{ crop[5] }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    {{ crop[6] or crop[5] }}
+                                </a>
+                            {% else %}
+                                Source URL unavailable
+                            {% endif %}
+
+                            {% if crop[7] %}
+                                · Verified on {{ crop[7] }}
+                            {% endif %}
+                        </p>
+                    </article>
+                {% endfor %}
+
+            {% else %}
+                <div class="crop-message info">
+                    <strong>No verified recommendations are available yet.</strong>
+                    <p>
+                        The current database does not contain enough verified
+                        crop records matching these conditions. Try other
+                        conditions or contact your local agriculture officer.
+                    </p>
+                </div>
+            {% endif %}
+
+            {% if pending_count > 0 %}
+                <div class="crop-message info">
+                    {{ pending_count }} crop record(s) still require verification.
+                    They are not shown as confirmed recommendations.
+                </div>
+            {% endif %}
+        </section>
+    {% endif %}
+
+</main>
+
+{% endblock %}

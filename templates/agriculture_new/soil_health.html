@@ -1,0 +1,466 @@
+
+{% extends "base.html" %}
+
+{% block title %}Soil Health & Fertilizer Guidance{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/agriculture_new.css') }}">
+
+<style>
+.soil-page {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 25px 20px 45px;
+    color: #26382d;
+}
+
+.soil-hero {
+    background: linear-gradient(135deg, #14532d, #31834c);
+    color: white;
+    padding: 38px 32px;
+    border-radius: 18px;
+    margin-bottom: 28px;
+    box-shadow: 0 8px 22px rgba(20, 83, 45, .12);
+}
+
+.soil-hero h1 {
+    color: white;
+    font-size: clamp(27px, 4vw, 36px);
+    line-height: 1.3;
+    margin: 0 0 14px;
+}
+
+.soil-hero p {
+    color: #edf8ef;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 780px;
+    margin: 0 0 20px;
+}
+
+.soil-btn {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 9px;
+    background: #fff;
+    color: #176438;
+    font-weight: 700;
+    text-decoration: none;
+    transition: .2s ease;
+}
+
+.soil-btn:hover {
+    color: #14532d;
+    transform: translateY(-2px);
+}
+
+.soil-section {
+    margin-top: 32px;
+}
+
+.soil-section-title {
+    color: #185b35;
+    font-size: 25px;
+    margin: 0 0 8px;
+}
+
+.soil-section-intro {
+    color: #637066;
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0 0 20px;
+}
+
+.soil-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.soil-card {
+    background: #fff;
+    border: 1px solid #e0eadf;
+    border-radius: 15px;
+    padding: 23px;
+    box-shadow: 0 4px 15px rgba(31, 72, 42, .05);
+}
+
+.soil-card h3 {
+    color: #21683d;
+    font-size: 19px;
+    margin: 0 0 12px;
+}
+
+.soil-card p {
+    color: #536258;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0 0 12px;
+}
+
+.soil-card ul,
+.soil-card ol {
+    padding-left: 21px;
+    margin: 10px 0 0;
+}
+
+.soil-card li {
+    color: #435448;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 7px;
+}
+
+.soil-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background: #eaf6ec;
+    border-radius: 12px;
+    font-size: 23px;
+    margin-bottom: 14px;
+}
+
+.soil-highlight {
+    background: #f0f8f1;
+    border-left: 5px solid #27834b;
+    border-radius: 10px;
+    padding: 19px 21px;
+    margin-top: 20px;
+}
+
+.soil-highlight h3 {
+    color: #185b35;
+    font-size: 18px;
+    margin: 0 0 8px;
+}
+
+.soil-highlight p {
+    color: #435448;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.soil-tag {
+    display: inline-block;
+    background: #e7f5e9;
+    color: #21683d;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.soil-portal {
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e0eadf;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.soil-portal h3 {
+    color: #185b35;
+    margin: 0 0 10px;
+}
+
+.soil-portal p {
+    color: #536258;
+    line-height: 1.8;
+    font-size: 14px;
+    margin: 0 0 17px;
+}
+
+.soil-portal .soil-btn {
+    background: #176438;
+    color: #fff;
+}
+
+.soil-small-note {
+    color: #69776d;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-top: 13px;
+}
+
+@media (max-width: 700px) {
+    .soil-page {
+        padding: 16px 12px 30px;
+    }
+
+    .soil-hero {
+        padding: 27px 20px;
+    }
+
+    .soil-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .soil-section-title {
+        font-size: 22px;
+    }
+
+    .soil-card {
+        padding: 19px;
+    }
+}
+</style>
+
+<div class="soil-page">
+
+<div style="margin-bottom: 20px;">
+    <a href="{{ url_for('agriculture_new') }}"
+       style="display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              padding: 10px 17px;
+              background: #eaf6ec;
+              color: #21683d;
+              border: 1px solid #cde5d2;
+              border-radius: 9px;
+              text-decoration: none;
+              font-weight: 600;
+              font-size: 14px;">
+        ← Back to Agriculture Home
+    </a>
+</div>
+
+    <!-- HERO -->
+    <section class="soil-hero">
+        <h1>🌱 Soil Health &amp; Fertilizer Guidance</h1>
+
+        <p>
+            Healthy soil supports healthy crops. Learn why soil testing
+            matters, explore basic fertilizer guidance for Paddy and Cotton,
+            and discover natural practices to maintain soil health.
+        </p>
+
+        <a class="soil-btn"
+           href="https://soilhealth.dac.gov.in/"
+           target="_blank"
+           rel="noopener noreferrer">
+            Soil Health Card Portal ↗
+        </a>
+    </section>
+
+    <!-- SOIL TESTING -->
+    <section class="soil-section">
+        <h2 class="soil-section-title">
+            🌿 1. Soil Testing for Better Crop Yield
+        </h2>
+
+        <p class="soil-section-intro">
+            Soil testing helps farmers understand their field's condition
+            and make informed decisions about fertilizers and soil management.
+        </p>
+
+        <div class="soil-grid">
+
+            <article class="soil-card">
+                <div class="soil-icon">🔬</div>
+                <h3>Why Is Soil Testing Important?</h3>
+
+                <ul>
+                    <li>Helps identify soil pH and nutrient status.</li>
+                    <li>Supports selection of suitable fertilizers.</li>
+                    <li>Helps avoid unnecessary fertilizer expenses.</li>
+                    <li>Supports balanced nutrient management.</li>
+                    <li>Helps farmers plan crop nutrition based on soil condition.</li>
+                </ul>
+
+                <div class="soil-highlight">
+                    <h3>Farmer Benefit</h3>
+                    <p>
+                        Soil testing can support better crop management
+                        and yield potential. Actual yield also depends on
+                        weather, irrigation, crop variety, pests and other factors.
+                    </p>
+                </div>
+            </article>
+
+            <article class="soil-card">
+                <div class="soil-icon">🧪</div>
+                <h3>How to Collect a Soil Sample</h3>
+
+                <ol>
+                    <li>Choose representative spots in your field.</li>
+                    <li>Avoid unusual areas such as fertilizer piles,
+                        field bunds and drainage spots.</li>
+                    <li>Use clean tools and a clean container.</li>
+                    <li>Collect and mix soil as instructed by the testing lab.</li>
+                    <li>Label the sample with the required field details.</li>
+                    <li>Submit it to a soil testing laboratory as instructed.</li>
+                </ol>
+
+                <p>
+                    <strong>Tip:</strong> Ask your local Agriculture Officer
+                    about the correct sampling depth and quantity for your field.
+                </p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- FERTILIZER GUIDANCE -->
+    <section class="soil-section">
+        <h2 class="soil-section-title">
+            🌾 2. Crop-wise Fertilizer Guidance
+        </h2>
+
+        <p class="soil-section-intro">
+            Select your crop to understand the basic principles of nutrient
+            management. Exact fertilizer quantities should follow the soil
+            test report and verified local recommendations.
+        </p>
+
+        <div class="soil-grid">
+
+            <!-- PADDY -->
+            <article class="soil-card">
+                <div class="soil-icon">🌾</div>
+                <span class="soil-tag">CROP 01</span>
+
+                <h3>Paddy (Rice)</h3>
+
+                <p>
+                    Balanced nutrient management helps support healthy
+                    rice growth, tillering and grain development.
+                </p>
+
+                <ul>
+                    <li><strong>Nitrogen (N):</strong> Supports leaf and plant growth.</li>
+                    <li><strong>Phosphorus (P):</strong> Supports root development.</li>
+                    <li><strong>Potassium (K):</strong> Supports plant functions and crop health.</li>
+                </ul>
+
+                <p>
+                    <strong>Good practice:</strong> Follow the recommended
+                    fertilizer schedule for your rice variety, soil test
+                    and crop stage. Apply nitrogen in recommended splits
+                    where advised.
+                </p>
+            </article>
+
+            <!-- COTTON -->
+            <article class="soil-card">
+                <div class="soil-icon">🌱</div>
+                <span class="soil-tag">CROP 02</span>
+
+                <h3>Cotton</h3>
+
+                <p>
+                    Cotton needs balanced nutrition throughout its growth.
+                    Requirements vary according to soil, variety and field conditions.
+                </p>
+
+                <ul>
+                    <li><strong>Nitrogen (N):</strong> Supports vegetative growth.</li>
+                    <li><strong>Phosphorus (P):</strong> Supports root development.</li>
+                    <li><strong>Potassium (K):</strong> Supports plant development and crop quality.</li>
+                </ul>
+
+                <p>
+                    <strong>Good practice:</strong> Base fertilizer choices
+                    on soil test results and local cotton recommendations.
+                    Avoid excessive nitrogen without expert advice.
+                </p>
+            </article>
+
+        </div>
+
+        <div class="soil-highlight">
+            <h3>⚠️ Important Fertilizer Safety Note</h3>
+            <p>
+                These are general nutrient explanations, not a fertilizer
+                prescription. Exact doses and application timing are not
+                provided here because they depend on local recommendations,
+                soil test results, crop variety and growing conditions.
+                Consult your Agriculture Officer before deciding quantities.
+            </p>
+        </div>
+    </section>
+
+    <!-- ORGANIC FARMING -->
+    <section class="soil-section">
+        <h2 class="soil-section-title">
+            🍃 3. Organic Farming &amp; Natural Soil Care
+        </h2>
+
+        <p class="soil-section-intro">
+            Organic soil management practices can help maintain soil
+            organic matter, improve soil structure and support long-term
+            soil health when used appropriately.
+        </p>
+
+        <div class="soil-grid">
+
+            <article class="soil-card">
+                <div class="soil-icon">♻️</div>
+                <h3>Farmyard Manure &amp; Compost</h3>
+
+                <ul>
+                    <li>Use well-decomposed farmyard manure or compost.</li>
+                    <li>Organic matter can help improve soil structure.</li>
+                    <li>Compost contributes organic matter and nutrients.</li>
+                    <li>Use mature compost and follow local recommendations.</li>
+                </ul>
+            </article>
+
+            <article class="soil-card">
+                <div class="soil-icon">🌿</div>
+                <h3>Green Manure &amp; Crop Residues</h3>
+
+                <ul>
+                    <li>Green manure crops can add organic matter to soil.</li>
+                    <li>Manage crop residues appropriately instead of burning them.</li>
+                    <li>Organic matter can support soil moisture retention.</li>
+                    <li>Choose practices suitable for your crop and field.</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="soil-highlight">
+            <h3>🌱 Organic Farming Tip</h3>
+            <p>
+                Organic inputs improve soil management, but their nutrient
+                content varies. They may not provide every nutrient in the
+                quantity a crop requires. Combine soil testing with locally
+                recommended nutrient management for informed decisions.
+            </p>
+        </div>
+    </section>
+
+    <!-- OFFICIAL PORTAL -->
+    <section class="soil-portal">
+        <h3>Need Official Soil Health Information?</h3>
+
+        <p>
+            Visit the Government of India's Soil Health Card portal for
+            available services and official information.
+        </p>
+
+        <a class="soil-btn"
+           href="https://soilhealth.dac.gov.in/"
+           target="_blank"
+           rel="noopener noreferrer">
+            Visit Official Portal ↗
+        </a>
+
+        <p class="soil-small-note">
+            This page provides general educational information.
+            For field-specific recommendations, contact your local
+            Agriculture Officer or soil testing laboratory.
+        </p>
+    </section>
+
+</div>
+
+{% endblock %}
